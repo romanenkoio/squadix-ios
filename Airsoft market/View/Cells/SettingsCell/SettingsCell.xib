@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="KGk-i7-Jjw" customClass="SettingsCell" customModule="Airsoft_market" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="db9-ZG-qxn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogo-Tw-0E2">
+                                <rect key="frame" x="20" y="13.5" width="256" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="actionArrow" translatesAutoresizingMaskIntoConstraints="NO" id="Pvh-Uw-00t">
+                                <rect key="frame" x="286" y="10" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="X0o-H4-BIq"/>
+                                    <constraint firstAttribute="height" constant="24" id="eZN-Os-ufI"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppR-PR-pcq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="callAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Po-1o-k6i"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ogo-Tw-0E2" firstAttribute="centerY" secondItem="db9-ZG-qxn" secondAttribute="centerY" id="CHY-1c-sWz"/>
+                            <constraint firstAttribute="trailing" secondItem="Pvh-Uw-00t" secondAttribute="trailing" constant="10" id="Kfr-Wz-nf6"/>
+                            <constraint firstItem="Pvh-Uw-00t" firstAttribute="leading" secondItem="Ogo-Tw-0E2" secondAttribute="trailing" constant="10" id="OVI-of-gwC"/>
+                            <constraint firstItem="Pvh-Uw-00t" firstAttribute="centerY" secondItem="Ogo-Tw-0E2" secondAttribute="centerY" id="d7B-ER-qZ0"/>
+                            <constraint firstItem="Ogo-Tw-0E2" firstAttribute="leading" secondItem="db9-ZG-qxn" secondAttribute="leading" constant="20" id="dOn-WM-Xqn"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="db9-ZG-qxn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0yo-Ej-qeD"/>
+                    <constraint firstAttribute="trailing" secondItem="db9-ZG-qxn" secondAttribute="trailing" id="C9Y-Qj-Hmv"/>
+                    <constraint firstItem="db9-ZG-qxn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Y6m-82-0tf"/>
+                    <constraint firstAttribute="bottom" secondItem="db9-ZG-qxn" secondAttribute="bottom" id="dZc-3e-xhQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="njF-e1-oar" firstAttribute="bottom" secondItem="ppR-PR-pcq" secondAttribute="bottom" id="GwI-Zc-nVf"/>
+                <constraint firstItem="ppR-PR-pcq" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" id="P6y-8j-Kof"/>
+                <constraint firstItem="ppR-PR-pcq" firstAttribute="top" secondItem="njF-e1-oar" secondAttribute="top" id="XrI-Oq-x2B"/>
+                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="ppR-PR-pcq" secondAttribute="trailing" id="Y7a-Sm-bqy"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="actionImageArrow" destination="Pvh-Uw-00t" id="0CV-1o-taX"/>
+                <outlet property="settingLabel" destination="Ogo-Tw-0E2" id="K86-9U-TDc"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="152"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="actionArrow" width="256" height="256"/>
+    </resources>
+</document>

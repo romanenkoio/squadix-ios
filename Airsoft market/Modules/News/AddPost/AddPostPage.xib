@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddPostPage" customModule="Squadix" customModuleProvider="target">
+            <connections>
+                <outlet property="descriptionTextView" destination="UPp-fH-vMG" id="a3a-mq-zjb"/>
+                <outlet property="headerTextField" destination="qHH-5X-EGl" id="eE7-U6-ocH"/>
+                <outlet property="linkTextField" destination="e6m-vU-2aC" id="7hh-hl-wXL"/>
+                <outlet property="postButton" destination="tWu-1p-Adg" id="K5z-I2-eB1"/>
+                <outlet property="previewButton" destination="l5D-Nc-eYZ" id="LZN-hx-WI8"/>
+                <outlet property="previewImageView" destination="nZu-ga-DwX" id="1U1-r0-btf"/>
+                <outlet property="spinner" destination="RoX-rt-ybr" id="hM2-PE-Rzu"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5D-Nc-eYZ" customClass="WhiteButton" customModule="Squadix" customModuleProvider="target">
+                    <rect key="frame" x="20" y="607" width="157.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ss2-MT-Fob"/>
+                    </constraints>
+                    <state key="normal" title="Предпросмотр"/>
+                    <connections>
+                        <action selector="previewAction:" destination="-1" eventType="touchUpInside" id="cVe-iv-U3M"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWu-1p-Adg" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
+                    <rect key="frame" x="197.5" y="607" width="157.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="sd2-d2-KOy"/>
+                    </constraints>
+                    <state key="normal" title="Опубликовать"/>
+                    <connections>
+                        <action selector="postAction:" destination="-1" eventType="touchUpInside" id="tuI-yz-QUw"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ссылка на видео" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e6m-vU-2aC" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                    <rect key="frame" x="20" y="20" width="281" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="nZu-ga-DwX">
+                    <rect key="frame" x="20" y="79" width="335" height="188.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="nZu-ga-DwX" secondAttribute="height" multiplier="16:9" id="HbK-Fn-IkR"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Заголовок" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qHH-5X-EGl" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                    <rect key="frame" x="20" y="292.5" width="335" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Описание" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UPp-fH-vMG">
+                    <rect key="frame" x="20" y="346.5" width="335" height="240.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="RoX-rt-ybr">
+                    <rect key="frame" x="169" y="315" width="37" height="37"/>
+                    <color key="color" name="mainStrikeColor"/>
+                </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqV-72-G9b">
+                    <rect key="frame" x="321" y="20" width="34" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="a9Z-fh-37D"/>
+                        <constraint firstAttribute="width" constant="34" id="zqL-hT-YmQ"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="2" maxX="5" maxY="2"/>
+                    <state key="normal" title="Button" image="paste"/>
+                    <connections>
+                        <action selector="pasteFromPasteBoard:" destination="-1" eventType="touchUpInside" id="VRt-Bf-FUY"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="l5D-Nc-eYZ" secondAttribute="bottom" constant="20" id="2vk-fL-0FG"/>
+                <constraint firstItem="e6m-vU-2aC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="5XG-EB-WzB"/>
+                <constraint firstItem="dqV-72-G9b" firstAttribute="leading" secondItem="e6m-vU-2aC" secondAttribute="trailing" constant="20" id="Ajj-3E-88t"/>
+                <constraint firstItem="nZu-ga-DwX" firstAttribute="top" secondItem="e6m-vU-2aC" secondAttribute="bottom" constant="25" id="CX9-cL-aKy"/>
+                <constraint firstItem="e6m-vU-2aC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="GUF-E9-5Dg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dqV-72-G9b" secondAttribute="trailing" constant="20" id="GqB-KX-MSr"/>
+                <constraint firstItem="UPp-fH-vMG" firstAttribute="leading" secondItem="e6m-vU-2aC" secondAttribute="leading" id="HJq-V7-dMw"/>
+                <constraint firstItem="qHH-5X-EGl" firstAttribute="top" secondItem="nZu-ga-DwX" secondAttribute="bottom" constant="25" id="JP6-xZ-VWz"/>
+                <constraint firstItem="l5D-Nc-eYZ" firstAttribute="width" secondItem="tWu-1p-Adg" secondAttribute="width" id="KKs-yK-eVI"/>
+                <constraint firstItem="tWu-1p-Adg" firstAttribute="leading" secondItem="l5D-Nc-eYZ" secondAttribute="trailing" constant="20" id="Nl5-h3-6Uy"/>
+                <constraint firstItem="tWu-1p-Adg" firstAttribute="centerY" secondItem="l5D-Nc-eYZ" secondAttribute="centerY" id="PbQ-LY-Wdi"/>
+                <constraint firstItem="UPp-fH-vMG" firstAttribute="top" secondItem="qHH-5X-EGl" secondAttribute="bottom" constant="20" id="Pvj-El-XzN"/>
+                <constraint firstItem="RoX-rt-ybr" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Uha-Xm-YJ9"/>
+                <constraint firstItem="qHH-5X-EGl" firstAttribute="trailing" secondItem="dqV-72-G9b" secondAttribute="trailing" id="Wzh-YA-a4s"/>
+                <constraint firstItem="nZu-ga-DwX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="bgY-pb-Vug"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="tWu-1p-Adg" secondAttribute="bottom" constant="20" id="dfz-gg-pVG"/>
+                <constraint firstItem="dqV-72-G9b" firstAttribute="bottom" secondItem="e6m-vU-2aC" secondAttribute="bottom" id="h6C-tR-Usx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tWu-1p-Adg" secondAttribute="trailing" constant="20" id="llq-P1-Tch"/>
+                <constraint firstItem="l5D-Nc-eYZ" firstAttribute="top" secondItem="UPp-fH-vMG" secondAttribute="bottom" constant="20" id="ng8-tD-hEh"/>
+                <constraint firstItem="dqV-72-G9b" firstAttribute="top" secondItem="e6m-vU-2aC" secondAttribute="top" id="q5s-M4-LgL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nZu-ga-DwX" secondAttribute="trailing" constant="20" id="qdP-rJ-jTR"/>
+                <constraint firstItem="l5D-Nc-eYZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="rHb-Ni-nkB"/>
+                <constraint firstItem="qHH-5X-EGl" firstAttribute="leading" secondItem="e6m-vU-2aC" secondAttribute="leading" id="uef-Mx-ARS"/>
+                <constraint firstItem="UPp-fH-vMG" firstAttribute="trailing" secondItem="dqV-72-G9b" secondAttribute="trailing" id="v8p-nm-Mtr"/>
+                <constraint firstItem="RoX-rt-ybr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wCK-Nc-zUG"/>
+            </constraints>
+            <point key="canvasLocation" x="138.40000000000001" y="103.89805097451276"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="paste" width="166.66667175292969" height="166.66667175292969"/>
+        <image name="placeholder" width="350" height="350"/>
+        <namedColor name="mainStrikeColor">
+            <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SlideShowCell" rowHeight="254" id="KGk-i7-Jjw" customClass="SlideShowCell" customModule="Squadix" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="446" height="254"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="446" height="254"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="meb-Kd-zAH" customClass="WKYTPlayerView">
+                        <rect key="frame" x="0.0" y="0.0" width="444.5" height="250"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="meb-Kd-zAH" secondAttribute="height" multiplier="16:9" id="l89-5c-L2G"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Lr-Dn-Bc9" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                        <rect key="frame" x="0.0" y="0.0" width="444.5" height="250"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="250" id="MIp-hY-NGL"/>
+                            <constraint firstAttribute="width" secondItem="2Lr-Dn-Bc9" secondAttribute="height" multiplier="16:9" id="MKT-5G-T9W"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="2Lr-Dn-Bc9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2Ca-cm-PBJ"/>
+                    <constraint firstItem="meb-Kd-zAH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ELC-UL-7UC"/>
+                    <constraint firstAttribute="bottom" secondItem="meb-Kd-zAH" secondAttribute="bottom" id="Sqh-10-tGO"/>
+                    <constraint firstAttribute="bottom" secondItem="2Lr-Dn-Bc9" secondAttribute="bottom" id="Uhs-Mp-cKE"/>
+                    <constraint firstAttribute="trailing" secondItem="meb-Kd-zAH" secondAttribute="trailing" id="V4U-to-vjd"/>
+                    <constraint firstAttribute="trailing" secondItem="2Lr-Dn-Bc9" secondAttribute="trailing" id="leP-Sn-O3j"/>
+                    <constraint firstItem="meb-Kd-zAH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sFw-gM-JK3"/>
+                    <constraint firstItem="2Lr-Dn-Bc9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="zuN-M9-sIz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imageSlideshow" destination="2Lr-Dn-Bc9" id="HyY-Fe-DyF"/>
+                <outlet property="playerView" destination="meb-Kd-zAH" id="3gS-tY-1Bg"/>
+                <outlet property="slideHeightConstraint" destination="MIp-hY-NGL" id="9CB-FN-8gP"/>
+                <outlet property="slideShowHeight" destination="MIp-hY-NGL" id="bj0-K5-sGS"/>
+            </connections>
+            <point key="canvasLocation" x="228.98550724637684" y="32.142857142857139"/>
+        </tableViewCell>
+    </objects>
+</document>

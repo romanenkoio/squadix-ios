@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectPickPage" customModule="Airsoft_market" customModuleProvider="target">
+            <connections>
+                <outlet property="profileImage" destination="e5Y-LF-lJR" id="nhF-st-sAc"/>
+                <outlet property="spiner" destination="kmV-uG-gNc" id="HoC-yk-6ie"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="e5Y-LF-lJR">
+                    <rect key="frame" x="82" y="323" width="250" height="250"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="LFC-dw-erT"/>
+                        <constraint firstAttribute="width" constant="250" id="uzw-JQ-Fo8"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выбранное фото будет отображаться в профиле" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trO-j3-7Ty">
+                    <rect key="frame" x="20" y="603" width="374" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fY5-iB-W2h" customClass="WhiteButton" customModule="Airsoft_market" customModuleProvider="target">
+                    <rect key="frame" x="20" y="802" width="177" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="3kZ-Sc-VHF"/>
+                    </constraints>
+                    <state key="normal" title="Пропустить"/>
+                    <connections>
+                        <action selector="skipAction:" destination="-1" eventType="touchUpInside" id="okT-UU-KJd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVy-n2-gpV" customClass="OliveButton" customModule="Airsoft_market" customModuleProvider="target">
+                    <rect key="frame" x="217" y="802" width="177" height="40"/>
+                    <state key="normal" title="Сохранить"/>
+                    <connections>
+                        <action selector="continueAction:" destination="-1" eventType="touchUpInside" id="PCK-0J-1Vp"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qH5-EC-R0i">
+                    <rect key="frame" x="82" y="323" width="250" height="250"/>
+                    <connections>
+                        <action selector="selectPhotoAction:" destination="-1" eventType="touchUpInside" id="sdg-Vf-ekV"/>
+                    </connections>
+                </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="kmV-uG-gNc">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="color" red="0.63137254899999995" green="0.68627450980000004" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="qH5-EC-R0i" firstAttribute="bottom" secondItem="e5Y-LF-lJR" secondAttribute="bottom" id="3yM-M4-H7P"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="trO-j3-7Ty" secondAttribute="trailing" constant="20" id="4qa-La-4Uw"/>
+                <constraint firstItem="iVy-n2-gpV" firstAttribute="bottom" secondItem="fY5-iB-W2h" secondAttribute="bottom" id="Hc2-u2-vYd"/>
+                <constraint firstItem="trO-j3-7Ty" firstAttribute="top" secondItem="e5Y-LF-lJR" secondAttribute="bottom" constant="30" id="KK8-9E-d8x"/>
+                <constraint firstItem="kmV-uG-gNc" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Oom-u5-bWI"/>
+                <constraint firstItem="iVy-n2-gpV" firstAttribute="leading" secondItem="fY5-iB-W2h" secondAttribute="trailing" constant="20" id="QxG-bw-n2y"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iVy-n2-gpV" secondAttribute="trailing" constant="20" id="UlR-fV-IyC"/>
+                <constraint firstItem="fY5-iB-W2h" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="VZG-fO-lfQ"/>
+                <constraint firstItem="fY5-iB-W2h" firstAttribute="width" secondItem="iVy-n2-gpV" secondAttribute="width" id="Wzm-Mn-7i6"/>
+                <constraint firstItem="trO-j3-7Ty" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="XU3-Xs-P1k"/>
+                <constraint firstItem="qH5-EC-R0i" firstAttribute="leading" secondItem="e5Y-LF-lJR" secondAttribute="leading" id="Z0a-aF-7XK"/>
+                <constraint firstItem="kmV-uG-gNc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dLk-iN-Rin"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fY5-iB-W2h" secondAttribute="bottom" constant="20" id="hzj-6Z-782"/>
+                <constraint firstItem="e5Y-LF-lJR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kG3-4H-KKn"/>
+                <constraint firstItem="e5Y-LF-lJR" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="mHD-mL-aVX"/>
+                <constraint firstItem="qH5-EC-R0i" firstAttribute="top" secondItem="e5Y-LF-lJR" secondAttribute="top" id="ngX-yP-QUw"/>
+                <constraint firstItem="iVy-n2-gpV" firstAttribute="height" secondItem="fY5-iB-W2h" secondAttribute="height" id="oT9-Nv-WAS"/>
+                <constraint firstItem="qH5-EC-R0i" firstAttribute="trailing" secondItem="e5Y-LF-lJR" secondAttribute="trailing" id="t5b-cJ-bD9"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="121.875"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="placeholder" width="350" height="350"/>
+    </resources>
+</document>

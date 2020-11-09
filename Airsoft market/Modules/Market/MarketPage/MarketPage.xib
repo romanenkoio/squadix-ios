@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17504.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MarketPage" customModule="Squadix" customModuleProvider="target">
+            <connections>
+                <outlet property="addProductButton" destination="oT2-4a-XzO" id="OyL-4y-TxM"/>
+                <outlet property="adminButton" destination="Z05-cu-6tp" id="ysk-O7-zuO"/>
+                <outlet property="settingsButton" destination="a7j-v5-Jxc" id="tjS-sc-9eF"/>
+                <outlet property="spinner" destination="RXB-54-sr0" id="BO8-JI-Tl6"/>
+                <outlet property="tableView" destination="gAE-aD-Iuj" id="47F-Gm-T45"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gAE-aD-Iuj">
+                    <rect key="frame" x="0.0" y="54" width="414" height="808"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oT2-4a-XzO">
+                    <rect key="frame" x="344" y="792" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="6gN-mb-Jyc"/>
+                        <constraint firstAttribute="width" constant="50" id="sSZ-ev-dpW"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="plus" catalog="system"/>
+                    <connections>
+                        <action selector="addAnnouncementDidTap:" destination="-1" eventType="touchUpInside" id="sWd-12-hXy"/>
+                    </connections>
+                </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="RXB-54-sr0">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="strikeGrayColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oT2-4a-XzO" secondAttribute="trailing" constant="20" id="0D5-6c-srK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gAE-aD-Iuj" secondAttribute="trailing" id="N1N-gX-OhR"/>
+                <constraint firstItem="gAE-aD-Iuj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="PJ6-od-FtY"/>
+                <constraint firstItem="RXB-54-sr0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="QPk-Jf-hwg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gAE-aD-Iuj" secondAttribute="bottom" id="S35-oU-zOS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oT2-4a-XzO" secondAttribute="bottom" constant="20" id="XjY-WU-njC"/>
+                <constraint firstItem="gAE-aD-Iuj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bPc-p2-tW8"/>
+                <constraint firstItem="RXB-54-sr0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="svg-Dk-OiW"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="130"/>
+        </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7j-v5-Jxc">
+            <rect key="frame" x="0.0" y="0.0" width="40" height="25"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="width" constant="40" id="Nhu-z9-oUR"/>
+                <constraint firstAttribute="height" constant="25" id="s7v-Tb-OSm"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <inset key="imageEdgeInsets" minX="4" minY="-2" maxX="4" maxY="-2"/>
+            <state key="normal" image="filter">
+                <color key="titleColor" systemColor="darkTextColor"/>
+            </state>
+            <connections>
+                <action selector="routeToFiltres:" destination="-1" eventType="touchUpInside" id="8KP-ff-dsT"/>
+            </connections>
+            <point key="canvasLocation" x="193.47826086956522" y="-231.36160714285714"/>
+        </button>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z05-cu-6tp" customClass="MFBadgeButton" customModule="Squadix" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="40" height="25"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="height" constant="25" id="N5A-oR-CMO"/>
+                <constraint firstAttribute="width" constant="40" id="gnN-x0-ELj"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <inset key="imageEdgeInsets" minX="7" minY="0.0" maxX="7" maxY="0.0"/>
+            <state key="normal" image="lock">
+                <color key="titleColor" systemColor="darkTextColor"/>
+            </state>
+            <connections>
+                <action selector="adminAction:" destination="-1" eventType="touchUpInside" id="KsK-JR-YtI"/>
+            </connections>
+            <point key="canvasLocation" x="0.0" y="-284.26339285714283"/>
+        </button>
+    </objects>
+    <resources>
+        <image name="filter" width="48" height="48"/>
+        <image name="lock" width="48" height="48"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="strikeGrayColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

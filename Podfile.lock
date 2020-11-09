@@ -1,0 +1,102 @@
+PODS:
+  - ActiveLabel (1.1.0)
+  - Alamofire (5.4.0)
+  - Google-Maps-iOS-Utils (3.1.4):
+    - Google-Maps-iOS-Utils/Clustering (= 3.1.4)
+    - Google-Maps-iOS-Utils/Geometry (= 3.1.4)
+    - Google-Maps-iOS-Utils/Heatmap (= 3.1.4)
+    - Google-Maps-iOS-Utils/QuadTree (= 3.1.4)
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Clustering (3.1.4):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Geometry (3.1.4):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Heatmap (3.1.4):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/QuadTree (3.1.4):
+    - GoogleMaps
+  - GoogleMaps (3.9.0):
+    - GoogleMaps/Maps (= 3.9.0)
+  - GoogleMaps/Base (3.9.0)
+  - GoogleMaps/Maps (3.9.0):
+    - GoogleMaps/Base
+  - ImageSlideshow (1.9.1):
+    - ImageSlideshow/Core (= 1.9.1)
+  - ImageSlideshow/Core (1.9.1)
+  - ImageSlideshow/Kingfisher (1.9.1):
+    - ImageSlideshow/Core
+    - Kingfisher (> 3.0)
+  - IQKeyboardManagerSwift (6.5.6)
+  - KeychainAccess (4.2.1)
+  - Kingfisher (5.15.7):
+    - Kingfisher/Core (= 5.15.7)
+  - Kingfisher/Core (5.15.7)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya-ObjectMapper (2.9):
+    - Moya-ObjectMapper/Core (= 2.9)
+  - Moya-ObjectMapper/Core (2.9):
+    - Moya (~> 14.0.0-beta.6)
+    - ObjectMapper
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - ObjectMapper (4.2.0)
+  - Realm (5.0.3):
+    - Realm/Headers (= 5.0.3)
+  - Realm/Headers (5.0.3)
+  - RealmSwift (5.0.3):
+    - Realm (= 5.0.3)
+  - YoutubePlayer-in-WKWebView (0.3.4)
+
+DEPENDENCIES:
+  - ActiveLabel
+  - Google-Maps-iOS-Utils (~> 3.1.4)
+  - GoogleMaps (~> 3.9.0)
+  - ImageSlideshow
+  - ImageSlideshow/Kingfisher
+  - IQKeyboardManagerSwift
+  - KeychainAccess
+  - Kingfisher
+  - Moya
+  - Moya-ObjectMapper
+  - RealmSwift (~> 5.0.1)
+  - YoutubePlayer-in-WKWebView
+
+SPEC REPOS:
+  trunk:
+    - ActiveLabel
+    - Alamofire
+    - Google-Maps-iOS-Utils
+    - GoogleMaps
+    - ImageSlideshow
+    - IQKeyboardManagerSwift
+    - KeychainAccess
+    - Kingfisher
+    - Moya
+    - Moya-ObjectMapper
+    - ObjectMapper
+    - Realm
+    - RealmSwift
+    - YoutubePlayer-in-WKWebView
+
+SPEC CHECKSUMS:
+  ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
+  Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
+  Google-Maps-iOS-Utils: 1e51ca272b4f4befdf3577bf46f58c22ef22062c
+  GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
+  ImageSlideshow: 67184be896a28472bd3b906c33ce4e0734aa3d22
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
+  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  Moya-ObjectMapper: 967a99d9ea3aa9c93ddbe112aeca3667f53bfe93
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  Realm: bfca1699b61b0b17c3a69ae0e648314eae91fbdb
+  RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
+  YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
+
+PODFILE CHECKSUM: 2effb155bf0b7cf76d48b0ed1495fdd5e4be5ec8
+
+COCOAPODS: 1.10.0

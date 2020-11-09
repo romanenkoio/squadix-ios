@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileSearchCell" rowHeight="75" id="KGk-i7-Jjw" customClass="ProfileSearchCell" customModule="Airsoft_market" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="323" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="323" height="75"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nuj-lL-GtL">
+                        <rect key="frame" x="20" y="10" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="42y-WM-hGr"/>
+                            <constraint firstAttribute="width" constant="50" id="uGB-ZQ-Xk5"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Илья Романенко" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIM-oN-dRQ">
+                        <rect key="frame" x="80" y="10" width="208" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Беларусь, Минск" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjq-e1-VDu">
+                        <rect key="frame" x="80" y="36" width="208" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="actionArrow" translatesAutoresizingMaskIntoConstraints="NO" id="0GV-Bj-JwN">
+                        <rect key="frame" x="293" y="10" width="20" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="LnS-4e-eIh"/>
+                            <constraint firstAttribute="height" constant="50" id="is8-Hc-Ry1"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0GV-Bj-JwN" firstAttribute="centerY" secondItem="Nuj-lL-GtL" secondAttribute="centerY" id="0rZ-kb-weP"/>
+                    <constraint firstItem="Nuj-lL-GtL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="EDI-g1-O7A"/>
+                    <constraint firstItem="0GV-Bj-JwN" firstAttribute="leading" secondItem="VIM-oN-dRQ" secondAttribute="trailing" constant="5" id="EPM-8n-Elo"/>
+                    <constraint firstItem="VIM-oN-dRQ" firstAttribute="leading" secondItem="Nuj-lL-GtL" secondAttribute="trailing" constant="10" id="I90-1i-db1"/>
+                    <constraint firstAttribute="bottom" secondItem="Nuj-lL-GtL" secondAttribute="bottom" constant="10" id="M77-zw-OW2"/>
+                    <constraint firstItem="VIM-oN-dRQ" firstAttribute="top" secondItem="Nuj-lL-GtL" secondAttribute="top" id="Z2m-Mw-dpZ"/>
+                    <constraint firstItem="mjq-e1-VDu" firstAttribute="trailing" secondItem="VIM-oN-dRQ" secondAttribute="trailing" id="euU-4z-6Zk"/>
+                    <constraint firstItem="mjq-e1-VDu" firstAttribute="top" secondItem="VIM-oN-dRQ" secondAttribute="bottom" constant="5" id="fkF-bH-YmP"/>
+                    <constraint firstItem="mjq-e1-VDu" firstAttribute="leading" secondItem="VIM-oN-dRQ" secondAttribute="leading" id="lVL-qA-gHO"/>
+                    <constraint firstItem="Nuj-lL-GtL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="qeZ-lT-gRL"/>
+                    <constraint firstAttribute="trailing" secondItem="0GV-Bj-JwN" secondAttribute="trailing" constant="10" id="ryv-IL-ZwQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="profileAvatar" destination="Nuj-lL-GtL" id="Vco-B5-qET"/>
+                <outlet property="profileNameLabel" destination="VIM-oN-dRQ" id="1vc-br-esj"/>
+                <outlet property="profileRegionLabel" destination="mjq-e1-VDu" id="n6L-ka-WgQ"/>
+            </connections>
+            <point key="canvasLocation" x="78.985507246376812" y="124.88839285714285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="actionArrow" width="256" height="256"/>
+    </resources>
+</document>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductPage" customModule="Squadix" customModuleProvider="target">
+            <connections>
+                <outlet property="contactButton" destination="EQJ-4s-FRC" id="3SW-tV-ZJL"/>
+                <outlet property="moreButton" destination="Y7W-og-ULs" id="OAO-wI-lOX"/>
+                <outlet property="spinner" destination="0OH-fe-a9i" id="gRL-3a-BXf"/>
+                <outlet property="tableView" destination="5ar-E4-JQf" id="69a-bj-nTj"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5ar-E4-JQf">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0OH-fe-a9i">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="5ar-E4-JQf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GCI-Tv-fbG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5ar-E4-JQf" secondAttribute="bottom" id="J6l-35-QNC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5ar-E4-JQf" secondAttribute="trailing" id="Mha-rN-VAo"/>
+                <constraint firstItem="0OH-fe-a9i" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QDD-LV-I4B"/>
+                <constraint firstItem="5ar-E4-JQf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aIH-Ss-svo"/>
+                <constraint firstItem="0OH-fe-a9i" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="dF2-fn-jtQ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
+        </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQJ-4s-FRC">
+            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="width" constant="25" id="Rqj-P6-kFL"/>
+                <constraint firstAttribute="height" constant="25" id="gW0-F5-Pzx"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <state key="normal" image="message"/>
+            <connections>
+                <action selector="contactAction:" destination="-1" eventType="touchUpInside" id="ZYu-Y1-Mh2"/>
+            </connections>
+            <point key="canvasLocation" x="300.72463768115944" y="-231.36160714285714"/>
+        </button>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7W-og-ULs">
+            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="height" constant="25" id="QbH-7s-L7X"/>
+                <constraint firstAttribute="width" constant="25" id="hCF-ft-XuK"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <state key="normal" image="more"/>
+            <connections>
+                <action selector="moreAction:" destination="-1" eventType="touchUpInside" id="jAO-6k-asz"/>
+            </connections>
+            <point key="canvasLocation" x="189.13043478260872" y="-231.36160714285714"/>
+        </button>
+    </objects>
+    <resources>
+        <image name="message" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="more" width="256" height="256"/>
+    </resources>
+</document>

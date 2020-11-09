@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17504.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventShowPage" customModule="Squadix" customModuleProvider="target">
+            <connections>
+                <outlet property="contactButton" destination="Muf-3j-fLq" id="ZpP-z2-C9d"/>
+                <outlet property="moreButton" destination="wKe-qs-5ZR" id="3sD-cd-aHX"/>
+                <outlet property="spinner" destination="GsM-74-a01" id="doB-kl-lUh"/>
+                <outlet property="tableView" destination="pai-M6-ZVL" id="mMs-aC-c3V"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pai-M6-ZVL">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="GsM-74-a01">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="pai-M6-ZVL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="9bB-Kg-hn1"/>
+                <constraint firstItem="GsM-74-a01" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YoX-ss-mQ7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pai-M6-ZVL" secondAttribute="trailing" id="c5Z-gr-tGM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pai-M6-ZVL" secondAttribute="bottom" id="jZg-ml-WsS"/>
+                <constraint firstItem="pai-M6-ZVL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="mTw-UE-4e6"/>
+                <constraint firstItem="GsM-74-a01" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="uow-Lt-Mx7"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="139"/>
+        </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKe-qs-5ZR">
+            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="width" constant="30" id="7fc-7q-0ch"/>
+                <constraint firstAttribute="height" constant="30" id="XRM-me-pZq"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <state key="normal" image="more"/>
+            <connections>
+                <action selector="moreButton:" destination="-1" eventType="touchUpInside" id="gYH-ZQ-dXd"/>
+            </connections>
+            <point key="canvasLocation" x="353.62318840579712" y="-231.02678571428569"/>
+        </button>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Muf-3j-fLq">
+            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="height" constant="30" id="VVT-DF-gbw"/>
+                <constraint firstAttribute="width" constant="30" id="lga-ev-RoR"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <inset key="imageEdgeInsets" minX="2.5" minY="2.5" maxX="2.5" maxY="2.5"/>
+            <state key="normal" image="message"/>
+            <connections>
+                <action selector="contactAction:" destination="-1" eventType="touchUpInside" id="Yae-2e-mme"/>
+            </connections>
+            <point key="canvasLocation" x="466.66666666666669" y="-231.02678571428569"/>
+        </button>
+    </objects>
+    <resources>
+        <image name="message" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="more" width="256" height="256"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
