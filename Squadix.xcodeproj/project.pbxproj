@@ -231,7 +231,7 @@
 		7F67540D24D22A1E004981CC /* GameMapPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameMapPage.xib; sourceTree = "<group>"; };
 		7F78717224D9E43600E501C2 /* EditPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditPage.xib; path = "Airsoft market/Modules/Login/EditUserData/EditPage.xib"; sourceTree = SOURCE_ROOT; };
 		7F78717324D9E43700E501C2 /* EditPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPage.swift; path = "Airsoft market/Modules/Login/EditUserData/EditPage.swift"; sourceTree = SOURCE_ROOT; };
-		7F7DC3F9247C010E00A53E7C /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
+		7F7DC3F9247C010E00A53E7C /* ProfilePage.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		7F7DC3FA247C010E00A53E7C /* ProfilePage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePage.xib; sourceTree = "<group>"; };
 		7F7DC3FE247C1C5900A53E7C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		7F7DC3FF247C1C5900A53E7C /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };

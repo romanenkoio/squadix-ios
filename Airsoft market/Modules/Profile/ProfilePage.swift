@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Floaty
 
 enum ProfileMenuPoints {
     case profileInfo
@@ -20,10 +21,8 @@ enum ProfileMenuPoints {
 
 class ProfilePage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var profileSettingsButton: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet var editButton: UIButton!
-    @IBOutlet var bookmarksButton: UIButton!
+    @IBOutlet weak var floatyMenu: Floaty!
     
     var testImage = UIImage(named: "placeholder")
     var imagePicker = UIImagePickerController()
@@ -61,13 +60,16 @@ class ProfilePage: BaseViewController {
         tableView.addSubview(refreshControl)
         title = "Профиль"
         
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: profileSettingsButton),
-                                               UIBarButtonItem(customView: editButton) ,
-                                               UIBarButtonItem(customView: bookmarksButton)],
-                                              animated: true)
-        
-        profileSettingsButton.isHidden = profileID != nil
-        editButton.isHidden = profileID != nil
+//        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: profileSettingsButton),
+//                                               UIBarButtonItem(customView: editButton) ,
+//                                               UIBarButtonItem(customView: bookmarksButton)],
+//                                              animated: true)
+//
+//        profileSettingsButton.isHidden = profileID != nil
+//        editButton.isHidden = profileID != nil
+//        bookmarksButton.isHidden = profileID != nil
+        floatyMenu.isHidden = profileID != nil
+        configureFloatingMenu()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,18 +78,27 @@ class ProfilePage: BaseViewController {
         loadProfile(animated: true)
     }
     
+     func configureFloatingMenu() {
+          floatyMenu.items = []
+          floatyMenu.openAnimationType = .none
+          floatyMenu.overlayColor = UIColor.black.withAlphaComponent(0.6)
+          
+          
+          floatyMenu.addItem("Настройки", icon: UIImage(named: "settings"), handler: { [weak self] item in
+               self?.navigationController?.pushViewController(VCFabric.getSettingsPage(), animated: true)
+          })
+          
+          floatyMenu.addItem("Редактировать профиль", icon: UIImage(named: "edit"), handler: { [weak self] item in
+               self?.navigationController?.pushViewController(VCFabric.getUserEditPage(isEdit: true, profile: self?.currentProfile), animated: true)
+          })
+          
+          floatyMenu.addItem("Сохранённые места", icon: UIImage(named: "bookmarks"), handler: { [weak self] item in
+               self?.navigationController?.pushViewController(VCFabric.getBookmarkPage(), animated: true)
+          })
+          
+     }
     
-    @IBAction func profileSettingsDidTap(_ sender: Any) {
-        navigationController?.pushViewController(VCFabric.getSettingsPage(), animated: true)
-    }
-    
-    @IBAction func editProfileAction(_ sender: Any) {
-        self.navigationController?.pushViewController(VCFabric.getUserEditPage(isEdit: true, profile: currentProfile), animated: true)
-    }
-    
-    @IBAction func openBookmarksAction(_ sender: Any) {
-        self.navigationController?.pushViewController(VCFabric.getBookmarkPage(), animated: true)
-    }
+
     
     func didSelectAvatarChange() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -251,7 +262,6 @@ extension ProfilePage {
                 self?.refreshControl.endRefreshing()
                 self?.tableView.isHidden = false
                 self?.spinner.stopAnimating()
-                self?.profileSettingsButton.isHidden = false
             }
         } else {
             let networkManager = NetworkManager()
@@ -265,7 +275,6 @@ extension ProfilePage {
                 self?.refreshControl.endRefreshing()
                 self?.tableView.isHidden = false
                 self?.spinner.stopAnimating()
-                self?.profileSettingsButton.isHidden = true
             }
             
         }
