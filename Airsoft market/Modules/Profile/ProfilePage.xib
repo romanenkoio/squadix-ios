@@ -32,16 +32,23 @@
                     <color key="color" name="mainStrikeColor"/>
                 </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exb-jd-hW2" customClass="Floaty" customModule="Floaty">
-                    <rect key="frame" x="305" y="597" width="50" height="50"/>
+                    <rect key="frame" x="295" y="587" width="60" height="60"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="2Av-Jw-UJt"/>
-                        <constraint firstAttribute="height" constant="50" id="d6o-Bf-iUO"/>
+                        <constraint firstAttribute="width" constant="60" id="2Av-Jw-UJt"/>
+                        <constraint firstAttribute="height" constant="60" id="d6o-Bf-iUO"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autoCloseOnTap" value="YES"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
                             <color key="value" name="mainStrikeColor"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="image" keyPath="buttonImage" value="menu"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="itemSize">
+                            <real key="value" value="50"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="plusColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
@@ -62,6 +69,7 @@
         </view>
     </objects>
     <resources>
+        <image name="menu" width="35" height="35"/>
         <namedColor name="mainStrikeColor">
             <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
