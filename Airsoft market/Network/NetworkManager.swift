@@ -159,7 +159,7 @@ final class NetworkManager {
         }
     }
     
-    func editProfile(profile: Profile, completion: @escaping () -> Void, failure: ((String?) -> Void)? = nil  ) {
+    func editProfile(profile: Profile, completion: @escaping () -> Void, failure: ((String) -> Void)? = nil  ) {
         provider.request(.editProfile(profile: profile)) { result in
             switch result {
             case let .success(response):

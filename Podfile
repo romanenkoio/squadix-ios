@@ -20,5 +20,6 @@ target 'Squadix' do
   	pod 'Moya'
     	pod 'Moya-ObjectMapper'
 	pod 'ActiveLabel'
+	pod 'Floaty'
 
 end

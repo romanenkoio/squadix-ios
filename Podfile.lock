@@ -1,6 +1,7 @@
 PODS:
   - ActiveLabel (1.1.0)
   - Alamofire (5.4.0)
+  - Floaty (4.2.0)
   - Google-Maps-iOS-Utils (3.1.4):
     - Google-Maps-iOS-Utils/Clustering (= 3.1.4)
     - Google-Maps-iOS-Utils/Geometry (= 3.1.4)
@@ -52,6 +53,7 @@ PODS:
 
 DEPENDENCIES:
   - ActiveLabel
+  - Floaty
   - Google-Maps-iOS-Utils (~> 3.1.4)
   - GoogleMaps (~> 3.9.0)
   - ImageSlideshow
@@ -68,6 +70,7 @@ SPEC REPOS:
   trunk:
     - ActiveLabel
     - Alamofire
+    - Floaty
     - Google-Maps-iOS-Utils
     - GoogleMaps
     - ImageSlideshow
@@ -84,6 +87,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
+  Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   Google-Maps-iOS-Utils: 1e51ca272b4f4befdf3577bf46f58c22ef22062c
   GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
   ImageSlideshow: 67184be896a28472bd3b906c33ce4e0734aa3d22
@@ -97,6 +101,6 @@ SPEC CHECKSUMS:
   RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 2effb155bf0b7cf76d48b0ed1495fdd5e4be5ec8
+PODFILE CHECKSUM: 86172cf54a8fbadb314db5e7d8469069377b5ddb
 
 COCOAPODS: 1.10.0

@@ -15,13 +15,12 @@ class EditPage: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var contatinerHeight: NSLayoutConstraint!
     @IBOutlet weak var textViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var roleTextField: StrikeInputField!
-    
     @IBOutlet weak var descriptionContainer: UIView!
     @IBOutlet weak var mainSaveButton: OliveButton!
     @IBOutlet weak var saveButton: OliveButton!
     @IBOutlet weak var skipButton: WhiteButton!
     @IBOutlet weak var userNameTextField: StrikeInputField!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var selectedDate: Date?
     var profile: Profile?
@@ -96,9 +95,9 @@ class EditPage: UIViewController {
     }
     
     @IBAction func saveAction(_ sender: Any) {
+        spinner.startAnimating()
         if isEdit {
             editProfile()
-            navigationController?.popViewController(animated: true)
         } else {
             editProfile()
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -114,6 +113,7 @@ class EditPage: UIViewController {
     }
     
     func editProfile() {
+        
         if isEdit {
             if countryTextField.text != "" {
                 profile?.country = countryTextField.text
@@ -144,12 +144,18 @@ class EditPage: UIViewController {
         
         let manager = NetworkManager()
         guard let profile = profile else { return }
-        manager.editProfile(profile: profile, completion: {
+        manager.editProfile(profile: profile) {
+            self.spinner.stopAnimating()
             print("Updated complete")
-            if !self.isEdit {
-                
+            if self.isEdit {
+                self.navigationController?.popViewController(animated: true)
             }
-        })
+        } failure: { error in
+            print("[Edit profile]: \(error)")
+            self.spinner.stopAnimating()
+            PopupView(title: "", subtitle: "Не удалось обновить профиль", image: UIImage(named: "cancel")).show()
+        }
+
     }
 }
 
