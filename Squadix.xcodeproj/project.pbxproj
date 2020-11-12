@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F9207DB6D5B6AC0F0424C20 /* Pods_Squadix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68EA38B29AC8D0F60B411F10 /* Pods_Squadix.framework */; };
 		7F019126250AB84F0049C8F0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F019125250AB84F0049C8F0 /* BaseViewController.swift */; };
 		7F01C1BC254E090F007CC5A9 /* ProductCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01C1BB254E090F007CC5A9 /* ProductCategories.swift */; };
 		7F03F151248404A300EF0749 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F03F150248404A300EF0749 /* NetworkManager.swift */; };
@@ -154,13 +155,11 @@
 		7FFE4C7624772E0100212BAB /* RegistrationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFE4C7424772E0100212BAB /* RegistrationPage.swift */; };
 		7FFE4C7724772E0100212BAB /* RegistrationPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FFE4C7524772E0100212BAB /* RegistrationPage.xib */; };
 		7FFE4C79247731F000212BAB /* VCFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFE4C78247731F000212BAB /* VCFabric.swift */; };
-		9DEA8AE1A58B09AF3568C170 /* Pods_Squadix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E82BE51C0AF9995283D106 /* Pods_Squadix.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B87E4D10249F4D3798DD1E0 /* Pods-Airsoft market.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airsoft market.release.xcconfig"; path = "Target Support Files/Pods-Airsoft market/Pods-Airsoft market.release.xcconfig"; sourceTree = "<group>"; };
-		48AE4D07D34B113F5DAB8508 /* Pods-Squadix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Squadix.release.xcconfig"; path = "Target Support Files/Pods-Squadix/Pods-Squadix.release.xcconfig"; sourceTree = "<group>"; };
-		66E82BE51C0AF9995283D106 /* Pods_Squadix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Squadix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67A5DFC9E9756D2B62B68090 /* Pods-Squadix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Squadix.debug.xcconfig"; path = "Target Support Files/Pods-Squadix/Pods-Squadix.debug.xcconfig"; sourceTree = "<group>"; };
+		68EA38B29AC8D0F60B411F10 /* Pods_Squadix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Squadix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F019125250AB84F0049C8F0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7F01C1BB254E090F007CC5A9 /* ProductCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategories.swift; sourceTree = "<group>"; };
 		7F03F150248404A300EF0749 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -311,8 +310,7 @@
 		7FFE4C7424772E0100212BAB /* RegistrationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPage.swift; sourceTree = "<group>"; };
 		7FFE4C7524772E0100212BAB /* RegistrationPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationPage.xib; sourceTree = "<group>"; };
 		7FFE4C78247731F000212BAB /* VCFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCFabric.swift; sourceTree = "<group>"; };
-		CB64CA2DB2AE7EDD3D828E19 /* Pods-Squadix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Squadix.debug.xcconfig"; path = "Target Support Files/Pods-Squadix/Pods-Squadix.debug.xcconfig"; sourceTree = "<group>"; };
-		DB9BA6B62CE64B6F11DBCD9E /* Pods-Airsoft market.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airsoft market.debug.xcconfig"; path = "Target Support Files/Pods-Airsoft market/Pods-Airsoft market.debug.xcconfig"; sourceTree = "<group>"; };
+		F72EEF4500FE6629B197A476 /* Pods-Squadix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Squadix.release.xcconfig"; path = "Target Support Files/Pods-Squadix/Pods-Squadix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,17 +318,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DEA8AE1A58B09AF3568C170 /* Pods_Squadix.framework in Frameworks */,
+				0F9207DB6D5B6AC0F0424C20 /* Pods_Squadix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		003F9732CD353D9DC938F434 /* Frameworks */ = {
+		2157E13E6D9FA3137EF2C521 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				66E82BE51C0AF9995283D106 /* Pods_Squadix.framework */,
+				68EA38B29AC8D0F60B411F10 /* Pods_Squadix.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -928,7 +926,7 @@
 				7FFE4C5824771CD800212BAB /* Airsoft market */,
 				7FFE4C5724771CD800212BAB /* Products */,
 				D3E288AE3EE7B3AEA8EC23F2 /* Pods */,
-				003F9732CD353D9DC938F434 /* Frameworks */,
+				2157E13E6D9FA3137EF2C521 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1000,10 +998,8 @@
 		D3E288AE3EE7B3AEA8EC23F2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DB9BA6B62CE64B6F11DBCD9E /* Pods-Airsoft market.debug.xcconfig */,
-				2B87E4D10249F4D3798DD1E0 /* Pods-Airsoft market.release.xcconfig */,
-				CB64CA2DB2AE7EDD3D828E19 /* Pods-Squadix.debug.xcconfig */,
-				48AE4D07D34B113F5DAB8508 /* Pods-Squadix.release.xcconfig */,
+				67A5DFC9E9756D2B62B68090 /* Pods-Squadix.debug.xcconfig */,
+				F72EEF4500FE6629B197A476 /* Pods-Squadix.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1015,12 +1011,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FFE4C6A24771CDB00212BAB /* Build configuration list for PBXNativeTarget "Squadix" */;
 			buildPhases = (
-				149D3D9634E878B3867CA207 /* [CP] Check Pods Manifest.lock */,
+				48611AE708725D85F3AE5A9C /* [CP] Check Pods Manifest.lock */,
 				7FFE4C5224771CD800212BAB /* Sources */,
 				7FFE4C5324771CD800212BAB /* Frameworks */,
 				7FFE4C5424771CD800212BAB /* Resources */,
-				B72D8983A1A1C49D4248C8A0 /* [CP] Copy Pods Resources */,
-				0B4790FCD526596928C775DC /* [CP] Embed Pods Frameworks */,
+				DA52EA8AA75DE13ACF91B4DB /* [CP] Embed Pods Frameworks */,
+				0DB284FD65D34A9CCB04F274 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1122,24 +1118,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B4790FCD526596928C775DC /* [CP] Embed Pods Frameworks */ = {
+		0DB284FD65D34A9CCB04F274 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		149D3D9634E878B3867CA207 /* [CP] Check Pods Manifest.lock */ = {
+		48611AE708725D85F3AE5A9C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1161,21 +1157,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B72D8983A1A1C49D4248C8A0 /* [CP] Copy Pods Resources */ = {
+		DA52EA8AA75DE13ACF91B4DB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Squadix/Pods-Squadix-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1430,7 +1426,7 @@
 		};
 		7FFE4C6B24771CDB00212BAB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB64CA2DB2AE7EDD3D828E19 /* Pods-Squadix.debug.xcconfig */;
+			baseConfigurationReference = 67A5DFC9E9756D2B62B68090 /* Pods-Squadix.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				AdsIdentify = "";
@@ -1457,7 +1453,7 @@
 		};
 		7FFE4C6C24771CDB00212BAB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48AE4D07D34B113F5DAB8508 /* Pods-Squadix.release.xcconfig */;
+			baseConfigurationReference = F72EEF4500FE6629B197A476 /* Pods-Squadix.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				AdsIdentify = "";
