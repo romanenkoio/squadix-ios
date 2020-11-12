@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17504.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,6 +21,7 @@
                 <outlet property="mainSaveButton" destination="rO9-0y-tTD" id="djy-FT-dsZ"/>
                 <outlet property="saveButton" destination="CMJ-KL-mZn" id="B31-vK-BbG"/>
                 <outlet property="skipButton" destination="8EM-Nj-kbs" id="V5s-zd-6FC"/>
+                <outlet property="spinner" destination="Jnb-RX-ONz" id="018-pr-F1B"/>
                 <outlet property="textViewHeight" destination="jrb-tn-TgF" id="zkZ-E8-FHf"/>
                 <outlet property="userNameTextField" destination="Vzf-Cy-knZ" id="xom-oM-jBI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -146,6 +148,10 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-RX-ONz">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="color" name="mainStrikeColor"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -167,7 +173,9 @@
                 <constraint firstItem="O2j-2P-gDK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="b0d-uH-Ipa"/>
                 <constraint firstItem="eUo-dC-7Og" firstAttribute="trailing" secondItem="O2j-2P-gDK" secondAttribute="trailing" id="bWy-7Z-Ttl"/>
                 <constraint firstItem="L4B-sA-rzJ" firstAttribute="leading" secondItem="PW7-r7-xXA" secondAttribute="leading" id="c5T-tr-Rlf"/>
+                <constraint firstItem="Jnb-RX-ONz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eK5-pa-hSr"/>
                 <constraint firstItem="yuv-T9-S1c" firstAttribute="leading" secondItem="O2j-2P-gDK" secondAttribute="leading" id="ebk-MM-CDc"/>
+                <constraint firstItem="Jnb-RX-ONz" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="hqT-k1-XlD"/>
                 <constraint firstItem="7pT-qp-NLk" firstAttribute="leading" secondItem="O2j-2P-gDK" secondAttribute="leading" id="iwm-bQ-Dk3"/>
                 <constraint firstItem="eUo-dC-7Og" firstAttribute="leading" secondItem="O2j-2P-gDK" secondAttribute="leading" id="jpv-WO-H0m"/>
                 <constraint firstItem="PW7-r7-xXA" firstAttribute="leading" secondItem="yuv-T9-S1c" secondAttribute="leading" id="qkB-sI-dc3"/>
@@ -179,6 +187,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="mainStrikeColor">
+            <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

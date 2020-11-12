@@ -29,9 +29,15 @@ class GameMapPage: UIViewController {
     var event: Event?
     var isFiltered = false
     
-    var isYandexAvalible = false
-    var isGoogleMapsAvalible = false
-    var isYandexMapsAvalible = false
+    var isYandexAvalible: Bool {
+        return UIApplication.shared.canOpenURL(URL.init(string: "yandexnavi://")!)
+    }
+    var isGoogleMapsAvalible: Bool {
+        return UIApplication.shared.canOpenURL(URL.init(string: "comgooglemaps://")!)
+    }
+    var isYandexMapsAvalible: Bool {
+        return UIApplication.shared.canOpenURL(URL.init(string: "yandexmaps://")!)
+    }
     var isRouteVisible: Bool{
         return isYandexAvalible && isYandexMapsAvalible && isGoogleMapsAvalible
     }
@@ -40,10 +46,6 @@ class GameMapPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        isYandexAvalible =  UIApplication.shared.canOpenURL(URL.init(string: "yandexnavi://")!)
-        isGoogleMapsAvalible = UIApplication.shared.canOpenURL(URL.init(string: "comgooglemaps://")!)
-        isYandexMapsAvalible = UIApplication.shared.canOpenURL(URL.init(string: "yandexmaps://")!)
         
         mapView.delegate = self
         mapView.isMyLocationEnabled = true

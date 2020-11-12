@@ -22,4 +22,5 @@ target 'Squadix' do
 	pod 'ActiveLabel'
 	pod 'Floaty', '~> 4.1.0'
 
+
 end
