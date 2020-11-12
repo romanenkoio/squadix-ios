@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventShowPage" customModule="Squadix" customModuleProvider="target">
             <connections>
+                <outlet property="calendarButton" destination="6yG-JJ-Kus" id="D6m-KA-b1z"/>
                 <outlet property="contactButton" destination="Muf-3j-fLq" id="ZpP-z2-C9d"/>
                 <outlet property="moreButton" destination="wKe-qs-5ZR" id="3sD-cd-aHX"/>
                 <outlet property="spinner" destination="GsM-74-a01" id="doB-kl-lUh"/>
@@ -72,10 +73,26 @@
             </connections>
             <point key="canvasLocation" x="466.66666666666669" y="-231.02678571428569"/>
         </button>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yG-JJ-Kus">
+            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="height" constant="30" id="AHy-0d-QLR"/>
+                <constraint firstAttribute="width" constant="30" id="fBc-2r-ROp"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <inset key="imageEdgeInsets" minX="2.5" minY="2.5" maxX="2.5" maxY="2.5"/>
+            <state key="normal" image="add_alarm"/>
+            <connections>
+                <action selector="saveEventInCalendar:" destination="-1" eventType="touchUpInside" id="hWY-kS-I2P"/>
+            </connections>
+            <point key="canvasLocation" x="228.98550724637684" y="-231.02678571428569"/>
+        </button>
     </objects>
     <resources>
+        <image name="add_alarm" width="48" height="48"/>
         <image name="message" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="more" width="256" height="256"/>
+        <image name="more" width="48" height="48"/>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

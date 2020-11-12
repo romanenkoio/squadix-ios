@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import ImageSlideshow
 import Moya
+import EventKit
 
 enum EventMenuPoint {
     case images
@@ -25,7 +26,7 @@ enum EventMenuPoint {
     
     static func getManuForEvent(event: Event) -> (menu: [[EventMenuPoint]], headers: [String]) {
         let authorSection: [EventMenuPoint] = [ .authorInfo, .images]
-        let firstSection: [EventMenuPoint] = [.eventTime, .eventCoordinates, .startCoordinates, .starteEventTime]
+        let firstSection: [EventMenuPoint] = [.eventTime, .starteEventTime, .eventCoordinates, .startCoordinates]
         let secondSection: [EventMenuPoint] =  [.decription]
         let likeSection: [EventMenuPoint] = [.like]
         if event.isPreview {
@@ -40,9 +41,11 @@ class EventShowPage: BaseViewController {
     @IBOutlet var moreButton: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var contactButton: UIButton!
+    @IBOutlet var calendarButton: UIButton!
     
     var likeAction: Cancellable? = nil
     lazy var service = NetworkManager()
+    lazy var eventStore = EKEventStore()
     weak var delegate: UpdateFeedDelegate?
     weak var likeDelegate: LikeDelegate?
     var event: Event?
@@ -67,7 +70,8 @@ class EventShowPage: BaseViewController {
         tableView.registerCell(ContactCell.self)
         
         navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton),
-                                               UIBarButtonItem(customView: contactButton)],
+                                               UIBarButtonItem(customView: contactButton),
+                                               UIBarButtonItem(customView: calendarButton)],
                                               animated: true)
         
         moreButton.isHidden = event.authorID != KeychainManager.profileID
@@ -95,6 +99,51 @@ class EventShowPage: BaseViewController {
             }
         }
     }
+    
+    
+    @IBAction func saveEventInCalendar(_ sender: Any) {
+        eventStore.requestAccess(to: .event) { (granted, error) in
+            if granted {
+                
+                var gameCalendar: EKCalendar?
+                
+                if self.eventStore.calendars(for: .event).filter({$0.title == "Страйкбольные игры"}).count == 0 {
+                    let newCalendar = EKCalendar(for: .event, eventStore: self.eventStore)
+                    newCalendar.title = "Страйкбольные игры"
+                    guard let source = self.eventStore.defaultCalendarForNewEvents?.source else { return }
+                    newCalendar.source = source
+                    guard let _ = try? self.eventStore.saveCalendar(newCalendar, commit: true) else { return }
+                    gameCalendar = newCalendar
+                    
+                } else {
+                    
+                }
+                guard let calendar = self.eventStore.calendars(for: .event).filter({$0.title == "Страйкбольные игры"}).first, let event = self.event else { return }
+                gameCalendar = calendar
+                let calendarEvent = EKEvent(eventStore: self.eventStore)
+                calendarEvent.title = "Не забудь зарядить аккумуляторы к игре!"
+                calendarEvent.addAlarm(EKAlarm(relativeOffset: -86400))
+                calendarEvent.startDate = event.startTime
+                calendarEvent.isAllDay = false
+                calendarEvent.notes = "\(event.shortDescription ?? "") \nПодробнее в приложении Squadix: \nhttps://squadix.co/events/\(event.id)"
+                let currentCalendar = Calendar.current
+                calendarEvent.endDate = currentCalendar.date(byAdding: .hour, value: 5, to: event.startTime)
+                calendarEvent.calendar = gameCalendar
+                do {
+                    try self.eventStore.save(calendarEvent, span: .thisEvent, commit: true)
+                    DispatchQueue.main.async {
+                        PopupView(title: "", subtitle: "Сохранено в календарь", image: UIImage(named: "confirm")).show()
+                    }
+                } catch let error {
+                    print(error)
+                }
+            } else {
+                self.showAlert(title: "Нет доступа к календарю")
+            }
+        }
+        
+    }
+    
     
     @IBAction func moreButton(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
