@@ -143,5 +143,7 @@ class NewsCell: BaseTableViewCell {
         super.prepareForReuse()
         likeCount.text = "0"
         likeImage.setImage(UIImage(named: "like"), for: .normal)
+        promoImageHeightConstraint.constant = 200
+        promoImage.isHidden = false
     }
 }
