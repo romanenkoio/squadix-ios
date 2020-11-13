@@ -104,6 +104,19 @@ class EventShowPage: BaseViewController {
     @IBAction func saveEventInCalendar(_ sender: Any) {
         eventStore.requestAccess(to: .event) { (granted, error) in
             if granted {
+                let currentCalendar = Calendar.current
+                guard let event = self.event, let eventStartDate = event.startTime, let eventEndDate = currentCalendar.date(byAdding: .hour, value: 5, to: event.startTime) else { return }
+                
+                let predicate = self.eventStore.predicateForEvents(withStart: eventStartDate, end: eventEndDate, calendars: nil)
+                let existingEvents = self.eventStore.events(matching: predicate)
+                for singleEvent in existingEvents {
+                    if singleEvent.title == "Не забудь зарядить аккумуляторы к игре!" && singleEvent.startDate == eventStartDate {
+                        DispatchQueue.main.async {
+                            PopupView(title: "", subtitle: "Уже есть в календаре.", image: UIImage(named: "cancel")).show()
+                        }
+                        return
+                    }
+                }
                 
                 var gameCalendar: EKCalendar?
                 
@@ -114,34 +127,30 @@ class EventShowPage: BaseViewController {
                     newCalendar.source = source
                     guard let _ = try? self.eventStore.saveCalendar(newCalendar, commit: true) else { return }
                     gameCalendar = newCalendar
-                    
                 } else {
-                    
-                }
-                guard let calendar = self.eventStore.calendars(for: .event).filter({$0.title == "Страйкбольные игры"}).first, let event = self.event else { return }
-                gameCalendar = calendar
-                let calendarEvent = EKEvent(eventStore: self.eventStore)
-                calendarEvent.title = "Не забудь зарядить аккумуляторы к игре!"
-                calendarEvent.addAlarm(EKAlarm(relativeOffset: -86400))
-                calendarEvent.startDate = event.startTime
-                calendarEvent.isAllDay = false
-                calendarEvent.notes = "\(event.shortDescription ?? "") \nПодробнее в приложении Squadix: \nhttps://squadix.co/events/\(event.id)"
-                let currentCalendar = Calendar.current
-                calendarEvent.endDate = currentCalendar.date(byAdding: .hour, value: 5, to: event.startTime)
-                calendarEvent.calendar = gameCalendar
-                do {
-                    try self.eventStore.save(calendarEvent, span: .thisEvent, commit: true)
-                    DispatchQueue.main.async {
-                        PopupView(title: "", subtitle: "Сохранено в календарь", image: UIImage(named: "confirm")).show()
+                    guard let calendar = self.eventStore.calendars(for: .event).filter({$0.title == "Страйкбольные игры"}).first else { return }
+                    gameCalendar = calendar
+                    let calendarEvent = EKEvent(eventStore: self.eventStore)
+                    calendarEvent.title = "Не забудь зарядить аккумуляторы к игре!"
+                    calendarEvent.addAlarm(EKAlarm(relativeOffset: -86400))
+                    calendarEvent.startDate = event.startTime
+                    calendarEvent.isAllDay = false
+                    calendarEvent.notes = "\(event.shortDescription ?? "") \nПодробнее в приложении Squadix: \nhttps://squadix.co/events/\(event.id)"
+                    calendarEvent.endDate = currentCalendar.date(byAdding: .hour, value: 5, to: event.startTime)
+                    calendarEvent.calendar = gameCalendar
+                    do {
+                        try self.eventStore.save(calendarEvent, span: .thisEvent, commit: true)
+                        DispatchQueue.main.async {
+                            PopupView(title: "", subtitle: "Сохранено в календарь", image: UIImage(named: "confirm")).show()
+                        }
+                    } catch let error {
+                        print(error)
                     }
-                } catch let error {
-                    print(error)
                 }
             } else {
                 self.showAlert(title: "Нет доступа к календарю")
             }
         }
-        
     }
     
     
