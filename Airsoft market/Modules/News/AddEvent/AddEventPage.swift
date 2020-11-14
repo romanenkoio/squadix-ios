@@ -129,11 +129,11 @@ class AddEventPage: BaseViewController {
             return
         }
         
-        guard let startCoordText = startPointCoordinate.text, !startCoordText.isEmpty, Validator.shared.validate(string: startCoordText, pattern: Regexp.coordinates.rawValue), let startCoord = startCoordText.getCoordinates() else {
+        guard let startCoordText = startPointCoordinate.text, !startCoordText.isEmpty, Validator.shared.validate(string: startCoordText, pattern: Validator.Regexp.coordinates.rawValue), let startCoord = startCoordText.getCoordinates() else {
             showAlert(title: AlertErrors.coordinatesError.rawValue)
             return
         }
-        guard let сoordText = startPointCoordinate.text, !сoordText.isEmpty, Validator.shared.validate(string: сoordText, pattern: Regexp.coordinates.rawValue), let coord = сoordText.getCoordinates() else {
+        guard let сoordText = startPointCoordinate.text, !сoordText.isEmpty, Validator.shared.validate(string: сoordText, pattern: Validator.Regexp.coordinates.rawValue), let coord = сoordText.getCoordinates() else {
             showAlert(title: AlertErrors.coordinatesError.rawValue)
             return
         }

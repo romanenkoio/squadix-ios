@@ -19,12 +19,23 @@ final class NetworkManager {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
                 if response.statusCode == 201 {
-                    guard let authData = try? response.map(AuthResponce.self) else { return }
+                    guard let authData = try? response.map(AuthResponce.self) else {
+                        var customError = NetworkError()
+                        customError.message = "Unknow"
+                        failure(customError)
+                        return
+                    }
                     completion(authData)
+                } else {
+                    guard let error = try? response.mapObject(NetworkError.self) else {
+                        var customError = NetworkError()
+                        customError.message = "Unknow error"
+                        failure(customError)
+                        return
+                    }
+                    failure(error)
                 }
-                var customError = NetworkError()
-                customError.message = "Error"
-                failure(customError)
+               
             case .failure(let error):
                 var customError = NetworkError()
                 customError.message = error.errorDescription ?? "Unknow"

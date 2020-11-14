@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 struct AuthResponce: Decodable {
     let accessToken: String!
@@ -28,31 +29,25 @@ struct AuthResponce: Decodable {
     }
 }
 
-struct NetworkError: Decodable {
+struct NetworkError: Mappable {
     var timestamp: String = ""
     var status: Int = 0
     var error: String = ""
     var message: String = ""
     var path: String = ""
     
-    private enum CodingKeys: String, CodingKey {
-        case timestamp
-        case status
-        case error
-        case message
-        case path
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        timestamp = try container.decode(String.self, forKey: .timestamp)
-        status = try container.decode(Int.self, forKey: .status)
-        error = try container.decode(String.self, forKey: .error)
-        message = try container.decode(String.self, forKey: .message)
-        path = try container.decode(String.self, forKey: .path)
+    init?(map: Map) {
     }
     
     init() {
+    }
+    
+    mutating func mapping(map: Map) {
+        timestamp     <- map["timestamp"]
+        status        <- map["status"]
+        error         <- map["error"]
+        message       <- map["message"]
+        path          <- map["path"]
     }
 }
 

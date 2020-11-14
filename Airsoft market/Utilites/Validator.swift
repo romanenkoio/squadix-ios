@@ -8,13 +8,17 @@
 
 import Foundation
 
-enum Regexp: String {
-    case coordinates = "[0-9]{1,4}\\.[0-9]{3,10}\\, [0-9]{1,4}\\.[0-9]{3,10}"
-}
+
 
 class Validator {
     static let shared = Validator()
     
+    enum Regexp: String {
+        case coordinates = "[0-9]{1,4}\\.[0-9]{3,10}\\, [0-9]{1,4}\\.[0-9]{3,10}"
+        case phone = "^(\\+375|375)(29|25|44|33)(\\d{3})(\\d{2})(\\d{2})$"
+        case password = "[\\S]{8,}"
+        case email = "^[A-z0-9_.+-]+@[A-z0-9-]+(\\.[A-z0-9-]{2,})+$"
+    }
     
     func validate(string: String, pattern: String) -> Bool {
         let passPred = NSPredicate(format:"SELF MATCHES %@", pattern)

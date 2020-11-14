@@ -55,6 +55,11 @@ class RegistrationPage: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: true)
         title = "Регистрация"
+        passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        doublePasswordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        userNameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        phoneField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        emailField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     @IBAction func registrationAction(_ sender: Any) {
@@ -85,7 +90,7 @@ class RegistrationPage: UIViewController {
                 emailErrorLabel.text = "Email должен быть до 30 символов"
                 emailErrorLabel.isHidden = false
                 isValid = false
-            } else if !isValidEmail(email) {
+            } else if !Validator.shared.validate(string: email, pattern: Validator.Regexp.email.rawValue){
                 emailErrorLabel.text = "Проверьте правильность email"
                 emailErrorLabel.isHidden = false
                 isValid = false
@@ -102,7 +107,7 @@ class RegistrationPage: UIViewController {
                 secondPasswordErrorLabel.isHidden = false
                 firstPasswordErrorLabel.text = "Пароли не совпадают"
                 secondPasswordErrorLabel.text = "Пароли не совпадают"
-            } else if !isValidPasswod(password) {
+            } else if !Validator.shared.validate(string: password, pattern: Validator.Regexp.password.rawValue) {
                 isValid = false
                 firstPasswordErrorLabel.text = "Пароль должен сожержать буквы и цифры, от 8 символов"
                 secondPasswordErrorLabel.text = "Пароль должен сожержать буквы и цифры, от 8 символов"
@@ -132,7 +137,7 @@ class RegistrationPage: UIViewController {
         }
         
         
-        if let phone = phoneField.text, isValidPhone(phone) {
+        if let phone = phoneField.text, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) {
             credentials.phone = phone
             phoneErrorLabel.isHidden = true
         } else {
@@ -142,11 +147,11 @@ class RegistrationPage: UIViewController {
         }
        
         if isValid && checked {
-            login()
+            register()
         }
     }
     
-    func login() {
+    func register() {
         spinner.startAnimating()
         networkManager.register(loginCredentials: credentials, completion: { [weak self] token in
             KeychainManager.store(value: token.getFullToken(), for: .accessToken)
@@ -158,27 +163,6 @@ class RegistrationPage: UIViewController {
         }
     }
     
-    func isValidPasswod(_ password: String) -> Bool {
-        let passwordRegEx = "[\\S]{8,}"
-        
-        let passPred = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
-        return passPred.evaluate(with: password)
-    }
-    
-    func isValidPhone(_ phone: String) -> Bool {
-          let passwordRegEx = "^(\\+375)(29|25|44|33)(\\d{3})(\\d{2})(\\d{2})$"
-          
-          let passPred = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
-          return passPred.evaluate(with: phone)
-      }
-    
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "^[A-z0-9_.+-]+@[A-z0-9-]+(\\.[A-z0-9-]{2,})+$"
-        
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
-    
     func parseError(error: NetworkError) {
         if error.message.contains(find: "email") && error.message.contains(find: "already exists") {
             emailErrorLabel.isHidden = false
@@ -187,6 +171,24 @@ class RegistrationPage: UIViewController {
             emailErrorLabel.isHidden = true
         }
         print("Network error: \(error.message)")
+    }
+}
+
+extension RegistrationPage {
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        firstPasswordErrorLabel.isHidden = passwordField.text == doublePasswordField.text
+        secondPasswordErrorLabel.isHidden = passwordField.text == doublePasswordField.text
+        if let count = userNameField.text?.count {
+            nameErrorLabel.isHidden = count > 3
+        }
+        if let phone = phoneField.text {
+            phoneErrorLabel.isHidden = Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue)
+        }
+        if let email = emailField.text {
+            emailErrorLabel.text = "Введён некорректный email"
+            emailErrorLabel.isHidden = Validator.shared.validate(string: email, pattern: Validator.Regexp.email.rawValue)
+        }
+       
     }
 }
 

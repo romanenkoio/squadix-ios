@@ -41,7 +41,7 @@ class BookmarkPage: BaseViewController {
         alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Сохранить", style: .default, handler: { [weak alert] (_) in
-            guard let note = alert?.textFields![0].text, !note.isEmpty, let coordinate = alert?.textFields![1].text, Validator.shared.validate(string: coordinate, pattern: Regexp.coordinates.rawValue)  else { return }
+            guard let note = alert?.textFields![0].text, !note.isEmpty, let coordinate = alert?.textFields![1].text, Validator.shared.validate(string: coordinate, pattern: Validator.Regexp.coordinates.rawValue)  else { return }
             RealmService.writeBookmark(bookmark: Bookmark(note: note, coordinate: coordinate))
         }))
         

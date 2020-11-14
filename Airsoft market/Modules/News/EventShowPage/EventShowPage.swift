@@ -112,7 +112,7 @@ class EventShowPage: BaseViewController {
                 for singleEvent in existingEvents {
                     if singleEvent.title == "Не забудь зарядить аккумуляторы к игре!" && singleEvent.startDate == eventStartDate {
                         DispatchQueue.main.async {
-                            PopupView(title: "", subtitle: "Уже есть в календаре.", image: UIImage(named: "cancel")).show()
+                            PopupView(title: "", subtitle: "Уже было добавлено в календарь.", image: UIImage(named: "cancel")).show()
                         }
                         return
                     }
