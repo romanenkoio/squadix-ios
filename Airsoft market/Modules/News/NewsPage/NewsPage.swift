@@ -309,7 +309,7 @@ extension NewsPage: UpdateFeedDelegate {
             segmentController.selectedSegmentIndex = 0
         case .event:
             contentType = .event
-            segmentController.selectedSegmentIndex = 0
+            segmentController.selectedSegmentIndex = 1
         default:
             print("Unknow content type to update")
         }
