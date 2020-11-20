@@ -86,6 +86,7 @@ class ProductPage: BaseViewController {
                 UIApplication.shared.open(contactUrl)
                 
             } else {
+                PopupView(title: "", subtitle: "Ошибка получения номера", image: UIImage(named: "cancel")).show()
                 self.spinner.stopAnimating()
                 return
             }

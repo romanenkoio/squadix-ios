@@ -21,6 +21,7 @@ class EditPage: UIViewController {
     @IBOutlet weak var skipButton: WhiteButton!
     @IBOutlet weak var userNameTextField: StrikeInputField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var phoneTextField: StrikeInputField!
     
     var selectedDate: Date?
     var profile: Profile?
@@ -59,14 +60,14 @@ class EditPage: UIViewController {
         datePicker.maximumDate = maxDate
         
         if isEdit {
-            preloadData()
-        } else {
             let manager = NetworkManager()
             manager.getCurrentUser { (profile, rrror, _) in
                 self.profile = profile
                 self.preloadData()
             }
         }
+       
+        
     }
     
     func preloadData() {
@@ -81,7 +82,7 @@ class EditPage: UIViewController {
         
         descriptionTextView.text = profile?.profileDescription
         userNameTextField.text = profile?.profileName
-        
+        phoneTextField.text = profile?.phone
         let size = CGSize(width: descriptionTextView.frame.width, height: .infinity)
         let estimatedSize = descriptionTextView.sizeThatFits(size)
         contatinerHeight.constant = estimatedSize.height

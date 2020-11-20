@@ -19,6 +19,7 @@
                 <outlet property="descriptionContainer" destination="L4B-sA-rzJ" id="b5G-7A-mDX"/>
                 <outlet property="descriptionTextView" destination="eUo-dC-7Og" id="A26-QM-oXV"/>
                 <outlet property="mainSaveButton" destination="rO9-0y-tTD" id="djy-FT-dsZ"/>
+                <outlet property="phoneTextField" destination="yeI-og-d8i" id="pax-Wz-yaW"/>
                 <outlet property="saveButton" destination="CMJ-KL-mZn" id="B31-vK-BbG"/>
                 <outlet property="skipButton" destination="8EM-Nj-kbs" id="V5s-zd-6FC"/>
                 <outlet property="spinner" destination="Jnb-RX-ONz" id="018-pr-F1B"/>
@@ -33,7 +34,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Беларусь" borderStyle="roundedRect" placeholder="Страна" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O2j-2P-gDK" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                    <rect key="frame" x="20" y="118" width="374" height="34"/>
+                    <rect key="frame" x="20" y="172" width="374" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="vXD-aP-kuK"/>
                     </constraints>
@@ -41,7 +42,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Город" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yuv-T9-S1c" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                    <rect key="frame" x="20" y="172" width="374" height="34"/>
+                    <rect key="frame" x="20" y="226" width="374" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="4Pw-B7-vlU"/>
                     </constraints>
@@ -49,7 +50,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="День рождения" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PW7-r7-xXA" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                    <rect key="frame" x="20" y="226" width="374" height="34"/>
+                    <rect key="frame" x="20" y="280" width="374" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="3b6-TO-5tO"/>
                     </constraints>
@@ -107,7 +108,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4B-sA-rzJ">
-                    <rect key="frame" x="20" y="286" width="374" height="34"/>
+                    <rect key="frame" x="20" y="340" width="374" height="34"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eUo-dC-7Og">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
@@ -138,7 +139,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="О себе:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pT-qp-NLk">
-                    <rect key="frame" x="20" y="270" width="374" height="16"/>
+                    <rect key="frame" x="20" y="324" width="374" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -152,18 +153,28 @@
                     <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                     <color key="color" name="mainStrikeColor"/>
                 </activityIndicatorView>
+                <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Телефон" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yeI-og-d8i" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                    <rect key="frame" x="20" y="118" width="374" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="Xp9-aD-nDA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="L4B-sA-rzJ" firstAttribute="trailing" secondItem="PW7-r7-xXA" secondAttribute="trailing" id="03B-qZ-GAX"/>
                 <constraint firstItem="Bie-WW-s3f" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0Bs-mZ-KDM"/>
+                <constraint firstItem="yeI-og-d8i" firstAttribute="leading" secondItem="Vzf-Cy-knZ" secondAttribute="leading" id="3TJ-06-X1i"/>
                 <constraint firstItem="yuv-T9-S1c" firstAttribute="top" secondItem="O2j-2P-gDK" secondAttribute="bottom" constant="20" id="9Ky-1V-eDz"/>
                 <constraint firstItem="Bie-WW-s3f" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="DaL-MK-aSZ"/>
+                <constraint firstItem="yeI-og-d8i" firstAttribute="top" secondItem="Vzf-Cy-knZ" secondAttribute="bottom" constant="20" id="Ekd-dx-WLf"/>
                 <constraint firstItem="Bie-WW-s3f" firstAttribute="top" relation="greaterThanOrEqual" secondItem="L4B-sA-rzJ" secondAttribute="bottom" constant="20" id="Gnb-ga-7iN"/>
                 <constraint firstItem="PW7-r7-xXA" firstAttribute="trailing" secondItem="yuv-T9-S1c" secondAttribute="trailing" id="GuY-at-ScE"/>
                 <constraint firstItem="7pT-qp-NLk" firstAttribute="top" secondItem="PW7-r7-xXA" secondAttribute="bottom" constant="10" id="HhH-0S-t9Q"/>
-                <constraint firstItem="O2j-2P-gDK" firstAttribute="top" secondItem="Vzf-Cy-knZ" secondAttribute="bottom" constant="20" id="IkC-Jm-FWy"/>
+                <constraint firstItem="yeI-og-d8i" firstAttribute="trailing" secondItem="Vzf-Cy-knZ" secondAttribute="trailing" id="IgN-3O-Fzq"/>
                 <constraint firstItem="PW7-r7-xXA" firstAttribute="top" secondItem="yuv-T9-S1c" secondAttribute="bottom" constant="20" id="JmT-lg-z0D"/>
                 <constraint firstItem="Vzf-Cy-knZ" firstAttribute="trailing" secondItem="O2j-2P-gDK" secondAttribute="trailing" id="Kfe-b2-Ds8"/>
                 <constraint firstItem="yuv-T9-S1c" firstAttribute="trailing" secondItem="O2j-2P-gDK" secondAttribute="trailing" id="PGw-9m-96E"/>
@@ -182,6 +193,7 @@
                 <constraint firstItem="Vzf-Cy-knZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="sSZ-PL-VVx"/>
                 <constraint firstItem="Vzf-Cy-knZ" firstAttribute="leading" secondItem="O2j-2P-gDK" secondAttribute="leading" id="t8n-cH-DC2"/>
                 <constraint firstItem="7pT-qp-NLk" firstAttribute="trailing" secondItem="O2j-2P-gDK" secondAttribute="trailing" id="ua4-Vt-WMT"/>
+                <constraint firstItem="O2j-2P-gDK" firstAttribute="top" secondItem="yeI-og-d8i" secondAttribute="bottom" constant="20" id="zrO-M3-xh4"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="135.9375"/>
         </view>

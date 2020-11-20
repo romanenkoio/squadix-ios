@@ -88,12 +88,30 @@ class MarketPage: BaseViewController {
     @IBAction func addAnnouncementDidTap(_ sender: Any) {
         spinner.startAnimating()
         networkManager.getCategories(completion: { [weak self] categories in
-            self?.spinner.stopAnimating()
-            self?.navigationController?.pushViewController(VCFabric.getAddProductPage(categories: categories.sorted(by: {$0 < $1})), animated: true)
+            
+            self?.networkManager.getCurrentUser(completion: { (profile, error, id) in
+                guard let currentProfile = profile, let phone = currentProfile.phone, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) else {
+                    self?.spinner.stopAnimating()
+                    let alert = UIAlertController(title: "Ошибка", message: "Пользователи без номера не могут создавать объявления. Перейдите в настройки профиля и обновите информацию.", preferredStyle: .actionSheet)
+                    
+                    let cancelAction = UIAlertAction(title: "Назад", style: .cancel, handler: nil)
+                    
+                    let updateProfilaAction = UIAlertAction(title: "Перейти в настройки профиля", style: .default, handler: { _ in
+                        self?.navigationController?.pushViewController(VCFabric.getUserEditPage(isEdit: true), animated: true)
+                    })
+                    
+                    alert.addAction(updateProfilaAction)
+                    alert.addAction(cancelAction)
+                    self?.present(alert, animated: true)
+                    return
+                }
+                self?.navigationController?.pushViewController(VCFabric.getAddProductPage(categories: categories.sorted(by: {$0 < $1})), animated: true)
+            })
+            
         }, failure: { [weak self] error in
             print("[NETWORK] \(error)")
             self?.spinner.stopAnimating()
-            PopupView(title: "", subtitle: "Ошибка категорий", image: UIImage(named: "cancel")).show()
+            PopupView(title: "", subtitle: "Ошибка обновления категорий", image: UIImage(named: "cancel")).show()
         })
     }
     

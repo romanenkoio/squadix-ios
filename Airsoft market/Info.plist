@@ -37,6 +37,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Необходимо для автоматического добавления ивентов в календарь</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Необходимо для добавления объявлений</string>
 	<key>NSFaceIDUsageDescription</key>
@@ -70,8 +72,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Необходимо для автоматического добавления ивентов в календарь</string>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 </dict>

@@ -44,8 +44,6 @@ class RegistrationPage: UIViewController {
     @IBOutlet weak var secondPasswordErrorLabel: UILabel!
     @IBOutlet weak var nameErrorLabel: UILabel!
     @IBOutlet weak var checkBoxButton: UIButton!
-    @IBOutlet weak var phoneField: StrikeInputField!
-    @IBOutlet weak var phoneErrorLabel: UILabel!
     
     lazy var networkManager = NetworkManager()
     var credentials = ProfileRequest()
@@ -58,7 +56,6 @@ class RegistrationPage: UIViewController {
         passwordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         doublePasswordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         userNameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        phoneField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         emailField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
@@ -135,16 +132,6 @@ class RegistrationPage: UIViewController {
                 credentials.displayName = name
             }
         }
-        
-        
-        if let phone = phoneField.text, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) {
-            credentials.phone = phone
-            phoneErrorLabel.isHidden = true
-        } else {
-            isValid = false
-            phoneErrorLabel.text = "Телефон должен быть вида \"+375251234567\""
-            phoneErrorLabel.isHidden = false
-        }
        
         if isValid && checked {
             register()
@@ -181,9 +168,7 @@ extension RegistrationPage {
         if let count = userNameField.text?.count {
             nameErrorLabel.isHidden = count > 3
         }
-        if let phone = phoneField.text {
-            phoneErrorLabel.isHidden = Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue)
-        }
+        
         if let email = emailField.text {
             emailErrorLabel.text = "Введён некорректный email"
             emailErrorLabel.isHidden = Validator.shared.validate(string: email, pattern: Validator.Regexp.email.rawValue)

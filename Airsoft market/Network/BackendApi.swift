@@ -192,7 +192,6 @@ extension StrikeServise: TargetType {
             params["email"] = loginCredentials.email
             params["displayName"] = loginCredentials.displayName
             params["password"] = loginCredentials.password
-            params["phone"] = loginCredentials.phone
         case .login(let loginCredentials):
             params["password"] = loginCredentials.password
             params["email"] = loginCredentials.email
