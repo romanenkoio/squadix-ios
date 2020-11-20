@@ -21,6 +21,7 @@ class GameMapPage: UIViewController {
     @IBOutlet weak var routeButton: OliveButton!
     @IBOutlet var calendarButton: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet var refreshButton: UIButton!
     
     let networkManager = NetworkManager()
     var isExpand = false
@@ -65,7 +66,7 @@ class GameMapPage: UIViewController {
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
         eventInfoCotainer.addGestureRecognizer(swipe)
         swipe.direction = .down
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: calendarButton)], animated: true)
+        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: calendarButton), UIBarButtonItem(customView: refreshButton)], animated: true)
         loadEvents()
     }
     
@@ -139,6 +140,11 @@ class GameMapPage: UIViewController {
     
     @IBAction func expandAction(_ sender: Any) {
         triggerInfoView(shouldShow: isExpand)
+    }
+    
+    @IBAction func refreshAction(_ sender: Any) {
+        triggerInfoView(shouldShow: false)
+        loadEvents()
     }
     
     @IBAction func showEventAction(_ sender: Any) {

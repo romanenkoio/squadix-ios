@@ -19,6 +19,7 @@
                 <outlet property="eventInfoCotainer" destination="H9Q-n9-1Lu" id="4QO-Yh-vk4"/>
                 <outlet property="eventTitleLabel" destination="ArG-Bk-22c" id="8H1-Vp-orh"/>
                 <outlet property="mapView" destination="wt8-VB-Ubr" id="3ro-2x-lzE"/>
+                <outlet property="refreshButton" destination="DnF-2a-k5N" id="aCQ-Ka-p56"/>
                 <outlet property="routeButton" destination="CP7-Is-T6W" id="edO-Od-L7t"/>
                 <outlet property="spinner" destination="GsD-JL-ytj" id="GhV-p0-3ot"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -183,11 +184,26 @@
             </connections>
             <point key="canvasLocation" x="353.62318840579712" y="-373.66071428571428"/>
         </button>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnF-2a-k5N">
+            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="width" constant="30" id="Zja-RO-KPH"/>
+                <constraint firstAttribute="height" constant="30" id="dIn-b6-Plo"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <state key="normal" image="refresh"/>
+            <connections>
+                <action selector="refreshAction:" destination="-1" eventType="touchUpInside" id="LSw-ao-qFY"/>
+            </connections>
+            <point key="canvasLocation" x="72" y="-416"/>
+        </button>
     </objects>
     <resources>
         <image name="avatar_placeholder" width="200" height="189.33332824707031"/>
         <image name="calendar" width="512" height="512"/>
         <image name="expand" width="12" height="8"/>
+        <image name="refresh" width="48" height="48"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
