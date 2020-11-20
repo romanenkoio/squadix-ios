@@ -19,6 +19,10 @@ class AdminPage: BaseViewController {
         }
     }
     
+    override var shouldBackSwipe: Bool {
+        return false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,13 +83,13 @@ class AdminPage: BaseViewController {
 
 
 extension AdminPage: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let manager = NetworkManager()
         
-        let accept = UITableViewRowAction(style: .normal, title: "Опубликовать") { action, index in
-            let item = self.marketData[index.row]
+        let accept = UIContextualAction(style: .normal, title: "Опубликовать") { (action, sourceView, completionHandler) in
+            let item = self.marketData[indexPath.row]
             manager.updateProductStatus(productID: item.postID, status: ProductStatus.active, completion: { [weak self] _ in
-                self?.marketData.remove(at: editActionsForRowAt.row)
+                self?.marketData.remove(at: indexPath.row)
                 self?.tableView.reloadData()
             }) { error in
                 print(error)
@@ -93,18 +97,19 @@ extension AdminPage: UITableViewDelegate {
         }
         accept.backgroundColor = .systemGreen
         
-        let decline = UITableViewRowAction(style: .normal, title: "Отклонить") { action, index in
-            let item = self.marketData[index.row]
+        let decline = UIContextualAction(style: .destructive, title: "Отклонить") { (action, sourceView, completionHandler) in
+            let item = self.marketData[indexPath.row]
             manager.updateProductStatus(productID: item.postID, status: ProductStatus.deleted, completion: { [weak self] _ in
-                self?.marketData.remove(at: editActionsForRowAt.row)
+                self?.marketData.remove(at: indexPath.row)
                 self?.tableView.reloadData()
             }) { error in
                 print(error)
             }
         }
-        decline.backgroundColor = .red
         
-        return [decline, accept]
+        let swipeAction = UISwipeActionsConfiguration(actions: [decline, accept])
+        swipeAction.performsFirstActionWithFullSwipe = false // This is the line which disables full swipe
+        return swipeAction
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -92,7 +92,7 @@ class MarketPage: BaseViewController {
             self?.networkManager.getCurrentUser(completion: { (profile, error, id) in
                 guard let currentProfile = profile, let phone = currentProfile.phone, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) else {
                     self?.spinner.stopAnimating()
-                    let alert = UIAlertController(title: "Ошибка", message: "Пользователи без номера не могут создавать объявления. Перейдите в настройки профиля и обновите информацию.", preferredStyle: .actionSheet)
+                    let alert = UIAlertController(title: "Ошибка", message: "Пользователи без номера не могут создавать объявления. Перейдите в настройки профиля и добавьте номер телефона.", preferredStyle: .actionSheet)
                     
                     let cancelAction = UIAlertAction(title: "Назад", style: .cancel, handler: nil)
                     

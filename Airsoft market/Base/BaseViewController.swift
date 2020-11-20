@@ -14,8 +14,11 @@ class BaseViewController: UIViewController {
             
     var profileID: Int?
     var page = 0
-    
     var isLoadinInProgress = false
+    
+    var shouldBackSwipe: Bool {
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,7 @@ class BaseViewController: UIViewController {
     }
     
     @objc func swipeAction(gesture: UISwipeGestureRecognizer) -> Void {
-        if gesture.direction == .right {
+        if gesture.direction == .right, shouldBackSwipe {
             navigationController?.popViewController(animated: true)
         }
     }
