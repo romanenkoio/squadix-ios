@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Floaty
+import JJFloatingActionButton
 
 enum ProfileMenuPoints {
      case profileInfo
@@ -22,8 +22,7 @@ enum ProfileMenuPoints {
 class ProfilePage: BaseViewController {
      @IBOutlet weak var tableView: UITableView!
      @IBOutlet weak var spinner: UIActivityIndicatorView!
-     @IBOutlet weak var floatyMenu: Floaty!
-     
+
      var testImage = UIImage(named: "placeholder")
      var imagePicker = UIImagePickerController()
      var refreshControl = UIRefreshControl()
@@ -58,8 +57,6 @@ class ProfilePage: BaseViewController {
           refreshControl.addTarget(self, action: #selector(loadProfile), for: .valueChanged)
           tableView.addSubview(refreshControl)
           title = "Профиль"
-          
-          floatyMenu.isHidden = profileID != nil
           configureFloatingMenu()
      }
      
@@ -67,30 +64,34 @@ class ProfilePage: BaseViewController {
           super.viewWillAppear(true)
           tableView.isHidden = true
           loadProfile(animated: true)
-          configureFloatingMenu()
      }
      
      func configureFloatingMenu() {
-          floatyMenu.items = []
-          floatyMenu.openAnimationType = .none
-          floatyMenu.overlayColor = UIColor.black.withAlphaComponent(0.6)
+          let actionButton = JJFloatingActionButton()
+          actionButton.display(inViewController: self)
+          actionButton.buttonColor = .mainStrikeColor
+          actionButton.buttonImage = UIImage(named: "menu")
+          actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
           
-          
-          floatyMenu.addItem("Настройки", icon: UIImage(named: "settings"), handler: { [weak self] item in
+          actionButton.addItem(title: "Настройки", image: UIImage(named: "settings")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
                self?.navigationController?.pushViewController(VCFabric.getSettingsPage(), animated: true)
-          })
+          }
           
-          floatyMenu.addItem("Редактировать профиль", icon: UIImage(named: "edit"), handler: { [weak self] item in
+          actionButton.addItem(title: "Редактировать профиль", image: UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
                self?.navigationController?.pushViewController(VCFabric.getUserEditPage(isEdit: true, profile: self?.currentProfile), animated: true)
-          })
+          }
           
-          floatyMenu.addItem("Сохранённые места", icon: UIImage(named: "bookmarks"), handler: { [weak self] item in
+          actionButton.addItem(title: "Сохранённые места", image: UIImage(named: "bookmarks")) { [weak self] item in
                self?.navigationController?.pushViewController(VCFabric.getBookmarkPage(), animated: true)
-          })
+          }
           
+          actionButton.configureDefaultItem { item in
+               item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+               item.titleLabel.textColor = .white
+               item.buttonColor = .white
+               item.buttonImageColor = .black
+          }
      }
-     
-     
      
      func didSelectAvatarChange() {
           let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

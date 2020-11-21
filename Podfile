@@ -20,6 +20,5 @@ target 'Squadix' do
   	pod 'Moya'
     	pod 'Moya-ObjectMapper'
 	pod 'ActiveLabel'
-	pod 'Floaty', '~> 4.1.0'
-
+	pod 'JJFloatingActionButton'
 end

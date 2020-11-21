@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfilePage" customModule="Squadix" customModuleProvider="target">
             <connections>
-                <outlet property="floatyMenu" destination="exb-jd-hW2" id="Gj0-tH-e54"/>
                 <outlet property="spinner" destination="NiG-GG-I00" id="02B-sA-a2d"/>
                 <outlet property="tableView" destination="wAK-s6-PQR" id="9Ro-Pz-ckO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -31,34 +30,11 @@
                     <rect key="frame" x="169" y="315" width="37" height="37"/>
                     <color key="color" name="mainStrikeColor"/>
                 </activityIndicatorView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exb-jd-hW2" customClass="Floaty" customModule="Floaty">
-                    <rect key="frame" x="295" y="587" width="60" height="60"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="2Av-Jw-UJt"/>
-                        <constraint firstAttribute="height" constant="60" id="d6o-Bf-iUO"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoCloseOnTap" value="YES"/>
-                        <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
-                            <color key="value" name="mainStrikeColor"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="image" keyPath="buttonImage" value="menu"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="itemSize">
-                            <real key="value" value="50"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="plusColor">
-                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemGray6Color"/>
             <constraints>
                 <constraint firstItem="wAK-s6-PQR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6Ad-uN-NUt"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="exb-jd-hW2" secondAttribute="trailing" constant="20" id="J4B-yh-0NQ"/>
-                <constraint firstItem="wAK-s6-PQR" firstAttribute="bottom" secondItem="exb-jd-hW2" secondAttribute="bottom" constant="20" id="MRe-8q-5RK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wAK-s6-PQR" secondAttribute="trailing" id="V1H-K1-quj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wAK-s6-PQR" secondAttribute="bottom" id="fi0-W2-1d1"/>
                 <constraint firstItem="NiG-GG-I00" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="la1-iQ-PBD"/>
@@ -69,13 +45,9 @@
         </view>
     </objects>
     <resources>
-        <image name="menu" width="35" height="35"/>
         <namedColor name="mainStrikeColor">
             <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
