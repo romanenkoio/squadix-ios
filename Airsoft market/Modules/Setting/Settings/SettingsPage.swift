@@ -20,11 +20,12 @@ enum SettingsMenu {
     case debug
     case testQR
     case eraseFilterData
+    case changePassword
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.about, .rules, .promo]
-        let actionSection: [SettingsMenu] = [.testQR, .debug, .eraseFilterData, .logout]
+        let actionSection: [SettingsMenu] = [.testQR, .debug, .eraseFilterData, .changePassword, .logout]
          
         return [settingsSection, infoSection, actionSection]
     }
@@ -159,7 +160,7 @@ extension SettingsPage: UITableViewDataSource {
                     }
                     
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-                        guard let textFieldText = alert?.textFields![0].text else { return }
+                        guard let textFieldText = alert?.textFields![0].text, !textFieldText.isEmpty else { return }
                         
                         guard let qrToShare = QRGenerator.shared.generate(with: textFieldText) else { return }
                         
@@ -169,6 +170,41 @@ extension SettingsPage: UITableViewDataSource {
                         
                         guard let top = self.navigationController?.topViewController else { return }
                         top.present(activityVC, animated: true, completion: nil)
+                    }))
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+                return settingCell
+            }
+            
+        case .changePassword:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Сменить пароль"
+                settingCell.action = {
+                    let alert = UIAlertController(title: "", message: "Смена пароля", preferredStyle: .alert)
+                    
+                    alert.addTextField { (textField) in
+                        textField.placeholder = "Старый пароль"
+                    }
+                    
+                    alert.addTextField { (textField) in
+                        textField.placeholder = "Новый пароль"
+                    }
+                    
+                    alert.addTextField { (textFieldPass) in
+                        textFieldPass.placeholder = "Новый пароль ещё раз"
+                    }
+                    
+                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
+                    
+                    alert.addAction(UIAlertAction(title: "Сохранить пароль", style: .default, handler: { [weak alert, self] (_) in
+                        guard let oldPassword = alert?.textFields![0].text, !oldPassword.isEmpty, let newPassword = alert?.textFields![1].text,  let newSecondPassword = alert?.textFields![2].text, !newPassword.isEmpty, !newSecondPassword.isEmpty else { return }
+                        if newPassword != newSecondPassword {
+                            self.showAlert(title: "Новые пароли не совпадают, повторите попытку.")
+                        } else if !Validator.shared.validate(string: newPassword, pattern: Validator.Regexp.password.rawValue), !Validator.shared.validate(string: newSecondPassword, pattern: Validator.Regexp.password.rawValue) {
+                            self.showAlert(title: "Новый пароль должен быть от 8 до 20 символов.")
+                        }
                     }))
                     
                     self.present(alert, animated: true, completion: nil)
