@@ -54,7 +54,7 @@ class Post: Mappable {
     }
     
     func mapping(map: Map) {
-        shortDescription    <- map["imageUrls"]
+        shortDescription    <- map["shortDescription"]
         description         <- map["description"]
         authorID            <- map["authorId"]
         imageUrls           <- map["imageUrls"]

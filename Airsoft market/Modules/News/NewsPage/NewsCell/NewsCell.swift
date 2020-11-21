@@ -11,7 +11,7 @@ import Moya
 
 class NewsCell: BaseTableViewCell {
     @IBOutlet weak var authorAvatar: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var promoImage: UIImageView!
     @IBOutlet weak var authorName: UILabel!
@@ -56,7 +56,8 @@ class NewsCell: BaseTableViewCell {
         } else {
             authorAvatar.image = UIImage(named: "avatar_placeholder")
         }
-        descriptionLabel.text = post.contentType == .image ? post.description : post.shortDescription
+        
+        headerTitleLabel.text = post.contentType == .image ? post.description : post.shortDescription
         likeCount.text = "\(post.likesCount)"
         likeImage.setImage(UIImage(named: post.isLiked ? "like_fill" : "like"), for: .normal)
         action = { [weak self] in
@@ -109,7 +110,7 @@ class NewsCell: BaseTableViewCell {
         } else {
             authorAvatar.image = UIImage(named: "avatar_placeholder")
         }
-        descriptionLabel.text = event.shortDescription
+        headerTitleLabel.text = event.shortDescription
         dateLabel.text = event.eventDate.dateToHumanString()
         authorName.text = event.authorName
         createDate.text = event.eventDate == nil ? "" : event.createdAt.dateToHumanString()
