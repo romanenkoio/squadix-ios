@@ -33,8 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UNUserNotificationCenter.current().delegate = self
         
-
-        
         return true
     }
     

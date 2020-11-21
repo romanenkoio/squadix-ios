@@ -11,7 +11,12 @@ import UIKit
 class BookmarkPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var bookmarkButton: UIButton!
-    var bookmarkData: [Bookmark] = []
+    var bookmarkData: [Bookmark] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     weak var delegate: UpdateEventDelegate?
     var type: CoordinatesType?
     
@@ -41,8 +46,12 @@ class BookmarkPage: BaseViewController {
         alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Сохранить", style: .default, handler: { [weak alert] (_) in
-            guard let note = alert?.textFields![0].text, !note.isEmpty, let coordinate = alert?.textFields![1].text, Validator.shared.validate(string: coordinate, pattern: Validator.Regexp.coordinates.rawValue)  else { return }
+            guard let note = alert?.textFields![0].text, !note.isEmpty, let coordinate = alert?.textFields![1].text, Validator.shared.validate(string: coordinate, pattern: Validator.Regexp.coordinates.rawValue)  else {
+                self.showAlert(title: "Название не может быть пустым или координаты введены некорректно.")
+                return
+            }
             RealmService.writeBookmark(bookmark: Bookmark(note: note, coordinate: coordinate))
+            self.bookmarkData = RealmService.readNotes().map({Bookmark(note: $0.note, coordinate: $0.coordinate)})
         }))
         
         self.present(alert, animated: true, completion: nil)
