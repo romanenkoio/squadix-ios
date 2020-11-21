@@ -90,7 +90,7 @@ extension StrikeServise: TargetType {
         case .uploadAvatar:
             return "/users/me/avatar"
         case .editProfile:
-            return "/users/edit"
+            return "/users/me"
         case .createEvent:
             return "/events"
         case .getUserPosts:
