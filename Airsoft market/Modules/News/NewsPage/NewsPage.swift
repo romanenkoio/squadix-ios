@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioToolbox
+import JJFloatingActionButton
 
 
 protocol UpdateFeedDelegate: class {
@@ -46,7 +47,7 @@ class NewsPage: BaseViewController {
  
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addPostButton: UIButton!
+    var actionButton = JJFloatingActionButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,7 @@ class NewsPage: BaseViewController {
         guard let type = contentType else { return }
         loadData(content: type)
         getCurrentProfile()
+        configureFloatingMenu()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,11 +83,39 @@ class NewsPage: BaseViewController {
         segmentController.isHidden = false
     }
     
+    func configureFloatingMenu() {
+         actionButton.display(inViewController: self)
+         actionButton.buttonColor = .mainStrikeColor
+         actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
+         
+         actionButton.addItem(title: "Событие", image: UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
+            let vc = VCFabric.addEventPage()
+            vc.delegate = self
+            self?.navigationController?.pushViewController(vc, animated: true)
+         }
+         
+         actionButton.addItem(title: "Пост", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
+            self?.navigationController?.pushViewController(VCFabric.addTextPostPage(), animated: true)
+         }
+         
+         actionButton.addItem(title: "Видео", image: UIImage(named: "video_plus")) { [weak self] item in
+            let vc = VCFabric.getNewPostPage()
+            vc.delegate = self
+            self?.navigationController?.pushViewController(vc, animated: true)
+         }
+         
+         actionButton.configureDefaultItem { item in
+              item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+              item.titleLabel.textColor = .white
+              item.buttonColor = .white
+              item.buttonImageColor = .black
+         }
+    }
+    
     private func configureUI() {
         refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        addPostButton.makeRound()
         
         if let tabBar = self.tabBarController?.tabBar {
             tabBar.isHidden = false
@@ -97,7 +127,7 @@ class NewsPage: BaseViewController {
             title = "Новости пользователя"
         }
         
-        addPostButton.isHidden = feedProfileID != nil
+        actionButton.isHidden = feedProfileID != nil
     }
     
     @objc func refresh() {
@@ -108,35 +138,6 @@ class NewsPage: BaseViewController {
         eventData = []
         refreshControl.endRefreshing()
         loadData(content: (contentType == nil ? .feed : contentType)!)
-    }
-    
-    @IBAction func addAction(_ sender: Any) {
-        let alert = UIAlertController(title: "", message: "Выберите тип поста", preferredStyle: .actionSheet)
-        
-        let video = UIAlertAction(title: "Видео", style: .default, handler: { _ in
-            let vc = VCFabric.getNewPostPage()
-            vc.delegate = self
-            self.navigationController?.pushViewController(vc, animated: true)
-        })
-        
-        let post = UIAlertAction(title: "Пост", style: .default, handler: { _ in
-            self.navigationController?.pushViewController(VCFabric.addTextPostPage(), animated: true)
-        })
-        
-        let event = UIAlertAction(title: "Событие", style: .default, handler: { _ in
-            let vc = VCFabric.addEventPage()
-            vc.delegate = self
-            self.navigationController?.pushViewController(vc, animated: true)
-        })
-        
-        let cancel = UIAlertAction(title: "Назад", style: .cancel, handler: nil)
-        
-        alert.addAction(video)
-        alert.addAction(post)
-        alert.addAction(event)
-        alert.addAction(cancel)
-        
-        present(alert, animated: true)
     }
 }
 

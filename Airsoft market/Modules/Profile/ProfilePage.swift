@@ -98,7 +98,6 @@ class ProfilePage: BaseViewController {
           imagePicker.delegate = self
           imagePicker.allowsEditing = true
           
-          
           alert.addAction(UIAlertAction(title: "Выбрать из галереи", style: .default) { [weak self] _ in
                if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
                     self?.imagePicker.sourceType = .savedPhotosAlbum

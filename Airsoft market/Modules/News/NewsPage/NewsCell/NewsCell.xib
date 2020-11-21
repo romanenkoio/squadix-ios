@@ -70,8 +70,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-BL-TbL">
-                                <rect key="frame" x="305" y="15.5" width="40" height="39"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-BL-TbL">
+                                <rect key="frame" x="300" y="17" width="40" height="36"/>
                                 <color key="tintColor" name="mainStrikeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LaN-mg-OqZ"/>
@@ -138,7 +138,7 @@
                             <constraint firstItem="VLe-Ci-KKm" firstAttribute="top" secondItem="vRM-fx-KSS" secondAttribute="bottom" id="m1l-PR-Q9w"/>
                             <constraint firstItem="rhR-pb-lc0" firstAttribute="trailing" secondItem="Htj-LR-IBC" secondAttribute="trailing" id="nzn-kf-utc"/>
                             <constraint firstItem="SFt-ko-Pga" firstAttribute="leading" secondItem="ryU-TZ-rrd" secondAttribute="leading" id="sEk-Fb-FgB"/>
-                            <constraint firstAttribute="trailing" secondItem="Vsb-BL-TbL" secondAttribute="trailing" constant="5" id="uBt-hb-gkJ"/>
+                            <constraint firstAttribute="trailing" secondItem="Vsb-BL-TbL" secondAttribute="trailing" constant="10" id="uBt-hb-gkJ"/>
                             <constraint firstItem="SFt-ko-Pga" firstAttribute="top" secondItem="U0R-JI-kBF" secondAttribute="bottom" constant="15" id="uTG-4s-42f"/>
                             <constraint firstItem="VLe-Ci-KKm" firstAttribute="leading" secondItem="ryU-TZ-rrd" secondAttribute="leading" id="udF-up-Zv6"/>
                         </constraints>
@@ -174,7 +174,7 @@
         <image name="avatar_placeholder" width="200" height="189.33332824707031"/>
         <image name="like" width="64" height="64"/>
         <image name="placeholder" width="350" height="350"/>
-        <image name="video.circle" catalog="system" width="128" height="121"/>
+        <image name="video" catalog="system" width="128" height="83"/>
         <namedColor name="mainStrikeColor">
             <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

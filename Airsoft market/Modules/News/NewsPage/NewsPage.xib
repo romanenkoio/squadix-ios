@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsPage" customModule="Squadix" customModuleProvider="target">
             <connections>
-                <outlet property="addPostButton" destination="Hmg-r4-P5e" id="5dp-De-xD6"/>
                 <outlet property="spinner" destination="MqR-1C-Irt" id="wd6-cn-sjv"/>
                 <outlet property="tableView" destination="Ral-b6-t5v" id="QpG-gH-bm9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -30,37 +29,21 @@
                     <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                     <color key="color" name="mainStrikeColor"/>
                 </activityIndicatorView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmg-r4-P5e">
-                    <rect key="frame" x="344" y="792" width="50" height="50"/>
-                    <color key="backgroundColor" red="0.63137254899999995" green="0.68627450980000004" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="PlJ-3h-WAM"/>
-                        <constraint firstAttribute="width" constant="50" id="mVZ-E8-c6i"/>
-                    </constraints>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" image="plus" catalog="system"/>
-                    <connections>
-                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="i8E-Xk-xsC"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="strikeGrayColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ral-b6-t5v" secondAttribute="trailing" id="E06-gN-anz"/>
                 <constraint firstItem="Ral-b6-t5v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="N51-XX-qNk"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Hmg-r4-P5e" secondAttribute="bottom" constant="20" id="avF-Ic-AOz"/>
                 <constraint firstItem="MqR-1C-Irt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bBJ-Gk-3ub"/>
                 <constraint firstItem="MqR-1C-Irt" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cBP-bd-3vn"/>
                 <constraint firstAttribute="bottom" secondItem="Ral-b6-t5v" secondAttribute="bottom" id="eUV-Nt-tNf"/>
                 <constraint firstItem="Ral-b6-t5v" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="oKh-03-8Ag"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Hmg-r4-P5e" secondAttribute="trailing" constant="20" id="xlq-8Q-3Vu"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </view>
     </objects>
     <resources>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="mainStrikeColor">
             <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
