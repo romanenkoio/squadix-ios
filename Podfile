@@ -21,7 +21,5 @@ target 'Squadix' do
     	pod 'Moya-ObjectMapper'
 	pod 'ActiveLabel'
 	pod 'Floaty', '~> 4.1.0'
-	pod 'GoogleAnalytics'
-
 
 end

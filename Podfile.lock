@@ -18,7 +18,6 @@ PODS:
     - GoogleMaps
   - Google-Maps-iOS-Utils/QuadTree (3.1.4):
     - GoogleMaps
-  - GoogleAnalytics (3.17.0)
   - GoogleMaps (3.9.0):
     - GoogleMaps/Maps (= 3.9.0)
   - GoogleMaps/Base (3.9.0)
@@ -56,7 +55,6 @@ DEPENDENCIES:
   - ActiveLabel
   - Floaty (~> 4.1.0)
   - Google-Maps-iOS-Utils (~> 3.1.4)
-  - GoogleAnalytics
   - GoogleMaps (~> 3.9.0)
   - ImageSlideshow
   - ImageSlideshow/Kingfisher
@@ -74,7 +72,6 @@ SPEC REPOS:
     - Alamofire
     - Floaty
     - Google-Maps-iOS-Utils
-    - GoogleAnalytics
     - GoogleMaps
     - ImageSlideshow
     - IQKeyboardManagerSwift
@@ -92,7 +89,6 @@ SPEC CHECKSUMS:
   Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
   Floaty: 1a4e213f3512cf3045ef9cb0c1ff456226d1f66a
   Google-Maps-iOS-Utils: 1e51ca272b4f4befdf3577bf46f58c22ef22062c
-  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleMaps: 4b5346bddfe6911bb89155d43c903020170523ac
   ImageSlideshow: 67184be896a28472bd3b906c33ce4e0734aa3d22
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
@@ -105,6 +101,6 @@ SPEC CHECKSUMS:
   RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 5864a904a55d2a1b0659e46d9fdf6ddb45710059
+PODFILE CHECKSUM: fc2a3411c8720301aa08a4595c5b8fbc6382b7c3
 
 COCOAPODS: 1.10.0
