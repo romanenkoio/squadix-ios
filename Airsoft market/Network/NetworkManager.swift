@@ -91,7 +91,7 @@ final class NetworkManager {
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
-                guard let profile = try? response.map(Profile.self) else { return }
+                guard let profile = try? response.mapObject(Profile.self) else { return }
                 completion(profile, nil, response.statusCode)
             case .failure(let error):
                 completion(nil, error, nil)
@@ -104,7 +104,7 @@ final class NetworkManager {
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
-                guard let profile = try? response.map(Profile.self) else { return }
+                guard let profile = try? response.mapObject(Profile.self) else { return }
                 completion(profile, nil)
             case .failure(let error):
                 completion(nil, error)
@@ -341,7 +341,7 @@ final class NetworkManager {
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
-                guard let users = try? response.map([Profile].self) else {
+                guard let users = try? response.mapArray(Profile.self) else {
                     failure("Cannot load user posts")
                     return
                 }

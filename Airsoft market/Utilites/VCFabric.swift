@@ -158,7 +158,7 @@ class VCFabric {
         return ImagePreviewPage(nibName: String(describing: ImagePreviewPage.self), bundle: nil)
     }
     
-    static func getBookmarkPage(type: CoordinatesType? = nil, delegate: UpdateEventDelegate? = nil) -> BookmarkPage {
+    static func getBookmarkPage(type: Common.CoordinatesType? = nil, delegate: UpdateEventDelegate? = nil) -> BookmarkPage {
         let vc = BookmarkPage(nibName: String(describing: BookmarkPage.self), bundle: nil)
         vc.type = type
         if let sDelegate = delegate  {

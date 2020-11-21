@@ -11,8 +11,6 @@
 		7F019126250AB84F0049C8F0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F019125250AB84F0049C8F0 /* BaseViewController.swift */; };
 		7F01C1BC254E090F007CC5A9 /* ProductCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01C1BB254E090F007CC5A9 /* ProductCategories.swift */; };
 		7F03F151248404A300EF0749 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F03F150248404A300EF0749 /* NetworkManager.swift */; };
-		7F14046F248852C70028C907 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F14046D248852C70028C907 /* ContactCell.swift */; };
-		7F140470248852C70028C907 /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F14046E248852C70028C907 /* ContactCell.xib */; };
 		7F14047624885D640028C907 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F14047524885D640028C907 /* BaseTableViewCell.swift */; };
 		7F1DF26D25584ECF00D4E7CF /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1DF26C25584ECF00D4E7CF /* Validator.swift */; };
 		7F22CA1F255895E400F9DF27 /* MapUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */; };
@@ -52,7 +50,6 @@
 		7F595B22247FFE7700D56E74 /* MapPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F595B20247FFE7700D56E74 /* MapPage.xib */; };
 		7F595B2624800E9700D56E74 /* MyProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F595B2424800E9700D56E74 /* MyProfileCell.swift */; };
 		7F595B2724800E9700D56E74 /* MyProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F595B2524800E9700D56E74 /* MyProfileCell.xib */; };
-		7F595B2924802AE200D56E74 /* ContactHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F595B2824802AE200D56E74 /* ContactHandler.swift */; };
 		7F595B2C248037B700D56E74 /* CategoryCheckboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F595B2A248037B700D56E74 /* CategoryCheckboxCell.swift */; };
 		7F595B2D248037B700D56E74 /* CategoryCheckboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F595B2B248037B700D56E74 /* CategoryCheckboxCell.xib */; };
 		7F595B3224803A0000D56E74 /* FilterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F595B3024803A0000D56E74 /* FilterPage.swift */; };
@@ -271,8 +268,6 @@
 		7F019125250AB84F0049C8F0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7F01C1BB254E090F007CC5A9 /* ProductCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategories.swift; sourceTree = "<group>"; };
 		7F03F150248404A300EF0749 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		7F14046D248852C70028C907 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
-		7F14046E248852C70028C907 /* ContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
 		7F14047524885D640028C907 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		7F1DF26C25584ECF00D4E7CF /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUpdatable.swift; sourceTree = "<group>"; };
@@ -314,7 +309,6 @@
 		7F595B20247FFE7700D56E74 /* MapPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapPage.xib; sourceTree = "<group>"; };
 		7F595B2424800E9700D56E74 /* MyProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCell.swift; sourceTree = "<group>"; };
 		7F595B2524800E9700D56E74 /* MyProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileCell.xib; sourceTree = "<group>"; };
-		7F595B2824802AE200D56E74 /* ContactHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHandler.swift; sourceTree = "<group>"; };
 		7F595B2A248037B700D56E74 /* CategoryCheckboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCheckboxCell.swift; sourceTree = "<group>"; };
 		7F595B2B248037B700D56E74 /* CategoryCheckboxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCheckboxCell.xib; sourceTree = "<group>"; };
 		7F595B3024803A0000D56E74 /* FilterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPage.swift; sourceTree = "<group>"; };
@@ -442,20 +436,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7F14046C248852B30028C907 /* ContactCell */ = {
-			isa = PBXGroup;
-			children = (
-				7F14046D248852C70028C907 /* ContactCell.swift */,
-				7F14046E248852C70028C907 /* ContactCell.xib */,
-			);
-			path = ContactCell;
-			sourceTree = "<group>";
-		};
 		7F14047724885EA60028C907 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				7FCFDD4624BA7A6200D8660F /* DebugCell */,
-				7F14046C248852B30028C907 /* ContactCell */,
 				7F904E422485ADB000DF8AC5 /* SimpleTextCell */,
 				7F904E3B248583BE00DF8AC5 /* HorizontalStackCell */,
 				7F595B3D2480687700D56E74 /* SettingsCell */,
@@ -1011,7 +995,6 @@
 				7FFE4C78247731F000212BAB /* VCFabric.swift */,
 				7FBAC53524789931007F51BC /* AppConstant.swift */,
 				7F295CCA247ADFBD00B47F1F /* DateUtils.swift */,
-				7F595B2824802AE200D56E74 /* ContactHandler.swift */,
 				7F595B342480466E00D56E74 /* RealmService.swift */,
 				7F2A127E25437C050041162A /* QRGenerator.swift */,
 				7FC4D66B25544EC000F1E508 /* PushService.swift */,
@@ -1332,7 +1315,6 @@
 				7F9B1473247EDB05007D4819 /* EventShowPage.xib in Resources */,
 				7FFE4C6624771CDB00212BAB /* LaunchScreen.storyboard in Resources */,
 				7F595B3C2480686800D56E74 /* SettingsPage.xib in Resources */,
-				7F140470248852C70028C907 /* ContactCell.xib in Resources */,
 				7F595B2D248037B700D56E74 /* CategoryCheckboxCell.xib in Resources */,
 				7F40280E24C62DB50018E49F /* AddPostPage.xib in Resources */,
 				7F904E462485ADCC00DF8AC5 /* SimpleTextCell.xib in Resources */,
@@ -1427,7 +1409,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F14046F248852C70028C907 /* ContactCell.swift in Sources */,
 				7F03F151248404A300EF0749 /* NetworkManager.swift in Sources */,
 				7FB48D7A24BF20D000046403 /* NetworkResponce.swift in Sources */,
 				7F595B37248052E900D56E74 /* PopupView.swift in Sources */,
@@ -1450,7 +1431,6 @@
 				7F019126250AB84F0049C8F0 /* BaseViewController.swift in Sources */,
 				7F904E412485A20C00DF8AC5 /* UIColor+Extensions.swift in Sources */,
 				7F595B3B2480686800D56E74 /* SettingsPage.swift in Sources */,
-				7F595B2924802AE200D56E74 /* ContactHandler.swift in Sources */,
 				7FE17315247884D000CBAFB3 /* NewsPage.swift in Sources */,
 				7F93DE3924D0237100039378 /* FullPicturePage.swift in Sources */,
 				7F4A8B2324CF8C24006B3856 /* UINavigation+Extensions.swift in Sources */,

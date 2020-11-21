@@ -51,7 +51,6 @@ class ProfilePage: BaseViewController {
           tableView.setupDelegateData(self)
           tableView.registerCell(ProfileCell.self)
           tableView.registerCell(ActionCell.self)
-          tableView.registerCell(ContactCell.self)
           tableView.registerCell(MyProfileCell.self)
           tableView.registerCell(HorisontalStackCell.self)
           tableView.registerCell(DescriptionPointCell.self)

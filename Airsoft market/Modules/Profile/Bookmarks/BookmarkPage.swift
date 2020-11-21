@@ -18,7 +18,7 @@ class BookmarkPage: BaseViewController {
     }
     
     weak var delegate: UpdateEventDelegate?
-    var type: CoordinatesType?
+    var type: Common.CoordinatesType?
     
     
     override func viewDidLoad() {

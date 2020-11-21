@@ -67,7 +67,6 @@ class EventShowPage: BaseViewController {
         tableView.registerCell(SlideShowCell.self)
         tableView.registerCell(AuthorCell.self)
         tableView.registerCell(LikeCell.self)
-        tableView.registerCell(ContactCell.self)
         
         navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton),
                                                UIBarButtonItem(customView: contactButton),

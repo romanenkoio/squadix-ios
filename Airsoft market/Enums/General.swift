@@ -8,7 +8,32 @@
 
 import Foundation
 
-enum CoordinatesType {
-    case startCoordinate
-    case gameCoordinate
+class Common {
+    static let shared = Common()
+    
+    enum CoordinatesType {
+        case startCoordinate
+        case gameCoordinate
+    }
+    
+    enum Roles: String {
+        case admin
+        case moderator
+        case user
+        case unknow
+    }
+    
+    func role(role: String) -> Common.Roles {
+        switch role {
+        case "admin":
+            return .admin
+        case "moderator":
+            return .moderator
+        case "user":
+            return .user
+        default:
+            return .unknow
+        }
+    }
 }
+

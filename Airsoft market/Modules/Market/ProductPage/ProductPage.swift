@@ -60,7 +60,6 @@ class ProductPage: BaseViewController {
         tableView.registerCell(SlideShowCell.self)
         tableView.registerCell(AuthorCell.self)
         tableView.registerCell(PostSwitcherCell.self)
-        tableView.registerCell(ContactCell.self)
         
         navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton),
                                                UIBarButtonItem(customView: contactButton)],

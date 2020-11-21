@@ -256,7 +256,7 @@ extension AddEventPage: UITextViewDelegate {
 }
 
 extension AddEventPage: UpdateEventDelegate {
-    func updateCoordinates(coord: String, coordType: CoordinatesType) {
+    func updateCoordinates(coord: String, coordType: Common.CoordinatesType) {
         switch coordType {
         case .gameCoordinate:
             eventCoordinate.text = coord

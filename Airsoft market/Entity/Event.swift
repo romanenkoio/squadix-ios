@@ -23,7 +23,6 @@ class Event: Decodable {
     var eventLatitude: Double?
     var eventLongitude: Double?
     var eventDate: Date!
-    var contacts: [Contact]!
     var startTime: Date!
     var id: Int = 0
     var authorName: String!
@@ -140,9 +139,6 @@ class Event: Decodable {
             }
         }
         
-        if let contacts = try container.decodeIfPresent([Contact].self, forKey: .contacts) {
-            self.contacts = contacts
-        }
         
         if let start = try container.decodeIfPresent(String.self, forKey: .startTime) {
             if let localDate = formatter.date(from: start) {

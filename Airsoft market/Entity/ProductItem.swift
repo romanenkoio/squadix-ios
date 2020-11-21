@@ -30,7 +30,6 @@ class MarketProduct: Mappable {
     var postAvalible = false
     var description: String!
     var isPreview = false
-    var contacts: [Contact]!
     var authorAvatarURL: String?
     var authorName: String?
     var phone: String?

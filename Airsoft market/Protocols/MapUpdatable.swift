@@ -9,5 +9,5 @@
 import Foundation
 
 protocol UpdateEventDelegate: class {
-    func updateCoordinates(coord: String, coordType: CoordinatesType)
+    func updateCoordinates(coord: String, coordType: Common.CoordinatesType)
 }
