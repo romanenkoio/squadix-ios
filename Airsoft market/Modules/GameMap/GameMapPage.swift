@@ -99,7 +99,7 @@ class GameMapPage: UIViewController {
             for marker in markers {
                 bounds = bounds.includingCoordinate(marker.position)
             }
-            let insets = UIEdgeInsets(top: 40, left: 40, bottom: isExpand ? 200 : 0, right: 40)
+            let insets = UIEdgeInsets(top: 60, left: 50, bottom: isExpand ? 200 : 30, right: 50)
             let update = GMSCameraUpdate.fit(bounds, with: insets)
             mapView?.animate(with: update)
         }
@@ -214,7 +214,6 @@ class GameMapPage: UIViewController {
         }
         
         let yandexMapAction = UIAlertAction(title: "Yandex карты", style: .default) { _ in
-//            yandexmaps://maps.yandex.ru/?rtext=59.967870,30.242658~59.898495,30.299559&rtt=mt
             guard let coordinate = self.mapView.myLocation else { return }
             guard let url = URL.init(string: "yandexmaps://maps.yandex.com/?rtext=\(coordinate.coordinate.latitude),\(coordinate.coordinate.longitude)~\(latitude),\(longitude)") else { return }
             
