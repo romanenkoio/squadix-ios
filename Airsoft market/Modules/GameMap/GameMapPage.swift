@@ -214,7 +214,9 @@ class GameMapPage: UIViewController {
         }
         
         let yandexMapAction = UIAlertAction(title: "Yandex карты", style: .default) { _ in
-            guard let url = URL.init(string: "yandexmaps://maps.yandex.com/?ll=\(latitude),\(longitude)&z=12") else { return }
+//            yandexmaps://maps.yandex.ru/?rtext=59.967870,30.242658~59.898495,30.299559&rtt=mt
+            guard let coordinate = self.mapView.myLocation else { return }
+            guard let url = URL.init(string: "yandexmaps://maps.yandex.com/?rtext=\(coordinate.coordinate.latitude),\(coordinate.coordinate.longitude)~\(latitude),\(longitude)") else { return }
             
             UIApplication.shared.open(url)
         }
