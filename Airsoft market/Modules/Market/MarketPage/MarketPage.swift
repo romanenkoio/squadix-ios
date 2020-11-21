@@ -112,6 +112,7 @@ class MarketPage: BaseViewController {
                     self?.present(alert, animated: true)
                     return
                 }
+                self?.spinner.stopAnimating()
                 self?.navigationController?.pushViewController(VCFabric.getAddProductPage(categories: categories.sorted(by: {$0 < $1})), animated: true)
             })
             
