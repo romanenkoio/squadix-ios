@@ -62,12 +62,8 @@ class MarketProduct: Mappable {
         
         var imagedata: [String] = []
         for image in images {
-            if let im = image.jpegData(compressionQuality: 0.4) {
-                if let compressedImage = UIImage(data: im) {
-                    if let codedImage = compressedImage.toBase64() {
-                        imagedata.append(codedImage)
-                    }
-                }
+            if let codedImage = image.toBase64() {
+                imagedata.append(codedImage)
             }
         }
         

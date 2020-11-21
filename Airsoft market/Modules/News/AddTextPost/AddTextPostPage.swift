@@ -59,12 +59,8 @@ class AddTextPostPage: BaseViewController {
         } else {
             if imageData.count != 0 {
                 for image in imageData {
-                    if let im = image.jpegData(compressionQuality: 0.5) {
-                        if let compressedImage = UIImage(data: im) {
-                            if let codedImage = compressedImage.toBase64() {
-                                post.imageUrls.append(codedImage)
-                            }
-                        }
+                    if let codedImage = image.toBase64() {
+                        post.imageUrls.append(codedImage)
                     }
                 }
             }
