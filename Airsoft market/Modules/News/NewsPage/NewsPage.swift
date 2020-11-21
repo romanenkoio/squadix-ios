@@ -62,14 +62,17 @@ class NewsPage: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        networkManager.getModeratingProducts() { [weak self] moderatingProducts in
-            UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
-            if let tabItems = self?.tabBarController?.tabBar.items {
-                let tabItem = tabItems[1]
-                tabItem.badgeValue = moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
+        networkManager.getCurrentUser { [weak self] (profile, error, id) in
+            guard let user = profile, user.role == .some(.admin) || user.role == .some(.moderator) else { return }
+            self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
+                UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
+                if let tabItems = self?.tabBarController?.tabBar.items {
+                    let tabItem = tabItems[1]
+                    tabItem.badgeValue = moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
+                }
+            } failure: { error in
+                print("[NETWORK] Moderating products \(error)")
             }
-        } failure: { error in
-            print("[NETWORK] Moderating products \(error)")
         }
     }
     

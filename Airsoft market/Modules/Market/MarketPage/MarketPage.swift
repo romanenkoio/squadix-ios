@@ -49,21 +49,28 @@ class MarketPage: BaseViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
+        adminButton.isHidden = true
         loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        networkManager.getModeratingProducts() { [weak self] moderatingProducts in
-            self?.adminButton.badgeValue =  moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
-            UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
-            if let tabItems = self?.tabBarController?.tabBar.items {
-                let tabItem = tabItems[1]
-                tabItem.badgeValue = moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
+        networkManager.getCurrentUser { [weak self] (profile, error, id) in
+            guard let user = profile, user.role == .some(.admin) || user.role == .some(.moderator) else {
+                self?.adminButton.isHidden = true
+                return
             }
-        } failure: { error in
-            print("[NETWORK] Moderating products \(error)")
+            self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
+                self?.adminButton.isHidden = false
+                self?.adminButton.badgeValue =  moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
+                UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
+                if let tabItems = self?.tabBarController?.tabBar.items {
+                    let tabItem = tabItems[1]
+                    tabItem.badgeValue = moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
+                }
+            } failure: { error in
+                print("[NETWORK] Moderating products \(error)")
+            }
         }
     }
     
