@@ -56,7 +56,12 @@ extension StrikeServise: TargetType {
         case .youtubeInfo:
             return URL(string: "https://www.googleapis.com")!
         default:
+            #if DEBUG
             return URL(string: "http://18.158.147.66")!
+            #else
+            return URL(string: "http://18.158.147.66")!
+            #endif
+            
         }
     }
     
