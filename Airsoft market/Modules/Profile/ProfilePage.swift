@@ -27,6 +27,7 @@ class ProfilePage: BaseViewController {
      var imagePicker = UIImagePickerController()
      var refreshControl = UIRefreshControl()
      var menuPoints: [ProfileMenuPoints] = ProfileMenuPoints.getMenuForUser()
+     let actionButton = JJFloatingActionButton()
      
      var currentProfile: Profile? {
           didSet {
@@ -58,17 +59,18 @@ class ProfilePage: BaseViewController {
           tableView.addSubview(refreshControl)
           title = "Профиль"
           configureFloatingMenu()
+          actionButton.display(inViewController: self)
      }
      
      override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(true)
           tableView.isHidden = true
           loadProfile(animated: true)
+         
      }
      
      func configureFloatingMenu() {
-          let actionButton = JJFloatingActionButton()
-          actionButton.display(inViewController: self)
+          actionButton.items = []
           actionButton.buttonColor = .mainStrikeColor
           actionButton.buttonImage = UIImage(named: "menu")
           actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
@@ -239,7 +241,6 @@ extension ProfilePage: UIImagePickerControllerDelegate & UINavigationControllerD
 
 extension ProfilePage {
      @objc func loadProfile(animated: Bool = false) {
-          //        tableView.isHidden = true
           if animated {
                spinner.startAnimating()
           }
@@ -251,6 +252,7 @@ extension ProfilePage {
                          return
                     }
                     self?.currentProfile = myProfile
+                    self?.actionButton.alpha = KeychainManager.profileID == self?.currentProfile?.id ? 1 : 0
                     self?.refreshControl.endRefreshing()
                     self?.tableView.isHidden = false
                     self?.spinner.stopAnimating()
@@ -264,6 +266,7 @@ extension ProfilePage {
                          return
                     }
                     self?.currentProfile = myProfile
+                    self?.actionButton.alpha = KeychainManager.profileID == self?.currentProfile?.id ? 1 : 0
                     self?.refreshControl.endRefreshing()
                     self?.tableView.isHidden = false
                     self?.spinner.stopAnimating()
