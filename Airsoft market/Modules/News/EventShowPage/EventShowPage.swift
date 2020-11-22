@@ -156,10 +156,6 @@ class EventShowPage: BaseViewController {
     @IBAction func moreButton(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
            
-           alert.addAction(UIAlertAction(title: "Редактировать", style: .default) { _ in
-              
-           })
-           
            alert.addAction(UIAlertAction(title: "Удалить событие", style: .destructive) { [weak self] _ in
                self?.spinner.startAnimating()
                let service = NetworkManager()
