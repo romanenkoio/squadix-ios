@@ -12,6 +12,7 @@ class ProfileSearchCell: BaseTableViewCell {
     @IBOutlet weak var profileAvatar: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profileRegionLabel: UILabel!
+    @IBOutlet weak var adminLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -106,7 +106,8 @@ extension SearchPage: UITableViewDataSource {
             } else {
                 profileCell.profileAvatar.image = UIImage(named: "avatar_placeholder")
             }
-           
+            profileCell.adminLabel.isHidden = !item.roles.contains(.admin)
+            profileCell.adminLabel.text = item.roles.contains(.admin) ? Common.Roles.admin.displayRoleName : ""
             profileCell.profileNameLabel.text = item.profileName
             var reg = ""
             

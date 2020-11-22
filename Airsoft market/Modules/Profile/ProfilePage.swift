@@ -147,25 +147,31 @@ extension ProfilePage: UITableViewDataSource {
                cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyProfileCell.self), for: indexPath)
                if let myProfileCell = cell as? MyProfileCell {
                     
-                    if let picture = currentProfile?.profilePictureUrl {
+                    guard let profile = currentProfile else { return cell }
+                    
+                    if let picture = profile.profilePictureUrl {
                          myProfileCell.avatarImage.loadImageWith(picture)
                     }
-                    if let username = currentProfile?.profileName {
+                    if let username = profile.profileName {
                          myProfileCell.userNameLabel.text = username
                     }
                     
                     var reg = ""
                     
-                    if let region = currentProfile?.country {
+                    if let region = profile.country {
                          reg = region
                     }
                     
-                    if let city = currentProfile?.city {
+                    if let city = profile.city {
                          reg += ", \(city)"
                     }
                     
                     myProfileCell.regionLabel.text = reg
                     myProfileCell.avatarButton.isHidden = profileID != nil
+                    
+                    
+                    myProfileCell.adminBadgeLabel.isHidden = !profile.roles.contains(.admin)
+                    myProfileCell.adminBadgeLabel.text = profile.roles.contains(.admin) ? Common.Roles.admin.displayRoleName : ""
                     
                     myProfileCell.avatarAction = { [weak self] in
                          self?.didSelectAvatarChange()

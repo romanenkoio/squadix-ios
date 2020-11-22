@@ -21,6 +21,17 @@ class Common {
         case moderator
         case user
         case unknow
+        
+        var displayRoleName: String {
+            switch self {
+            case .admin:
+                return "Администратор"
+            case .moderator:
+                return "Модератор"
+            default:
+                return ""
+            }
+        }
     }
     
     func role(role: String) -> Common.Roles {

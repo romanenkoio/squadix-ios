@@ -14,6 +14,7 @@ class MyProfileCell: BaseTableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var regionLabel: UILabel!
     @IBOutlet weak var avatarButton: UIButton!
+    @IBOutlet weak var adminBadgeLabel: UILabel!
     
     var avatarAction: VoidBlock?
     
