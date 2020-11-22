@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWt-xm-l4e">
-                                <rect key="frame" x="10" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="48y-j8-Rbe"/>
                                     <constraint firstAttribute="width" secondItem="kWt-xm-l4e" secondAttribute="height" multiplier="1:1" id="cnq-yW-4TT"/>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTf-MB-Gau">
-                                <rect key="frame" x="60" y="15" width="18" height="20.5"/>
+                                <rect key="frame" x="50" y="15" width="18" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                             <constraint firstItem="BTf-MB-Gau" firstAttribute="centerY" secondItem="kWt-xm-l4e" secondAttribute="centerY" id="UZ7-Mv-lfm"/>
                             <constraint firstItem="kWt-xm-l4e" firstAttribute="top" secondItem="Zju-Fi-OJ3" secondAttribute="top" id="Y9f-ql-XU4"/>
                             <constraint firstAttribute="bottom" secondItem="kWt-xm-l4e" secondAttribute="bottom" id="aqo-gY-jJt"/>
-                            <constraint firstItem="kWt-xm-l4e" firstAttribute="leading" secondItem="Zju-Fi-OJ3" secondAttribute="leading" constant="10" id="cDm-pT-rnK"/>
+                            <constraint firstItem="kWt-xm-l4e" firstAttribute="leading" secondItem="Zju-Fi-OJ3" secondAttribute="leading" id="cDm-pT-rnK"/>
                             <constraint firstItem="BTf-MB-Gau" firstAttribute="leading" secondItem="kWt-xm-l4e" secondAttribute="trailing" id="cHw-0A-JWc"/>
                             <constraint firstAttribute="height" constant="50" id="cuR-m4-CAq"/>
                         </constraints>

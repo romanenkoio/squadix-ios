@@ -25,11 +25,11 @@ class Common {
     
     func role(role: String) -> Common.Roles {
         switch role {
-        case "admin":
+        case "ADMIN":
             return .admin
-        case "moderator":
+        case "MODERATOR":
             return .moderator
-        case "user":
+        case "USER":
             return .user
         default:
             return .unknow
