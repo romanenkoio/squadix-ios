@@ -20,7 +20,7 @@ struct Profile: Mappable {
     var profileDescription: String?
     var phone: String?
     var birthday: Date?
-    var role: Common.Roles?
+    var roles: [Common.Roles]!
     
     init() {
     }
@@ -48,8 +48,8 @@ struct Profile: Mappable {
             self.birthday = nil
         }
         
-        if let role = map["role"].currentValue as? String{
-            self.role = Common.shared.role(role: role) 
+        if let currentRole = map["roles"].currentValue as? [String] {
+            self.roles = currentRole.map({Common.shared.role(role: $0) })
         }
     }
     

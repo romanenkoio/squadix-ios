@@ -56,7 +56,7 @@ class MarketPage: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         networkManager.getCurrentUser { [weak self] (profile, error, id) in
-            guard let user = profile, user.role == .some(.admin) || user.role == .some(.moderator) else {
+            guard let user = profile, user.roles.contains(.admin) || user.roles.contains(.moderator)  else {
                 self?.adminButton.isHidden = true
                 return
             }

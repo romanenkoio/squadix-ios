@@ -65,7 +65,7 @@ class NewsPage: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         networkManager.getCurrentUser { [weak self] (profile, error, id) in
-            guard let user = profile, user.role == .some(.admin) || user.role == .some(.moderator) else { return }
+            guard let user = profile,user.roles.contains(.admin) || user.roles.contains(.moderator)  else { return }
             self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
                 UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
                 if let tabItems = self?.tabBarController?.tabBar.items {
