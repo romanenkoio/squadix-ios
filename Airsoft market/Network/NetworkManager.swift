@@ -78,7 +78,7 @@ final class NetworkManager {
         provider.request(.currency) { (result) in
             switch result {
             case let .success(response):
-                guard let currency = try? response.map(Currency.self) else { return }
+                guard let currency = try? response.mapObject(Currency.self) else { return }
                 completion(currency, nil)
             case .failure(let error):
                 completion(nil, error)

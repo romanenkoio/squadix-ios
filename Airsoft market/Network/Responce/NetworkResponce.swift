@@ -37,6 +37,7 @@ struct NetworkError: Mappable {
     var path: String = ""
     
     init?(map: Map) {
+        mapping(map: map)
     }
     
     init() {
@@ -51,27 +52,23 @@ struct NetworkError: Mappable {
     }
 }
 
-struct Currency: Decodable {
+struct Currency: Mappable {
     var curId: Int!
     var rate: Double!
     var date: String!
     var scale: Int!
     var name: String!
     
-    private enum CodingKeys: String, CodingKey {
-        case curId = "Cur_ID"
-        case rate = "Cur_OfficialRate"
-        case date = "Date"
-        case name = "Cur_Name"
-        case scale = "Cur_Scale"
+    init?(map: Map) {
+        mapping(map: map)
     }
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        curId = try container.decode(Int.self, forKey: .curId)
-        rate = try container.decode(Double.self, forKey: .rate)
-        date = try container.decode(String.self, forKey: .date)
-        scale = try container.decode(Int.self, forKey: .scale)
-        name = try container.decode(String.self, forKey: .name)
+    mutating func mapping(map: Map) {
+       curId    <- map["Cur_ID"]
+       rate     <- map["Cur_OfficialRate"]
+       date     <- map["Date"]
+       scale    <- map["Cur_Scale"]
+       name     <- map["Cur_Name"]
     }
+
 }
