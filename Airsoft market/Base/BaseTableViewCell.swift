@@ -23,16 +23,3 @@ class BaseTableViewCell: UITableViewCell {
         _ = getSubviewsOfView(view: self).map({ $0.interactions = [] }) 
     }
 }
-
-
-//{
-//    "applinks": {
-//        "apps": [],
-//        "details": [{
-//            "appID": "T8V9JXV542.com.romanenko.squadix",
-//        "paths": ["/products/*",
-//                  "/news/*",
-//                  "/events/*"]
-//        }]
-//    }
-//}

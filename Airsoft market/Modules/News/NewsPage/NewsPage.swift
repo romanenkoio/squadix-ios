@@ -29,17 +29,9 @@ enum NewsType {
 class NewsPage: BaseViewController {
     let segmentController = UISegmentedControl(items: ["Новости", "События"])
     
-    var newsData: [Post] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    var eventData: [Event] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
+    var newsData: [Post] = []
+    var eventData: [Event] = []
+
     var contentType: NewsType?
     var feedProfileID: Int?
     
@@ -167,7 +159,6 @@ extension NewsPage {
     private func loadPosts() {
         if page == 0 {
             newsData = []
-            tableView.reloadData()
         }
         
         guard !isLoadinInProgress else { return }
@@ -195,7 +186,6 @@ extension NewsPage {
                 sSelf.isLoadinInProgress = false
                 print("[NETWORK] Загружены все посты")
             }
-            
         }
     }
     
@@ -226,6 +216,7 @@ extension NewsPage {
                 }
                 
                 sSelf.tableView.endUpdates()
+                sSelf.tableView.reloadData()
                 sSelf.isLoadinInProgress = false
                 self?.page += 1
             } else {
@@ -269,6 +260,7 @@ extension NewsPage {
                 
                 sSelf.tableView.insertRows(at: indexPathes, with: .automatic)
                 sSelf.tableView.endUpdates()
+                sSelf.tableView.reloadData()
                 sSelf.isLoadinInProgress = false
                 self?.page += 1
             } else {
@@ -365,12 +357,22 @@ extension NewsPage: UITableViewDataSource {
                     interaction.object = item
                     newsCell.authorAvatar.addInteraction(interaction)
                 }
+                if item.description.contains("гей") {
+                    print("Артём -- пидор")
+                }
                 newsCell.setupNews(with: item)
 
                 return newsCell
             } else if segmentController.selectedSegmentIndex == 1 {
                 
                 let item = eventData[indexPath.row]
+                
+                if #available(iOS 13.0, *) {
+                    let interaction = ObjectInteraction(delegate: self)
+                    interaction.object = item
+                    newsCell.authorAvatar.addInteraction(interaction)
+                }
+                
                 newsCell.setupEvent(with: item)
                 return newsCell
             }
@@ -464,10 +466,12 @@ extension NewsPage {
             title = "Новости"
             contentType = .feed
             newsData = []
+            tableView.reloadData()
             page = 0
         } else if segmentController.selectedSegmentIndex == 1 {
             contentType = .event
             eventData = []
+            tableView.reloadData()
             page = 0
             title = "События"
         }

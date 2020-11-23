@@ -96,11 +96,6 @@ class NewsCell: BaseTableViewCell {
         
         videoIndicator.isHidden = post.contentType != .video
         authorName.text = post.authorName
-        if let pic = post.authorAvatarUrl {
-            authorAvatar.loadImageWith(pic)
-        } else {
-            authorAvatar.image = UIImage(named: "avatar_placeholder")
-        }
     }
     
     func setupEvent(with event: Event) {
@@ -144,6 +139,7 @@ class NewsCell: BaseTableViewCell {
         super.prepareForReuse()
         likeCount.text = "0"
         likeImage.setImage(UIImage(named: "like"), for: .normal)
+        authorAvatar.image = UIImage(named: "avatar_placeholder")
         promoImageHeightConstraint.constant = 200
         promoImage.isHidden = false
     }
