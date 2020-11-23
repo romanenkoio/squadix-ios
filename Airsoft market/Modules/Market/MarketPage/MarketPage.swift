@@ -61,7 +61,7 @@ class MarketPage: BaseViewController {
                 return
             }
             self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
-                self?.adminButton.isHidden = false
+                self?.adminButton.isHidden = self?.profileID != nil
                 self?.adminButton.badgeValue =  moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
                 UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
                 if let tabItems = self?.tabBarController?.tabBar.items {
@@ -361,7 +361,6 @@ extension MarketPage: UISearchResultsUpdating {
                 searchRequest = nil
                 loadData()
             }
-        
     }
 }
 

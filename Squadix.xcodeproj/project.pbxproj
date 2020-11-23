@@ -169,13 +169,6 @@
 			remoteGlobalIDString = 5D797E9A5C5782CE845840781FA1CC81;
 			remoteInfo = Alamofire;
 		};
-		7F2D36B92568644D0087615B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2915C263A5C5C8012A8C1E97512DC6A8;
-			remoteInfo = Floaty;
-		};
 		7F2D36BB2568644D0087615B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
@@ -259,6 +252,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = DE0FAB1DA724AB86C0E299518F5E580A;
 			remoteInfo = "YoutubePlayer-in-WKWebView";
+		};
+		7F434BD2256B2676000C8F1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B39ECB203814E0B477049873DBEA123C;
+			remoteInfo = JJFloatingActionButton;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -527,10 +527,10 @@
 			children = (
 				7F2D36B62568644D0087615B /* ActiveLabel.framework */,
 				7F2D36B82568644D0087615B /* Alamofire.framework */,
-				7F2D36BA2568644D0087615B /* Floaty.framework */,
 				7F2D36BC2568644D0087615B /* GoogleMapsUtils.framework */,
 				7F2D36BE2568644D0087615B /* ImageSlideshow.framework */,
 				7F2D36C02568644D0087615B /* IQKeyboardManagerSwift.framework */,
+				7F434BD3256B2676000C8F1C /* JJFloatingActionButton.framework */,
 				7F2D36C22568644D0087615B /* KeychainAccess.framework */,
 				7F2D36C42568644D0087615B /* Kingfisher.framework */,
 				7F2D36C62568644D0087615B /* Moya.framework */,
@@ -1196,13 +1196,6 @@
 			remoteRef = 7F2D36B72568644D0087615B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		7F2D36BA2568644D0087615B /* Floaty.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Floaty.framework;
-			remoteRef = 7F2D36B92568644D0087615B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		7F2D36BC2568644D0087615B /* GoogleMapsUtils.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1285,6 +1278,13 @@
 			fileType = wrapper.framework;
 			path = YoutubePlayer_in_WKWebView.framework;
 			remoteRef = 7F2D36D12568644D0087615B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F434BD3256B2676000C8F1C /* JJFloatingActionButton.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JJFloatingActionButton.framework;
+			remoteRef = 7F434BD2256B2676000C8F1C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1660,7 +1660,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1687,7 +1687,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
