@@ -124,7 +124,6 @@ class NewsPage: BaseViewController {
     
     @objc func refresh() {
         page = 0
-        tableView.reloadData()
         isLoadinInProgress = false
         newsData = []
         eventData = []
@@ -137,6 +136,10 @@ class NewsPage: BaseViewController {
 extension NewsPage {
     private func loadData(content: NewsType) {
         spinner.startAnimating()
+        if newsData.count == 0 || eventData.count == 0 {
+            tableView.reloadData()
+        }
+        
         switch content {
         case .feed:
             loadPosts()

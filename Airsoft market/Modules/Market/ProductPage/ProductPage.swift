@@ -45,6 +45,11 @@ class ProductPage: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         configureUI()
     }
     
@@ -66,7 +71,12 @@ class ProductPage: BaseViewController {
                                               animated: true)
         
         contactButton.isHidden = product.authorID == KeychainManager.profileID
-        moreButton.isHidden = product.authorID != KeychainManager.profileID
+     
+        if product.isPreview {
+            moreButton.isHidden = true
+        } else {
+            moreButton.isHidden = product.authorID != KeychainManager.profileID
+        }
     }
     
     @IBAction func contactAction(_ sender: Any) {
@@ -95,7 +105,7 @@ class ProductPage: BaseViewController {
     @IBAction func moreAction(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Удалить событие", style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Удалить объявление", style: .destructive) { [weak self] _ in
             self?.spinner.startAnimating()
          
             guard let product = self?.product else { return }
