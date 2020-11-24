@@ -43,13 +43,8 @@ class NewsPage: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
         configureUI()
-        if contentType == nil {
-            contentType = .feed
-        }
-        guard let type = contentType else { return }
-        loadData(content: type)
+        loadData(content: contentType == nil ? .feed : contentType!)
         getCurrentProfile()
     }
     
@@ -111,6 +106,18 @@ class NewsPage: BaseViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        
+        title = "Новости"
+        
+        tableView.setupDelegateData(self)
+        tableView.registerCell(NewsCell.self)
+        
+        self.navigationItem.titleView = segmentController
+        segmentController.selectedSegmentIndex = 0
+        segmentController.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
+        
+        segmentController.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 30.0)
+        segmentController.addTarget(self, action: #selector(segmentWasChanged), for: .valueChanged)
         
         if let tabBar = self.tabBarController?.tabBar {
             tabBar.isHidden = false
@@ -450,20 +457,6 @@ extension NewsPage: UITableViewDelegate {
 }
 
 extension NewsPage {
-    private func setup() {
-        title = "Новости"
-        
-        tableView.setupDelegateData(self)
-        tableView.registerCell(NewsCell.self)
-        
-        self.navigationItem.titleView = segmentController
-        segmentController.selectedSegmentIndex = 0
-        segmentController.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
-        
-        segmentController.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 30.0)
-        segmentController.addTarget(self, action: #selector(segmentWasChanged), for: .valueChanged)
-    }
-    
     @objc func segmentWasChanged() {
         if segmentController.selectedSegmentIndex == 0 {
             title = "Новости"
