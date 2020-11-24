@@ -51,12 +51,12 @@ class NewsPage: BaseViewController {
         guard let type = contentType else { return }
         loadData(content: type)
         getCurrentProfile()
-        configureFloatingMenu()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         networkManager.getCurrentUser { [weak self] (profile, error, id) in
+            self?.configureFloatingMenu(with: profile)
             guard let user = profile,user.roles.contains(.admin) || user.roles.contains(.moderator)  else { return }
             self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
                 UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
@@ -75,33 +75,36 @@ class NewsPage: BaseViewController {
         segmentController.isHidden = false
     }
     
-    func configureFloatingMenu() {
-         actionButton.display(inViewController: self)
-         actionButton.buttonColor = .mainStrikeColor
-         actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
-         
-         actionButton.addItem(title: "Событие", image: UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
-            let vc = VCFabric.addEventPage()
-            vc.delegate = self
-            self?.navigationController?.pushViewController(vc, animated: true)
-         }
-         
-         actionButton.addItem(title: "Пост", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
+    func configureFloatingMenu(with user: Profile? = nil) {
+        actionButton.items = []
+        actionButton.display(inViewController: self)
+        actionButton.buttonColor = .mainStrikeColor
+        actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
+        
+        if let roles = user?.roles, roles.contains(.admin) || roles.contains(.moderator) || roles.contains(.organizator) {
+            actionButton.addItem(title: "Событие", image: UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
+                let vc = VCFabric.addEventPage()
+                vc.delegate = self
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        
+        actionButton.addItem(title: "Пост", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
             self?.navigationController?.pushViewController(VCFabric.addTextPostPage(), animated: true)
-         }
-         
-         actionButton.addItem(title: "Видео", image: UIImage(named: "video_plus")) { [weak self] item in
+        }
+        
+        actionButton.addItem(title: "Видео", image: UIImage(named: "video_plus")) { [weak self] item in
             let vc = VCFabric.getNewPostPage()
             vc.delegate = self
             self?.navigationController?.pushViewController(vc, animated: true)
-         }
-         
-         actionButton.configureDefaultItem { item in
-              item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
-              item.titleLabel.textColor = .white
-              item.buttonColor = .white
-              item.buttonImageColor = .black
-         }
+        }
+        
+        actionButton.configureDefaultItem { item in
+            item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+            item.titleLabel.textColor = .white
+            item.buttonColor = .white
+            item.buttonImageColor = .black
+        }
     }
     
     private func configureUI() {
@@ -359,9 +362,6 @@ extension NewsPage: UITableViewDataSource {
                     let interaction = ObjectInteraction(delegate: self)
                     interaction.object = item
                     newsCell.authorAvatar.addInteraction(interaction)
-                }
-                if item.description.contains("гей") {
-                    print("Артём -- пидор")
                 }
                 newsCell.setupNews(with: item)
 
