@@ -25,8 +25,13 @@ enum SettingsMenu {
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.about, .rules, .promo]
+        
+        #if DEBUG
         let actionSection: [SettingsMenu] = [ .debug, .changePassword, .logout]
-         
+        #else
+        let actionSection: [SettingsMenu] = [.changePassword, .logout]
+        #endif
+        
         return [settingsSection, infoSection, actionSection]
     }
 }
