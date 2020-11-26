@@ -83,6 +83,27 @@ class ProfilePage: BaseViewController {
                self?.navigationController?.pushViewController(VCFabric.getUserEditPage(isEdit: true, profile: self?.currentProfile), animated: true)
           }
           
+          if KeychainManager.isAdmin {
+               actionButton.addItem(title: "Создать категорию", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
+                    let alert = UIAlertController(title: "", message: "Смена пароля", preferredStyle: .alert)
+                     
+                    alert.addTextField { (textField) in
+                         textField.placeholder = "Новая категория"
+                    }
+                    
+                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
+                    
+                    alert.addAction(UIAlertAction(title: "Сохранить категорию", style: .default, handler: { [weak alert, self] (_) in
+                         guard let categoryName = alert?.textFields![0].text, !categoryName.isEmpty else { return }
+                         self?.networkManager.createCategory(with: categoryName, completion: { _ in
+                              PopupView(title: "", subtitle: "Категория добавлена", image: UIImage(named: "confirm")).show()
+                         })
+                    }))
+                    
+                    self?.present(alert, animated: true, completion: nil)
+               }
+          }
+          
           actionButton.addItem(title: "Сохранённые места", image: UIImage(named: "bookmarks")) { [weak self] item in
                self?.navigationController?.pushViewController(VCFabric.getBookmarkPage(), animated: true)
           }

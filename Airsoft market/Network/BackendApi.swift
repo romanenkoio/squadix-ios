@@ -39,7 +39,7 @@ enum StrikeServise{
     case getPostById(id: Int)
     case getEventById(id: Int)
     case getProductById(id: Int)
-    //    case testRequest(page: Int, filters: [Filter])
+    case createCategory(name: String)
 }
 
 extension StrikeServise: TargetType {
@@ -49,8 +49,6 @@ extension StrikeServise: TargetType {
     
     var baseURL: URL {
         switch self {
-//        case .testRequest:
-//            return URL(string: "https://iroma.requestcatcher.com")!
         case .currency:
             return URL(string: "https://www.nbrb.by")!
         case .youtubeInfo:
@@ -61,7 +59,7 @@ extension StrikeServise: TargetType {
             #else
             return URL(string: "http://18.158.147.66")!
             #endif
-            
+
         }
     }
     
@@ -130,13 +128,15 @@ extension StrikeServise: TargetType {
         case .getEventById(let id):
             return "/events/\(id)"
         case .getProductById(let id):
-        return "/products/\(id)"
+            return "/products/\(id)"
+        case .createCategory:
+            return "/categories"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory:
             return .post
         case .deletePost, .deleteEvent, .deleteProduct:
             return .delete
@@ -225,6 +225,8 @@ extension StrikeServise: TargetType {
             params = product.asParams(with: images)
         case .updateProductStatus(_, let status):
             params["status"] = status.rawValue
+        case .createCategory(let name):
+            params["name"] = name
         default:
             return nil
         }
