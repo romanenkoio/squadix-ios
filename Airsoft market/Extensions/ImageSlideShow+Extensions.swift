@@ -37,6 +37,4 @@ extension ImageSlideshow {
         self.activityIndicator = DefaultActivityIndicator()
         self.circular = false
     }
-    
- 
 }

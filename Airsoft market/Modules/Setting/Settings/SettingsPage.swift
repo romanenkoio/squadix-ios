@@ -119,6 +119,7 @@ extension SettingsPage: UITableViewDataSource {
                 settingCell.action = {
                     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
                     appDelegate.showLogin()
+                    UIApplication.shared.applicationIconBadgeNumber = 0
                     KeychainManager.clearAll()
                 }
                 return settingCell

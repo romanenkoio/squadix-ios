@@ -55,23 +55,25 @@ class MarketPage: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        networkManager.getCurrentUser { [weak self] (profile, error, id) in
-            guard let user = profile, user.roles.contains(.admin) || user.roles.contains(.moderator)  else {
-                self?.adminButton.isHidden = true
-                return
-            }
-            self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
-                self?.adminButton.isHidden = self?.profileID != nil
-                self?.adminButton.badgeValue =  moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
-                UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
-                if let tabItems = self?.tabBarController?.tabBar.items {
-                    let tabItem = tabItems[1]
-                    tabItem.badgeValue = moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
-                }
-            } failure: { error in
-                print("[NETWORK] Moderating products \(error)")
-            }
+        
+        guard KeychainManager.isAdmin else {
+            adminButton.isHidden = true
+            return
         }
+        
+        adminButton.isHidden = false
+        networkManager.getModeratingProducts() { [weak self] moderatingProducts in
+            self?.adminButton.isHidden = self?.profileID != nil
+            self?.adminButton.badgeValue =  moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
+            UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
+            if let tabItems = self?.tabBarController?.tabBar.items {
+                let tabItem = tabItems[1]
+                tabItem.badgeValue = moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
+            }
+        } failure: { error in
+            print("[NETWORK] Moderating products \(error)")
+        }
+        
     }
     
     
