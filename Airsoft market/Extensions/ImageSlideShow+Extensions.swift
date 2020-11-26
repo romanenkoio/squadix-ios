@@ -35,6 +35,7 @@ extension ImageSlideshow {
         self.contentScaleMode = .scaleAspectFill
         self.pageIndicator = pageIndicator
         self.activityIndicator = DefaultActivityIndicator()
+        self.circular = false
     }
     
  
