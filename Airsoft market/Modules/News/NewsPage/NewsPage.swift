@@ -52,7 +52,12 @@ class NewsPage: BaseViewController {
         super.viewWillAppear(true)
         networkManager.getCurrentUser { [weak self] (profile, error, id) in
             self?.configureFloatingMenu(with: profile)
-            guard let user = profile,user.roles.contains(.admin) || user.roles.contains(.moderator)  else { return }
+            if let user = profile {
+                let isAdmin =  user.roles.contains(.admin) || user.roles.contains(.moderator)
+                KeychainManager.store(value: isAdmin , for: .isAdmin)
+            }
+          
+            guard KeychainManager.isAdmin else { return }
             self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
                 UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
                 if let tabItems = self?.tabBarController?.tabBar.items {

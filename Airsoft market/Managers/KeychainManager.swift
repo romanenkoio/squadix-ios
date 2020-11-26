@@ -18,6 +18,7 @@ class KeychainManager {
         case refreshToken
         case profileID
         case pushToken
+        case isAdmin
     }
     
     
@@ -46,6 +47,13 @@ class KeychainManager {
     static var accessToken: String? {
         get {
             return value(for: .accessToken) as? String ?? nil
+            
+        }
+    }
+    
+    static var isAdmin: Bool {
+        get {
+            return value(for: .isAdmin) as? Bool ?? false
         }
     }
     

@@ -82,7 +82,12 @@ class NewsShowPage: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        moreButton.isHidden = KeychainManager.profileID != post?.authorID
+        guard let id = post?.authorID else { return }
+        if KeychainManager.isAdmin {
+            moreButton.isHidden = false
+        } else {
+            moreButton.isHidden = KeychainManager.profileID != id
+        }
     }
     
     @IBAction func moreAction(_ sender: Any) {
