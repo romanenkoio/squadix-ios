@@ -48,7 +48,10 @@ class AddTextPostPage: BaseViewController {
     
     func buildPost(isPreview: Bool = false) -> Post? {
         let post = Post()
-        guard !mainTextField.text.isEmpty, let id = KeychainManager.profileID else { return nil }
+        if mainTextField.text.isEmpty && imageData.count == 0 {
+            return nil
+        }
+        guard  let id = KeychainManager.profileID else { return nil }
         post.description = mainTextField.text
         post.contentType = .image
         post.imageUrls = []
