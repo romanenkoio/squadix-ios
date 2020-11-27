@@ -18,11 +18,7 @@ class AddEventPage: BaseViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var startCoordButton: UIButton!
     @IBOutlet weak var startGameButton: UIButton!
-    
-    @IBOutlet weak var descriptionContainer: UIView!
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var textViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var containerHeight: NSLayoutConstraint!
     
     var startDate = Date()
     var startPointDate = Date()
@@ -56,10 +52,6 @@ class AddEventPage: BaseViewController {
         startEventDate.addTarget(self, action: #selector(startEditTextFields(_:)), for: .editingDidBegin)
         dateFormatter.dateStyle = DateFormatter.Style.short
         dateFormatter.timeStyle = DateFormatter.Style.short
-        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
-        descriptionContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        descriptionTextView.delegate = self
         title = "Добавление ивента"
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         let isShowFillButton = RealmService.readNotes().count == 0 ? true : false
@@ -242,16 +234,6 @@ extension AddEventPage: UIImagePickerControllerDelegate & UINavigationController
             collectionView.reloadData()
         }
         dismiss(animated: true, completion: nil)
-    }
-}
-
-extension AddEventPage: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        let size = CGSize(width: textView.frame.width, height: .infinity)
-        let estimatedSize = textView.sizeThatFits(size)
-        containerHeight.constant = estimatedSize.height
-        textViewHeight.constant = estimatedSize.height
-        view.layoutIfNeeded()
     }
 }
 
