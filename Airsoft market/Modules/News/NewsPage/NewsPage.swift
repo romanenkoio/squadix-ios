@@ -57,10 +57,11 @@ class NewsPage: BaseViewController {
           
             guard KeychainManager.isAdmin else { return }
             self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
+                guard let moderatingCount = moderatingProducts.totalElements else { return }
                 UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.totalElements
                 if let tabItems = self?.tabBarController?.tabBar.items {
                     let tabItem = tabItems[1]
-                    tabItem.badgeValue = moderatingProducts.totalElements == 0 ? nil : "\(moderatingProducts.totalElements)"
+                    tabItem.badgeValue = moderatingCount == 0 ? nil : "\(moderatingCount)"
                 }
             } failure: { error in
                 print("[NETWORK] Moderating products \(error)")
