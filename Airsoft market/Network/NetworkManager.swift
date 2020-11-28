@@ -218,7 +218,7 @@ final class NetworkManager {
         }
     }
     
-    func getEvents(page: Int? = nil, completion: @escaping ([Event]) -> Void, failure: @escaping (String) -> Void  ) {
+    func getEvents(page: Int? = nil, completion: @escaping (Events) -> Void, failure: @escaping (String) -> Void  ) {
         provider.request(.events(page: page)) { (result) in
             switch result {
             case let .success(response):
@@ -227,7 +227,7 @@ final class NetworkManager {
                     failure("Cannot load events feed")
                     return
                 }
-                completion(events.content)
+                completion(events)
             case .failure:
                 failure("Cannot load events feed")
             }

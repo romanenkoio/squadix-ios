@@ -257,7 +257,7 @@ extension GameMapPage {
     private func loadEvents() {
         networkManager.getEvents(completion: { [weak self] events in
             self?.eventsData.removeAll()
-            self?.eventsData = events
+            self?.eventsData = events.content
             self?.spinner.stopAnimating()
             self?.getMapWithEvent()
         }) { [weak self] error in

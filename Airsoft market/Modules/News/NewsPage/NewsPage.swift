@@ -20,10 +20,6 @@ enum NewsType {
     case feed
     case userFeed
     case event
-    case userEvent
-    case feedFavorite
-    case eventFavorite
-    case none
 }
 
 class NewsPage: BaseViewController {
@@ -32,8 +28,10 @@ class NewsPage: BaseViewController {
     var newsData: [Post] = []
     var eventData: [Event] = []
 
-    var contentType: NewsType?
+    var contentType: NewsType = .feed
     var feedProfileID: Int?
+    var totalEventPages = 0
+    var totalNewsPages = 0
     
     private var refreshControl = UIRefreshControl()
  
@@ -44,7 +42,7 @@ class NewsPage: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        loadData(content: contentType == nil ? .feed : contentType!)
+        loadData(content: contentType)
         getCurrentProfile()
     }
     
@@ -140,10 +138,12 @@ class NewsPage: BaseViewController {
     @objc func refresh() {
         page = 0
         isLoadinInProgress = false
+        totalEventPages = 0
+        totalNewsPages = 0
         newsData = []
         eventData = []
         refreshControl.endRefreshing()
-        loadData(content: (contentType == nil ? .feed : contentType)!)
+        loadData(content: contentType)
     }
 }
 
@@ -162,14 +162,6 @@ extension NewsPage {
             loadUserPosts()
         case .event:
             loadEvents()
-        case .userEvent:
-            loadUserEvent()
-        case .feedFavorite:
-            loadFavoritePosts()
-        case .eventFavorite:
-            loadFavoriteEvents()
-        case .none:
-            print("Undefined content type")
         }
         isLoadinInProgress = true
     }
@@ -187,7 +179,7 @@ extension NewsPage {
             }
             guard let sSelf = self else { return }
             sSelf.spinner.stopAnimating()
-            
+            sSelf.totalNewsPages = data.totalPages
             if newsPosts.count != 0 {
                 sSelf.tableView.beginUpdates()
                 
@@ -224,6 +216,7 @@ extension NewsPage {
             }
             guard let sSelf = self else { return }
             sSelf.spinner.stopAnimating()
+            sSelf.totalNewsPages = posts.totalPages
             
             if newsPosts.count != 0 {
                 sSelf.tableView.beginUpdates()
@@ -249,10 +242,6 @@ extension NewsPage {
         }
     }
     
-    private func loadFavoritePosts() {
-        
-    }
-    
     private func loadEvents() {
         guard !isLoadinInProgress else {
             spinner.stopAnimating()
@@ -266,12 +255,12 @@ extension NewsPage {
         networkManager.getEvents(page: page, completion: { [weak self] events in
             guard let sSelf = self else { return }
             sSelf.spinner.stopAnimating()
-            
-            if events.count != 0 {
+            sSelf.totalEventPages = events.totalPages
+            if events.content.count != 0 {
                 var indexPathes: [IndexPath] = []
                 sSelf.tableView.beginUpdates()
                 
-                for item in events {
+                for item in events.content {
                     sSelf.eventData.append(item)
                     indexPathes.append(IndexPath(item: sSelf.eventData.count - 1, section: 0))
                 }
@@ -292,14 +281,6 @@ extension NewsPage {
             self?.spinner.stopAnimating()
             print(error)
         }
-    }
-    
-    private func loadUserEvent() {
-        
-    }
-    
-    private func loadFavoriteEvents() {
-        
     }
 }
 
@@ -451,12 +432,18 @@ extension NewsPage: UITableViewDelegate {
         return configuration
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastSectionIndex = tableView.numberOfSections - 1
-        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 10
-        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
-            guard let type = contentType else { return }
-            loadData(content: type)
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height - 300)) {
+            switch contentType {
+            case .feed, .userFeed:
+                if page < totalNewsPages {
+                    loadData(content: contentType)
+                }
+            case .event:
+                if page < totalEventPages {
+                    loadData(content: contentType)
+                }
+            }
         }
     }
 }
@@ -476,8 +463,7 @@ extension NewsPage {
             page = 0
             title = "События"
         }
-        guard let type = contentType else { return }
-        loadData(content: type)
+        loadData(content: contentType)
     }
 }
 
