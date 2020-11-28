@@ -290,13 +290,13 @@ final class NetworkManager {
         }
     }
     
-    func getModeratingProducts(page: Int? = nil, completion: @escaping ([MarketProduct]) -> Void, failure: @escaping (String) -> Void  ) {
+    func getModeratingProducts(page: Int? = nil, completion: @escaping (Products) -> Void, failure: @escaping (String) -> Void  ) {
         provider.request(.moderatingProducts(page: page)) { (result) in
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
                 guard let products = try? response.mapObject(Products.self) else { return }
-                completion(products.content)
+                completion(products)
             case .failure:
                 failure("Cannot load products feed")
             }

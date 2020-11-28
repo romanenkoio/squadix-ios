@@ -64,11 +64,11 @@ class MarketPage: BaseViewController {
         adminButton.isHidden = false
         networkManager.getModeratingProducts() { [weak self] moderatingProducts in
             self?.adminButton.isHidden = self?.profileID != nil
-            self?.adminButton.badgeValue =  moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
-            UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.count
+            self?.adminButton.badgeValue =  moderatingProducts.totalElements == 0 ? nil : "\(moderatingProducts.totalElements)"
+            UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.totalElements
             if let tabItems = self?.tabBarController?.tabBar.items {
                 let tabItem = tabItems[1]
-                tabItem.badgeValue = moderatingProducts.count == 0 ? nil : "\(moderatingProducts.count)"
+                tabItem.badgeValue = moderatingProducts.totalElements == 0 ? nil : "\(moderatingProducts.totalElements)"
             }
         } failure: { error in
             print("[NETWORK] Moderating products \(error)")

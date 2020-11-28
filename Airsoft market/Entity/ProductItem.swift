@@ -54,7 +54,6 @@ class MarketProduct: Mappable {
        description      <- map["description"]
        authorAvatarURL  <- map["authorAvatarUrl"]
        authorName       <- map["authorName"]
-        
     }
     
     func asParams(with images: [UIImage])  -> [String: Any] {

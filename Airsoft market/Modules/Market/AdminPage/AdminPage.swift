@@ -52,11 +52,11 @@ class AdminPage: BaseViewController {
             guard let sSelf = self else { return }
             sSelf.spinner.stopAnimating()
             
-            if products.count != 0 {
+            if products.content.count != 0 {
                 var indexPathes: [IndexPath] = []
                 sSelf.tableView.beginUpdates()
                 
-                for item in products {
+                for item in products.content {
                     sSelf.marketData.append(item)
                     indexPathes.append(IndexPath(item: sSelf.marketData.count - 1, section: 0))
                 }

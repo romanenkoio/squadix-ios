@@ -66,8 +66,8 @@ class ProductPage: BaseViewController {
         tableView.registerCell(AuthorCell.self)
         tableView.registerCell(PostSwitcherCell.self)
         
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton),
-                                               UIBarButtonItem(customView: contactButton)],
+        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: contactButton),
+                                               UIBarButtonItem(customView: moreButton)],
                                               animated: true)
         
         contactButton.isHidden = product.authorID == KeychainManager.profileID
@@ -76,6 +76,10 @@ class ProductPage: BaseViewController {
             moreButton.isHidden = true
         } else {
             moreButton.isHidden = product.authorID != KeychainManager.profileID
+        }
+        
+        if !product.isPreview, KeychainManager.isAdmin {
+            moreButton.isHidden = false
         }
     }
     
@@ -93,7 +97,6 @@ class ProductPage: BaseViewController {
                 let url = "tel://\(phone)"
                 guard let contactUrl = URL.init(string: url) else { return }
                 UIApplication.shared.open(contactUrl)
-                
             } else {
                 PopupView(title: "", subtitle: "Ошибка получения номера", image: UIImage(named: "cancel")).show()
                 self.spinner.stopAnimating()
