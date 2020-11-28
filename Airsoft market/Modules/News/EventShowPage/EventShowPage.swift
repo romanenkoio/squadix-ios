@@ -195,6 +195,7 @@ extension EventShowPage: UITableViewDataSource {
         var cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ActionCell.self), for: indexPath)
         let type = menu[indexPath.section][indexPath.row]
         
+        guard let event = event else { return cell }
         switch type {
         case .images:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SlideShowCell.self), for: indexPath)
@@ -207,7 +208,7 @@ extension EventShowPage: UITableViewDataSource {
                     }
                     imageCell.imageSlideshow.setImageInputs(images)
                 } else {
-                    guard let images = event?.imageUrls else { return cell }
+                    guard let images = event.imageUrls else { return cell }
                     imageCell.imageSlideshow.setupImagesWithUrls(images)
                 }
                 imageCell.action = {
@@ -218,12 +219,12 @@ extension EventShowPage: UITableViewDataSource {
         case .authorInfo:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AuthorCell.self), for: indexPath)
             if let profileCell = cell as? AuthorCell {
-                guard let id = event?.authorID else { return cell }
-                profileCell.authorName.text = event?.authorName
-                if ((event?.isPreview) != nil) {
+                guard let id = event.authorID else { return cell }
+                profileCell.authorName.text = event.authorName
+                if event.isPreview {
                     profileCell.postDateLabel.text = Date().dateToHumanString()
                 } else {
-                    profileCell.postDateLabel.text = event?.createdAt.dateToHumanString()
+                    profileCell.postDateLabel.text = event.createdAt.dateToHumanString()
                 }
                 
                 profileCell.action = { [weak self] in
@@ -246,14 +247,14 @@ extension EventShowPage: UITableViewDataSource {
             if let profileCell = cell as? SimpleTextCell {
                 profileCell.isUserInteractionEnabled = false
                 profileCell.simpleTextLabel.textAlignment = .justified
-                profileCell.setupTextWith(event?.description ?? "Что-то пошло не так, описание отсутствует")
+                profileCell.setupTextWith(event.description)
                 return profileCell
             }
         case .eventDate:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SimpleTextCell.self), for: indexPath)
             if let profileCell = cell as? SimpleTextCell {
                 profileCell.isUserInteractionEnabled = false
-                if let evDate = event?.eventDate {
+                if let evDate = event.eventDate {
                     profileCell.setupTextWith(evDate.dateForEvent())
                 }
                 return profileCell
@@ -261,10 +262,10 @@ extension EventShowPage: UITableViewDataSource {
         case .eventCoordinates:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ActionCell.self), for: indexPath)
             if let profileCell = cell as? ActionCell {
-                guard let latitude = event?.eventLatitude, let longitude = event?.eventLongitude else {
+                guard let latitude = event.eventLatitude, let longitude = event.eventLongitude else {
                     return cell
                 }
-                guard let address = event?.eventAdress else { return cell }
+                guard let address = event.eventAdress else { return cell }
                 profileCell.actionDescription.text = "Площадка: \(address)"
                 profileCell.action = { [weak self] in
                     let vc = VCFabric.getMapPage()
@@ -282,10 +283,10 @@ extension EventShowPage: UITableViewDataSource {
         case .startCoordinates:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ActionCell.self), for: indexPath)
             if let profileCell = cell as? ActionCell {
-                guard let latitude = event?.eventStartLatitude, let longitude = event?.eventStartLongitude else {
+                guard let latitude = event.eventStartLatitude, let longitude = event.eventStartLongitude else {
                     return cell
                 }
-                guard let address = event?.eventStartAdress else { return cell }
+                guard let address = event.eventStartAdress else { return cell }
                 profileCell.actionDescription.text = "Точка сбора: \(address)"
                 profileCell.action = { [weak self] in
                     let vc = VCFabric.getMapPage()
@@ -303,7 +304,7 @@ extension EventShowPage: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SimpleTextCell.self), for: indexPath)
             if let profileCell = cell as? SimpleTextCell {
                 profileCell.isUserInteractionEnabled = false
-                if let region = event?.region {
+                if let region = event.region {
                     profileCell.setupTextWith(region)
                 }
                 
@@ -313,8 +314,7 @@ extension EventShowPage: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SimpleTextCell.self), for: indexPath)
             if let profileCell = cell as? SimpleTextCell {
                 profileCell.isUserInteractionEnabled = false
-                guard let time = event?.startTime.timeForEvent() else { return cell }
-                profileCell.simpleTextLabel.text = "Время сбора: \(time)"
+                profileCell.simpleTextLabel.text = "Время сбора: \(event.startTime.timeForEvent())"
                 
                 return profileCell
             }
@@ -322,8 +322,7 @@ extension EventShowPage: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SimpleTextCell.self), for: indexPath)
             if let profileCell = cell as? SimpleTextCell {
                 profileCell.isUserInteractionEnabled = false
-                guard let date = event?.eventDate.dateForEvent() else { return cell }
-                profileCell.simpleTextLabel.text = "Дата игры: \(date)"
+                profileCell.simpleTextLabel.text = "Дата игры: \(event.eventDate.dateForEvent())"
                 
                 return profileCell
             }
