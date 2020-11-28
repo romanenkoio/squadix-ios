@@ -34,6 +34,12 @@ extension AppDelegate {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
         KeychainManager.store(value: token, for: .pushToken)
+        let networkManager = NetworkManager()
+        networkManager.subscribeToNotification(pushToken: token) {
+            print("[PUSH] Subscribed")
+        } failure: { error in
+            print("[PUSH] Subscribed error. Reason: \(error)")
+        }
 
     }
     

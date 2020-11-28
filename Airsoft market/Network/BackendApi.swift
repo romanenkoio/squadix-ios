@@ -40,6 +40,7 @@ enum StrikeServise{
     case getEventById(id: Int)
     case getProductById(id: Int)
     case createCategory(name: String)
+    case registerToken(pushToken: String)
 }
 
 extension StrikeServise: TargetType {
@@ -131,12 +132,14 @@ extension StrikeServise: TargetType {
             return "/products/\(id)"
         case .createCategory:
             return "/categories"
+        case .registerToken:
+            return "/devices"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken:
             return .post
         case .deletePost, .deleteEvent, .deleteProduct:
             return .delete
@@ -227,6 +230,12 @@ extension StrikeServise: TargetType {
             params["status"] = status.rawValue
         case .createCategory(let name):
             params["name"] = name
+        case .registerToken(let pushToken):
+            params["deviceToken"] = pushToken
+            if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+                params["deviceId"] = uuid
+            }
+            params["platform"] = "IOS"
         default:
             return nil
         }
