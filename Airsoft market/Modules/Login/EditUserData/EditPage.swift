@@ -59,13 +59,13 @@ class EditPage: UIViewController {
         let maxDate = calendar.date(byAdding: components, to: currentDate)!
         datePicker.maximumDate = maxDate
         
-        if isEdit {
-            let manager = NetworkManager()
-            manager.getCurrentUser { (profile, rrror, _) in
-                self.profile = profile
-                self.preloadData()
-            }
+      
+        let manager = NetworkManager()
+        manager.getCurrentUser { (profile, rrror, _) in
+            self.profile = profile
+            self.preloadData()
         }
+        
        
         
     }
