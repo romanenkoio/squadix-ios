@@ -21,4 +21,5 @@ target 'Squadix' do
     	pod 'Moya-ObjectMapper'
 	pod 'ActiveLabel'
 	pod 'JJFloatingActionButton'
+	pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '6.0.10'
 end

@@ -21,18 +21,17 @@ enum SettingsMenu {
     case testQR
     case eraseFilterData
     case changePassword
+    case forceCrash
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.about, .rules, .promo]
-        
-        #if DEBUG
-        let actionSection: [SettingsMenu] = [ .debug, .changePassword, .logout]
-        #else
         let actionSection: [SettingsMenu] = [.changePassword, .logout]
-        #endif
+   
+        let developerSection: [SettingsMenu] = [.debug, .forceCrash]
         
-        return [settingsSection, infoSection, actionSection]
+        
+        return KeychainManager.isAdmin ? [settingsSection, infoSection, actionSection, developerSection] : [settingsSection, infoSection, actionSection]
     }
 }
 
@@ -73,9 +72,6 @@ extension SettingsPage: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsSwitchCell.self), for: indexPath)
             if let settingCell = cell as? SettingsSwitchCell {
                 settingCell.settingsSwitchLabel.text = "Возврат в начало ленты по нажатию"
-
-
-                
                 return settingCell
             }
         case .showUSDPrice:
@@ -214,6 +210,16 @@ extension SettingsPage: UITableViewDataSource {
                     }))
                     
                     self.present(alert, animated: true, completion: nil)
+                }
+                return settingCell
+            }
+        case .forceCrash:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Force crash"
+                settingCell.action = {
+                    let fatal: [Int] = []
+                    _ = fatal[10]
                 }
                 return settingCell
             }

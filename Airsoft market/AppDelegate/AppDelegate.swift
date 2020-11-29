@@ -11,6 +11,7 @@ import GoogleMaps
 import IQKeyboardManagerSwift
 import LocalAuthentication
 import UserNotifications
+import Sentry
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -70,6 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkMonitor.shared.startListner()
         GMSServices.provideAPIKey(AppConstatns.googleServicesKey)
         IQKeyboardManager.shared.enable = true
+        SentrySDK.start { options in
+            options.dsn = "https://be2b52d8a54a43db975e7a690059a819@o484042.ingest.sentry.io/5536840"
+            options.debug = false
+        }
     }
     
     private func findTopController(from _vc: UIViewController? = nil) -> UIViewController? {

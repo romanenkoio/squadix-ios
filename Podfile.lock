@@ -49,6 +49,9 @@ PODS:
   - Realm/Headers (5.0.3)
   - RealmSwift (5.0.3):
     - Realm (= 5.0.3)
+  - Sentry (6.0.10):
+    - Sentry/Core (= 6.0.10)
+  - Sentry/Core (6.0.10)
   - YoutubePlayer-in-WKWebView (0.3.4)
 
 DEPENDENCIES:
@@ -64,6 +67,7 @@ DEPENDENCIES:
   - Moya
   - Moya-ObjectMapper
   - RealmSwift (~> 5.0.1)
+  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `6.0.10`)
   - YoutubePlayer-in-WKWebView
 
 SPEC REPOS:
@@ -84,6 +88,16 @@ SPEC REPOS:
     - RealmSwift
     - YoutubePlayer-in-WKWebView
 
+EXTERNAL SOURCES:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 6.0.10
+
+CHECKOUT OPTIONS:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 6.0.10
+
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
@@ -99,8 +113,9 @@ SPEC CHECKSUMS:
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   Realm: bfca1699b61b0b17c3a69ae0e648314eae91fbdb
   RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
+  Sentry: 0a48d832ce921578a0c31c68272382fbef9a1726
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: ab56ddc6850cc124ce341a4b748d9aff5875ee61
+PODFILE CHECKSUM: 0a22b541d0cfd2af312a11f5637e148d1cafe9af
 
 COCOAPODS: 1.10.0
