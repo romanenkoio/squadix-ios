@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17504.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -59,14 +59,14 @@
             <point key="canvasLocation" x="353.62318840579712" y="-231.02678571428569"/>
         </button>
         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Muf-3j-fLq">
-            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="height" constant="30" id="VVT-DF-gbw"/>
-                <constraint firstAttribute="width" constant="30" id="lga-ev-RoR"/>
+                <constraint firstAttribute="height" constant="25" id="VVT-DF-gbw"/>
+                <constraint firstAttribute="width" constant="25" id="lga-ev-RoR"/>
             </constraints>
             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <inset key="imageEdgeInsets" minX="2.5" minY="2.5" maxX="2.5" maxY="2.5"/>
+            <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
             <state key="normal" image="message"/>
             <connections>
                 <action selector="contactAction:" destination="-1" eventType="touchUpInside" id="Yae-2e-mme"/>
