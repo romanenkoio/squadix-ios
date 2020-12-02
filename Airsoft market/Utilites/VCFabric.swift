@@ -167,4 +167,8 @@ class VCFabric {
        
         return vc
     }
+    
+    static func resetPasswordPage() -> ResetPasswordViewController {
+        return ResetPasswordViewController(nibName: String(describing: ResetPasswordViewController.self), bundle: nil)
+    }
 }

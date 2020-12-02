@@ -86,6 +86,8 @@
 		7F817997247B03B90061EB8C /* ProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F817995247B03B90061EB8C /* ProductImageCell.xib */; };
 		7F817999247B04C10061EB8C /* CollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F817998247B04C10061EB8C /* CollectionView+Extensions.swift */; };
 		7F839BB6250F8C6700925ADF /* YoutobeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F839BB5250F8C6700925ADF /* YoutobeInfo.swift */; };
+		7F84BFB725779F8000322CD3 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84BFB525779F8000322CD3 /* ResetPasswordViewController.swift */; };
+		7F84BFB825779F8000322CD3 /* ResetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F84BFB625779F8000322CD3 /* ResetPasswordViewController.xib */; };
 		7F904E3E248583E600DF8AC5 /* HorisontalStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F904E3C248583E600DF8AC5 /* HorisontalStackCell.swift */; };
 		7F904E3F248583E600DF8AC5 /* HorisontalStackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F904E3D248583E600DF8AC5 /* HorisontalStackCell.xib */; };
 		7F904E412485A20C00DF8AC5 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F904E402485A20C00DF8AC5 /* UIColor+Extensions.swift */; };
@@ -260,6 +262,13 @@
 			remoteGlobalIDString = B39ECB203814E0B477049873DBEA123C;
 			remoteInfo = JJFloatingActionButton;
 		};
+		7F84BFB225779F4800322CD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0115C3C00C175D77422084DD0542CE6F;
+			remoteInfo = Sentry;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -345,6 +354,8 @@
 		7F817995247B03B90061EB8C /* ProductImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageCell.xib; sourceTree = "<group>"; };
 		7F817998247B04C10061EB8C /* CollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		7F839BB5250F8C6700925ADF /* YoutobeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutobeInfo.swift; sourceTree = "<group>"; };
+		7F84BFB525779F8000322CD3 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		7F84BFB625779F8000322CD3 /* ResetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordViewController.xib; sourceTree = "<group>"; };
 		7F904E3C248583E600DF8AC5 /* HorisontalStackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorisontalStackCell.swift; sourceTree = "<group>"; };
 		7F904E3D248583E600DF8AC5 /* HorisontalStackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorisontalStackCell.xib; sourceTree = "<group>"; };
 		7F904E402485A20C00DF8AC5 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -451,8 +462,7 @@
 				7FB364BA247E965E0013C78B /* SlideShowCell */,
 				7F295CC5247AD14A00B47F1F /* ProductDescriptionCell */,
 				7F595B2E2480396B00D56E74 /* CategoryCheckCell */,
-				7F55F47324FCE89500F81F28 /* LikeCell.swift */,
-				7F55F47424FCE89500F81F28 /* LikeCell.xib */,
+				7F84BFA025779F4800322CD3 /* LikeCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -539,6 +549,7 @@
 				7F2D36CC2568644D0087615B /* Pods_Squadix.framework */,
 				7F2D36CE2568644D0087615B /* Realm.framework */,
 				7F2D36D02568644D0087615B /* RealmSwift.framework */,
+				7F84BFB325779F4800322CD3 /* Sentry.framework */,
 				7F2D36D22568644D0087615B /* YoutubePlayer_in_WKWebView.framework */,
 			);
 			name = Products;
@@ -647,6 +658,7 @@
 		7F595B38248067C100D56E74 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				7F84BFB425779F6500322CD3 /* ResetPassword */,
 				7FCFDD4024BA77F200D8660F /* Settings */,
 				7FCFDD4124BA780100D8660F /* DebugInfo */,
 			);
@@ -798,6 +810,24 @@
 				7F817995247B03B90061EB8C /* ProductImageCell.xib */,
 			);
 			path = ProductImageCell;
+			sourceTree = "<group>";
+		};
+		7F84BFA025779F4800322CD3 /* LikeCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F55F47324FCE89500F81F28 /* LikeCell.swift */,
+				7F55F47424FCE89500F81F28 /* LikeCell.xib */,
+			);
+			path = LikeCell;
+			sourceTree = "<group>";
+		};
+		7F84BFB425779F6500322CD3 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				7F84BFB525779F8000322CD3 /* ResetPasswordViewController.swift */,
+				7F84BFB625779F8000322CD3 /* ResetPasswordViewController.xib */,
+			);
+			path = ResetPassword;
 			sourceTree = "<group>";
 		};
 		7F904E3B248583BE00DF8AC5 /* HorizontalStackCell */ = {
@@ -1287,6 +1317,13 @@
 			remoteRef = 7F434BD2256B2676000C8F1C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7F84BFB325779F4800322CD3 /* Sentry.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Sentry.framework;
+			remoteRef = 7F84BFB225779F4800322CD3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1327,6 +1364,7 @@
 				7FFE4C6324771CDB00212BAB /* Assets.xcassets in Resources */,
 				7FFE4C6124771CD800212BAB /* Main.storyboard in Resources */,
 				7FB364B9247E96570013C78B /* SlideShowCell.xib in Resources */,
+				7F84BFB825779F8000322CD3 /* ResetPasswordViewController.xib in Resources */,
 				7F55F47224FC483400F81F28 /* AddTextPostPage.xib in Resources */,
 				7FCFDD4524BA781F00D8660F /* DebugPage.xib in Resources */,
 				7F817997247B03B90061EB8C /* ProductImageCell.xib in Resources */,
@@ -1445,6 +1483,7 @@
 				7F54C50624E8E15F005E46D0 /* AddEventPage.swift in Sources */,
 				7F22CA1F255895E400F9DF27 /* MapUpdatable.swift in Sources */,
 				7F7DC40B247C747B00A53E7C /* WhiteButton.swift in Sources */,
+				7F84BFB725779F8000322CD3 /* ResetPasswordViewController.swift in Sources */,
 				7FBAC54124789F61007F51BC /* MarketCell.swift in Sources */,
 				7F521FFC24AFBE1300140156 /* KeychainManager.swift in Sources */,
 				7F2F005D247D145D00CA886F /* StrikeInputField.swift in Sources */,
