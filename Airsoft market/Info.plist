@@ -40,15 +40,13 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>Необходимо для автоматического добавления ивентов в календарь</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Необходимо для добавления объявлений</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Потому что нужно</string>
+	<string>Загрузка фото для объявлений в барахолке</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Отображение игр на карте </string>
+	<string>Отображение игр на карте относительно вас</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Отображение игр на карте </string>
+	<string>Отображение игр на карте относительно вас</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Отображение игр на карте </string>
+	<string>Отображение игр на карте относительно вас</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Загрузка фото для объявлений в барахолке</string>
 	<key>NSPhotoLibraryUsageDescription</key>
