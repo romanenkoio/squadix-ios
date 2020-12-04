@@ -1699,7 +1699,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1726,7 +1726,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
