@@ -50,12 +50,11 @@ class NewsPage: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         networkManager.getCurrentUser { [weak self] (profile, error, id) in
-            self?.configureFloatingMenu(with: profile)
             if let user = profile {
-                let isAdmin =  user.roles.contains(.admin) || user.roles.contains(.moderator)
-                KeychainManager.store(value: isAdmin , for: .isAdmin)
+                KeychainManager.store(value: user.roles.contains(.admin) , for: .isAdmin)
+                KeychainManager.store(value: user.roles.contains(.organizer) , for: .isOrganizer)
             }
-          
+            self?.configureFloatingMenu(with: profile)
             guard KeychainManager.isAdmin else { return }
             self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
                 guard let moderatingCount = moderatingProducts.totalElements else { return }
@@ -82,7 +81,7 @@ class NewsPage: BaseViewController {
         actionButton.buttonColor = .mainStrikeColor
         actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
         
-        if let roles = user?.roles, roles.contains(.admin) || roles.contains(.moderator) || roles.contains(.organizator) {
+        if KeychainManager.isAdmin || KeychainManager.isOrganizer {
             actionButton.addItem(title: "Событие", image: UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
                 let vc = VCFabric.addEventPage()
                 vc.delegate = self

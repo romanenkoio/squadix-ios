@@ -20,7 +20,7 @@ class Common {
         case admin
         case moderator
         case user
-        case organizator
+        case organizer
         case unknow
         
         var displayRoleName: String {
@@ -29,7 +29,7 @@ class Common {
                 return "Администратор"
             case .moderator:
                 return "Модератор"
-            case .organizator:
+            case .organizer:
                 return "Организатор"
             default:
                 return ""
@@ -45,8 +45,8 @@ class Common {
             return .moderator
         case "USER":
             return .user
-        case "ORGANIZATOR":
-            return .moderator
+        case "ORGANIZER":
+            return .organizer
         default:
             return .unknow
         }

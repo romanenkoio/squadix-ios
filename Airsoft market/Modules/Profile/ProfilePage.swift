@@ -105,8 +105,10 @@ class ProfilePage: BaseViewController {
                }
           }
           
-          actionButton.addItem(title: "Сохранённые места", image: UIImage(named: "bookmarks")) { [weak self] item in
-               self?.navigationController?.pushViewController(VCFabric.getBookmarkPage(), animated: true)
+          if KeychainManager.isOrganizer || KeychainManager.isAdmin {
+               actionButton.addItem(title: "Сохранённые места", image: UIImage(named: "bookmarks")) { [weak self] item in
+                    self?.navigationController?.pushViewController(VCFabric.getBookmarkPage(), animated: true)
+               }
           }
           
           actionButton.configureDefaultItem { item in

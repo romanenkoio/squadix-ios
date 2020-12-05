@@ -19,6 +19,7 @@ class KeychainManager {
         case profileID
         case pushToken
         case isAdmin
+        case isOrganizer
     }
     
     
@@ -48,6 +49,12 @@ class KeychainManager {
         get {
             return value(for: .accessToken) as? String ?? nil
             
+        }
+    }
+    
+    static var isOrganizer: Bool {
+        get {
+            return value(for: .isOrganizer) as? Bool ?? false
         }
     }
     
