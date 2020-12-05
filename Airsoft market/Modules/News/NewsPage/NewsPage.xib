@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17504.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsPage" customModule="Squadix" customModuleProvider="target">
             <connections>
+                <outlet property="dashboardButton" destination="SHJ-TX-cmV" id="dL8-76-4wa"/>
                 <outlet property="spinner" destination="MqR-1C-Irt" id="wd6-cn-sjv"/>
                 <outlet property="tableView" destination="Ral-b6-t5v" id="QpG-gH-bm9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -40,10 +41,26 @@
                 <constraint firstAttribute="bottom" secondItem="Ral-b6-t5v" secondAttribute="bottom" id="eUV-Nt-tNf"/>
                 <constraint firstItem="Ral-b6-t5v" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="oKh-03-8Ag"/>
             </constraints>
-            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+            <point key="canvasLocation" x="128" y="92"/>
         </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHJ-TX-cmV" customClass="MFBadgeButton" customModule="Squadix" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="40" height="25"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="width" constant="40" id="Fu7-bJ-09L"/>
+                <constraint firstAttribute="height" constant="25" id="peu-fo-Yiw"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <inset key="imageEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
+            <state key="normal" image="notifications"/>
+            <connections>
+                <action selector="actionDasboardOpen:" destination="-1" eventType="touchUpInside" id="uFY-8F-O1a"/>
+            </connections>
+            <point key="canvasLocation" x="300.72463768115944" y="-231.36160714285714"/>
+        </button>
     </objects>
     <resources>
+        <image name="notifications" width="48" height="48"/>
         <namedColor name="mainStrikeColor">
             <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

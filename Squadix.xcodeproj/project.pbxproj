@@ -128,6 +128,10 @@
 		7FBAC53D24789CEF007F51BC /* TableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBAC53C24789CEF007F51BC /* TableView+Extensions.swift */; };
 		7FBAC54124789F61007F51BC /* MarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBAC53F24789F61007F51BC /* MarketCell.swift */; };
 		7FBAC54224789F61007F51BC /* MarketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBAC54024789F61007F51BC /* MarketCell.xib */; };
+		7FBC5A27257AFF95000B037A /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC5A25257AFF95000B037A /* DashboardViewController.swift */; };
+		7FBC5A28257AFF95000B037A /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC5A26257AFF95000B037A /* DashboardViewController.xib */; };
+		7FBC5A2C257B002D000B037A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC5A2A257B002D000B037A /* NotificationCell.swift */; };
+		7FBC5A2D257B002D000B037A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC5A2B257B002D000B037A /* NotificationCell.xib */; };
 		7FC4D66C25544EC000F1E508 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D66B25544EC000F1E508 /* PushService.swift */; };
 		7FC4D6712554549300F1E508 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D6702554549300F1E508 /* NetworkMonitor.swift */; };
 		7FCE1E6824F6FA73000499EC /* AdminPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE1E6624F6FA73000499EC /* AdminPage.swift */; };
@@ -396,6 +400,10 @@
 		7FBAC53C24789CEF007F51BC /* TableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Extensions.swift"; sourceTree = "<group>"; };
 		7FBAC53F24789F61007F51BC /* MarketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCell.swift; sourceTree = "<group>"; };
 		7FBAC54024789F61007F51BC /* MarketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketCell.xib; sourceTree = "<group>"; };
+		7FBC5A25257AFF95000B037A /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		7FBC5A26257AFF95000B037A /* DashboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
+		7FBC5A2A257B002D000B037A /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		7FBC5A2B257B002D000B037A /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		7FC4D66B25544EC000F1E508 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		7FC4D6702554549300F1E508 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		7FCE1E6624F6FA73000499EC /* AdminPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPage.swift; sourceTree = "<group>"; };
@@ -463,6 +471,7 @@
 				7F295CC5247AD14A00B47F1F /* ProductDescriptionCell */,
 				7F595B2E2480396B00D56E74 /* CategoryCheckCell */,
 				7F84BFA025779F4800322CD3 /* LikeCell */,
+				7FBC5A2F257B06D9000B037A /* NotificationCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -710,6 +719,7 @@
 		7F5FD054247DC7C600AF7D47 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				7FBC5A24257AFF6F000B037A /* Dashboard */,
 				7F55F46E24FC481200F81F28 /* AddTextPost */,
 				7F54C50324E8E13A005E46D0 /* AddEvent */,
 				7F40280624C62D520018E49F /* AddPost */,
@@ -981,6 +991,24 @@
 				7FBAC54024789F61007F51BC /* MarketCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7FBC5A24257AFF6F000B037A /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				7FBC5A25257AFF95000B037A /* DashboardViewController.swift */,
+				7FBC5A26257AFF95000B037A /* DashboardViewController.xib */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		7FBC5A2F257B06D9000B037A /* NotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				7FBC5A2A257B002D000B037A /* NotificationCell.swift */,
+				7FBC5A2B257B002D000B037A /* NotificationCell.xib */,
+			);
+			path = NotificationCell;
 			sourceTree = "<group>";
 		};
 		7FCE1E6524F6FA42000499EC /* AdminPage */ = {
@@ -1366,9 +1394,11 @@
 				7FB364B9247E96570013C78B /* SlideShowCell.xib in Resources */,
 				7F84BFB825779F8000322CD3 /* ResetPasswordViewController.xib in Resources */,
 				7F55F47224FC483400F81F28 /* AddTextPostPage.xib in Resources */,
+				7FBC5A28257AFF95000B037A /* DashboardViewController.xib in Resources */,
 				7FCFDD4524BA781F00D8660F /* DebugPage.xib in Resources */,
 				7F817997247B03B90061EB8C /* ProductImageCell.xib in Resources */,
 				7FFE4C7724772E0100212BAB /* RegistrationPage.xib in Resources */,
+				7FBC5A2D257B002D000B037A /* NotificationCell.xib in Resources */,
 				7FE45A742501848A00574B47 /* ImagePreviewPage.xib in Resources */,
 				7F9B147A247F0530007D4819 /* ProfileSearchCell.xib in Resources */,
 				7F9B1462247EA4F8007D4819 /* AuthorCell.xib in Resources */,
@@ -1514,6 +1544,7 @@
 				7F595B352480466E00D56E74 /* RealmService.swift in Sources */,
 				7F2FD85225586EC6007EA305 /* BookmarkPage.swift in Sources */,
 				7F9B1479247F0530007D4819 /* ProfileSearchCell.swift in Sources */,
+				7FBC5A27257AFF95000B037A /* DashboardViewController.swift in Sources */,
 				7F595B2624800E9700D56E74 /* MyProfileCell.swift in Sources */,
 				7FE45A732501848A00574B47 /* ImagePreviewPage.swift in Sources */,
 				7F9B1475247EDFBA007D4819 /* Event.swift in Sources */,
@@ -1523,6 +1554,7 @@
 				7F615E152491446300006C8D /* SelectPickPage.swift in Sources */,
 				7F5FD052247DC21E00AF7D47 /* Post.swift in Sources */,
 				7FFE4C712477280200212BAB /* LoginPage.swift in Sources */,
+				7FBC5A2C257B002D000B037A /* NotificationCell.swift in Sources */,
 				7F98676E24D9CEFC007EF140 /* ResponceHandler.swift in Sources */,
 				7FBAC53A24789C7F007F51BC /* MarketPage.swift in Sources */,
 				7FCE1E6824F6FA73000499EC /* AdminPage.swift in Sources */,

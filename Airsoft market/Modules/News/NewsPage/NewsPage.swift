@@ -24,6 +24,7 @@ enum NewsType {
 
 class NewsPage: BaseViewController {
     let segmentController = UISegmentedControl(items: ["Новости", "События"])
+    @IBOutlet var dashboardButton: MFBadgeButton!
     
     var newsData: [Post] = []
     var eventData: [Event] = []
@@ -77,6 +78,7 @@ class NewsPage: BaseViewController {
     func configureFloatingMenu(with user: Profile? = nil) {
         actionButton.items = []
         actionButton.display(inViewController: self)
+        actionButton.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         actionButton.buttonColor = .mainStrikeColor
         actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
         
@@ -107,12 +109,11 @@ class NewsPage: BaseViewController {
     }
     
     private func configureUI() {
+        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: dashboardButton)],
+                                              animated: true)
         refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
-        title = "Новости"
-        
         tableView.setupDelegateData(self)
         tableView.registerCell(NewsCell.self)
         
@@ -134,6 +135,7 @@ class NewsPage: BaseViewController {
         }
         
         actionButton.isHidden = feedProfileID != nil
+        dashboardButton.badgeValue = "3"
     }
     
     @objc func refresh() {
@@ -145,6 +147,11 @@ class NewsPage: BaseViewController {
         eventData = []
         refreshControl.endRefreshing()
         loadData(content: contentType)
+    }
+    
+    
+    @IBAction func actionDasboardOpen(_ sender: Any) {
+        navigationController?.pushViewController(VCFabric.dashboardPagge(), animated: true)
     }
 }
 

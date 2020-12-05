@@ -72,6 +72,7 @@ class ProfilePage: BaseViewController {
      func configureFloatingMenu() {
           actionButton.items = []
           actionButton.buttonColor = .mainStrikeColor
+          actionButton.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
           actionButton.buttonImage = UIImage(named: "menu")
           actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
           
