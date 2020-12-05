@@ -14,40 +14,46 @@ class NotificationCell: BaseTableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var typeImageView: UIImageView!
     
-    
+    var avatarAction: VoidBlock?
+    var networkManager = NetworkManager()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         notificationImageView.makeRound()
     }
     
-    func setupView(notification: Notifications) {
+    func setupView(notification: DasboardNotification) {
         switch notification.type {
         case .like:
             typeImageView.image = UIImage(named: "like_fill")
+            avatarAction = {
+                guard let id = notification.profileId, let top = self.navigationController()?.topViewController else { return }
+                top.navigationController?.pushViewController(VCFabric.getProfilePage(for: id), animated: true)
+            }
         case .decline:
-            typeImageView.image = UIImage(named: "cancel")
+            notificationImageView.image = UIImage(named: "decline")
         case .aprooved:
-            typeImageView.image = UIImage(named: "confirm")
-        case .systemNews:
-            typeImageView.image = UIImage(named: "cancel")
-        case .none:
-            typeImageView.isHidden = true
+            notificationImageView.image = UIImage(named: "ok")
+        case .system:
+            notificationImageView.image = UIImage(named: "AppIcon")
+        default:
+            print("Error")
         }
         
-        if let picture = notification.pictureUrl {
-            notificationImageView.loadImageWith(picture)
-        } else {
-            notificationImageView.image = UIImage(named: "avatar_placeholder")
-        }
-        
+        typeImageView.isHidden = notification.type != .some(.like)
+
         messageTextLabel.text = notification.message
         timeLabel.text = Date().dateToHumanString()
     }
     
+    @IBAction func avatarAction(_ sender: Any) {
+        avatarAction?()
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         notificationImageView.isHidden = false
+        notificationImageView.image = UIImage(named: "avatar_placeholder")
+        avatarAction = nil
     }
 }

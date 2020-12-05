@@ -11,7 +11,7 @@ import UIKit
 class DashboardViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var notifications: [Notifications] = [Notifications(), Notifications(), Notifications()]
+    var notifications: [DasboardNotification] = [DasboardNotification(type: .aprooved), DasboardNotification(type: .decline), DasboardNotification(type: .like), DasboardNotification(type: .system)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,31 +36,41 @@ extension DashboardViewController: UITableViewDataSource {
         guard let notificationCell = cell as? NotificationCell else {
             return cell
         }
-        notificationCell.setupView(notification: Notifications())
+        notificationCell.setupView(notification: notifications[indexPath.row])
         return notificationCell
     }
 }
 
 
-class Notifications {
+class DasboardNotification {
     var message: String!
-    var pictureUrl: String?
     var profileId: Int?
     var time: String!
-    var postUrl: String?
+    var url: String?
     var type: NotificationType!
     
-    init() {
-        message = "Пользователь Михаил Кляшев поставил лайк вашему посту \"Лучшие гей-клубы города\""
+    init(type: NotificationType) {
+        switch type {
+        case .aprooved:
+            message = "Ваше объявление \"Электро глок\" опубликовано"
+        case .decline:
+            message = "Ваше объявление \"Страйкбольные гранаты\" отклонено."
+        case .like:
+            message = "Пользователь Михаил Кляшев поставил лайк вашему посту \"Лучшие гей-клубы города\""
+        case .system:
+            message = "Узнайте всё про последние обновления!"
+        }
+        
         time = Date().dateToHumanString()
-        type = .like
+        self.type = type
+        profileId = 1
     }
     
     enum NotificationType {
         case like
         case aprooved
         case decline
-        case systemNews
+        case system
     }
 }
 
