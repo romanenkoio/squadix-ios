@@ -477,5 +477,21 @@ final class NetworkManager {
             }
         }
     }
+    
+    func getNotifications(completion: (([DasboardNotification]) -> Void)?, failure: ((String) -> Void)? = nil) {
+        provider.request(.getNotifications) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                guard let notifications = try? response.mapArray(DasboardNotification.self) else {
+                    failure?("Cannot load categories")
+                    return
+                }
+                completion?(notifications)
+            case .failure(let error):
+                failure?(error.errorDescription ?? "Unknow")
+            }
+        }
+    }
 }
 

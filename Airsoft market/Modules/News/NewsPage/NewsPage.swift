@@ -72,6 +72,7 @@ class NewsPage: BaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         feedProfileID = nil
         segmentController.isHidden = false
+        dashboardButton.isHidden = false
     }
     
     func configureFloatingMenu(with user: Profile? = nil) {
@@ -129,6 +130,7 @@ class NewsPage: BaseViewController {
         
         if feedProfileID != nil {
             segmentController.isHidden = true
+            dashboardButton.isHidden = true
             segmentController.selectedSegmentIndex = 0
             title = "Новости пользователя"
         }
@@ -148,6 +150,10 @@ class NewsPage: BaseViewController {
         loadData(content: contentType)
     }
     
+//    func loadNotification() {
+//        networkManager.getNotifications { [weak self] notifications in
+//        }
+//    }
     
     @IBAction func actionDasboardOpen(_ sender: Any) {
         navigationController?.pushViewController(VCFabric.dashboardPagge(), animated: true)

@@ -22,14 +22,14 @@ enum SettingsMenu {
     case eraseFilterData
     case changePassword
     case forceCrash
+    case privacy
+    case userAgreement
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
-        let infoSection: [SettingsMenu] = [.about, .rules, .promo]
+        let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
         let actionSection: [SettingsMenu] = [.changePassword, .logout]
-   
         let developerSection: [SettingsMenu] = [.debug, .forceCrash]
-        
         
         return KeychainManager.isAdmin ? [settingsSection, infoSection, actionSection, developerSection] : [settingsSection, infoSection, actionSection]
     }
@@ -38,6 +38,7 @@ enum SettingsMenu {
 
 class SettingsPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
+    
     let menu = SettingsMenu.getSettingsMenu()
     
     override func viewDidLoad() {
@@ -95,7 +96,7 @@ extension SettingsPage: UITableViewDataSource {
         case .rules:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
             if let settingCell = cell as? SettingsCell {
-                settingCell.settingLabel.text = "Правила"
+                settingCell.settingLabel.text = "Правила размещения объявлений"
               
                 settingCell.isUserInteractionEnabled = true
                 return settingCell
@@ -220,6 +221,24 @@ extension SettingsPage: UITableViewDataSource {
                 settingCell.action = {
                     let fatal: [Int] = []
                     _ = fatal[10]
+                }
+                return settingCell
+            }
+        case .userAgreement:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Пользовательское соглашение"
+                settingCell.action = {
+      
+                }
+                return settingCell
+            }
+        case .privacy:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Политика конфиденциальности"
+                settingCell.action = {
+    
                 }
                 return settingCell
             }

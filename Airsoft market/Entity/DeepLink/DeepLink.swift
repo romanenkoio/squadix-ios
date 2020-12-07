@@ -36,7 +36,6 @@ class Deeplink: NSObject {
         case storyboard
     }
 
-
     enum DeeplinkType {
         case post
         case product

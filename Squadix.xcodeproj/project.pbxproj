@@ -148,6 +148,7 @@
 		7FE45A742501848A00574B47 /* ImagePreviewPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FE45A722501848A00574B47 /* ImagePreviewPage.xib */; };
 		7FE45A782502374C00574B47 /* ObjectInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE45A772502374C00574B47 /* ObjectInteraction.swift */; };
 		7FEB765D24F7886A00B695D3 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB765C24F7886A00B695D3 /* UIButton+Extensions.swift */; };
+		7FEE9C20257D91F900031D43 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEE9C1F257D91F900031D43 /* UserNotifications.swift */; };
 		7FFD7E48248D5DFD00825AEF /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7E47248D5DFD00825AEF /* UIDevice+Extensions.swift */; };
 		7FFE4C5A24771CD800212BAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFE4C5924771CD800212BAB /* AppDelegate.swift */; };
 		7FFE4C6124771CD800212BAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FFE4C5F24771CD800212BAB /* Main.storyboard */; };
@@ -420,6 +421,7 @@
 		7FE45A722501848A00574B47 /* ImagePreviewPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagePreviewPage.xib; sourceTree = "<group>"; };
 		7FE45A772502374C00574B47 /* ObjectInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectInteraction.swift; sourceTree = "<group>"; };
 		7FEB765C24F7886A00B695D3 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		7FEE9C1F257D91F900031D43 /* UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		7FFD7E47248D5DFD00825AEF /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		7FFE4C5624771CD800212BAB /* Squadix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Squadix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FFE4C5924771CD800212BAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				7F01C1BB254E090F007CC5A9 /* ProductCategories.swift */,
 				7FB34600254E27BE00851FF6 /* Filters.swift */,
 				7F2FD855255870F7007EA305 /* Bookmark.swift */,
+				7FEE9C1F257D91F900031D43 /* UserNotifications.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1578,6 +1581,7 @@
 				7F839BB6250F8C6700925ADF /* YoutobeInfo.swift in Sources */,
 				7FC4D66C25544EC000F1E508 /* PushService.swift in Sources */,
 				7FFE4C5A24771CD800212BAB /* AppDelegate.swift in Sources */,
+				7FEE9C20257D91F900031D43 /* UserNotifications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

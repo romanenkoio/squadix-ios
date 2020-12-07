@@ -11,15 +11,22 @@ import UIKit
 class DashboardViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var notifications: [DasboardNotification] = [DasboardNotification(type: .aprooved), DasboardNotification(type: .decline), DasboardNotification(type: .like), DasboardNotification(type: .system)]
+    var notifications: [DasboardNotification] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerCell(NotificationCell.self)
         tableView.setupDelegateData(self)
+        title = "Уведомления"
+        loadNotifications()
     }
     
-    
+    func loadNotifications() {
+        networkManager.getNotifications { [weak self] notifications in
+            self?.notifications = notifications
+            self?.tableView.reloadData()
+        }
+    }
 }
 
 extension DashboardViewController: UITableViewDelegate {
@@ -38,39 +45,6 @@ extension DashboardViewController: UITableViewDataSource {
         }
         notificationCell.setupView(notification: notifications[indexPath.row])
         return notificationCell
-    }
-}
-
-
-class DasboardNotification {
-    var message: String!
-    var profileId: Int?
-    var time: String!
-    var url: String?
-    var type: NotificationType!
-    
-    init(type: NotificationType) {
-        switch type {
-        case .aprooved:
-            message = "Ваше объявление \"Электро глок\" опубликовано"
-        case .decline:
-            message = "Ваше объявление \"Страйкбольные гранаты\" отклонено."
-        case .like:
-            message = "Пользователь Михаил Кляшев поставил лайк вашему посту \"Лучшие гей-клубы города\""
-        case .system:
-            message = "Узнайте всё про последние обновления!"
-        }
-        
-        time = Date().dateToHumanString()
-        self.type = type
-        profileId = 1
-    }
-    
-    enum NotificationType {
-        case like
-        case aprooved
-        case decline
-        case system
     }
 }
 

@@ -37,6 +37,29 @@ class Common {
         }
     }
     
+    enum NotificationType: String {
+        case like
+        case aprooved
+        case decline
+        case system
+        case none
+    }
+    
+    func notificationType(type: String) -> Common.NotificationType {
+        switch type {
+        case "LIKE":
+            return .like
+        case "APROOVED":
+            return .aprooved
+        case "DECLINE":
+            return .decline
+        case "SYSTEM":
+            return .system
+        default:
+            return .none
+        }
+    }
+    
     func role(role: String) -> Common.Roles {
         switch role {
         case "ADMIN":

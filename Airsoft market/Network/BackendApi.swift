@@ -41,6 +41,7 @@ enum StrikeServise{
     case getProductById(id: Int)
     case createCategory(name: String)
     case registerToken(pushToken: String)
+    case getNotifications
 }
 
 extension StrikeServise: TargetType {
@@ -134,6 +135,8 @@ extension StrikeServise: TargetType {
             return "/categories"
         case .registerToken:
             return "/devices"
+        case .getNotifications:
+            return "/notifications"
         }
     }
     
