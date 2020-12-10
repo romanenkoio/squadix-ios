@@ -136,7 +136,7 @@ extension StrikeServise: TargetType {
         case .registerToken:
             return "/devices"
         case .getNotifications:
-            return "/notifications"
+            return "/notifications/me"
         }
     }
     

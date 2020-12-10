@@ -43,6 +43,12 @@
                             <constraint firstAttribute="height" constant="20" id="oox-kM-C7I"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qL7-xc-eW0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+                        <connections>
+                            <action selector="cellAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9Q0-NN-GUy"/>
+                        </connections>
+                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54D-uE-AMn">
                         <rect key="frame" x="10" y="10" width="50" height="50"/>
                         <connections>
@@ -51,10 +57,13 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="qL7-xc-eW0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9wK-Pw-O8c"/>
+                    <constraint firstAttribute="bottom" secondItem="qL7-xc-eW0" secondAttribute="bottom" id="An3-XH-Sir"/>
                     <constraint firstItem="mam-M2-MKe" firstAttribute="top" secondItem="bsk-6r-hDM" secondAttribute="bottom" constant="2" id="Cpe-Ou-cyW"/>
                     <constraint firstItem="mam-M2-MKe" firstAttribute="leading" secondItem="bsk-6r-hDM" secondAttribute="leading" id="Dct-UI-KNI"/>
                     <constraint firstItem="qku-Jz-0jd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="L7U-Ks-Dos"/>
                     <constraint firstItem="bsk-6r-hDM" firstAttribute="top" secondItem="qku-Jz-0jd" secondAttribute="top" constant="5" id="LpT-PY-HBI"/>
+                    <constraint firstAttribute="trailing" secondItem="qL7-xc-eW0" secondAttribute="trailing" id="MfP-I3-RBQ"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qku-Jz-0jd" secondAttribute="bottom" constant="10" id="OTS-fr-gXp"/>
                     <constraint firstItem="UoL-JE-MxZ" firstAttribute="trailing" secondItem="qku-Jz-0jd" secondAttribute="trailing" id="ROj-qC-1g4"/>
                     <constraint firstAttribute="bottom" secondItem="mam-M2-MKe" secondAttribute="bottom" constant="5" id="SNh-Af-Trc"/>
@@ -66,6 +75,7 @@
                     <constraint firstItem="54D-uE-AMn" firstAttribute="bottom" secondItem="qku-Jz-0jd" secondAttribute="bottom" id="mF3-Vx-KND"/>
                     <constraint firstItem="54D-uE-AMn" firstAttribute="trailing" secondItem="qku-Jz-0jd" secondAttribute="trailing" id="ora-Ww-Z1K"/>
                     <constraint firstItem="bsk-6r-hDM" firstAttribute="leading" secondItem="qku-Jz-0jd" secondAttribute="trailing" constant="10" id="qIR-rR-uiS"/>
+                    <constraint firstItem="qL7-xc-eW0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ykX-ae-L61"/>
                     <constraint firstAttribute="trailing" secondItem="bsk-6r-hDM" secondAttribute="trailing" constant="10" id="zqQ-W9-6ao"/>
                 </constraints>
             </tableViewCellContentView>

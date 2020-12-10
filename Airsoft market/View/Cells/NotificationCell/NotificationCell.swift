@@ -30,6 +30,11 @@ class NotificationCell: BaseTableViewCell {
                 guard let id = notification.profileId, let top = self.navigationController()?.topViewController else { return }
                 top.navigationController?.pushViewController(VCFabric.getProfilePage(for: id), animated: true)
             }
+            action = {
+                if let url = notification.url {
+                    Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
+                }
+            }
         case .decline:
             notificationImageView.image = UIImage(named: "decline")
         case .aprooved:
@@ -43,11 +48,29 @@ class NotificationCell: BaseTableViewCell {
         typeImageView.isHidden = notification.type != .some(.like)
 
         messageTextLabel.text = notification.message
-        timeLabel.text = Date().dateToHumanString()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let notificationDate = notification.time, let date = formatter.date(from: notificationDate) {
+            timeLabel.text = date.dateToHumanString()
+        } else {
+            timeLabel.text = ""
+        }
+        
+//        if let url = notification.url, notification.type == .some(.aprooved) {
+//            action = {
+//                Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
+//            }
+//        }
+ 
     }
     
     @IBAction func avatarAction(_ sender: Any) {
         avatarAction?()
+    }
+    
+    @IBAction func cellAction(_ sender: Any) {
+        action?()
     }
     
     override func prepareForReuse() {

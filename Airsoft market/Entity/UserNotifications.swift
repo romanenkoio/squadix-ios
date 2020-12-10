@@ -42,13 +42,27 @@ class DasboardNotification: Mappable {
     func mapping(map: Map) {
         message        <- map["message"]
         profileId      <- map["profileId"]
-        time           <- map["time"]
+        time           <- map["createdAt"]
         url            <- map["url"]
         
         if let type =  map["type"].currentValue as? String {
             self.type = Common.shared.notificationType(type: type)
         }
     }
+}
+
+class DashboardContent: Mappable {
+    var content: [DasboardNotification]!
+    var totalElements: Int!
+    var totalPages: Int!
     
-   
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        content             <- map["content"]
+        totalElements       <- map["totalElements"]
+        totalPages           <- map["totalPages"]
+    }
 }

@@ -219,8 +219,9 @@ extension SettingsPage: UITableViewDataSource {
             if let settingCell = cell as? SettingsCell {
                 settingCell.settingLabel.text = "Force crash"
                 settingCell.action = {
-                    let fatal: [Int] = []
-                    _ = fatal[10]
+//                    let fatal: [Int] = []
+//                    _ = fatal[10]
+                    self.navigationController?.pushViewController(VCFabric.conservationPage(), animated: true)
                 }
                 return settingCell
             }

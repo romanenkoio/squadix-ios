@@ -38,6 +38,12 @@
 		7F40280D24C62DB50018E49F /* AddPostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40280B24C62DB50018E49F /* AddPostPage.swift */; };
 		7F40280E24C62DB50018E49F /* AddPostPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F40280C24C62DB50018E49F /* AddPostPage.xib */; };
 		7F4A8B2324CF8C24006B3856 /* UINavigation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4A8B2224CF8C24006B3856 /* UINavigation+Extensions.swift */; };
+		7F4BF2612581800F00B82D20 /* OutMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4BF25F2581800F00B82D20 /* OutMessageCell.swift */; };
+		7F4BF2622581800F00B82D20 /* OutMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4BF2602581800F00B82D20 /* OutMessageCell.xib */; };
+		7F4BF2682581844D00B82D20 /* ConservationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4BF2662581844D00B82D20 /* ConservationPage.swift */; };
+		7F4BF2692581844D00B82D20 /* ConservationPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4BF2672581844D00B82D20 /* ConservationPage.xib */; };
+		7F4BF26D2581890B00B82D20 /* InMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4BF26B2581890B00B82D20 /* InMessageCell.swift */; };
+		7F4BF26E2581890B00B82D20 /* InMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4BF26C2581890B00B82D20 /* InMessageCell.xib */; };
 		7F50F65E247889DD003E3FB4 /* NewsPage+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50F65D247889DD003E3FB4 /* NewsPage+TableView.swift */; };
 		7F521FFC24AFBE1300140156 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F521FFB24AFBE1300140156 /* KeychainManager.swift */; };
 		7F54C50624E8E15F005E46D0 /* AddEventPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F54C50424E8E15F005E46D0 /* AddEventPage.swift */; };
@@ -311,6 +317,12 @@
 		7F40280B24C62DB50018E49F /* AddPostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostPage.swift; sourceTree = "<group>"; };
 		7F40280C24C62DB50018E49F /* AddPostPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPostPage.xib; sourceTree = "<group>"; };
 		7F4A8B2224CF8C24006B3856 /* UINavigation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extensions.swift"; sourceTree = "<group>"; };
+		7F4BF25F2581800F00B82D20 /* OutMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutMessageCell.swift; sourceTree = "<group>"; };
+		7F4BF2602581800F00B82D20 /* OutMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutMessageCell.xib; sourceTree = "<group>"; };
+		7F4BF2662581844D00B82D20 /* ConservationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConservationPage.swift; sourceTree = "<group>"; };
+		7F4BF2672581844D00B82D20 /* ConservationPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConservationPage.xib; sourceTree = "<group>"; };
+		7F4BF26B2581890B00B82D20 /* InMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMessageCell.swift; sourceTree = "<group>"; };
+		7F4BF26C2581890B00B82D20 /* InMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InMessageCell.xib; sourceTree = "<group>"; };
 		7F50F65D247889DD003E3FB4 /* NewsPage+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsPage+TableView.swift"; sourceTree = "<group>"; };
 		7F521FFB24AFBE1300140156 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		7F54C50424E8E15F005E46D0 /* AddEventPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventPage.swift; sourceTree = "<group>"; };
@@ -460,6 +472,8 @@
 		7F14047724885EA60028C907 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7F4BF25E25817FEA00B82D20 /* OutcomeMessageCell */,
+				7F4BF24C25817FDE00B82D20 /* IncomeMessageCell */,
 				7FCFDD4624BA7A6200D8660F /* DebugCell */,
 				7F904E422485ADB000DF8AC5 /* SimpleTextCell */,
 				7F904E3B248583BE00DF8AC5 /* HorizontalStackCell */,
@@ -602,6 +616,33 @@
 				7F40280C24C62DB50018E49F /* AddPostPage.xib */,
 			);
 			path = AddPost;
+			sourceTree = "<group>";
+		};
+		7F4BF24C25817FDE00B82D20 /* IncomeMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F4BF26B2581890B00B82D20 /* InMessageCell.swift */,
+				7F4BF26C2581890B00B82D20 /* InMessageCell.xib */,
+			);
+			path = IncomeMessageCell;
+			sourceTree = "<group>";
+		};
+		7F4BF25E25817FEA00B82D20 /* OutcomeMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F4BF25F2581800F00B82D20 /* OutMessageCell.swift */,
+				7F4BF2602581800F00B82D20 /* OutMessageCell.xib */,
+			);
+			path = OutcomeMessageCell;
+			sourceTree = "<group>";
+		};
+		7F4BF265258183F400B82D20 /* ConservationPage */ = {
+			isa = PBXGroup;
+			children = (
+				7F4BF2662581844D00B82D20 /* ConservationPage.swift */,
+				7F4BF2672581844D00B82D20 /* ConservationPage.xib */,
+			);
+			path = ConservationPage;
 			sourceTree = "<group>";
 		};
 		7F521FFA24AFBA9D00140156 /* Managers */ = {
@@ -1140,6 +1181,7 @@
 		7FFE4C6D247727C000212BAB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7F4BF265258183F400B82D20 /* ConservationPage */,
 				7FE45A702501845500574B47 /* ImagePreviewPage */,
 				7F67540B24D229FE004981CC /* GameMap */,
 				7F5FD053247DC7B300AF7D47 /* Login */,
@@ -1376,6 +1418,7 @@
 				7F615E162491446300006C8D /* SelectPickPage.xib in Resources */,
 				7F7DC3FC247C010E00A53E7C /* ProfilePage.xib in Resources */,
 				7F595B22247FFE7700D56E74 /* MapPage.xib in Resources */,
+				7F4BF2622581800F00B82D20 /* OutMessageCell.xib in Resources */,
 				7FBAC53B24789C7F007F51BC /* MarketPage.xib in Resources */,
 				7FFE4C722477280200212BAB /* LoginPage.xib in Resources */,
 				7F9B1469247EB07F007D4819 /* PostSwitcherCell.xib in Resources */,
@@ -1395,6 +1438,7 @@
 				7FFE4C6324771CDB00212BAB /* Assets.xcassets in Resources */,
 				7FFE4C6124771CD800212BAB /* Main.storyboard in Resources */,
 				7FB364B9247E96570013C78B /* SlideShowCell.xib in Resources */,
+				7F4BF2692581844D00B82D20 /* ConservationPage.xib in Resources */,
 				7F84BFB825779F8000322CD3 /* ResetPasswordViewController.xib in Resources */,
 				7F55F47224FC483400F81F28 /* AddTextPostPage.xib in Resources */,
 				7FBC5A28257AFF95000B037A /* DashboardViewController.xib in Resources */,
@@ -1402,6 +1446,7 @@
 				7F817997247B03B90061EB8C /* ProductImageCell.xib in Resources */,
 				7FFE4C7724772E0100212BAB /* RegistrationPage.xib in Resources */,
 				7FBC5A2D257B002D000B037A /* NotificationCell.xib in Resources */,
+				7F4BF26E2581890B00B82D20 /* InMessageCell.xib in Resources */,
 				7FE45A742501848A00574B47 /* ImagePreviewPage.xib in Resources */,
 				7F9B147A247F0530007D4819 /* ProfileSearchCell.xib in Resources */,
 				7F9B1462247EA4F8007D4819 /* AuthorCell.xib in Resources */,
@@ -1492,6 +1537,7 @@
 				7F2FD856255870F7007EA305 /* Bookmark.swift in Sources */,
 				7FBAC53624789931007F51BC /* AppConstant.swift in Sources */,
 				7F67540E24D22A1E004981CC /* GameMapPage.swift in Sources */,
+				7F4BF2612581800F00B82D20 /* OutMessageCell.swift in Sources */,
 				7F1DF26D25584ECF00D4E7CF /* Validator.swift in Sources */,
 				7F9ACA4324E9F20F003E7972 /* UtilitesManager.swift in Sources */,
 				7FBAC53324789889007F51BC /* UIImageView+Extensions.swift in Sources */,
@@ -1536,6 +1582,7 @@
 				7F55F47524FCE89500F81F28 /* LikeCell.swift in Sources */,
 				7F9B1468247EB07F007D4819 /* PostSwitcherCell.swift in Sources */,
 				7F595B21247FFE7700D56E74 /* MapPage.swift in Sources */,
+				7F4BF2682581844D00B82D20 /* ConservationPage.swift in Sources */,
 				7FB34601254E27BE00851FF6 /* Filters.swift in Sources */,
 				7FCFDD4924BA7A7B00D8660F /* DebugCell.swift in Sources */,
 				7FCFDD4424BA781F00D8660F /* DebugPage.swift in Sources */,
@@ -1568,6 +1615,7 @@
 				7F7DC409247C740200A53E7C /* OliveButton.swift in Sources */,
 				7F595B4424810F8E00D56E74 /* SettingsSwitchCell.swift in Sources */,
 				7F2FD85B25587623007EA305 /* BookmarkCell.swift in Sources */,
+				7F4BF26D2581890B00B82D20 /* InMessageCell.swift in Sources */,
 				7F3723B1255472D9003AA115 /* AppDelegate+DeepLinks.swift in Sources */,
 				7F817996247B03B90061EB8C /* ProductImageCell.swift in Sources */,
 				7FE1731A2478854A00CBAFB3 /* NewsCell.swift in Sources */,

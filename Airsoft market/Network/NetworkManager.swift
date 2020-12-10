@@ -204,7 +204,7 @@ final class NetworkManager {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
                 
-                guard let posts = try? response.mapObject(Posts.self) else {
+                guard let posts = try? response.mapObject(Posts.self), let _ = posts.content else {
                     failure("Cannot load user posts")
                     return
                 }
@@ -322,12 +322,12 @@ final class NetworkManager {
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
-                guard let products = try? response.mapObject(Products.self) else {
+                guard let products = try? response.mapObject(Products.self), let content = products.content else {
                     failure("Cannot load user posts")
                     return
                 }
                 ResponceHandler.handle(responce: response)
-                completion(products.content)
+                completion(content)
             case .failure(let error):
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
@@ -478,13 +478,13 @@ final class NetworkManager {
         }
     }
     
-    func getNotifications(completion: (([DasboardNotification]) -> Void)?, failure: ((String) -> Void)? = nil) {
+    func getNotifications(completion: ((DashboardContent) -> Void)?, failure: ((String) -> Void)? = nil) {
         provider.request(.getNotifications) { result in
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
-                guard let notifications = try? response.mapArray(DasboardNotification.self) else {
-                    failure?("Cannot load categories")
+                guard let notifications = try? response.mapObject(DashboardContent.self), let _ = notifications.content else {
+                    failure?("Cannot load notifications")
                     return
                 }
                 completion?(notifications)
@@ -494,4 +494,3 @@ final class NetworkManager {
         }
     }
 }
-

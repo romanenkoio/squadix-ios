@@ -40,7 +40,7 @@ extension Date {
         
         if Calendar.current.isDateInToday(self) {
             formatter.dateFormat = "HH:mm"
-            return "Сегодня в \(formatter.string(from: self))"
+            return "\(formatter.string(from: self))"
         } else if Calendar.current.isDateInYesterday(self) {
             formatter.dateFormat = "HH:mm"
             return "Вчера в \(formatter.string(from: self))"

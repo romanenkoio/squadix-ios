@@ -23,7 +23,7 @@ class DashboardViewController: BaseViewController {
     
     func loadNotifications() {
         networkManager.getNotifications { [weak self] notifications in
-            self?.notifications = notifications
+            self?.notifications = notifications.content
             self?.tableView.reloadData()
         }
     }
@@ -40,10 +40,12 @@ extension DashboardViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: NotificationCell.self), for: indexPath)
+        
         guard let notificationCell = cell as? NotificationCell else {
             return cell
         }
         notificationCell.setupView(notification: notifications[indexPath.row])
+        
         return notificationCell
     }
 }

@@ -179,4 +179,8 @@ class VCFabric {
     static func dashboardPagge() -> DashboardViewController {
         return DashboardViewController(nibName: String(describing: DashboardViewController.self), bundle: nil)
     }
+    
+    static func conservationPage() -> ConservationPage {
+        return ConservationPage(nibName: String(describing: ConservationPage.self), bundle: nil)
+    }
 }

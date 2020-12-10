@@ -49,7 +49,7 @@ class Common {
         switch type {
         case "LIKE":
             return .like
-        case "APROOVED":
+        case "APPROVE":
             return .aprooved
         case "DECLINE":
             return .decline
