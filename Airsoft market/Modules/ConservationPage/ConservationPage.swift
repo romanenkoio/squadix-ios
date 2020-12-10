@@ -22,8 +22,12 @@ class ConservationPage: BaseViewController {
         inputTextView.layer.borderColor = UIColor.gray.cgColor
         inputTextView.layer.borderWidth = 1
         inputTextView.layer.cornerRadius = 15
-        tableView.reloadData()
-        scrollToBottom()
+        tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+//        scrollToBottom()
     }
 
     func scrollToBottom() {
@@ -47,12 +51,14 @@ extension ConservationPage: UITableViewDataSource {
             guard let outCell = cell as? OutMessageCell else {
                 return cell
             }
+            outCell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
             return outCell
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InMessageCell.self), for: indexPath)
             guard let inCell = cell as? InMessageCell else {
                 return cell
             }
+            inCell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
             return inCell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OutMessageCell.self), for: indexPath)
