@@ -136,7 +136,6 @@ class NewsPage: BaseViewController {
         }
         
         actionButton.isHidden = feedProfileID != nil
-        dashboardButton.badgeValue = "3"
     }
     
     @objc func refresh() {
@@ -150,13 +149,9 @@ class NewsPage: BaseViewController {
         loadData(content: contentType)
     }
     
-//    func loadNotification() {
-//        networkManager.getNotifications { [weak self] notifications in
-//        }
-//    }
-    
     @IBAction func actionDasboardOpen(_ sender: Any) {
         navigationController?.pushViewController(VCFabric.dashboardPagge(), animated: true)
+        dashboardButton.badgeValue = ""
     }
 }
 

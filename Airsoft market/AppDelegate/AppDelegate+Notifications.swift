@@ -51,7 +51,11 @@ extension AppDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//        Deeplink.Handler.shared.handle(deeplink: Deeplink(url: URL(string: "squadix.co/notifications")!))
+        if let tabBar = UIApplication.shared.keyWindow?.rootViewController as? BaseTabBarViewController, let nav = tabBar.viewControllers?[0] as? UINavigationController, let tab = nav.viewControllers.first as? NewsPage  {
+            tab.dashboardButton.badgeValue = "!"
+        }
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {

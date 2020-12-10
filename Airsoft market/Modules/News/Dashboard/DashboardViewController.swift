@@ -19,6 +19,7 @@ class DashboardViewController: BaseViewController {
         tableView.setupDelegateData(self)
         title = "Уведомления"
         loadNotifications()
+        
     }
     
     func loadNotifications() {
