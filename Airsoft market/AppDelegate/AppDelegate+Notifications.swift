@@ -51,18 +51,10 @@ extension AppDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//        let userInfo = notification.request.content.userInfo
-//        let push = Push(with: userInfo)
-        
-        // Doesn't use because bagde counter is updated by SSE handler
-        // setDashboardBadge(push)
+//        Deeplink.Handler.shared.handle(deeplink: Deeplink(url: URL(string: "squadix.co/notifications")!))
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        let userInfo = response.notification.request.content.userInfo
-//        let deeplink = Deeplink(push: Push(with: userInfo))
-      
-//            Deeplink.Handler.shared.handle(deeplink: deeplink)
-        
+        Deeplink.Handler.shared.handle(deeplink: Deeplink(url: URL(string: "squadix.co/notifications")!))
     }
 }

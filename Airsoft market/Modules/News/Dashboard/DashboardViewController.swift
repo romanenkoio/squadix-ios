@@ -97,3 +97,20 @@ extension DashboardViewController: UITableViewDataSource {
     }
 }
 
+extension DashboardViewController: DeeplinkRoutable {
+    static func initControllerFromStoryboard() -> DeeplinkRoutable? {
+        return VCFabric.dashboardPagge()
+    }
+    
+    static func canHandle(_ deeplink: Deeplink) -> Bool {
+        guard let url = deeplink.url, url.path.contains("/notifications") else { return false }
+        return true
+    }
+    
+    static func reuseExistingController(_ deeplink: Deeplink) -> Bool {
+        return true
+    }
+    
+    func handle(_ deeplink: Deeplink) {
+    }
+}
