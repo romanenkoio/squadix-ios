@@ -31,6 +31,53 @@ class DashboardViewController: BaseViewController {
 
 extension DashboardViewController: UITableViewDelegate {
     
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let manager = NetworkManager()
+//
+//        let accept = UIContextualAction(style: .normal, title: "Опубликовать") { (action, sourceView, completionHandler) in
+//            let item = self.marketData[indexPath.row]
+//            manager.updateProductStatus(productID: item.postID, status: ProductStatus.active, completion: { [weak self] _ in
+//                self?.marketData.remove(at: indexPath.row)
+//                self?.tableView.reloadData()
+//            }) { error in
+//                print(error)
+//            }
+//        }
+//        accept.backgroundColor = .systemGreen
+//
+//        let decline = UIContextualAction(style: .destructive, title: "Отклонить") { (action, sourceView, completionHandler) in
+//            let item = self.marketData[indexPath.row]
+//
+//
+//            let alert = UIAlertController(title: "", message: "Причина отклонения", preferredStyle: .alert)
+//
+//            alert.addTextField { (textField) in
+//                textField.placeholder = "Причина:"
+//            }
+//
+//            alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
+//
+//            alert.addAction(UIAlertAction(title: "Сохранить", style: .default, handler: { [weak alert] (_) in
+//                guard let reason = alert?.textFields![0].text, !reason.isEmpty else {
+//                    return
+//                }
+//
+//                manager.updateProductStatus(productID: item.postID, status: ProductStatus.deleted, reason: reason, completion: { [weak self] _ in
+//                    self?.marketData.remove(at: indexPath.row)
+//                    self?.tableView.reloadData()
+//                }) { error in
+//                    print(error)
+//                }
+//
+//            }))
+//
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//
+//        let swipeAction = UISwipeActionsConfiguration(actions: [decline, accept])
+//        swipeAction.performsFirstActionWithFullSwipe = false // This is the line which disables full swipe
+//        return swipeAction
+//    }
 }
 
 extension DashboardViewController: UITableViewDataSource {

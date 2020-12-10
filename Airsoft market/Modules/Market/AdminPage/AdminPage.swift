@@ -99,12 +99,31 @@ extension AdminPage: UITableViewDelegate {
         
         let decline = UIContextualAction(style: .destructive, title: "Отклонить") { (action, sourceView, completionHandler) in
             let item = self.marketData[indexPath.row]
-            manager.updateProductStatus(productID: item.postID, status: ProductStatus.deleted, completion: { [weak self] _ in
-                self?.marketData.remove(at: indexPath.row)
-                self?.tableView.reloadData()
-            }) { error in
-                print(error)
+            
+            
+            let alert = UIAlertController(title: "", message: "Причина отклонения", preferredStyle: .alert)
+            
+            alert.addTextField { (textField) in
+                textField.placeholder = "Причина:"
             }
+            
+            alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "Сохранить", style: .default, handler: { [weak alert] (_) in
+                guard let reason = alert?.textFields![0].text, !reason.isEmpty else {
+                    return
+                }
+                
+                manager.updateProductStatus(productID: item.postID, status: ProductStatus.deleted, reason: reason, completion: { [weak self] _ in
+                    self?.marketData.remove(at: indexPath.row)
+                    self?.tableView.reloadData()
+                }) { error in
+                    print(error)
+                }
+                
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
         }
         
         let swipeAction = UISwipeActionsConfiguration(actions: [decline, accept])

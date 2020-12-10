@@ -354,8 +354,8 @@ final class NetworkManager {
         }
     }
     
-    func updateProductStatus(productID: Int, status: ProductStatus, completion: @escaping (Bool) -> Void, failure: @escaping (String) -> Void  ) {
-        provider.request(.updateProductStatus(prodictID: productID, status: status)) { result in
+    func updateProductStatus(productID: Int, status: ProductStatus, reason: String? = nil, completion: @escaping (Bool) -> Void, failure: @escaping (String) -> Void  ) {
+        provider.request(.updateProductStatus(prodictID: productID, status: status, reason: reason)) { result in
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)

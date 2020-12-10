@@ -33,7 +33,7 @@ enum StrikeServise{
     case getProductByUser(id: Int, page: Int?)
     case getAllUsers
     case moderatingProducts(page: Int? = nil)
-    case updateProductStatus(prodictID: Int, status: ProductStatus)
+    case updateProductStatus(prodictID: Int, status: ProductStatus, reason: String? = nil)
     case toggleLike(postID: Int, type: NewsType)
     case getCategories
     case getPostById(id: Int)
@@ -112,7 +112,7 @@ extension StrikeServise: TargetType {
             return "/users"
         case .moderatingProducts:
             return "/products/moderating"
-        case .updateProductStatus(let productID, _):
+        case .updateProductStatus(let productID, _, _):
             return "/products/\(productID)/status"
         case .getCategories:
             return "/categories"
@@ -229,8 +229,9 @@ extension StrikeServise: TargetType {
             params = event.asParams(with: images)
         case .saveProduct(let product, let images):
             params = product.asParams(with: images)
-        case .updateProductStatus(_, let status):
+        case .updateProductStatus(_, let status, let reason):
             params["status"] = status.rawValue
+            params["message"] = reason
         case .createCategory(let name):
             params["name"] = name
         case .registerToken(let pushToken):

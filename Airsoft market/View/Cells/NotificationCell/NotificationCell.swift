@@ -30,16 +30,22 @@ class NotificationCell: BaseTableViewCell {
                 guard let id = notification.profileId, let top = self.navigationController()?.topViewController else { return }
                 top.navigationController?.pushViewController(VCFabric.getProfilePage(for: id), animated: true)
             }
+        case .decline:
+            notificationImageView.image = UIImage(named: "decline")
+        case .aprooved:
+            notificationImageView.image = UIImage(named: "ok")
+            
             action = {
                 if let url = notification.url {
                     Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
                 }
             }
-        case .decline:
-            notificationImageView.image = UIImage(named: "decline")
-        case .aprooved:
-            notificationImageView.image = UIImage(named: "ok")
         case .system:
+            action = {
+                if let url = notification.url {
+                    Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
+                }
+            }
             notificationImageView.image = UIImage(named: "AppIcon")
         default:
             print("Error")
@@ -56,13 +62,6 @@ class NotificationCell: BaseTableViewCell {
         } else {
             timeLabel.text = ""
         }
-        
-//        if let url = notification.url, notification.type == .some(.aprooved) {
-//            action = {
-//                Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
-//            }
-//        }
- 
     }
     
     @IBAction func avatarAction(_ sender: Any) {
