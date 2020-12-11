@@ -24,12 +24,13 @@ enum SettingsMenu {
     case forceCrash
     case privacy
     case userAgreement
+    case chat
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
         let actionSection: [SettingsMenu] = [.changePassword, .logout]
-        let developerSection: [SettingsMenu] = [.debug, .forceCrash]
+        let developerSection: [SettingsMenu] = [.chat, .debug, .forceCrash]
         
         return KeychainManager.isAdmin ? [settingsSection, infoSection, actionSection, developerSection] : [settingsSection, infoSection, actionSection]
     }
@@ -219,8 +220,16 @@ extension SettingsPage: UITableViewDataSource {
             if let settingCell = cell as? SettingsCell {
                 settingCell.settingLabel.text = "Force crash"
                 settingCell.action = {
-//                    let fatal: [Int] = []
-//                    _ = fatal[10]
+                    let fatal: [Int] = []
+                    _ = fatal[10]
+                }
+                return settingCell
+            }
+        case .chat:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Chat"
+                settingCell.action = {
                     self.navigationController?.pushViewController(VCFabric.conservationPage(), animated: true)
                 }
                 return settingCell
