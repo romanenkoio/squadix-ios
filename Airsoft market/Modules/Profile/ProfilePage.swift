@@ -225,7 +225,7 @@ extension ProfilePage: UITableViewDataSource {
                     
                     profileCell.postCountLabel.text = "\(userPosts.count)"
                     profileCell.selectionStyle = .none
-                    profileCell.postAction = {
+                    profileCell.action = {
                          let id = self.profileID == nil ? KeychainManager.profileID : self.profileID
                          guard self.userPosts.count != 0 else { return }
                          self.navigationController?.pushViewController(VCFabric.getNewsPage(type: .userFeed, for: id), animated: true)

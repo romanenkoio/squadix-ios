@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HorisontalStackCell: UITableViewCell {
+class HorisontalStackCell: BaseTableViewCell {
     @IBOutlet weak var cellStackView: UIStackView!
     
     @IBOutlet weak var salesStack: UIStackView!
@@ -16,7 +16,6 @@ class HorisontalStackCell: UITableViewCell {
     
     @IBOutlet weak var postStack: UIStackView!
     @IBOutlet weak var postCountLabel: UILabel!
-    var postAction: VoidBlock?
     var productAction: VoidBlock?
     
     override func awakeFromNib() {
@@ -29,7 +28,7 @@ class HorisontalStackCell: UITableViewCell {
     }
 
     @objc func handlePostTap() {
-        postAction?()
+        action?()
     }
     
     @objc func handleProductTap() {
@@ -37,7 +36,7 @@ class HorisontalStackCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        postAction = nil
+        action = nil
         productAction = nil
     }
 }
