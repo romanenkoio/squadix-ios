@@ -64,7 +64,9 @@ class ProfilePage: BaseViewController {
      
      override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(true)
-          tableView.isHidden = true
+          if profileID != nil {
+               tableView.isHidden = true
+          }
           loadProfile(animated: true)
          
      }
