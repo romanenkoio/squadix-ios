@@ -26,13 +26,14 @@ enum SettingsMenu {
     case userAgreement
     case chat
     case sendNotification
+    case categories
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
         let actionSection: [SettingsMenu] = [.changePassword, .logout]
         let developerSection: [SettingsMenu] = [.chat, .debug, .forceCrash]
-        let adminSection: [SettingsMenu] = [sendNotification]
+        let adminSection: [SettingsMenu] = [.categories, .sendNotification]
         
         return KeychainManager.isAdmin ? [settingsSection, infoSection, adminSection, actionSection, developerSection] : [settingsSection, infoSection, actionSection]
     }
@@ -279,10 +280,18 @@ extension SettingsPage: UITableViewDataSource {
                         } failure: { error in
                             PopupView(title: "", subtitle: "Ошибка отправки", image: UIImage(named: "cancel")).show()
                         }
-
                     }))
                     
                     self.present(alert, animated: true, completion: nil)
+                }
+                return settingCell
+            }
+        case .categories:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Управление категориями"
+                settingCell.action = {
+                    self.navigationController?.pushViewController(VCFabric.adminCategoriesPage(), animated: true)
                 }
                 return settingCell
             }

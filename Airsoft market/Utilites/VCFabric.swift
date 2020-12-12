@@ -183,4 +183,8 @@ class VCFabric {
     static func conservationPage() -> ConservationPage {
         return ConservationPage(nibName: String(describing: ConservationPage.self), bundle: nil)
     }
+    
+    static func adminCategoriesPage() -> CategoriesPage {
+        return  CategoriesPage(nibName: String(describing: CategoriesPage .self), bundle: nil)
+    }
 }
