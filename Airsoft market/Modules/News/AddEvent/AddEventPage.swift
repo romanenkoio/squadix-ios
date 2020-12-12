@@ -125,7 +125,7 @@ class AddEventPage: BaseViewController {
             showAlert(title: AlertErrors.coordinatesError.rawValue)
             return
         }
-        guard let сoordText = startPointCoordinate.text, !сoordText.isEmpty, Validator.shared.validate(string: сoordText, pattern: Validator.Regexp.coordinates.rawValue), let coord = сoordText.getCoordinates() else {
+        guard let сoordText = eventCoordinate.text, !сoordText.isEmpty, Validator.shared.validate(string: сoordText, pattern: Validator.Regexp.coordinates.rawValue), let coord = сoordText.getCoordinates() else {
             showAlert(title: AlertErrors.coordinatesError.rawValue)
             return
         }
