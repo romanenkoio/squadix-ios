@@ -42,6 +42,7 @@ enum StrikeServise{
     case createCategory(name: String)
     case registerToken(pushToken: String)
     case getNotifications
+    case deleteCategory(id: Int)
 }
 
 extension StrikeServise: TargetType {
@@ -137,6 +138,8 @@ extension StrikeServise: TargetType {
             return "/devices"
         case .getNotifications:
             return "/notifications/me"
+        case .deleteCategory(let id):
+            return "/categories/\(id)"
         }
     }
     
@@ -144,7 +147,7 @@ extension StrikeServise: TargetType {
         switch self {
         case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken:
             return .post
-        case .deletePost, .deleteEvent, .deleteProduct:
+        case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory:
             return .delete
         case .editPost, .editProfile, .toggleLike:
             return .put
@@ -259,6 +262,13 @@ extension StrikeServise: TargetType {
             return URLEncoding.queryString
         default:
             return JSONEncoding.prettyPrinted
+        }
+    }
+    
+    var validationType: ValidationType {
+        switch self {
+        default:
+            return .successAndRedirectCodes
         }
     }
 }

@@ -390,7 +390,7 @@ final class NetworkManager {
         }
     }
     
-    func getCategories(completion: (([String]) -> Void)?, failure: ((String) -> Void)? = nil) {
+    func getCategories(completion: (([ProductCategories]) -> Void)?, failure: ((String) -> Void)? = nil) {
         provider.request(.getCategories) { result in
             switch result {
             case let .success(response):
@@ -399,7 +399,7 @@ final class NetworkManager {
                     failure?("Cannot load categories")
                     return
                 }
-                completion?(categories.map({$0.name}).sorted(by: {$0 > $1}))
+                completion?(categories)
             case .failure(let error):
                 failure?(error.errorDescription ?? "Unknow")
             }
@@ -488,6 +488,18 @@ final class NetworkManager {
                     return
                 }
                 completion?(notifications)
+            case .failure(let error):
+                failure?(error.errorDescription ?? "Unknow")
+            }
+        }
+    }
+    
+    func deleteCategory(id: Int, completion: (() -> Void)?, failure: ((String) -> Void)? = nil) {
+        provider.request(.deleteCategory(id: id)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
             case .failure(let error):
                 failure?(error.errorDescription ?? "Unknow")
             }

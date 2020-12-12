@@ -29,7 +29,8 @@ class RealmService {
         networkManager.getCategories(completion: { newCategories in
             var currentCategories = readFilters()
             var filetrsForUpdate: [Filter] = []
-            for category in newCategories {
+            let filteredNewCategory: [String] = newCategories.map({$0.name}).sorted(by: {$0 > $1})
+            for category in filteredNewCategory {
                 if currentCategories.filter({$0.category == category}).count == 0 {
                     filetrsForUpdate.append(Filter(category: category))
                 }

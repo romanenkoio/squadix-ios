@@ -27,8 +27,8 @@ final class ResponceHandler {
         case 401:
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             appDelegate.showLogin()
-//        case 400:
-//            PopupView( subtitle: "Неизвестная ошибка", image: UIImage(named: "cancel")).show()
+        case 500:
+            PopupView(title: "", subtitle: "Ошибка сервера", image: UIImage(named: "cancel")).show()
         default:
            break
         }

@@ -116,7 +116,7 @@ class MarketPage: BaseViewController {
                     return
                 }
                 self?.spinner.stopAnimating()
-                self?.navigationController?.pushViewController(VCFabric.getAddProductPage(categories: categories.sorted(by: {$0 < $1})), animated: true)
+                self?.navigationController?.pushViewController(VCFabric.getAddProductPage(categories: categories.map({$0.name}).sorted(by: {$0 > $1})), animated: true)
             })
             
         }, failure: { [weak self] error in
@@ -176,7 +176,8 @@ class MarketPage: BaseViewController {
         } else {
             if RealmService.readFilters().filter({$0.status == true}).count == 0 {
                 manager.getCategories { categories in
-                    RealmService.writeFilters(categories.map({Filter(category: $0)}))
+                    let filteredCategories = categories.map({$0.name}).sorted(by: {$0 > $1})
+                    RealmService.writeFilters(categories.map({Filter(category: $0.name)}))
                     _ = manager.getActiveProductsWithFilters(page: self.page, completion: { [weak self] products in
                         
                         guard let sSelf = self else { return }
