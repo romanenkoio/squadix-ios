@@ -30,15 +30,18 @@ class LoginPage: UIViewController {
             indicator.startAnimating()
             let credentials = ProfileRequest(email: emailTextField.text, password: passwordInpudField.text)
             let networkManager = NetworkManager()
-
+            loginButton.isEnabled = false
+            
             networkManager.login(loginCredentials: credentials, completion: { token in
                 self.indicator.stopAnimating()
                 KeychainManager.store(value: token.getFullToken(), for: .accessToken)
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                self.loginButton.isEnabled = true
                 appDelegate.showMainMenu()
             }, failure: { error in
                 self.indicator.stopAnimating()
                 print(error)
+                self.loginButton.isEnabled = true
                 PopupView.init(title: "", subtitle: LoginErrors.badCredentials.rawValue, image: UIImage(named: "cancel")).show()
             })
         } else {
