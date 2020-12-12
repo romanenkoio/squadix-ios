@@ -29,4 +29,16 @@ final class UtilitesManager {
             }
         }
     }
+    
+    func sendNotifications(message: String, url: String, completion: @escaping VoidBlock, failure: ((String?) -> Void)? = nil) {
+        provider.request(.createNotification(message: message, url: url)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion()
+            case .failure(let error):
+                failure?(error.errorDescription)
+            }
+        }
+    }
 }

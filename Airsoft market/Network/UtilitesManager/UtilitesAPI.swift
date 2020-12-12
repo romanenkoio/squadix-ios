@@ -11,6 +11,7 @@ import Moya
 
 enum UtilitesService {
     case getAdress(lat: Double, long: Double)
+    case createNotification(message: String, url: String)
 }
 
 extension UtilitesService: TargetType {
@@ -18,6 +19,12 @@ extension UtilitesService: TargetType {
         switch self {
         case .getAdress:
             return URL(string: "https://locationiq.com")!
+        default:
+            #if DEBUG
+            return URL(string: "http://18.158.147.66")!
+            #else
+            return URL(string: "http://18.158.147.66")!
+            #endif
         }
     }
     
@@ -25,7 +32,8 @@ extension UtilitesService: TargetType {
         switch self {
         case .getAdress:
             return "/v1/reverse.php"
-            
+        case .createNotification:
+            return "/notifications/"
         }
     }
     
@@ -33,6 +41,8 @@ extension UtilitesService: TargetType {
         switch self {
         case .getAdress:
             return .get
+        case .createNotification:
+            return .post
         }
     }
     
@@ -60,6 +70,9 @@ extension UtilitesService: TargetType {
             params["format"] = "json"
             params["addressdetails"] = 1
             params["accept_language"] = "ru"
+        case .createNotification(let message, let url):
+            params["message"] = message
+            params["url"] = url
         default:
             return nil
         }
@@ -70,14 +83,16 @@ extension UtilitesService: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        default:
+        case .getAdress:
             return nil
+        default:
+            return ["Authorization" : "Bearer " + (KeychainManager.accessToken ?? "")]
         }
     }
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .getAdress:
+        case .getAdress, .createNotification:
             return URLEncoding.queryString
         default:
             return JSONEncoding.prettyPrinted

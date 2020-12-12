@@ -25,14 +25,16 @@ enum SettingsMenu {
     case privacy
     case userAgreement
     case chat
+    case sendNotification
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
         let actionSection: [SettingsMenu] = [.changePassword, .logout]
         let developerSection: [SettingsMenu] = [.chat, .debug, .forceCrash]
+        let adminSection: [SettingsMenu] = [sendNotification]
         
-        return KeychainManager.isAdmin ? [settingsSection, infoSection, actionSection, developerSection] : [settingsSection, infoSection, actionSection]
+        return KeychainManager.isAdmin ? [settingsSection, infoSection, adminSection, actionSection, developerSection] : [settingsSection, infoSection, actionSection]
     }
 }
 
@@ -252,7 +254,40 @@ extension SettingsPage: UITableViewDataSource {
                 }
                 return settingCell
             }
+        case .sendNotification:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Нотификация всем пользователям"
+                settingCell.action = {
+                    let alert = UIAlertController(title: "", message: "Заполните данные", preferredStyle: .alert)
+                    
+                    alert.addTextField { (textField) in
+                        textField.placeholder = "Текст сообщения:"
+                    }
+                    
+                    alert.addTextField { (textField) in
+                        textField.placeholder = "Ссылка на пост"
+                    }
+                    
+                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
+                    
+                    alert.addAction(UIAlertAction(title: "Отправить", style: .default, handler: { [weak alert] (_) in
+                        guard let message = alert?.textFields![0].text, !message.isEmpty, let url = alert?.textFields![1].text else { return }
+                        let utilites = UtilitesManager()
+                        utilites.sendNotifications(message: message, url: url) {
+                            PopupView(title: "", subtitle: "Отправлено", image: UIImage(named: "confirm")).show()
+                        } failure: { error in
+                            PopupView(title: "", subtitle: "Ошибка отправки", image: UIImage(named: "cancel")).show()
+                        }
+
+                    }))
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+                return settingCell
+            }
         }
+        
         return cell
     }
     
