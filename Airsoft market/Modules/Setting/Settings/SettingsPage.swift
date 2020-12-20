@@ -119,9 +119,15 @@ extension SettingsPage: UITableViewDataSource {
               
                 settingCell.action = {
                     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                    appDelegate.showLogin()
-                    UIApplication.shared.applicationIconBadgeNumber = 0
-                    KeychainManager.clearAll()
+                    self.networkManager.unsubscribeNotification {
+                        print("[NOTIFICATIONS] Unsubscribe")
+                        appDelegate.showLogin()
+                        KeychainManager.clearAll()
+                        UIApplication.shared.applicationIconBadgeNumber = 0
+                    } failure: { error in
+                        PopupView(title: "", subtitle: "Что-то пошло не так", image: UIImage(named: "cancel")).show(true, duration: 5)
+                    }
+                 
                 }
                 return settingCell
             }

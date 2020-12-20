@@ -40,9 +40,10 @@ enum StrikeServise{
     case getEventById(id: Int)
     case getProductById(id: Int)
     case createCategory(name: String)
-    case registerToken(pushToken: String)
     case getNotifications
     case deleteCategory(id: Int)
+    case registerToken(pushToken: String)
+    case deleteToken
 }
 
 extension StrikeServise: TargetType {
@@ -140,6 +141,8 @@ extension StrikeServise: TargetType {
             return "/notifications/me"
         case .deleteCategory(let id):
             return "/categories/\(id)"
+        case .deleteToken:
+            return "/devices"
         }
     }
     
@@ -149,7 +152,7 @@ extension StrikeServise: TargetType {
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory:
             return .delete
-        case .editPost, .editProfile, .toggleLike:
+        case .editPost, .editProfile, .toggleLike, .deleteToken:
             return .put
         default:
             return .get
@@ -243,6 +246,10 @@ extension StrikeServise: TargetType {
                 params["deviceId"] = uuid
             }
             params["platform"] = "IOS"
+        case .deleteToken:
+            if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+                params["deviceId"] = uuid
+            }
         default:
             return nil
         }

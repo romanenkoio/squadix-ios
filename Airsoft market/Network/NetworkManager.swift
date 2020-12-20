@@ -478,6 +478,18 @@ final class NetworkManager {
         }
     }
     
+    func unsubscribeNotification(completion: (() -> Void)?, failure: ((String) -> Void)? = nil) {
+        provider.request(.deleteToken) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                failure?(error.errorDescription ?? "Unknow")
+            }
+        }
+    }
+    
     func getNotifications(completion: ((DashboardContent) -> Void)?, failure: ((String) -> Void)? = nil) {
         provider.request(.getNotifications) { result in
             switch result {
