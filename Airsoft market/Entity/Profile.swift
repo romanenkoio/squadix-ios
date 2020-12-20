@@ -79,6 +79,10 @@ struct Profile: Mappable {
             params["displayName"] = profileName
         }
         
+        if phone != "" {
+            params["phone"] = phone
+        }
+        
         return params
     }
 }

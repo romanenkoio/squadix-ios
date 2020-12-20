@@ -65,9 +65,6 @@ class EditPage: UIViewController {
             self.profile = profile
             self.preloadData()
         }
-        
-       
-        
     }
     
     func preloadData() {
@@ -132,6 +129,10 @@ class EditPage: UIViewController {
             if userNameTextField.text != "" {
                 profile?.profileName = userNameTextField.text
             }
+            
+            if phoneTextField.text != "" {
+                profile?.phone = phoneTextField.text
+            }
         } else {
             profile?.country = countryTextField.text
             if let date = selectedDate {
@@ -140,6 +141,7 @@ class EditPage: UIViewController {
             profile?.city = cityTextField.text
             profile?.profileDescription = descriptionTextView.text
             profile?.profileName = userNameTextField.text
+            profile?.phone = phoneTextField.text
         }
     
         
