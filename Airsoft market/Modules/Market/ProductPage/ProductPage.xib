@@ -15,6 +15,7 @@
                 <outlet property="moreButton" destination="Y7W-og-ULs" id="OAO-wI-lOX"/>
                 <outlet property="spinner" destination="0OH-fe-a9i" id="gRL-3a-BXf"/>
                 <outlet property="tableView" destination="5ar-E4-JQf" id="69a-bj-nTj"/>
+                <outlet property="upButton" destination="zs1-es-S1h" id="EZ0-h3-hkx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -71,10 +72,25 @@
             <connections>
                 <action selector="moreAction:" destination="-1" eventType="touchUpInside" id="jAO-6k-asz"/>
             </connections>
-            <point key="canvasLocation" x="189.13043478260872" y="-231.36160714285714"/>
+            <point key="canvasLocation" x="188.40579710144928" y="-231.36160714285714"/>
+        </button>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zs1-es-S1h">
+            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="height" constant="25" id="SS9-z6-syD"/>
+                <constraint firstAttribute="width" constant="25" id="aqz-yC-wod"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <state key="normal" image="arrow_up"/>
+            <connections>
+                <action selector="upAction:" destination="-1" eventType="touchUpInside" id="1ET-bv-KN3"/>
+            </connections>
+            <point key="canvasLocation" x="62.318840579710148" y="-231.36160714285714"/>
         </button>
     </objects>
     <resources>
+        <image name="arrow_up" width="48" height="48"/>
         <image name="message" width="170.66667175292969" height="170.66667175292969"/>
         <image name="more" width="48" height="48"/>
         <systemColor name="systemGray6Color">

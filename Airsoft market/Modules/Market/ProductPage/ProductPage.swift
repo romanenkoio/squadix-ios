@@ -35,6 +35,8 @@ class ProductPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var contactButton: UIButton!
     @IBOutlet var moreButton: UIButton!
+    @IBOutlet var upButton: UIButton!
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     weak var delegate: UpdateProductFeed?
     
@@ -42,10 +44,15 @@ class ProductPage: BaseViewController {
     var menu: [[ContentType]] = []
     var sectionDescription: [String] = []
     var product: MarketProduct!
+    let formatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        tableView.setupDelegateData(self)
+        tableView.registerCell(SimpleTextCell.self)
+        tableView.registerCell(SlideShowCell.self)
+        tableView.registerCell(AuthorCell.self)
+        tableView.registerCell(PostSwitcherCell.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,25 +62,22 @@ class ProductPage: BaseViewController {
     
     func configureUI() {
         title = product.productName
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
         
         let menuInfo = ContentType.getPoints()
         menu = menuInfo.menu
         sectionDescription = menuInfo.headers
         
-        tableView.setupDelegateData(self)
-        tableView.registerCell(SimpleTextCell.self)
-        tableView.registerCell(SlideShowCell.self)
-        tableView.registerCell(AuthorCell.self)
-        tableView.registerCell(PostSwitcherCell.self)
-        
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: contactButton),
-                                               UIBarButtonItem(customView: moreButton)],
+        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton),
+                                               UIBarButtonItem(customView: upButton),
+                                               UIBarButtonItem(customView: contactButton)],
                                               animated: true)
         
         contactButton.isHidden = product.authorID == KeychainManager.profileID
      
         if product.isPreview {
             moreButton.isHidden = true
+            upButton.isHidden = true
         } else {
             moreButton.isHidden = product.authorID != KeychainManager.profileID
         }
@@ -81,6 +85,28 @@ class ProductPage: BaseViewController {
         if !product.isPreview, KeychainManager.isAdmin {
             moreButton.isHidden = false
         }
+        
+        if let date = formatter.date(from: product.createdAt), date.canUpAction(), product.authorID == KeychainManager.profileID  {
+            upButton.isHidden = false
+        } else if KeychainManager.isAdmin  {
+            upButton.isHidden = false
+        } else {
+            upButton.isHidden = true
+        }
+        
+        #if DEBUG
+        if let date = formatter.date(from: product.createdAt), date.canUpAction(), product.authorID == KeychainManager.profileID  {
+            upButton.isHidden = false
+        } else if KeychainManager.isAdmin  {
+            upButton.isHidden = false
+        } else {
+            upButton.isHidden = true
+        }
+        #else
+        upButton.isHidden = true
+        print("Up button hide in prod!")
+        #endif
+       
     }
     
     @IBAction func contactAction(_ sender: Any) {
@@ -103,6 +129,13 @@ class ProductPage: BaseViewController {
                 return
             }
         }
+    }
+    
+    @IBAction func upAction(_ sender: Any) {
+ 
+        
+        
+       
     }
     
     @IBAction func moreAction(_ sender: Any) {

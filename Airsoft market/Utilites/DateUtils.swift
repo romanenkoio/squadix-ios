@@ -64,6 +64,16 @@ extension Date {
         return true
     }
     
+    func canUpAction() -> Bool {
+        if Date().timeIntervalSince1970 - self.timeIntervalSince1970 >= 86400 {
+            return true
+        }
+        return false
+    }
+
+    
+    
+    
     var localizedDescription: String {
         return description(with: .current)
     }
