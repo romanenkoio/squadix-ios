@@ -106,6 +106,9 @@ class ProductPage: BaseViewController {
         upButton.isHidden = true
         print("Up button hide in prod!")
         #endif
+        
+        upButton.isHidden = !KeychainManager.isAdmin
+        
        
     }
     

@@ -14,6 +14,7 @@ enum ProductStatus: String {
     case moderating = "MODERATING"
     case deleted = "DELETED"
     case active = "ACTIVE"
+    case unknown = "UNKNOWN"
 }
 
 
@@ -33,6 +34,7 @@ class MarketProduct: Mappable {
     var authorAvatarURL: String?
     var authorName: String?
     var phone: String?
+    var status: ProductStatus? = .unknown
     
     required init?(map: Map) {
         mapping(map: map)
@@ -42,18 +44,31 @@ class MarketProduct: Mappable {
     }
     
     func mapping(map: Map) {
-       picturesUrl      <- map["imageUrls"]
-       productName      <- map["name"]
-       price            <- map["price"]
-       productRegion    <- map["region"]
-       productCategory  <- map["category"]
-       createdAt        <- map["createdAt"]
-       authorID         <- map["authorId"]
-       postID           <- map["id"]
-       postAvalible     <- map["postalDeliveryAvailable"]
-       description      <- map["description"]
-       authorAvatarURL  <- map["authorAvatarUrl"]
-       authorName       <- map["authorName"]
+        picturesUrl      <- map["imageUrls"]
+        productName      <- map["name"]
+        price            <- map["price"]
+        productRegion    <- map["region"]
+        productCategory  <- map["category"]
+        createdAt        <- map["createdAt"]
+        authorID         <- map["authorId"]
+        postID           <- map["id"]
+        postAvalible     <- map["postalDeliveryAvailable"]
+        description      <- map["description"]
+        authorAvatarURL  <- map["authorAvatarUrl"]
+        authorName       <- map["authorName"]
+        
+        if let tempStatus = map["status"].currentValue as? String {
+            switch tempStatus {
+            case ProductStatus.active.rawValue:
+                status = .active
+            case ProductStatus.deleted.rawValue:
+                status = .deleted
+            case ProductStatus.moderating.rawValue:
+                status = .moderating
+            default:
+                status = .unknown
+            }
+        }
     }
     
     func asParams(with images: [UIImage])  -> [String: Any] {

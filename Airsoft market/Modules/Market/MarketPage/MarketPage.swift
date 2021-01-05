@@ -408,7 +408,11 @@ extension MarketPage: DeeplinkRoutable {
         guard let url = deeplink.url,  let postID = url.path.matches(for: "[0-9]+").first, let id = Int(postID) else { return }
         
         networkManager.getProductByID(postID: id) { [weak self] product in
-            self?.navigationController?.pushViewController(VCFabric.getProductPage(product: product), animated: true)
+            if product.status == .some(.active) {
+                self?.navigationController?.pushViewController(VCFabric.getProductPage(product: product), animated: true)
+            } else {
+                PopupView(title: "", subtitle: "Объявление недоступно", image: UIImage(named: "cancel")).show()
+            }
         } failure: { _ in
             PopupView.init(title: "", subtitle: "Объявление не найдено", image: UIImage(named: "cancel")).show()
         }
