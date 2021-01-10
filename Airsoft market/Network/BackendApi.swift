@@ -44,6 +44,7 @@ enum StrikeServise{
     case deleteCategory(id: Int)
     case registerToken(pushToken: String)
     case deleteToken
+    case upProduct(id: Int)
 }
 
 extension StrikeServise: TargetType {
@@ -143,6 +144,8 @@ extension StrikeServise: TargetType {
             return "/categories/\(id)"
         case .deleteToken:
             return "/devices"
+        case .upProduct(let id):
+            return "/products/\(id)/up"
         }
     }
     
@@ -154,6 +157,8 @@ extension StrikeServise: TargetType {
             return .delete
         case .editPost, .editProfile, .toggleLike, .deleteToken:
             return .put
+        case .upProduct:
+            return .patch
         default:
             return .get
         }

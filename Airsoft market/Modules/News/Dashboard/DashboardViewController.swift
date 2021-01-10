@@ -24,7 +24,7 @@ class DashboardViewController: BaseViewController {
     
     func loadNotifications() {
         networkManager.getNotifications { [weak self] notifications in
-            self?.notifications = notifications.content.reversed()
+            self?.notifications = notifications.content
             self?.tableView.reloadData()
         }
     }

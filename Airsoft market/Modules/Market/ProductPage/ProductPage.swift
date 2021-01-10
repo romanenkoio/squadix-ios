@@ -95,7 +95,7 @@ class ProductPage: BaseViewController {
         }
         
         #if DEBUG
-        if let date = formatter.date(from: product.createdAt), date.canUpAction(), product.authorID == KeychainManager.profileID  {
+        if let date = formatter.date(from: product.upTime), date.canUpAction(), product.authorID == KeychainManager.profileID  {
             upButton.isHidden = false
         } else if KeychainManager.isAdmin  {
             upButton.isHidden = false
@@ -135,10 +135,11 @@ class ProductPage: BaseViewController {
     }
     
     @IBAction func upAction(_ sender: Any) {
- 
-        
-        
-       
+        networkManager.upProduct(id: product.postID) {
+            PopupView(title: "", subtitle: "Успешно поднято", image: UIImage(named: "confirm")).show()
+        } failure: { error in
+            PopupView(title: "", subtitle: "Что-то пошло не так", image: UIImage(named: "cancel")).show()
+        }
     }
     
     @IBAction func moreAction(_ sender: Any) {

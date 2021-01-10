@@ -517,4 +517,16 @@ final class NetworkManager {
             }
         }
     }
+    
+    func upProduct(id: Int, completion: (() -> Void)?, failure: ((String) -> Void)? = nil) {
+        provider.request(.upProduct(id: id)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                failure?(error.errorDescription ?? "Unknow")
+            }
+        }
+    }
 }
