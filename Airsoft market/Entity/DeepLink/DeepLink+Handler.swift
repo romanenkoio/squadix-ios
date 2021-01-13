@@ -33,6 +33,8 @@ extension Deeplink {
                 }
                 presentViewController(vc, style: style)
                 result.vc?.handle(deeplink)
+            } else if let url = deeplink.url {
+                UIApplication.shared.open(url)
             }
             return result.vc
         }
