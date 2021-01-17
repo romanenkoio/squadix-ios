@@ -10,31 +10,55 @@ import UIKit
 
 class ConservationPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
-    var messages: [Int] = [1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1]
     @IBOutlet weak var inputTextView: UITextView!
+    
+    var profile: Profile?
+    
+    var messages: [Int] = [1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerCell(OutMessageCell.self)
         tableView.registerCell(InMessageCell.self)
         tableView.setupDelegateData(self)
-        title = "Михаил Кляшев"
         inputTextView.layer.borderColor = UIColor.gray.cgColor
         inputTextView.layer.borderWidth = 1
         inputTextView.layer.cornerRadius = 15
         tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
+        addProfileButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        scrollToBottom()
+
     }
 
     func scrollToBottom() {
         tableView.scrollToRow(at: IndexPath(item:messages.count - 1, section: 0), at: .bottom, animated: true)
     }
 
-
+    func addProfileButton() {
+        let frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        let customView = UIView(frame: frame)
+        let imageView = UIImageView()
+        if let url = profile?.profilePictureUrl {
+            imageView.loadImageWith(url)
+        } else {
+            imageView.image = UIImage(named: "avatar_placeholder")
+        }
+        
+        if let profileName = profile?.profileName {
+            title = profileName
+        } else {
+            title = "Неизвестный пользователь"
+        }
+        
+        imageView.frame = frame
+        imageView.layer.cornerRadius = imageView.frame.height * 0.5
+        imageView.layer.masksToBounds = true
+        customView.addSubview(imageView)
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: customView)]
+    }
 }
 
 extension ConservationPage: UITableViewDataSource {
