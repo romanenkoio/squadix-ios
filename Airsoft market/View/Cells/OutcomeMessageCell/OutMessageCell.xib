@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOv-va-0pf">
-                        <rect key="frame" x="137.5" y="0.0" width="177.5" height="116"/>
+                        <rect key="frame" x="137" y="0.0" width="178" height="116"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Исходящее сообщение" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyI-1t-wFo">
-                                <rect key="frame" x="10" y="10" width="157.5" height="84"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Исходящее сообщение" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyI-1t-wFo" customClass="ActiveLabel" customModule="ActiveLabel">
+                                <rect key="frame" x="10" y="10" width="158" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztj-Vp-nEx">
-                                <rect key="frame" x="141" y="99" width="26.5" height="12"/>
+                                <rect key="frame" x="141.5" y="99" width="26.5" height="12"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="12" id="44X-dX-l7X"/>
                                 </constraints>
@@ -60,12 +60,18 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="mesageLabel" destination="oyI-1t-wFo" id="m1f-mM-afv"/>
                 <outlet property="messageView" destination="ZOv-va-0pf" id="dfk-DJ-p50"/>
                 <outlet property="timeLabel" destination="Ztj-Vp-nEx" id="es8-sq-O1J"/>
             </connections>
             <point key="canvasLocation" x="-146.37681159420291" y="4.3526785714285712"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="oyI-1t-wFo">
+            <size key="intrinsicContentSize" width="158" height="17"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="mainStrikeColor">
             <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
