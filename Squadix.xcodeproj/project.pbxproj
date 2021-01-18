@@ -121,6 +121,7 @@
 		7F9D374425549B4100BDAC1E /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9D374325549B4100BDAC1E /* DeepLink.swift */; };
 		7F9D375D25549C1F00BDAC1E /* DeepLinkRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9D375C25549C1F00BDAC1E /* DeepLinkRoutable.swift */; };
 		7F9D37D925549DD200BDAC1E /* DeepLink+Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9D37D825549DD200BDAC1E /* DeepLink+Handler.swift */; };
+		7FA9E85E25B6341F0085EA34 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9E85D25B6341F0085EA34 /* Message.swift */; };
 		7FAC3852247FB42400EEFB24 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3851247FB42400EEFB24 /* CALayer+Extensions.swift */; };
 		7FAC3854247FB43000EEFB24 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3853247FB43000EEFB24 /* UIView+Extensions.swift */; };
 		7FB34601254E27BE00851FF6 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB34600254E27BE00851FF6 /* Filters.swift */; };
@@ -404,6 +405,7 @@
 		7F9D374325549B4100BDAC1E /* DeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		7F9D375C25549C1F00BDAC1E /* DeepLinkRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkRoutable.swift; sourceTree = "<group>"; };
 		7F9D37D825549DD200BDAC1E /* DeepLink+Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeepLink+Handler.swift"; sourceTree = "<group>"; };
+		7FA9E85D25B6341F0085EA34 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		7FAC3851247FB42400EEFB24 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		7FAC3853247FB43000EEFB24 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		7FB34600254E27BE00851FF6 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				7FB34600254E27BE00851FF6 /* Filters.swift */,
 				7F2FD855255870F7007EA305 /* Bookmark.swift */,
 				7FEE9C1F257D91F900031D43 /* UserNotifications.swift */,
+				7FA9E85D25B6341F0085EA34 /* Message.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1584,6 +1587,7 @@
 				7F7DC403247C485000A53E7C /* String+Extensions.swift in Sources */,
 				7F9D375D25549C1F00BDAC1E /* DeepLinkRoutable.swift in Sources */,
 				7F019126250AB84F0049C8F0 /* BaseViewController.swift in Sources */,
+				7FA9E85E25B6341F0085EA34 /* Message.swift in Sources */,
 				7F904E412485A20C00DF8AC5 /* UIColor+Extensions.swift in Sources */,
 				7F595B3B2480686800D56E74 /* SettingsPage.swift in Sources */,
 				7FB7E70425855BB800DC0FB9 /* CategoriesPage.swift in Sources */,
