@@ -15,6 +15,8 @@ class Message: Mappable {
     var createdAt: String!
     var authorAvatarUrl: String?
     var conservationID: Int!
+    var imagesForSend: [UIImage]?
+    var incomeImage: [String]?
     
     required init?(map: Map) {
         mapping(map: map)
@@ -29,6 +31,7 @@ class Message: Mappable {
         message             <- map["message"]
         createdAt           <- map["createdAt"]
         conservationID      <- map["conservationID"]
+        incomeImage         <- map["incomeImage"]
     }
     
     func asParams() -> [String: Any] {
@@ -37,6 +40,9 @@ class Message: Mappable {
         params["authorId"] = KeychainManager.profileID
         params["message"] = self.message
         params["conservationID"] = self.conservationID
+        if let images = self.imagesForSend, images.count > 0 {
+            params["images"] = images.map({ $0.toBase64()})
+        }
         
         return params
     }
