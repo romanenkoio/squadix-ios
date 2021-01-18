@@ -140,6 +140,8 @@
 		7FBC5A28257AFF95000B037A /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC5A26257AFF95000B037A /* DashboardViewController.xib */; };
 		7FBC5A2C257B002D000B037A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC5A2A257B002D000B037A /* NotificationCell.swift */; };
 		7FBC5A2D257B002D000B037A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC5A2B257B002D000B037A /* NotificationCell.xib */; };
+		7FBE31DD25B5DBD00046898E /* IncomePreviewMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE31DB25B5DBD00046898E /* IncomePreviewMessageCell.swift */; };
+		7FBE31DE25B5DBD00046898E /* IncomePreviewMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */; };
 		7FC4D66C25544EC000F1E508 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D66B25544EC000F1E508 /* PushService.swift */; };
 		7FC4D6712554549300F1E508 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D6702554549300F1E508 /* NetworkMonitor.swift */; };
 		7FCE1E6824F6FA73000499EC /* AdminPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE1E6624F6FA73000499EC /* AdminPage.swift */; };
@@ -421,6 +423,8 @@
 		7FBC5A26257AFF95000B037A /* DashboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		7FBC5A2A257B002D000B037A /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		7FBC5A2B257B002D000B037A /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		7FBE31DB25B5DBD00046898E /* IncomePreviewMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomePreviewMessageCell.swift; sourceTree = "<group>"; };
+		7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomePreviewMessageCell.xib; sourceTree = "<group>"; };
 		7FC4D66B25544EC000F1E508 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		7FC4D6702554549300F1E508 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		7FCE1E6624F6FA73000499EC /* AdminPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPage.swift; sourceTree = "<group>"; };
@@ -476,8 +480,7 @@
 		7F14047724885EA60028C907 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7F4BF25E25817FEA00B82D20 /* OutcomeMessageCell */,
-				7F4BF24C25817FDE00B82D20 /* IncomeMessageCell */,
+				7FBE31C825B5DB970046898E /* ConservationsCell */,
 				7FCFDD4624BA7A6200D8660F /* DebugCell */,
 				7F904E422485ADB000DF8AC5 /* SimpleTextCell */,
 				7F904E3B248583BE00DF8AC5 /* HorizontalStackCell */,
@@ -1069,6 +1072,25 @@
 			path = NotificationCell;
 			sourceTree = "<group>";
 		};
+		7FBE31C825B5DB970046898E /* ConservationsCell */ = {
+			isa = PBXGroup;
+			children = (
+				7FBE31DA25B5DBB30046898E /* IncomePreviewMessageCell */,
+				7F4BF25E25817FEA00B82D20 /* OutcomeMessageCell */,
+				7F4BF24C25817FDE00B82D20 /* IncomeMessageCell */,
+			);
+			path = ConservationsCell;
+			sourceTree = "<group>";
+		};
+		7FBE31DA25B5DBB30046898E /* IncomePreviewMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				7FBE31DB25B5DBD00046898E /* IncomePreviewMessageCell.swift */,
+				7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */,
+			);
+			path = IncomePreviewMessageCell;
+			sourceTree = "<group>";
+		};
 		7FCE1E6524F6FA42000499EC /* AdminPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1461,6 +1483,7 @@
 				7F817997247B03B90061EB8C /* ProductImageCell.xib in Resources */,
 				7FFE4C7724772E0100212BAB /* RegistrationPage.xib in Resources */,
 				7FBC5A2D257B002D000B037A /* NotificationCell.xib in Resources */,
+				7FBE31DE25B5DBD00046898E /* IncomePreviewMessageCell.xib in Resources */,
 				7F4BF26E2581890B00B82D20 /* InMessageCell.xib in Resources */,
 				7FE45A742501848A00574B47 /* ImagePreviewPage.xib in Resources */,
 				7F9B147A247F0530007D4819 /* ProfileSearchCell.xib in Resources */,
@@ -1572,6 +1595,7 @@
 				7F9ACA4124E9EBC6003E7972 /* UtilitesAPI.swift in Sources */,
 				7F14047624885D640028C907 /* BaseTableViewCell.swift in Sources */,
 				7F01C1BC254E090F007CC5A9 /* ProductCategories.swift in Sources */,
+				7FBE31DD25B5DBD00046898E /* IncomePreviewMessageCell.swift in Sources */,
 				7F295CC8247AD43F00B47F1F /* DescriptionPointCell.swift in Sources */,
 				7F2F005B247D12AC00CA886F /* BaseTabBarViewController.swift in Sources */,
 				7F5FD058247DC93900AF7D47 /* NewsShowPage.swift in Sources */,

@@ -20,6 +20,7 @@ class ConservationPage: BaseViewController {
         super.viewDidLoad()
         tableView.registerCell(OutMessageCell.self)
         tableView.registerCell(InMessageCell.self)
+        tableView.registerCell(IncomePreviewMessageCell.self)
         tableView.setupDelegateData(self)
         inputTextView.layer.borderColor = UIColor.gray.cgColor
         inputTextView.layer.borderWidth = 1
@@ -78,7 +79,19 @@ extension ConservationPage: UITableViewDataSource {
             outCell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
             return outCell
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InMessageCell.self), for: indexPath)
+            var cell = tableView.dequeueReusableCell(withIdentifier: String(describing: IncomePreviewMessageCell.self), for: indexPath)
+            
+            if checkIsContainsUrl(message: "Посмотри товар, интересно. https://squadix.co/products/12").isContain, let url = checkIsContainsUrl(message: "Посмотри товар, интересно.https://squadix.co/products/12").url {
+                guard let inPreviewCell = cell as? IncomePreviewMessageCell else {
+                    return cell
+                }
+                inPreviewCell.url = url
+                inPreviewCell.messageLabel.text = "Посмотри товар, интересно. https://squadix.co/products/12"
+                inPreviewCell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                inPreviewCell.getPreview()
+                return inPreviewCell
+            }
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InMessageCell.self), for: indexPath)
             guard let inCell = cell as? InMessageCell else {
                 return cell
             }
@@ -88,5 +101,23 @@ extension ConservationPage: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OutMessageCell.self), for: indexPath)
             return cell
         }
+    }
+    
+    func checkIsContainsUrl(message: String) -> (isContain: Bool, url: URL?) {
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let matches = detector.matches(in: message, options: [], range: NSRange(location: 0, length: message.utf16.count))
+        var url: Substring = ""
+        
+        for match in matches {
+            guard let range = Range(match.range, in: message) else { continue }
+            url = message[range]
+            print(url)
+        }
+        
+        if matches.count > 0 {
+            return (true, URL(string: String(url)))
+        }
+        
+        return (false, nil )
     }
 }
