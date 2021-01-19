@@ -35,6 +35,10 @@ final class ResponceHandler {
     }
     
     static func handleError(error: MoyaError) {
+        if let statusCode = error.response?.response?.statusCode, statusCode == 401 {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            appDelegate.showLogin()
+        }
         PopupView(title: "", subtitle: "Не удалось подключиться к серверу", image: UIImage(named: "cancel")).show()
     }
 }

@@ -37,6 +37,7 @@ final class NetworkManager {
                 }
                
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var customError = NetworkError()
                 customError.message = error.errorDescription ?? "Unknow"
                 failure(customError)
@@ -68,7 +69,8 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 guard let posts = try? response.mapObject(Posts.self) else { return }
                 completion(posts, nil)
-            case .failure:
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 completion(nil, nil)
             }
         }
@@ -81,6 +83,7 @@ final class NetworkManager {
                 guard let currency = try? response.mapObject(Currency.self) else { return }
                 completion(currency, nil)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 completion(nil, error)
             }
         }
@@ -94,6 +97,7 @@ final class NetworkManager {
                 guard let profile = try? response.mapObject(Profile.self) else { return }
                 completion(profile, nil, response.statusCode)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 completion(nil, error, nil)
             }
         }
@@ -107,6 +111,7 @@ final class NetworkManager {
                 guard let profile = try? response.mapObject(Profile.self) else { return }
                 completion(profile, nil)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 completion(nil, error)
             }
         }
@@ -121,7 +126,8 @@ final class NetworkManager {
                     return
                 }
                 completion(info)
-            case .failure:
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure("Eror")
             }
         }
@@ -137,7 +143,8 @@ final class NetworkManager {
                     return
                 }
                 completion?()
-            case .failure:
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?("Save post feilure")
             }
         }
@@ -149,7 +156,8 @@ final class NetworkManager {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
                 completion()
-            case .failure:
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure("Edit post feilure")
             }
         }
@@ -163,6 +171,7 @@ final class NetworkManager {
                 completion()
                 
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -177,6 +186,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure?(err.message)
@@ -191,6 +201,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -211,6 +222,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion(posts)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -228,7 +240,8 @@ final class NetworkManager {
                     return
                 }
                 completion(events)
-            case .failure:
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure("Cannot load events feed")
             }
         }
@@ -241,6 +254,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -255,6 +269,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -269,6 +284,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -284,7 +300,8 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 guard let products = try? response.mapObject(Products.self) else { return }
                 completion(products.content)
-            case .failure:
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure("Cannot load products feed")
             }
         }
@@ -297,7 +314,8 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 guard let products = try? response.mapObject(Products.self) else { return }
                 completion(products)
-            case .failure:
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure("Cannot load products feed")
             }
         }
@@ -310,6 +328,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -329,6 +348,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion(content)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -347,6 +367,7 @@ final class NetworkManager {
                 }
                 completion(users)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -365,6 +386,7 @@ final class NetworkManager {
                 }
                 completion(true)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure(err.message)
@@ -383,6 +405,7 @@ final class NetworkManager {
                 }
                 completion?(post)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 var err = NetworkError()
                 err.message = error.errorDescription ?? "Unknown"
                 failure?(err.message)
@@ -401,6 +424,7 @@ final class NetworkManager {
                 }
                 completion?(categories)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
@@ -417,6 +441,7 @@ final class NetworkManager {
                 }
                 completion?(post)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
@@ -433,6 +458,7 @@ final class NetworkManager {
                 }
                 completion?(post)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
@@ -449,6 +475,7 @@ final class NetworkManager {
                 }
                 completion?(product)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
@@ -461,6 +488,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion?("\(response.statusCode)")
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
@@ -473,6 +501,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion?()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
@@ -485,6 +514,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion?()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
@@ -501,6 +531,7 @@ final class NetworkManager {
                 }
                 completion?(notifications)
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
@@ -513,6 +544,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion?()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
@@ -525,6 +557,7 @@ final class NetworkManager {
                 ResponceHandler.handle(responce: response)
                 completion?()
             case .failure(let error):
+                ResponceHandler.handleError(error: error)
                 failure?(error.errorDescription ?? "Unknow")
             }
         }
