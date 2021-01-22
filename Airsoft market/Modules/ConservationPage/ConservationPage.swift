@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class ConservationPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +32,12 @@ class ConservationPage: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-
+//        IQKeyboardManager.shared.enable = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+//        IQKeyboardManager.shared.enable = true
     }
 
     func scrollToBottom() {
