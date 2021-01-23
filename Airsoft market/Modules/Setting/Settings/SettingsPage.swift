@@ -149,7 +149,7 @@ extension SettingsPage: UITableViewDataSource {
             if let settingCell = cell as? SettingsCell {
                 settingCell.settingLabel.text = "Debug info"
                 settingCell.action = {
-                    self.navigationController?.present(VCFabric.getDebugPage(), animated: true)
+                    self.navigationController?.present(DebugPage.loadFromNib(), animated: true)
                 }
                 return settingCell
             }
@@ -241,7 +241,7 @@ extension SettingsPage: UITableViewDataSource {
             if let settingCell = cell as? SettingsCell {
                 settingCell.settingLabel.text = "Chat"
                 settingCell.action = {
-                    self.navigationController?.pushViewController(VCFabric.conservationPage(), animated: true)
+                    self.navigationController?.pushViewController(ConservationPage.loadFromNib(), animated: true)
                 }
                 return settingCell
             }
@@ -299,7 +299,7 @@ extension SettingsPage: UITableViewDataSource {
             if let settingCell = cell as? SettingsCell {
                 settingCell.settingLabel.text = "Управление категориями"
                 settingCell.action = {
-                    self.navigationController?.pushViewController(VCFabric.adminCategoriesPage(), animated: true)
+                    self.navigationController?.pushViewController(CategoriesPage.loadFromNib(), animated: true)
                 }
                 return settingCell
             }

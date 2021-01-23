@@ -22,7 +22,7 @@ class LoginPage: UIViewController {
     }
     
     @IBAction func registrationAction(_ sender: Any) {
-        navigationController?.pushViewController(VCFabric.getRegistrationPage(), animated: true)
+        navigationController?.pushViewController(RegistrationPage.loadFromNib(), animated: true)
     }
     
     @IBAction func loginAction(_ sender: Any) {

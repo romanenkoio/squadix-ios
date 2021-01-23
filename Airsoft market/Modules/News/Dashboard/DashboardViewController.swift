@@ -53,7 +53,7 @@ extension DashboardViewController: UITableViewDataSource {
 
 extension DashboardViewController: DeeplinkRoutable {
     static func initControllerFromStoryboard() -> DeeplinkRoutable? {
-        return VCFabric.dashboardPagge()
+        return DashboardViewController.loadFromNib()
     }
     
     static func canHandle(_ deeplink: Deeplink) -> Bool {

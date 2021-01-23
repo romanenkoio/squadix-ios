@@ -44,7 +44,7 @@ class ResetPasswordViewController: BaseViewController {
 
 extension ResetPasswordViewController: DeeplinkRoutable {
     static func initControllerFromStoryboard() -> DeeplinkRoutable? {
-        return VCFabric.resetPasswordPage()
+        return ResetPasswordViewController.loadFromNib()
     }
     
     static func canHandle(_ deeplink: Deeplink) -> Bool {

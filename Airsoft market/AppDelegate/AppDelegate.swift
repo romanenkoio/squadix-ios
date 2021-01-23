@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showLogin() {
-        window?.rootViewController = BaseNavigationController(rootViewController: VCFabric.getLoginPage())
+        window?.rootViewController = BaseNavigationController(rootViewController: LoginPage.loadFromNib())
     }
     
     func logout() {

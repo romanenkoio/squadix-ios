@@ -88,7 +88,7 @@ class MarketPage: BaseViewController {
     @IBAction func routeToFiltres(_ sender: Any) {
         spinner.startAnimating()
         RealmService.updateFilters { [weak self] in
-            let vc = VCFabric.getFilterPage()
+            let vc = FilterPage.loadFromNib()
             vc.delegate = self
             self?.navigationController?.pushViewController(vc, animated: true)
             self?.spinner.stopAnimating()
@@ -127,7 +127,7 @@ class MarketPage: BaseViewController {
     }
     
     @IBAction func adminAction(_ sender: Any) {
-        navigationController?.pushViewController(VCFabric.adminPage(), animated: true)
+        navigationController?.pushViewController(AdminPage.loadFromNib(), animated: true)
     }
     
     func loadData() {

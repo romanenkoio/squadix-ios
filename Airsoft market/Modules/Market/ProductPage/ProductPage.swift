@@ -168,7 +168,7 @@ extension ProductPage: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0, indexPath.section == 0 {
-            navigationController?.pushViewController(VCFabric.getProfilePage(), animated: true)
+            navigationController?.pushViewController(ProfilePage.loadFromNib(), animated: true)
         }
     }
 }

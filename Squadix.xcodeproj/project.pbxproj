@@ -141,6 +141,7 @@
 		7FBC5A28257AFF95000B037A /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC5A26257AFF95000B037A /* DashboardViewController.xib */; };
 		7FBC5A2C257B002D000B037A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC5A2A257B002D000B037A /* NotificationCell.swift */; };
 		7FBC5A2D257B002D000B037A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC5A2B257B002D000B037A /* NotificationCell.xib */; };
+		7FBCEA4225BC9A39002E59B4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCEA4125BC9A39002E59B4 /* UIViewController+Extension.swift */; };
 		7FBE31DD25B5DBD00046898E /* IncomePreviewMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE31DB25B5DBD00046898E /* IncomePreviewMessageCell.swift */; };
 		7FBE31DE25B5DBD00046898E /* IncomePreviewMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */; };
 		7FC4D66C25544EC000F1E508 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D66B25544EC000F1E508 /* PushService.swift */; };
@@ -425,6 +426,7 @@
 		7FBC5A26257AFF95000B037A /* DashboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		7FBC5A2A257B002D000B037A /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		7FBC5A2B257B002D000B037A /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		7FBCEA4125BC9A39002E59B4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		7FBE31DB25B5DBD00046898E /* IncomePreviewMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomePreviewMessageCell.swift; sourceTree = "<group>"; };
 		7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomePreviewMessageCell.xib; sourceTree = "<group>"; };
 		7FC4D66B25544EC000F1E508 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
@@ -1034,6 +1036,7 @@
 				7FFD7E47248D5DFD00825AEF /* UIDevice+Extensions.swift */,
 				7F4A8B2224CF8C24006B3856 /* UINavigation+Extensions.swift */,
 				7FEB765C24F7886A00B695D3 /* UIButton+Extensions.swift */,
+				7FBCEA4125BC9A39002E59B4 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1568,6 +1571,7 @@
 			files = (
 				7F03F151248404A300EF0749 /* NetworkManager.swift in Sources */,
 				7FB48D7A24BF20D000046403 /* NetworkResponce.swift in Sources */,
+				7FBCEA4225BC9A39002E59B4 /* UIViewController+Extension.swift in Sources */,
 				7F595B37248052E900D56E74 /* PopupView.swift in Sources */,
 				7FAC3854247FB43000EEFB24 /* UIView+Extensions.swift in Sources */,
 				7F295CD0247AF33A00B47F1F /* AddProductPage.swift in Sources */,

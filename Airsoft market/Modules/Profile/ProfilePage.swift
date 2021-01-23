@@ -79,7 +79,7 @@ class ProfilePage: BaseViewController {
           actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
           
           actionButton.addItem(title: "Настройки", image: UIImage(named: "settings")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
-               self?.navigationController?.pushViewController(VCFabric.getSettingsPage(), animated: true)
+               self?.navigationController?.pushViewController(SettingsPage.loadFromNib(), animated: true)
           }
           
           actionButton.addItem(title: "Редактировать профиль", image: UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in

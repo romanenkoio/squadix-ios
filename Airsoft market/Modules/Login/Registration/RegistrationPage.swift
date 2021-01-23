@@ -143,7 +143,7 @@ class RegistrationPage: UIViewController {
         networkManager.register(loginCredentials: credentials, completion: { [weak self] token in
             KeychainManager.store(value: token.getFullToken(), for: .accessToken)
             self?.spinner.stopAnimating()
-            self?.navigationController?.pushViewController(VCFabric.getPicturePage(), animated: true)
+            self?.navigationController?.pushViewController(SelectPickPage.loadFromNib(), animated: true)
         }) { [weak self] error in
             self?.spinner.stopAnimating()
             self?.parseError(error: error)

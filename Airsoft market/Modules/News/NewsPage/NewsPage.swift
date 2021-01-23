@@ -84,18 +84,18 @@ class NewsPage: BaseViewController {
         
         if KeychainManager.isAdmin || KeychainManager.isOrganizer {
             actionButton.addItem(title: "Событие", image: UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
-                let vc = VCFabric.addEventPage()
+                let vc = AddEventPage.loadFromNib()
                 vc.delegate = self
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
         }
         
         actionButton.addItem(title: "Пост", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
-            self?.navigationController?.pushViewController(VCFabric.addTextPostPage(), animated: true)
+            self?.navigationController?.pushViewController(AddTextPostPage.loadFromNib(), animated: true)
         }
         
         actionButton.addItem(title: "Видео", image: UIImage(named: "video_plus")) { [weak self] item in
-            let vc = VCFabric.getNewPostPage()
+            let vc = AddPostPage.loadFromNib()
             vc.delegate = self
             self?.navigationController?.pushViewController(vc, animated: true)
         }
@@ -150,7 +150,7 @@ class NewsPage: BaseViewController {
     }
     
     @IBAction func actionDasboardOpen(_ sender: Any) {
-        navigationController?.pushViewController(VCFabric.dashboardPagge(), animated: true)
+        navigationController?.pushViewController(DashboardViewController.loadFromNib(), animated: true)
         dashboardButton.badgeValue = ""
     }
 }
@@ -481,7 +481,7 @@ extension NewsPage: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: { () -> UIViewController? in
             guard let inter = interaction as? ObjectInteraction else { return nil }
-            let vc = VCFabric.imagePreview()
+            let vc = ImagePreviewPage.loadFromNib()
             guard let post = inter.object as? Post, let pic = post.authorAvatarUrl else { return nil }
             vc.imageUrl = pic
             return vc
