@@ -50,6 +50,7 @@ class SettingsPage: BaseViewController {
         tableView.registerCell(SettingsCell.self)
         tableView.registerCell(SettingsSwitchCell.self)
         tableView.setupDelegateData(self)
+        title = "Настройки"
     }
 }
 
