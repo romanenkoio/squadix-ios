@@ -100,9 +100,9 @@ class MarketPage: BaseViewController {
         networkManager.getCategories(completion: { [weak self] categories in
             
             self?.networkManager.getCurrentUser(completion: { (profile, error, id) in
-                guard let currentProfile = profile, let phone = currentProfile.phone, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) else {
+                guard let currentProfile = profile, let phone = currentProfile.phone, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue), let city = profile?.city, !city.isEmpty else {
                     self?.spinner.stopAnimating()
-                    let alert = UIAlertController(title: "Ошибка", message: "Пользователи без номера не могут создавать объявления. Перейдите в настройки профиля и добавьте номер телефона.", preferredStyle: .actionSheet)
+                    let alert = UIAlertController(title: "Ошибка", message: "Пользователи без города или номера телефона не могут создавать объявления. Перейдите в настройки профиля и обновите его.", preferredStyle: .actionSheet)
                     
                     let cancelAction = UIAlertAction(title: "Назад", style: .cancel, handler: nil)
                     

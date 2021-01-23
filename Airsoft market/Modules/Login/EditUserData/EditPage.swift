@@ -119,12 +119,9 @@ class EditPage: UIViewController {
             if let date = selectedDate {
                 profile?.birthday = date
             }
-            if cityTextField.text != "" {
-                profile?.city = cityTextField.text
-            }
-            if descriptionTextView.text != "" {
-                profile?.profileDescription = descriptionTextView.text
-            }
+            
+            profile?.city = cityTextField.text
+            profile?.profileDescription = descriptionTextView.text
             
             if userNameTextField.text != "" {
                 profile?.profileName = userNameTextField.text
