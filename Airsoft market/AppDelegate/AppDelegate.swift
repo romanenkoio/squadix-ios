@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let networkManager = NetworkManager()
         networkManager.getCurrentUser { [weak self] (profile, _, status) in
             if status != 200, status != nil {
-                self?.logout()()
+                self?.logout()
             }
         }
     }
