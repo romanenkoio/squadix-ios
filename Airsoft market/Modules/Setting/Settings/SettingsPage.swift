@@ -120,13 +120,11 @@ extension SettingsPage: UITableViewDataSource {
                 settingCell.action = {
                     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
                     if UIDevice.current.type == .simulator {
-                        appDelegate.showLogin()
-                        KeychainManager.clearAll()
+                        appDelegate.logout()
                     } else {
                         self.networkManager.unsubscribeNotification {
                             print("[NOTIFICATIONS] Unsubscribe")
-                            appDelegate.showLogin()
-                            KeychainManager.clearAll()
+                            appDelegate.logout()
                             UIApplication.shared.applicationIconBadgeNumber = 0
                         } failure: { error in
                             PopupView(title: "", subtitle: "Что-то пошло не так", image: UIImage(named: "cancel")).show(true, duration: 5)
