@@ -562,4 +562,17 @@ final class NetworkManager {
             }
         }
     }
+    
+    func changePassword(currentPassword: String, newPassword: String, completion: (() -> Void)?, failure: ((String) -> Void)? = nil) {
+        provider.request(.changePassword(oldPassword: currentPassword, newPassword: newPassword)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
+                failure?(error.errorDescription ?? "Unknow")
+            }
+        }
+    }
 }

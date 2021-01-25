@@ -11,53 +11,46 @@ import UIKit
 class ResetPasswordViewController: BaseViewController {
     @IBOutlet weak var newPasswordField: StrikeInputField!
     @IBOutlet weak var secondNewPasswordField: StrikeInputField!
+    @IBOutlet weak var oldPasswordField: StrikeInputField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    
-    override var shouldBackSwipe: Bool {
-        return false
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        title = "Смена пароля"
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
     
     @IBAction func savePasswordAction(_ sender: Any) {
         spinner.startAnimating()
-        guard let password = newPasswordField.text, !password.isEmpty, let secondPasssword = secondNewPasswordField.text, !secondPasssword.isEmpty, password == secondPasssword else {
-            PopupView(title: "", subtitle: "Пароли должны совпадать", image: UIImage(named: "cancel")).show()
+        
+        guard let oldPassword = oldPasswordField.text, !oldPassword.isEmpty, let password = newPasswordField.text, !password.isEmpty, let secondPasssword = secondNewPasswordField.text, !secondPasssword.isEmpty else {
+            PopupView(title: "", subtitle: "Поля не могут быть пустыми", image: UIImage(named: "cancel")).show()
+            spinner.stopAnimating()
             return
         }
+        
+        guard  password == secondPasssword else {
+            PopupView(title: "", subtitle: "Пароли должны совпадать", image: UIImage(named: "cancel")).show()
+            spinner.stopAnimating()
+            return
+        }
+        
         guard Validator.shared.validate(string: password, pattern: Validator.Regexp.password.rawValue), Validator.shared.validate(string: secondPasssword, pattern: Validator.Regexp.password.rawValue) else {
             PopupView(title: "", subtitle: "Пароли должны быть от 8 символов", image: UIImage(named: "cancel")).show()
+            spinner.stopAnimating()
             return
         }
-//        стартануть запрос
+
+        
+        networkManager.changePassword(currentPassword: oldPassword, newPassword: password) { [weak self] in
+            self?.newPasswordField.text = ""
+            self?.oldPasswordField.text = ""
+            self?.secondNewPasswordField.text = ""
+            PopupView(title: "", subtitle: "Пароль успешно изменён", image: UIImage(named: "confirm")).show()
+        } failure: { error in
+            PopupView(title: "", subtitle: error, image: UIImage(named: "cancel")).show()
+        }
+
+        
         spinner.stopAnimating()
     }
-}
-
-extension ResetPasswordViewController: DeeplinkRoutable {
-    static func initControllerFromStoryboard() -> DeeplinkRoutable? {
-        return ResetPasswordViewController.loadFromNib()
-    }
-    
-    static func canHandle(_ deeplink: Deeplink) -> Bool {
-        return false
-    }
-    
-    static func reuseExistingController(_ deeplink: Deeplink) -> Bool {
-        return false
-    }
-    
-    func handle(_ deeplink: Deeplink) {
-        
-    }
-    
-    
 }

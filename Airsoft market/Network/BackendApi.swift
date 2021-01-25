@@ -45,6 +45,7 @@ enum StrikeServise{
     case registerToken(pushToken: String)
     case deleteToken
     case upProduct(id: Int)
+    case changePassword(oldPassword: String, newPassword: String)
 }
 
 extension StrikeServise: TargetType {
@@ -146,6 +147,8 @@ extension StrikeServise: TargetType {
             return "/devices"
         case .upProduct(let id):
             return "/products/\(id)/up"
+        case .changePassword(_, _):
+            return "/password"
         }
     }
     
@@ -255,6 +258,9 @@ extension StrikeServise: TargetType {
             if let uuid = UIDevice.current.identifierForVendor?.uuidString {
                 params["deviceId"] = uuid
             }
+        case .changePassword(let oldPassword, let newPassword):
+            params["currentPassword"] = oldPassword
+            params["newPassword"] = newPassword
         default:
             return nil
         }

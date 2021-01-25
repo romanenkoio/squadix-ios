@@ -197,33 +197,8 @@ extension SettingsPage: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
             if let settingCell = cell as? SettingsCell {
                 settingCell.settingLabel.text = "Сменить пароль"
-                settingCell.action = {
-                    let alert = UIAlertController(title: "", message: "Смена пароля", preferredStyle: .alert)
-                    
-                    alert.addTextField { (textField) in
-                        textField.placeholder = "Старый пароль"
-                    }
-                    
-                    alert.addTextField { (textField) in
-                        textField.placeholder = "Новый пароль"
-                    }
-                    
-                    alert.addTextField { (textFieldPass) in
-                        textFieldPass.placeholder = "Новый пароль ещё раз"
-                    }
-                    
-                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
-                    
-                    alert.addAction(UIAlertAction(title: "Сохранить пароль", style: .default, handler: { [weak alert, self] (_) in
-                        guard let oldPassword = alert?.textFields![0].text, !oldPassword.isEmpty, let newPassword = alert?.textFields![1].text,  let newSecondPassword = alert?.textFields![2].text, !newPassword.isEmpty, !newSecondPassword.isEmpty else { return }
-                        if newPassword != newSecondPassword {
-                            self.showAlert(title: "Новые пароли не совпадают, повторите попытку.")
-                        } else if !Validator.shared.validate(string: newPassword, pattern: Validator.Regexp.password.rawValue), !Validator.shared.validate(string: newSecondPassword, pattern: Validator.Regexp.password.rawValue) {
-                            self.showAlert(title: "Новый пароль должен быть от 8 до 20 символов.")
-                        }
-                    }))
-                    
-                    self.present(alert, animated: true, completion: nil)
+                settingCell.action = { [weak self] in
+                    self?.navigationController?.pushViewController(ResetPasswordViewController.loadFromNib(), animated: true)
                 }
                 return settingCell
             }
@@ -316,6 +291,4 @@ extension SettingsPage: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-    
-    
 }

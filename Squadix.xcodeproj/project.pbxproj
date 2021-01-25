@@ -146,6 +146,8 @@
 		7FBE31DE25B5DBD00046898E /* IncomePreviewMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */; };
 		7FC4D66C25544EC000F1E508 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D66B25544EC000F1E508 /* PushService.swift */; };
 		7FC4D6712554549300F1E508 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D6702554549300F1E508 /* NetworkMonitor.swift */; };
+		7FC9049125BF322700CF911E /* TextPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC9048F25BF322700CF911E /* TextPage.swift */; };
+		7FC9049225BF322700CF911E /* TextPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FC9049025BF322700CF911E /* TextPage.xib */; };
 		7FCE1E6824F6FA73000499EC /* AdminPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCE1E6624F6FA73000499EC /* AdminPage.swift */; };
 		7FCE1E6924F6FA73000499EC /* AdminPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FCE1E6724F6FA73000499EC /* AdminPage.xib */; };
 		7FCFDD4424BA781F00D8660F /* DebugPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCFDD4224BA781F00D8660F /* DebugPage.swift */; };
@@ -431,6 +433,8 @@
 		7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomePreviewMessageCell.xib; sourceTree = "<group>"; };
 		7FC4D66B25544EC000F1E508 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		7FC4D6702554549300F1E508 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		7FC9048F25BF322700CF911E /* TextPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPage.swift; sourceTree = "<group>"; };
+		7FC9049025BF322700CF911E /* TextPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextPage.xib; sourceTree = "<group>"; };
 		7FCE1E6624F6FA73000499EC /* AdminPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPage.swift; sourceTree = "<group>"; };
 		7FCE1E6724F6FA73000499EC /* AdminPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminPage.xib; sourceTree = "<group>"; };
 		7FCFDD4224BA781F00D8660F /* DebugPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPage.swift; sourceTree = "<group>"; };
@@ -1097,6 +1101,15 @@
 			path = IncomePreviewMessageCell;
 			sourceTree = "<group>";
 		};
+		7FC9047D25BF31B600CF911E /* TextPage */ = {
+			isa = PBXGroup;
+			children = (
+				7FC9048F25BF322700CF911E /* TextPage.swift */,
+				7FC9049025BF322700CF911E /* TextPage.xib */,
+			);
+			path = TextPage;
+			sourceTree = "<group>";
+		};
 		7FCE1E6524F6FA42000499EC /* AdminPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1223,6 +1236,7 @@
 		7FFE4C6D247727C000212BAB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7FC9047D25BF31B600CF911E /* TextPage */,
 				7F4BF265258183F400B82D20 /* ConservationPage */,
 				7FE45A702501845500574B47 /* ImagePreviewPage */,
 				7F67540B24D229FE004981CC /* GameMap */,
@@ -1460,6 +1474,7 @@
 				7FBAC54224789F61007F51BC /* MarketCell.xib in Resources */,
 				7F615E162491446300006C8D /* SelectPickPage.xib in Resources */,
 				7F7DC3FC247C010E00A53E7C /* ProfilePage.xib in Resources */,
+				7FC9049225BF322700CF911E /* TextPage.xib in Resources */,
 				7F595B22247FFE7700D56E74 /* MapPage.xib in Resources */,
 				7F4BF2622581800F00B82D20 /* OutMessageCell.xib in Resources */,
 				7FBAC53B24789C7F007F51BC /* MarketPage.xib in Resources */,
@@ -1610,6 +1625,7 @@
 				7F54C50624E8E15F005E46D0 /* AddEventPage.swift in Sources */,
 				7F22CA1F255895E400F9DF27 /* MapUpdatable.swift in Sources */,
 				7F7DC40B247C747B00A53E7C /* WhiteButton.swift in Sources */,
+				7FC9049125BF322700CF911E /* TextPage.swift in Sources */,
 				7F84BFB725779F8000322CD3 /* ResetPasswordViewController.swift in Sources */,
 				7FBAC54124789F61007F51BC /* MarketCell.swift in Sources */,
 				7F521FFC24AFBE1300140156 /* KeychainManager.swift in Sources */,
