@@ -39,18 +39,22 @@ class ResetPasswordViewController: BaseViewController {
             spinner.stopAnimating()
             return
         }
-
         
+        guard oldPassword != password else {
+            PopupView(title: "", subtitle: "Пароли не могут совпадать", image: UIImage(named: "cancel")).show()
+            spinner.stopAnimating()
+            return
+        }
+
         networkManager.changePassword(currentPassword: oldPassword, newPassword: password) { [weak self] in
             self?.newPasswordField.text = ""
             self?.oldPasswordField.text = ""
             self?.secondNewPasswordField.text = ""
+            self?.spinner.stopAnimating()
             PopupView(title: "", subtitle: "Пароль успешно изменён", image: UIImage(named: "confirm")).show()
-        } failure: { error in
+        } failure: { [weak self] error in
             PopupView(title: "", subtitle: error, image: UIImage(named: "cancel")).show()
+            self?.spinner.stopAnimating()
         }
-
-        
-        spinner.stopAnimating()
     }
 }

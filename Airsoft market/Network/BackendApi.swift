@@ -61,9 +61,9 @@ extension StrikeServise: TargetType {
             return URL(string: "https://www.googleapis.com")!
         default:
             #if DEBUG
-            return URL(string: "http://18.158.147.66")!
+            return URL(string: "http://api.squadix.co")!
             #else
-            return URL(string: "http://18.158.147.66")!
+            return URL(string: "http://api.squadix.co")!
             #endif
 
         }
@@ -148,7 +148,7 @@ extension StrikeServise: TargetType {
         case .upProduct(let id):
             return "/products/\(id)/up"
         case .changePassword(_, _):
-            return "/password"
+            return "/users/me"
         }
     }
     
@@ -160,7 +160,7 @@ extension StrikeServise: TargetType {
             return .delete
         case .editPost, .editProfile, .toggleLike, .deleteToken:
             return .put
-        case .upProduct:
+        case .upProduct, .changePassword:
             return .patch
         default:
             return .get
@@ -259,7 +259,7 @@ extension StrikeServise: TargetType {
                 params["deviceId"] = uuid
             }
         case .changePassword(let oldPassword, let newPassword):
-            params["currentPassword"] = oldPassword
+            params["oldPassword"] = oldPassword
             params["newPassword"] = newPassword
         default:
             return nil
