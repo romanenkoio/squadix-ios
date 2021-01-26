@@ -40,6 +40,7 @@ class Deeplink: NSObject {
         case post
         case product
         case event
+        case restore
         case unknow
         
         static func checkLinkType(url: URL) -> DeeplinkType {
@@ -52,7 +53,12 @@ class Deeplink: NSObject {
             if url.path.contains("/news/") {
                 return .post
             }
-            return unknow
+            
+            if url.path.contains("/restore/") {
+                return .restore
+            }
+            
+            return .unknow
         }
     }
 }

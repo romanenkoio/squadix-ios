@@ -27,6 +27,8 @@ class OutMessageCell: BaseTableViewCell {
                 Deeplink.Handler.shared.handle(deeplink: Deeplink(url: url))
             case .unknow:
                 UIApplication.shared.open(url)
+            case .restore:
+                return
             }
         }
     }

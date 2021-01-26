@@ -23,7 +23,7 @@ class InMessageCell: BaseTableViewCell {
             let type = Deeplink.DeeplinkType.checkLinkType(url: url)
             
             switch type {
-            case .event, .post, .product:
+            case .event, .post, .product, .restore:
                 Deeplink.Handler.shared.handle(deeplink: Deeplink(url: url))
             case .unknow:
                 UIApplication.shared.open(url)

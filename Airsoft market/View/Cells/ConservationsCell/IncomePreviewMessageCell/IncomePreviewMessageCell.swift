@@ -32,7 +32,7 @@ class IncomePreviewMessageCell: BaseTableViewCell {
             let type = Deeplink.DeeplinkType.checkLinkType(url: url)
             
             switch type {
-            case .event, .post, .product:
+            case .event, .post, .product, .restore:
                 Deeplink.Handler.shared.handle(deeplink: Deeplink(url: url))
             case .unknow:
                 UIApplication.shared.open(url)
@@ -73,7 +73,7 @@ class IncomePreviewMessageCell: BaseTableViewCell {
                 self?.slider.setupImagesWithUrls(product.picturesUrl)
                 self?.previewNameLabel.text = "\(product.description ?? "")"
             }
-        case .unknow:
+        case .unknow, .restore:
             print("Пися")
         }
     }
