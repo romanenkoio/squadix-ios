@@ -56,99 +56,97 @@ extension StrikeServise: TargetType {
     var baseURL: URL {
         switch self {
         case .currency:
-            return URL(string: "https://www.nbrb.by")!
+            return URL(string: Path.nbrb)!
         case .youtubeInfo:
-            return URL(string: "https://www.googleapis.com")!
+            return URL(string: Path.youtube)!
         default:
             #if DEBUG
-            return URL(string: "https://api.squadix.co")!
+            return URL(string: Path.baseUrl)!
             #else
-            return URL(string: "https://api.squadix.co")!
+            return URL(string: Path.baseUrl)!
             #endif
-
         }
     }
     
     var path: String {
         switch self {
         case .login:
-            return "/signin"
+            return Path.Users.login
         case .registration:
-            return "/users"
+            return Path.Users.path
         case .currency:
-            return "/api/exrates/rates/145"
+            return Path.Additional.nbrb
         case .currentUser:
-            return "/users/me"
+            return Path.Users.current
         case .posts:
-            return "/posts"
+            return Path.Posts.path
         case .userById(let id):
-            return "/users/\(id)"
+            return Path.Users.path + "/\(id)"
         case .youtubeInfo:
-            return "/youtube/v3/videos"
+            return Path.Additional.youtube
         case .createPost:
-            return "/posts"
+            return Path.Posts.path
         case .deletePost(let id):
-            return "/posts/\(id)"
+            return Path.Posts.path + "/\(id)"
         case .editPost(let post):
-            return "/posts/\(post.id)"
+            return Path.Posts.path + "/\(post.id)"
         case .uploadAvatar:
-            return "/users/me/avatar"
+            return Path.Users.uploadAvatar
         case .editProfile:
-            return "/users/me"
+            return Path.Users.current
         case .createEvent:
-            return "/events"
+            return Path.Events.path
         case .getUserPosts:
-            return "/posts/"
+            return Path.Posts.userPost
         case .events:
-            return "/events"
+            return Path.Events.path
         case .deleteEvent(let id):
-            return "/events/\(id)"
+            return Path.Events.path + "/\(id)"
         case .activeProductsWithFilters:
-            return "/products/filter"
-//            return "/products/active"
+            return Path.Products.filters
         case .deleteProduct(let id):
-            return "/products/\(id)"
+            return Path.Products.path + "/\(id)"
         case .saveProduct:
-            return "/products"
+            return Path.Products.path
         case .getProductByUser:
-            return "/products/"
+            return Path.Products.path + "/"
         case .getAllUsers:
-            return "/users"
+            return Path.Users.path
         case .moderatingProducts:
-            return "/products/moderating"
+            return Path.Products.moderating
         case .updateProductStatus(let productID, _, _):
-            return "/products/\(productID)/status"
+            return Path.Products.updateStatus(productID)
         case .getCategories:
-            return "/categories"
+            return Path.Categories.path
         case .toggleLike(let postID, let type):
             switch type {
             case .event:
-                return "/events/\(postID)/like"
+                return Path.Events.toogleEventLike(postID)
             case .feed:
-                return "/posts/\(postID)/like"
+                return Path.Posts.tooglePostLike(postID)
             default:
                 return "error"
             }
         case .getPostById(let id):
-            return "/posts/\(id)"
+            return Path.Posts.path + "/\(id)"
         case .getEventById(let id):
-            return "/events/\(id)"
+            return Path.Events.path + "/\(id)"
         case .getProductById(let id):
-            return "/products/\(id)"
+            return Path.Products.path + "/\(id)"
         case .createCategory:
-            return "/categories"
+            return Path.Categories.path
         case .registerToken:
-            return "/devices"
+            return Path.Device.path
         case .getNotifications:
-            return "/notifications/me"
+            return Path.Notifications.notifications
         case .deleteCategory(let id):
-            return "/categories/\(id)"
+            return Path.Categories.path + "/\(id)"
         case .deleteToken:
-            return "/devices"
+            return Path.Device.path
         case .upProduct(let id):
-            return "/products/\(id)/up"
+            return Path.Products.upProduct(id)
         case .changePassword(_, _):
-            return "/users/me"
+            return Path.Users.current
         }
     }
     
