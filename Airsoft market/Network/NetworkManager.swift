@@ -235,7 +235,7 @@ final class NetworkManager {
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
-                guard let events = try? response.map(Events.self) else {
+                guard let events = try? response.mapObject(Events.self) else {
                     failure("Cannot load events feed")
                     return
                 }
@@ -452,7 +452,7 @@ final class NetworkManager {
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
-                guard let post = try? response.map(Event.self) else {
+                guard let post = try? response.mapObject(Event.self) else {
                     failure?("Cannot load event")
                     return
                 }

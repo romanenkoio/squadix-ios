@@ -8,12 +8,9 @@
 
 import Foundation
 import UIKit
+import ObjectMapper
 
-class Event: Decodable {
-    var shortDescription: String!
-    var description: String!
-    var authorID: Int!
-    var imageUrls: [String]!
+class Event: BasePost {
     var createdAt: Date!
     var eventAdress: String?
     var region: String?
@@ -24,12 +21,54 @@ class Event: Decodable {
     var eventLongitude: Double?
     var eventDate: Date!
     var startTime: Date!
-    var id: Int = 0
-    var authorName: String!
-    var authorAvatarUrl: String?
-    var likesCount: Int = 0
-    var isLiked = false
-    var isPreview = false
+    
+    required init?(map: Map) {
+        super.init(map: map)
+        mapping(map: map)
+    }
+    
+    override init() {
+        super.init()
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+        let formatter = ISO8601DateFormatter()
+        eventAdress             <- map["eventAddress"]
+        region                  <- map["country"]
+        eventStartAdress        <- map["eventStartAddress"]
+        eventStartLatitude      <- map["eventStartLatitude"]
+        eventStartLongitude     <- map["eventStartLongitude"]
+        eventLatitude           <- map["eventLatitude"]
+        eventLongitude          <- map["eventLongitude"]
+        
+        
+        if let created = map["eventDate"].currentValue as? String {
+            if let localDate = formatter.date(from: created) {
+                self.eventDate = localDate
+            } else {
+                self.eventDate = nil
+            }
+        }
+        
+        if let created = map["startTime"].currentValue as? String {
+            if let localDate = formatter.date(from: created) {
+                self.startTime = localDate
+            } else {
+                self.startTime = nil
+            }
+        }
+        
+        if let created = map["createdAt"].currentValue as? String {
+            let eventFormatter = DateFormatter()
+            eventFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            if let localDate = eventFormatter.date(from: created) {
+                self.createdAt = localDate
+            } else {
+                self.createdAt = nil
+            }
+        }
+    }
     
     func asParams(with images: [UIImage]) -> [String: Any] {
         var params = [String: Any]()
@@ -69,106 +108,20 @@ class Event: Decodable {
         
         return params
     }
-    
-    
-    private enum CodingKeys: String, CodingKey {
-        case shortDescription
-        case description
-        case authorId
-        case imageUrls
-        case createdAt
-        case eventAddress
-        case country
-        case eventStartAddress
-        case eventStartLatitude
-        case eventStartLongitude
-        case eventLatitude
-        case eventLongitude
-        case eventDate
-        case contacts
-        case startTime
-        case id
-        case authorName
-        case authorAvatarUrl
-        case likesCount
-        case liked
-    }
-    
-    init() {
-    }
-    
-    required init(from decoder: Decoder) throws {
-        let formatter = ISO8601DateFormatter()
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        shortDescription = try container.decodeIfPresent(String.self, forKey: .shortDescription)
-        self.description = try container.decode(String.self, forKey: .description)
-        authorID = try container.decode(Int.self, forKey: .authorId)
-        imageUrls = try container.decode([String].self, forKey: .imageUrls)
-        
-        if let created = try container.decodeIfPresent(String.self, forKey: .createdAt) {
-            let eventFormatter = DateFormatter()
-            eventFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-            if let localDate = eventFormatter.date(from: created) {
-                self.createdAt = localDate
-            } else {
-                self.createdAt = nil
-            }
-        }
-        
-        eventAdress = try container.decode(String.self, forKey: .eventAddress)
-        region = try container.decode(String.self, forKey: .country)
-        eventStartAdress = try container.decode(String.self, forKey: .eventStartAddress)
-        eventStartLatitude = try container.decode(Double.self, forKey: .eventStartLatitude)
-        eventStartLongitude = try container.decode(Double.self, forKey: .eventStartLongitude)
-        eventLatitude = try container.decode(Double.self, forKey: .eventLatitude)
-        eventLongitude = try container.decode(Double.self, forKey: .eventLongitude)
-        likesCount = try container.decode(Int.self, forKey: .likesCount)
-        isLiked = try container.decode(Bool.self, forKey: .liked)
-        
-        
-        if let created = try container.decodeIfPresent(String.self, forKey: .eventDate) {
-          
-            if let localDate = formatter.date(from: created) {
-                self.eventDate = localDate
-            } else {
-                self.eventDate = nil
-            }
-        }
-        
-        
-        if let start = try container.decodeIfPresent(String.self, forKey: .startTime) {
-            if let localDate = formatter.date(from: start) {
-                self.startTime = localDate
-            } else {
-                self.startTime = nil
-            }
-        }
-        
-        id = try container.decode(Int.self, forKey: .id)
-        authorName = try container.decode(String.self, forKey: .authorName)
-        
-        if let authorAvatarUrl = try container.decodeIfPresent(String.self, forKey: .authorAvatarUrl) {
-            self.authorAvatarUrl = authorAvatarUrl
-        }
-    }
 }
 
-
-class Events: Decodable {
+class Events: Mappable {
     var content: [Event]!
     var totalElements: Int!
     var totalPages: Int!
     
-    private enum CodingKeys: String, CodingKey {
-         case content
-         case totalElements
-         case totalPages
-     }
+    required init?(map: Map) {
+        mapping(map: map)
+    }
     
-    required init(from decoder: Decoder) throws {
-           let container = try decoder.container(keyedBy: CodingKeys.self)
-           content = try container.decode([Event].self, forKey: .content)
-           totalElements = try container.decode(Int.self, forKey: .totalElements)
-           totalPages = try container.decode(Int.self, forKey: .totalPages)
+    func mapping(map: Map) {
+        content         <- map["content"]
+        totalElements   <- map["totalElements"]
+        totalPages      <- map["totalPages"]
     }
 }

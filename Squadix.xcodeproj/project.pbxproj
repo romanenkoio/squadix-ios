@@ -12,6 +12,7 @@
 		7F01C1BC254E090F007CC5A9 /* ProductCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01C1BB254E090F007CC5A9 /* ProductCategories.swift */; };
 		7F03F151248404A300EF0749 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F03F150248404A300EF0749 /* NetworkManager.swift */; };
 		7F14047624885D640028C907 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F14047524885D640028C907 /* BaseTableViewCell.swift */; };
+		7F15DCBA25C4AAC700FF277A /* BasePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F15DCB925C4AAC700FF277A /* BasePost.swift */; };
 		7F1DF26D25584ECF00D4E7CF /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1DF26C25584ECF00D4E7CF /* Validator.swift */; };
 		7F22CA1F255895E400F9DF27 /* MapUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */; };
 		7F22CA33255897D500F9DF27 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F22CA32255897D500F9DF27 /* General.swift */; };
@@ -298,6 +299,7 @@
 		7F01C1BB254E090F007CC5A9 /* ProductCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategories.swift; sourceTree = "<group>"; };
 		7F03F150248404A300EF0749 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7F14047524885D640028C907 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		7F15DCB925C4AAC700FF277A /* BasePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePost.swift; sourceTree = "<group>"; };
 		7F1DF26C25584ECF00D4E7CF /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUpdatable.swift; sourceTree = "<group>"; };
 		7F22CA32255897D500F9DF27 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 				7F2FD855255870F7007EA305 /* Bookmark.swift */,
 				7FEE9C1F257D91F900031D43 /* UserNotifications.swift */,
 				7FA9E85D25B6341F0085EA34 /* Message.swift */,
+				7F15DCB925C4AAC700FF277A /* BasePost.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1677,6 +1680,7 @@
 				7FBAC53A24789C7F007F51BC /* MarketPage.swift in Sources */,
 				7FCE1E6824F6FA73000499EC /* AdminPage.swift in Sources */,
 				7F295CCB247ADFBD00B47F1F /* DateUtils.swift in Sources */,
+				7F15DCBA25C4AAC700FF277A /* BasePost.swift in Sources */,
 				7F50F65E247889DD003E3FB4 /* NewsPage+TableView.swift in Sources */,
 				7F9D37D925549DD200BDAC1E /* DeepLink+Handler.swift in Sources */,
 				7F7DC3FB247C010E00A53E7C /* ProfilePage.swift in Sources */,

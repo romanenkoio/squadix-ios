@@ -15,12 +15,7 @@ enum PostContentType: String {
     case none = "none"
 }
 
-class Post: Mappable {
-
-    var shortDescription: String = ""
-    var description: String = ""
-    var authorID: Int = 0
-    var imageUrls: [String]!
+class Post: BasePost {
     var previewImages: [UIImage] = []
     var videoUrl: String?
     var postDate: String?
@@ -39,35 +34,24 @@ class Post: Mappable {
     }
     var contentType: PostContentType = .none
     var region: String = ""
-    var id: Int = 0
-    var authorName: String = ""
-    var authorAvatarUrl: String?
-    var likesCount: Int = 0
-    var isLiked = false
-    var isPreview = false
+
 
     required init?(map: Map) {
+        super.init(map: map)
         mapping(map: map)
     }
     
-    init() {
+    override init() {
+        super.init()
     }
     
-    func mapping(map: Map) {
-        shortDescription    <- map["shortDescription"]
-        description         <- map["description"]
-        authorID            <- map["authorId"]
-        imageUrls           <- map["imageUrls"]
+    override func mapping(map: Map) {
+        super.mapping(map: map)
         videoUrl            <- map["videoUrl"]
         postDate            <- map["createdAt"]
         source              <- map["source"]
         rawContentType      <- map["contentType"]
         region              <- map["region"]
-        id                  <- map["id"]
-        authorName          <- map["authorName"]
-        authorAvatarUrl     <- map["authorAvatarUrl"]
-        likesCount          <- map["likesCount"]
-        isLiked             <- map["liked"]
     }
     
     func asVideoParams() -> [String: Any] {
@@ -89,7 +73,6 @@ class Post: Mappable {
         return params
     }
 }
-
 
 class Posts: Mappable {
     var content: [Post]!

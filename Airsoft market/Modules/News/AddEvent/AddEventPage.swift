@@ -137,7 +137,9 @@ class AddEventPage: BaseViewController {
         event.eventStartLongitude = startCoord.longitude
         event.eventLatitude = coord.latitude
         event.eventLongitude = coord.longitude
-        event.shortDescription = titleLabel.text
+        if let text = titleLabel.text {
+            event.shortDescription = text
+        }
         event.startTime = startDate
         event.authorID = KeychainManager.profileID
         

@@ -51,7 +51,7 @@ class NewsCell: BaseTableViewCell {
     
     func setupNews(with post: Post) {
         currentPost = post
-        if let pic = post.authorAvatarUrl {
+        if let pic = post.authorAvatarURL {
             authorAvatar.loadImageWith(pic)
         } else {
             authorAvatar.image = UIImage(named: "avatar_placeholder")
@@ -100,7 +100,7 @@ class NewsCell: BaseTableViewCell {
     
     func setupEvent(with event: Event) {
         currentEvent = event
-        if let pic = event.authorAvatarUrl {
+        if let pic = event.authorAvatarURL {
             authorAvatar.loadImageWith(pic)
         } else {
             authorAvatar.image = UIImage(named: "avatar_placeholder")

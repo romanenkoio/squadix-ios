@@ -50,9 +50,7 @@ class IncomePreviewMessageCell: BaseTableViewCell {
         case .event:
             service.getEventByID(postID: id) { [weak self] event in
                 self?.slider.setupImagesWithUrls(event.imageUrls)
-                if let description = event.shortDescription {
-                    self?.previewNameLabel.text = "\(description)"
-                }
+                self?.previewNameLabel.text = "\(event.shortDescription)"
             }
         case .post:
             service.getPostByID(postID: id) { [weak self] post in

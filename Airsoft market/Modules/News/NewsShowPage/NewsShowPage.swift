@@ -176,7 +176,7 @@ extension NewsShowPage: UITableViewDataSource {
                     profileCell.action = { [weak self] in
                         self?.navigationController?.pushViewController(VCFabric.getProfilePage(for: post.authorID), animated: true)
                     }
-                    if let pic = post.authorAvatarUrl {
+                    if let pic = post.authorAvatarURL {
                         profileCell.profileAvatarImage.loadImageWith(pic)
                     }
                 } else {
