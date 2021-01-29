@@ -61,9 +61,9 @@ extension StrikeServise: TargetType {
             return URL(string: "https://www.googleapis.com")!
         default:
             #if DEBUG
-            return URL(string: "http://api.squadix.co")!
+            return URL(string: "https://api.squadix.co")!
             #else
-            return URL(string: "http://api.squadix.co")!
+            return URL(string: "https://api.squadix.co")!
             #endif
 
         }
