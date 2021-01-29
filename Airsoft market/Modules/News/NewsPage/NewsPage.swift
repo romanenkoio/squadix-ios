@@ -482,19 +482,20 @@ extension NewsPage: UIContextMenuInteractionDelegate {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: { () -> UIViewController? in
             guard let inter = interaction as? ObjectInteraction else { return nil }
             let vc = ImagePreviewPage.loadFromNib()
-            guard let post = inter.object as? Post, let pic = post.authorAvatarURL else { return nil }
+        
+            guard let post = inter.object as? BasePost, let pic = post.authorAvatarURL else { return nil }
             vc.imageUrl = pic
             return vc
         }) { _ -> UIMenu? in
             
             let favorite = UIAction(title: "Перейти в профиль", image: UIImage(named: "profile")) { _ in
-                guard let inter = interaction as? ObjectInteraction, let post = inter.object as? Post else { return }
+                guard let inter = interaction as? ObjectInteraction, let post = inter.object as? BasePost else { return }
                 self.navigationController?.pushViewController(VCFabric.getProfilePage(for: post.authorID), animated: true)
             }
             
             if let sPost = interaction as? ObjectInteraction, let post = sPost.object as? Post, post.authorAvatarURL != nil {
                 let save = UIAction(title: "Сохранить фото", image: UIImage(systemName: "square.and.arrow.down")) { _ in
-                    guard let inter = interaction as? ObjectInteraction, let post = inter.object as? Post else { return }
+                    guard let inter = interaction as? ObjectInteraction, let post = inter.object as? BasePost else { return }
                     guard let pic = post.authorAvatarURL else { return }
                     let image = UIImage()
                     image.loadFromURL(from: pic, completition: { image in
