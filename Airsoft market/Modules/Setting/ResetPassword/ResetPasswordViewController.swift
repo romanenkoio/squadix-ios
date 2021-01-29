@@ -14,40 +14,41 @@ class ResetPasswordViewController: BaseViewController {
     @IBOutlet weak var oldPasswordField: StrikeInputField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    var isRestore: Bool = false
+    var restoreToken: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Смена пароля"
-        oldPasswordField.isHidden = isRestore
+        oldPasswordField.isHidden = restoreToken != nil
         
-        navigationController?.setNavigationBarHidden(isRestore, animated: true)
-        tabBarController?.tabBar.isHidden = isRestore
+        navigationController?.setNavigationBarHidden(restoreToken != nil, animated: true)
+        tabBarController?.tabBar.isHidden = restoreToken != nil
     }
     
     @IBAction func savePasswordAction(_ sender: Any) {
         spinner.startAnimating()
-        if isRestore {
+        
+        guard let oldPassword = oldPasswordField.text, !oldPassword.isEmpty, let password = newPasswordField.text, !password.isEmpty, let secondPasssword = secondNewPasswordField.text, !secondPasssword.isEmpty else {
+            PopupView(title: "", subtitle: "Поля не могут быть пустыми", image: UIImage(named: "cancel")).show()
+            spinner.stopAnimating()
+            return
+        }
+        
+        guard  password == secondPasssword else {
+            PopupView(title: "", subtitle: "Пароли должны совпадать", image: UIImage(named: "cancel")).show()
+            spinner.stopAnimating()
+            return
+        }
+        
+        guard Validator.shared.validate(string: password, pattern: Validator.Regexp.password.rawValue), Validator.shared.validate(string: secondPasssword, pattern: Validator.Regexp.password.rawValue) else {
+            PopupView(title: "", subtitle: "Пароли должны быть от 8 символов", image: UIImage(named: "cancel")).show()
+            spinner.stopAnimating()
+            return
+        }
+        
+        if restoreToken != nil {
             
         } else {
-            guard let oldPassword = oldPasswordField.text, !oldPassword.isEmpty, let password = newPasswordField.text, !password.isEmpty, let secondPasssword = secondNewPasswordField.text, !secondPasssword.isEmpty else {
-                PopupView(title: "", subtitle: "Поля не могут быть пустыми", image: UIImage(named: "cancel")).show()
-                spinner.stopAnimating()
-                return
-            }
-            
-            guard  password == secondPasssword else {
-                PopupView(title: "", subtitle: "Пароли должны совпадать", image: UIImage(named: "cancel")).show()
-                spinner.stopAnimating()
-                return
-            }
-            
-            guard Validator.shared.validate(string: password, pattern: Validator.Regexp.password.rawValue), Validator.shared.validate(string: secondPasssword, pattern: Validator.Regexp.password.rawValue) else {
-                PopupView(title: "", subtitle: "Пароли должны быть от 8 символов", image: UIImage(named: "cancel")).show()
-                spinner.stopAnimating()
-                return
-            }
-            
             guard oldPassword != password else {
                 PopupView(title: "", subtitle: "Пароли не могут совпадать", image: UIImage(named: "cancel")).show()
                 spinner.stopAnimating()
@@ -76,11 +77,7 @@ extension ResetPasswordViewController: DeeplinkRoutable {
     
     static func canHandle(_ deeplink: Deeplink) -> Bool {
         guard let url = deeplink.url, url.path.contains("/restore/") else { return false }
-        let postID = url.path.matches(for: "[0-9]+").first
-        if let postID = postID, Int(postID) != nil {
-            return true
-        }
-        return false
+        return true
     }
     
     static func reuseExistingController(_ deeplink: Deeplink) -> Bool {
@@ -88,7 +85,8 @@ extension ResetPasswordViewController: DeeplinkRoutable {
     }
     
     func handle(_ deeplink: Deeplink) {
-        isRestore = true
+        guard let url = deeplink.url else {  return }
+        restoreToken = url.lastPathComponent
     }
     
     
