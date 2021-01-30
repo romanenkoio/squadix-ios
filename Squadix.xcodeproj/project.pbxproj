@@ -35,6 +35,9 @@
 		7F2FD85B25587623007EA305 /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2FD85925587623007EA305 /* BookmarkCell.swift */; };
 		7F2FD85C25587623007EA305 /* BookmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F2FD85A25587623007EA305 /* BookmarkCell.xib */; };
 		7F3723B1255472D9003AA115 /* AppDelegate+DeepLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3723B0255472D9003AA115 /* AppDelegate+DeepLinks.swift */; };
+		7F38F1BC25C5D12600FBD108 /* Rules.html in Resources */ = {isa = PBXBuildFile; fileRef = 7F38F1B925C5D12600FBD108 /* Rules.html */; };
+		7F38F1BD25C5D12600FBD108 /* TermsOfUse.html in Resources */ = {isa = PBXBuildFile; fileRef = 7F38F1BA25C5D12600FBD108 /* TermsOfUse.html */; };
+		7F38F1BE25C5D12600FBD108 /* Confidential.html in Resources */ = {isa = PBXBuildFile; fileRef = 7F38F1BB25C5D12600FBD108 /* Confidential.html */; };
 		7F3C847424D4174400D3DC4A /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C847324D4174400D3DC4A /* AppDelegate+Notifications.swift */; };
 		7F40280D24C62DB50018E49F /* AddPostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40280B24C62DB50018E49F /* AddPostPage.swift */; };
 		7F40280E24C62DB50018E49F /* AddPostPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F40280C24C62DB50018E49F /* AddPostPage.xib */; };
@@ -323,6 +326,9 @@
 		7F2FD85925587623007EA305 /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
 		7F2FD85A25587623007EA305 /* BookmarkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkCell.xib; sourceTree = "<group>"; };
 		7F3723B0255472D9003AA115 /* AppDelegate+DeepLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+DeepLinks.swift"; sourceTree = "<group>"; };
+		7F38F1B925C5D12600FBD108 /* Rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Rules.html; sourceTree = "<group>"; };
+		7F38F1BA25C5D12600FBD108 /* TermsOfUse.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermsOfUse.html; sourceTree = "<group>"; };
+		7F38F1BB25C5D12600FBD108 /* Confidential.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Confidential.html; sourceTree = "<group>"; };
 		7F3C847324D4174400D3DC4A /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		7F3C847524D41A6900D3DC4A /* Airsoft market.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Airsoft market.entitlements"; sourceTree = "<group>"; };
 		7F40280B24C62DB50018E49F /* AddPostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostPage.swift; sourceTree = "<group>"; };
@@ -1235,6 +1241,9 @@
 				7FFE4C6224771CDB00212BAB /* Assets.xcassets */,
 				7FFE4C6424771CDB00212BAB /* LaunchScreen.storyboard */,
 				7FFE4C6724771CDB00212BAB /* Info.plist */,
+				7F38F1BA25C5D12600FBD108 /* TermsOfUse.html */,
+				7F38F1BB25C5D12600FBD108 /* Confidential.html */,
+				7F38F1B925C5D12600FBD108 /* Rules.html */,
 			);
 			path = "Airsoft market";
 			sourceTree = "<group>";
@@ -1482,6 +1491,7 @@
 				7F7DC3FC247C010E00A53E7C /* ProfilePage.xib in Resources */,
 				7FC9049225BF322700CF911E /* TextPage.xib in Resources */,
 				7F595B22247FFE7700D56E74 /* MapPage.xib in Resources */,
+				7F38F1BC25C5D12600FBD108 /* Rules.html in Resources */,
 				7F4BF2622581800F00B82D20 /* OutMessageCell.xib in Resources */,
 				7FBAC53B24789C7F007F51BC /* MarketPage.xib in Resources */,
 				7FFE4C722477280200212BAB /* LoginPage.xib in Resources */,
@@ -1493,6 +1503,7 @@
 				7F595B2D248037B700D56E74 /* CategoryCheckboxCell.xib in Resources */,
 				7F40280E24C62DB50018E49F /* AddPostPage.xib in Resources */,
 				7F904E462485ADCC00DF8AC5 /* SimpleTextCell.xib in Resources */,
+				7F38F1BD25C5D12600FBD108 /* TermsOfUse.html in Resources */,
 				7F67540F24D22A1E004981CC /* GameMapPage.xib in Resources */,
 				7F5FD059247DC93900AF7D47 /* NewsShowPage.xib in Resources */,
 				7F55F47624FCE89500F81F28 /* LikeCell.xib in Resources */,
@@ -1510,6 +1521,7 @@
 				7F817997247B03B90061EB8C /* ProductImageCell.xib in Resources */,
 				7FFE4C7724772E0100212BAB /* RegistrationPage.xib in Resources */,
 				7FBC5A2D257B002D000B037A /* NotificationCell.xib in Resources */,
+				7F38F1BE25C5D12600FBD108 /* Confidential.html in Resources */,
 				7FBE31DE25B5DBD00046898E /* IncomePreviewMessageCell.xib in Resources */,
 				7F4BF26E2581890B00B82D20 /* InMessageCell.xib in Resources */,
 				7FE45A742501848A00574B47 /* ImagePreviewPage.xib in Resources */,

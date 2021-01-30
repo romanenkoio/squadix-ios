@@ -104,6 +104,11 @@ extension SettingsPage: UITableViewDataSource {
                 settingCell.settingLabel.text = "Правила размещения объявлений"
               
                 settingCell.isUserInteractionEnabled = true
+                settingCell.action = { [weak self] in
+                    let vc = TextPage.loadFromNib()
+                    vc.type = .rules
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
                 return settingCell
             }
         case .promo:
@@ -225,8 +230,10 @@ extension SettingsPage: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
             if let settingCell = cell as? SettingsCell {
                 settingCell.settingLabel.text = "Пользовательское соглашение"
-                settingCell.action = {
-      
+                settingCell.action = { [weak self] in
+                    let vc = TextPage.loadFromNib()
+                    vc.type = .license
+                    self?.navigationController?.pushViewController(vc, animated: true)
                 }
                 return settingCell
             }
@@ -234,8 +241,10 @@ extension SettingsPage: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
             if let settingCell = cell as? SettingsCell {
                 settingCell.settingLabel.text = "Политика конфиденциальности"
-                settingCell.action = {
-    
+                settingCell.action = { [weak self] in
+                    let vc = TextPage.loadFromNib()
+                    vc.type = .confidence
+                    self?.navigationController?.pushViewController(vc, animated: true)
                 }
                 return settingCell
             }
