@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 struct ProfileRequest {
     var password: String?
@@ -44,6 +45,7 @@ class RegistrationPage: UIViewController {
     @IBOutlet weak var secondPasswordErrorLabel: UILabel!
     @IBOutlet weak var nameErrorLabel: UILabel!
     @IBOutlet weak var checkBoxButton: UIButton!
+    @IBOutlet weak var docsLabel: ActiveLabel!
     
     lazy var networkManager = NetworkManager()
     var credentials = ProfileRequest()
@@ -57,6 +59,7 @@ class RegistrationPage: UIViewController {
         doublePasswordField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         userNameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         emailField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        setupActiveLabel()
     }
     
     @IBAction func registrationAction(_ sender: Any) {
@@ -78,6 +81,41 @@ class RegistrationPage: UIViewController {
         present(alert, animated: true)
     }
     
+    func setupActiveLabel() {
+
+        let rules = ActiveType.custom(pattern: "\\s\("правилами размещения объявлений")\\b")
+        let privacy = ActiveType.custom(pattern: "\\s\("политикой конфиденциальности")\\b")
+        let terms = ActiveType.custom(pattern: "\\s\("условиями пользовательского соглашения")\\b")
+        
+        docsLabel.enabledTypes.append(privacy)
+        docsLabel.enabledTypes.append(terms)
+        docsLabel.enabledTypes.append(rules)
+        
+        docsLabel.customize {
+
+            $0.text = "Я прочёл и согласен с условиями пользовательского соглашения, правилами размещения объявлений и политикой конфиденциальности."
+            $0.numberOfLines = 0
+            $0.customColor[privacy] = .blue
+            $0.customColor[terms] = .blue
+            $0.customColor[rules] = .blue
+            
+            $0.handleCustomTap(for:  terms) { _ in
+                let vc = TextPage.loadFromNib()
+                vc.type = .license
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            $0.handleCustomTap(for:  privacy) { _ in
+                let vc = TextPage.loadFromNib()
+                vc.type = .confidence
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            $0.handleCustomTap(for:  rules) { _ in
+                let vc = TextPage.loadFromNib()
+                vc.type = .rules
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
     
     func validateRegistration()  {
         var  isValid = true

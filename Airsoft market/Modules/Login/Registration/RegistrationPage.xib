@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17504.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegistrationPage" customModule="Squadix" customModuleProvider="target">
             <connections>
                 <outlet property="checkBoxButton" destination="kyG-ol-Seo" id="4Ir-vS-XJ0"/>
+                <outlet property="docsLabel" destination="5Jn-y6-m1y" id="nNk-yC-uqZ"/>
                 <outlet property="doublePasswordField" destination="AiC-j8-5bE" id="Tv4-Ek-bhf"/>
                 <outlet property="emailErrorLabel" destination="eVf-M0-1rs" id="gPO-Da-lRH"/>
                 <outlet property="emailField" destination="bay-Hd-ci5" id="8e2-Jy-w8c"/>
@@ -30,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYe-V8-jVM">
-                    <rect key="frame" x="20" y="240.5" width="374" height="415"/>
+                    <rect key="frame" x="20" y="222.5" width="374" height="451"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8E5-0f-Gw7" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
                             <rect key="frame" x="20" y="74" width="334" height="34"/>
@@ -63,7 +64,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7P-NY-V6x" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="20" y="355" width="334" height="40"/>
+                            <rect key="frame" x="20" y="391" width="334" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="WQs-FS-G4j"/>
                             </constraints>
@@ -106,14 +107,14 @@
                             <color key="textColor" systemColor="systemRedColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Я прочёл и согласен с условиями пользовательского соглашения" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jn-y6-m1y">
-                            <rect key="frame" x="70" y="269" width="284" height="36"/>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Я прочёл и согласен с условиями пользовательского соглашения, правилами размещения объявлений и политикой конфиденциальности" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jn-y6-m1y" customClass="ActiveLabel" customModule="ActiveLabel">
+                            <rect key="frame" x="70" y="269" width="284" height="72"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyG-ol-Seo">
-                            <rect key="frame" x="20" y="269.5" width="35" height="35"/>
+                            <rect key="frame" x="20" y="287.5" width="35" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="1qv-oA-vbN"/>
                                 <constraint firstAttribute="width" constant="35" id="Wov-GS-NBh"/>
@@ -178,6 +179,11 @@
             <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
         </view>
     </objects>
+    <designables>
+        <designable name="5Jn-y6-m1y">
+            <size key="intrinsicContentSize" width="995" height="18"/>
+        </designable>
+    </designables>
     <resources>
         <image name="checkBox" width="25" height="25"/>
         <systemColor name="systemBackgroundColor">
