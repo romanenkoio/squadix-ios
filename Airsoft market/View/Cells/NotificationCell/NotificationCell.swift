@@ -31,15 +31,22 @@ class NotificationCell: BaseTableViewCell {
                 top.navigationController?.pushViewController(VCFabric.getProfilePage(for: id), animated: true)
             }
         case .decline:
-            notificationImageView.image = UIImage(named: "decline")
+            if let url = notification.url, let prodUrl = URL(string: url) {
+                getProduct(url: prodUrl)
+            }
+            typeImageView.image = UIImage(named: "decline")
         case .aprooved:
-            notificationImageView.image = UIImage(named: "ok")
-            
+    
+            typeImageView.image = UIImage(named: "ok")
             action = {
                 if let url = notification.url {
                     Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
                 }
             }
+            if let url = notification.url, let prodUrl = URL(string: url) {
+                getProduct(url: prodUrl)
+            }
+
         case .system:
             action = {
                 if let urlString = notification.url, let url = URL(string: urlString) {
@@ -51,7 +58,7 @@ class NotificationCell: BaseTableViewCell {
             print("Error")
         }
         
-        typeImageView.isHidden = notification.type != .some(.like)
+        typeImageView.isHidden = notification.type == .some(.system)
 
         messageTextLabel.text = notification.message
         
@@ -72,10 +79,17 @@ class NotificationCell: BaseTableViewCell {
         action?()
     }
     
+    func getProduct(url: URL) {
+        guard let postID = url.path.matches(for: "[0-9]+").first, let id = Int(postID) else { return }
+        networkManager.getProductByID(postID: id) { [weak self] product in
+            self?.notificationImageView.loadImageWith(product.picturesUrl[0])
+        }
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         notificationImageView.isHidden = false
-        notificationImageView.image = UIImage(named: "avatar_placeholder")
+        notificationImageView.image = UIImage(named: "placeholder")
         avatarAction = nil
     }
 }

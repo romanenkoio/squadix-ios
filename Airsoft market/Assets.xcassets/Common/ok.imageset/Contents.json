@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "Group 85.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Group 85@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "iconfinder_11_330397.png",
+      "filename" : "Group 85@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
