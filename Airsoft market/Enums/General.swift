@@ -16,6 +16,27 @@ class Common {
         case gameCoordinate
     }
     
+    enum ImageQuality: Float {
+        case high = 1.0
+        case normal = 0.75
+        case medium = 0.5
+        case low = 0.25
+        
+        var settingName: String {
+            switch self {
+            case .high:
+                return "Высокое"
+            case .low:
+                return "Низкое"
+            case .normal:
+                return "Нормальное"
+            case .medium:
+                return "Среднее"
+            }
+        }
+
+    }
+    
     enum Roles: String {
         case admin
         case moderator
@@ -74,5 +95,7 @@ class Common {
             return .unknow
         }
     }
+    
+    
 }
 

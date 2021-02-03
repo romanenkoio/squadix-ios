@@ -59,4 +59,14 @@ final class UsersData {
             UserDefaults.standard.setValue(newValue, forKey: #function)
         }
     }
+    
+    var quality: Float {
+        get {
+            let savedQuality = UserDefaults.standard.value(forKey: #function) as? Float
+            return savedQuality ?? Common.ImageQuality.normal.rawValue
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: #function)
+        }
+    }
 }

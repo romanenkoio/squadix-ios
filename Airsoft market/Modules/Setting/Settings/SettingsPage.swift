@@ -27,11 +27,12 @@ enum SettingsMenu {
     case chat
     case sendNotification
     case categories
+    case quality
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
-        let actionSection: [SettingsMenu] = [.changePassword, .logout]
+        let actionSection: [SettingsMenu] = [.quality, .changePassword, .logout]
         let developerSection: [SettingsMenu] = [.chat, .debug, .forceCrash]
         let adminSection: [SettingsMenu] = [.categories, .sendNotification]
         
@@ -223,6 +224,33 @@ extension SettingsPage: UITableViewDataSource {
                 settingCell.settingLabel.text = "Chat"
                 settingCell.action = {
                     self.navigationController?.pushViewController(ConservationPage.loadFromNib(), animated: true)
+                }
+                return settingCell
+            }
+        case .quality:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Экономия трафика"
+                settingCell.action = {
+                    
+                    let menu: [Common.ImageQuality] = [.high, .normal, .medium, .low]
+                    let alert = UIAlertController(title: "", message: "Выберите качество отправляемых изображений", preferredStyle: .actionSheet)
+                    
+                    for item in menu {
+                        
+                        let action = UIAlertAction(title: item.settingName, style: UIAlertAction.Style.default, handler: { _ in
+                            UsersData.shared.quality = item.rawValue
+                        })
+                        
+                        if UsersData.shared.quality == item.rawValue {
+                            action.setValue(UIImage(named: "ok")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
+                        }
+                        alert.addAction(action)
+                        
+                    }
+                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
+                    
+                    self.present(alert, animated: true, completion: nil)
                 }
                 return settingCell
             }

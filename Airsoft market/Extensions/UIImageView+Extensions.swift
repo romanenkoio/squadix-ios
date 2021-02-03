@@ -20,7 +20,7 @@ extension UIImageView {
 
 extension UIImage {
     func toBase64() -> String? {
-        guard let imageData = self.jpegData(compressionQuality: 0.2) else { return nil }
+        guard let imageData = self.jpegData(compressionQuality: CGFloat(UsersData.shared.quality)) else { return nil }
         return imageData.base64EncodedString(options: .endLineWithCarriageReturn)
     }
     
