@@ -62,6 +62,7 @@ extension StrikeServise: TargetType {
         default:
             #if DEBUG
             return URL(string: Path.baseUrl)!
+//            return URL(string: Path.baseDevUrl)!
             #else
             return URL(string: Path.baseUrl)!
             #endif

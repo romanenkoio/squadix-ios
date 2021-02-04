@@ -101,7 +101,7 @@ class AddProductPage: BaseViewController {
         }
         
         product.productCategory = categoryTextField.text
-        product.description = descriptionTextView.text
+        product.description = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         product.productName = productTextField.text
         product.price = prodPrice
         product.productRegion = regionTextField.text
