@@ -20,7 +20,7 @@ class ProfileSearchCell: BaseTableViewCell {
     }
 
     override func prepareForReuse() {
-        
+        profileAvatar.image = UIImage(named: "avatar_placeholder")
     }
     
 }
