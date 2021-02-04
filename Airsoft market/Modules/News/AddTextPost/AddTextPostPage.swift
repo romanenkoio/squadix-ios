@@ -16,7 +16,7 @@ class AddTextPostPage: BaseViewController {
     @IBOutlet weak var previewButton: WhiteButton!
     @IBOutlet weak var postButton: OliveButton!
     
-    
+    weak var updatableDelegate: UpdateFeedDelegate?
     var imagePicker = UIImagePickerController()
     var imageData: [UIImage] = []
     var selectedIndex = 0
@@ -39,6 +39,7 @@ class AddTextPostPage: BaseViewController {
         spinner.startAnimating()
         let manager = NetworkManager()
         manager.postVideo(post: post, completion: { [weak self] in
+            self?.updatableDelegate?.updateFeed(type: .feed)
             self?.navigationController?.popViewController(animated: true)
             self?.spinner.stopAnimating()
             }, failure: { [weak self] error in

@@ -26,6 +26,7 @@ class AddProductPage: BaseViewController {
     var imageData: [UIImage] = []
     var selectedIndex = 0
     var categories: [String] = []
+    weak var delegate: Updatable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +111,9 @@ class AddProductPage: BaseViewController {
             PopupView(title: "Объявление на модерации", subtitle: nil, image: UIImage(named: "confirm")).show()
             self?.spinner.stopAnimating()
             self?.navigationController?.popViewController(animated: true)
+            self?.delegate?.update()
         }) { [weak self] error in
+            PopupView(title: "Ошибка. Попробуйте позже", subtitle: nil, image: UIImage(named: "cancel")).show()
             self?.postButton.isEnabled = true
             self?.spinner.stopAnimating()
             print(error ?? "Error")

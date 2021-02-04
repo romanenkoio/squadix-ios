@@ -61,6 +61,7 @@ class ProductPage: BaseViewController {
     }
     
     func configureUI() {
+        guard product.authorName != nil else { return }
         title = product.productName
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
         
@@ -294,5 +295,42 @@ extension ProductPage: UITableViewDataSource {
     }
 }
 
+extension ProductPage: DeeplinkRoutable {
+    static func initControllerFromStoryboard() -> DeeplinkRoutable? {
+        return VCFabric.getProductPage(product: MarketProduct())
+    }
+    
+    static func canHandle(_ deeplink: Deeplink) -> Bool {
+        guard let url = deeplink.url, url.path.contains("/products/") else { return false }
+        let postID = url.path.matches(for: "[0-9]+").first
+        if let postID = postID, Int(postID) != nil {
+            return true
+        }
+        return false
+    }
+    
+    static func reuseExistingController(_ deeplink: Deeplink) -> Bool {
+        return true
+    }
+    
+    func handle(_ deeplink: Deeplink) {
+        guard let url = deeplink.url,  let postID = url.path.matches(for: "[0-9]+").first, let id = Int(postID) else { return }
+        
+        networkManager.getProductByID(postID: id) { [weak self] product in
+            if product.status == .some(.active) {
+                self?.product = product
+                self?.configureUI()
+                self?.tableView.reloadData()
+//                self?.navigationController?.pushViewController(VCFabric.getProductPage(product: product), animated: true)
+            } else {
+                self?.navigationController?.popViewController(animated: true)
+                PopupView(title: "", subtitle: "Объявление недоступно", image: UIImage(named: "cancel")).show()
+            }
+        } failure: { _ in
+            PopupView.init(title: "", subtitle: "Объявление не найдено", image: UIImage(named: "cancel")).show()
+        }
+        
+    }
+}
 
 

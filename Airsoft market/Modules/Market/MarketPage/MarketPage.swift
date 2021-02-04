@@ -116,7 +116,8 @@ class MarketPage: BaseViewController {
                     return
                 }
                 self?.spinner.stopAnimating()
-                self?.navigationController?.pushViewController(VCFabric.getAddProductPage(categories: categories.map({$0.name}).sorted(by: {$0 > $1})), animated: true)
+                guard let sSelf = self else { return }
+                self?.navigationController?.pushViewController(VCFabric.getAddProductPage(categories: categories.map({$0.name}).sorted(by: {$0 > $1}), delegate: sSelf), animated: true)
             })
             
         }, failure: { [weak self] error in
@@ -377,45 +378,17 @@ extension MarketPage: UpdateProductFeed {
     }
 }
 
+extension MarketPage: Updatable {
+    func update() {
+        page = 0
+        loadData()
+    }
+}
+
 extension MarketPage: UpdateWithFiltersDelegate {
     func updateWithFilters() {
         page = 0
         loadData()
         print("[NETWORK] reload products with filters")
-    }
-}
-
-
-extension MarketPage: DeeplinkRoutable {
-    static func initControllerFromStoryboard() -> DeeplinkRoutable? {
-        return VCFabric.getMarketPage()
-    }
-    
-    static func canHandle(_ deeplink: Deeplink) -> Bool {
-        guard let url = deeplink.url, url.path.contains("/products/") else { return false }
-        let postID = url.path.matches(for: "[0-9]+").first
-        if let postID = postID, Int(postID) != nil {
-            return true
-        }
-        return false
-    }
-    
-    static func reuseExistingController(_ deeplink: Deeplink) -> Bool {
-        return true
-    }
-    
-    func handle(_ deeplink: Deeplink) {
-        guard let url = deeplink.url,  let postID = url.path.matches(for: "[0-9]+").first, let id = Int(postID) else { return }
-        
-        networkManager.getProductByID(postID: id) { [weak self] product in
-            if product.status == .some(.active) {
-                self?.navigationController?.pushViewController(VCFabric.getProductPage(product: product), animated: true)
-            } else {
-                PopupView(title: "", subtitle: "Объявление недоступно", image: UIImage(named: "cancel")).show()
-            }
-        } failure: { _ in
-            PopupView.init(title: "", subtitle: "Объявление не найдено", image: UIImage(named: "cancel")).show()
-        }
-        
     }
 }

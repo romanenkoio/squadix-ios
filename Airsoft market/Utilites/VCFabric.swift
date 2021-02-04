@@ -59,8 +59,9 @@ class VCFabric {
         return vc
     }
     
-    static func getAddProductPage(categories: [String]) -> AddProductPage {
+    static func getAddProductPage(categories: [String], delegate: Updatable) -> AddProductPage {
         let vc = AddProductPage.loadFromNib()
+        vc.delegate = delegate
         vc.categories = categories
         return vc
     }

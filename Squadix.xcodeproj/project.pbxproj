@@ -41,6 +41,7 @@
 		7F3C847424D4174400D3DC4A /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C847324D4174400D3DC4A /* AppDelegate+Notifications.swift */; };
 		7F40280D24C62DB50018E49F /* AddPostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40280B24C62DB50018E49F /* AddPostPage.swift */; };
 		7F40280E24C62DB50018E49F /* AddPostPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F40280C24C62DB50018E49F /* AddPostPage.xib */; };
+		7F44868225CC79520055C511 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F44868125CC79520055C511 /* Updatable.swift */; };
 		7F4A8B2324CF8C24006B3856 /* UINavigation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4A8B2224CF8C24006B3856 /* UINavigation+Extensions.swift */; };
 		7F4BF2612581800F00B82D20 /* OutMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4BF25F2581800F00B82D20 /* OutMessageCell.swift */; };
 		7F4BF2622581800F00B82D20 /* OutMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4BF2602581800F00B82D20 /* OutMessageCell.xib */; };
@@ -333,6 +334,7 @@
 		7F3C847524D41A6900D3DC4A /* Airsoft market.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Airsoft market.entitlements"; sourceTree = "<group>"; };
 		7F40280B24C62DB50018E49F /* AddPostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostPage.swift; sourceTree = "<group>"; };
 		7F40280C24C62DB50018E49F /* AddPostPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPostPage.xib; sourceTree = "<group>"; };
+		7F44868125CC79520055C511 /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
 		7F4A8B2224CF8C24006B3856 /* UINavigation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extensions.swift"; sourceTree = "<group>"; };
 		7F4BF25F2581800F00B82D20 /* OutMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutMessageCell.swift; sourceTree = "<group>"; };
 		7F4BF2602581800F00B82D20 /* OutMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutMessageCell.xib; sourceTree = "<group>"; };
@@ -999,6 +1001,7 @@
 			children = (
 				7F9D375C25549C1F00BDAC1E /* DeepLinkRoutable.swift */,
 				7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */,
+				7F44868125CC79520055C511 /* Updatable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1628,6 +1631,7 @@
 				7F904E412485A20C00DF8AC5 /* UIColor+Extensions.swift in Sources */,
 				7F595B3B2480686800D56E74 /* SettingsPage.swift in Sources */,
 				7FB7E70425855BB800DC0FB9 /* CategoriesPage.swift in Sources */,
+				7F44868225CC79520055C511 /* Updatable.swift in Sources */,
 				7FE17315247884D000CBAFB3 /* NewsPage.swift in Sources */,
 				7F93DE3924D0237100039378 /* FullPicturePage.swift in Sources */,
 				7F4A8B2324CF8C24006B3856 /* UINavigation+Extensions.swift in Sources */,

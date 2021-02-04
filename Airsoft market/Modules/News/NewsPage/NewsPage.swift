@@ -26,8 +26,16 @@ class NewsPage: BaseViewController {
     let segmentController = UISegmentedControl(items: ["Новости", "События"])
     @IBOutlet var dashboardButton: MFBadgeButton!
     
-    var newsData: [Post] = []
-    var eventData: [Event] = []
+    var newsData: [Post] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    var eventData: [Event] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     var contentType: NewsType = .feed
     var feedProfileID: Int?
@@ -91,7 +99,9 @@ class NewsPage: BaseViewController {
         }
         
         actionButton.addItem(title: "Пост", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
-            self?.navigationController?.pushViewController(AddTextPostPage.loadFromNib(), animated: true)
+            let vc = AddTextPostPage.loadFromNib()
+            vc.updatableDelegate = self
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
         
         actionButton.addItem(title: "Видео", image: UIImage(named: "video_plus")) { [weak self] item in
@@ -199,7 +209,8 @@ extension NewsPage {
                
                 sSelf.tableView.endUpdates()
                 sSelf.isLoadinInProgress = false
-                self?.page += 1
+                sSelf.page += 1
+                sSelf.tableView.reloadData()
             } else {
                 sSelf.isLoadinInProgress = false
                 print("[NETWORK] Загружены все посты")
@@ -306,6 +317,7 @@ extension NewsPage {
 //MARK: DeletePostDelegate
 extension NewsPage: UpdateFeedDelegate {
     func updateFeed(type: NewsType) {
+        page = 0
         switch type {
         case .feed:
             contentType = .feed
