@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDJ-U6-vMR">
-                    <rect key="frame" x="20" y="294" width="374" height="308"/>
+                    <rect key="frame" x="20" y="264" width="374" height="368"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIH-mv-jXX" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
                             <rect key="frame" x="20" y="30" width="334" height="34"/>
@@ -46,7 +46,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQH-hU-tpr" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQH-hU-tpr" customClass="WhiteButton" customModule="Squadix" customModuleProvider="target">
                             <rect key="frame" x="20" y="188" width="334" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="N5A-H0-qZj"/>
@@ -56,7 +56,7 @@
                                 <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="Ver-Uh-aLl"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACT-f1-CTW" customClass="WhiteButton" customModule="Squadix" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACT-f1-CTW" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
                             <rect key="frame" x="20" y="248" width="334" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="YHE-7a-NEh"/>
@@ -66,20 +66,33 @@
                                 <action selector="registrationAction:" destination="-1" eventType="touchUpInside" id="n0h-IO-n06"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J5-pa-j12" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
+                            <rect key="frame" x="20" y="308" width="334" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="VIP-Lr-SOF"/>
+                            </constraints>
+                            <state key="normal" title=" Забыли пароль?"/>
+                            <connections>
+                                <action selector="restoreAction:" destination="-1" eventType="touchUpInside" id="Jig-t5-hfF"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="ACT-f1-CTW" secondAttribute="bottom" constant="20" id="0cQ-pJ-fSi"/>
                         <constraint firstItem="LQH-hU-tpr" firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" id="2xB-LF-pmm"/>
                         <constraint firstItem="cIH-mv-jXX" firstAttribute="leading" secondItem="wDJ-U6-vMR" secondAttribute="leading" constant="20" id="A36-I2-KPb"/>
+                        <constraint firstItem="1J5-pa-j12" firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" id="APv-j6-jgq"/>
                         <constraint firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" constant="20" id="GI9-OX-9O0"/>
                         <constraint firstItem="F5C-nD-moQ" firstAttribute="leading" secondItem="cIH-mv-jXX" secondAttribute="leading" id="H51-ya-ffl"/>
                         <constraint firstItem="ACT-f1-CTW" firstAttribute="top" secondItem="LQH-hU-tpr" secondAttribute="bottom" constant="20" id="I7x-vP-qOM"/>
                         <constraint firstItem="ACT-f1-CTW" firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" id="Inf-pg-cBR"/>
                         <constraint firstItem="ACT-f1-CTW" firstAttribute="leading" secondItem="cIH-mv-jXX" secondAttribute="leading" id="Lp4-1H-gTB"/>
                         <constraint firstItem="cIH-mv-jXX" firstAttribute="top" secondItem="wDJ-U6-vMR" secondAttribute="top" constant="30" id="P37-dX-DeJ"/>
+                        <constraint firstItem="1J5-pa-j12" firstAttribute="top" secondItem="ACT-f1-CTW" secondAttribute="bottom" constant="20" id="Q53-j3-Cwp"/>
                         <constraint firstItem="LQH-hU-tpr" firstAttribute="top" secondItem="F5C-nD-moQ" secondAttribute="bottom" constant="60" id="RFE-hM-0CE"/>
                         <constraint firstItem="F5C-nD-moQ" firstAttribute="top" secondItem="cIH-mv-jXX" secondAttribute="bottom" constant="30" id="YYg-Jc-52Y"/>
+                        <constraint firstItem="1J5-pa-j12" firstAttribute="leading" secondItem="cIH-mv-jXX" secondAttribute="leading" id="ciD-FC-asA"/>
                         <constraint firstItem="LQH-hU-tpr" firstAttribute="leading" secondItem="cIH-mv-jXX" secondAttribute="leading" id="ijq-LC-eUW"/>
+                        <constraint firstAttribute="bottom" secondItem="1J5-pa-j12" secondAttribute="bottom" constant="20" id="tCb-0R-ojM"/>
                         <constraint firstItem="F5C-nD-moQ" firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" id="v9E-OU-hWP"/>
                     </constraints>
                 </view>

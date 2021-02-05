@@ -130,6 +130,8 @@
 		7FA9E85E25B6341F0085EA34 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9E85D25B6341F0085EA34 /* Message.swift */; };
 		7FAC3852247FB42400EEFB24 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3851247FB42400EEFB24 /* CALayer+Extensions.swift */; };
 		7FAC3854247FB43000EEFB24 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3853247FB43000EEFB24 /* UIView+Extensions.swift */; };
+		7FAC773325CD990C009B903A /* StartRestorePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC773125CD990C009B903A /* StartRestorePage.swift */; };
+		7FAC773425CD990C009B903A /* StartRestorePage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FAC773225CD990C009B903A /* StartRestorePage.xib */; };
 		7FB34601254E27BE00851FF6 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB34600254E27BE00851FF6 /* Filters.swift */; };
 		7FB364B8247E96570013C78B /* SlideShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB364B6247E96570013C78B /* SlideShowCell.swift */; };
 		7FB364B9247E96570013C78B /* SlideShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FB364B7247E96570013C78B /* SlideShowCell.xib */; };
@@ -423,6 +425,8 @@
 		7FA9E85D25B6341F0085EA34 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		7FAC3851247FB42400EEFB24 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		7FAC3853247FB43000EEFB24 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		7FAC773125CD990C009B903A /* StartRestorePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRestorePage.swift; sourceTree = "<group>"; };
+		7FAC773225CD990C009B903A /* StartRestorePage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartRestorePage.xib; sourceTree = "<group>"; };
 		7FB34600254E27BE00851FF6 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		7FB364B6247E96570013C78B /* SlideShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowCell.swift; sourceTree = "<group>"; };
 		7FB364B7247E96570013C78B /* SlideShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideShowCell.xib; sourceTree = "<group>"; };
@@ -783,6 +787,7 @@
 		7F5FD053247DC7B300AF7D47 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				7FAC771F25CD98EE009B903A /* Restore */,
 				7F78717124D9E41600E501C2 /* UserDetails */,
 				7FFE4C6E247727C800212BAB /* Login */,
 				7FFE4C7324772DDE00212BAB /* Registration */,
@@ -1013,6 +1018,15 @@
 				7F9D37D825549DD200BDAC1E /* DeepLink+Handler.swift */,
 			);
 			path = DeepLink;
+			sourceTree = "<group>";
+		};
+		7FAC771F25CD98EE009B903A /* Restore */ = {
+			isa = PBXGroup;
+			children = (
+				7FAC773125CD990C009B903A /* StartRestorePage.swift */,
+				7FAC773225CD990C009B903A /* StartRestorePage.xib */,
+			);
+			path = Restore;
 			sourceTree = "<group>";
 		};
 		7FB364BA247E965E0013C78B /* SlideShowCell */ = {
@@ -1518,6 +1532,7 @@
 				7FB364B9247E96570013C78B /* SlideShowCell.xib in Resources */,
 				7F4BF2692581844D00B82D20 /* ConservationPage.xib in Resources */,
 				7F84BFB825779F8000322CD3 /* ResetPasswordViewController.xib in Resources */,
+				7FAC773425CD990C009B903A /* StartRestorePage.xib in Resources */,
 				7F55F47224FC483400F81F28 /* AddTextPostPage.xib in Resources */,
 				7FBC5A28257AFF95000B037A /* DashboardViewController.xib in Resources */,
 				7FCFDD4524BA781F00D8660F /* DebugPage.xib in Resources */,
@@ -1653,6 +1668,7 @@
 				7F521FFC24AFBE1300140156 /* KeychainManager.swift in Sources */,
 				7F2F005D247D145D00CA886F /* StrikeInputField.swift in Sources */,
 				7FBAC53D24789CEF007F51BC /* TableView+Extensions.swift in Sources */,
+				7FAC773325CD990C009B903A /* StartRestorePage.swift in Sources */,
 				7F595B402480689300D56E74 /* SettingsCell.swift in Sources */,
 				7FFE4C79247731F000212BAB /* VCFabric.swift in Sources */,
 				7F9B146E247ED7E4007D4819 /* ActionCell.swift in Sources */,

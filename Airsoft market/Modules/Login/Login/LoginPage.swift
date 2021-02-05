@@ -18,11 +18,21 @@ class LoginPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Вход в аккаунт"
+        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     @IBAction func registrationAction(_ sender: Any) {
         navigationController?.pushViewController(RegistrationPage.loadFromNib(), animated: true)
+    }
+    
+    @IBAction func restoreAction(_ sender: Any) {
+        navigationController?.pushViewController(StartRestorePage.loadFromNib(), animated: true)
     }
     
     @IBAction func loginAction(_ sender: Any) {
@@ -60,4 +70,3 @@ extension LoginPage {
         case badCredentials = "Неправильный email и/или пароль."
     }
 }
-
