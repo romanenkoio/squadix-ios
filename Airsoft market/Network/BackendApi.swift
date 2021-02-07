@@ -46,6 +46,7 @@ enum StrikeServise{
     case deleteToken
     case upProduct(id: Int)
     case changePassword(oldPassword: String, newPassword: String)
+    case resetPassword(email: String)
 }
 
 extension StrikeServise: TargetType {
@@ -148,12 +149,14 @@ extension StrikeServise: TargetType {
             return Path.Products.upProduct(id)
         case .changePassword(_, _):
             return Path.Users.current
+        case .resetPassword:
+            return Path.Users.resetPassword
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword:
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory:
             return .delete

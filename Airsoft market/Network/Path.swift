@@ -20,6 +20,8 @@ struct Path {
         static let current = path + "/me"
         static let userByID = path + "/"
         static let uploadAvatar = current + "/avatar"
+        static let resetPassword = "reset"
+        static let resetPasswordConfirmation = "reset-confirmation"
     }
     
     struct Posts {

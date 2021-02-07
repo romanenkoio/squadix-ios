@@ -121,10 +121,10 @@ class EditPage: UIViewController {
             }
             
             profile?.city = cityTextField.text
-            profile?.profileDescription = descriptionTextView.text
+            profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if userNameTextField.text != "" {
-                profile?.profileName = userNameTextField.text
+                profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             }
             
             if phoneTextField.text != "" {
@@ -135,9 +135,9 @@ class EditPage: UIViewController {
             if let date = selectedDate {
                 profile?.birthday = date
             }
-            profile?.city = cityTextField.text
-            profile?.profileDescription = descriptionTextView.text
-            profile?.profileName = userNameTextField.text
+            profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.phone = phoneTextField.text
         }
     

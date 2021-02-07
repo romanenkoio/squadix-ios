@@ -160,7 +160,7 @@ class RegistrationPage: UIViewController {
             secondPasswordErrorLabel.isHidden = false
         }
         
-        if let name = userNameField.text {
+        if let name = userNameField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
             if name.count < 3 {
                 isValid = false
                 nameErrorLabel.isHidden = false

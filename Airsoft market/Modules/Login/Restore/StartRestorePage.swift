@@ -10,6 +10,7 @@ import UIKit
 
 class StartRestorePage: BaseViewController {
     @IBOutlet weak var emailTextField: StrikeInputField!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +23,22 @@ class StartRestorePage: BaseViewController {
     }
 
     @IBAction func restoreAction(_ sender: Any) {
-        guard let email = emailTextField.text, !email.isEmpty, !Validator.shared.validate(string: email, pattern: Validator.Regexp.email.rawValue) else {
+        spinner.startAnimating()
+        guard let email = emailTextField.text, !email.isEmpty, Validator.shared.validate(string: email, pattern: Validator.Regexp.email.rawValue) else {
             PopupView.init(title: "", subtitle: "Проверьте правильность email", image: UIImage(named: "cancel")).show()
+            spinner.stopAnimating()
             return
         }
+        networkManager.resetPassword(email: email) {
+            let alert = UIAlertController(title: "Успешно", message: "Проверьте вашу почту.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            self.spinner.stopAnimating()
+        } failure: { error in
+            PopupView(title: "Ошибка. Попробуйте позже", subtitle: nil, image: UIImage(named: "cancel")).show()
+            self.spinner.stopAnimating()
+        }
+
         
     }
 }

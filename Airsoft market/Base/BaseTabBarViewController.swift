@@ -15,7 +15,6 @@ class BaseTabBarViewController: UITabBarController {
         UITabBar.appearance().barTintColor = UIColor.mainStrikeColor
         UITabBar.appearance().tintColor = UIColor.white
         UITabBar.appearance().unselectedItemTintColor = UIColor.black
-        
         self.viewControllers = VCFabric.loadTabBarItems()
     }
     

@@ -10,6 +10,7 @@ import UIKit
 
 class DashboardViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
+    private var refreshControl = UIRefreshControl()
     
     var notifications: [DasboardNotification] = []
     
@@ -19,14 +20,21 @@ class DashboardViewController: BaseViewController {
         tableView.setupDelegateData(self)
         title = "Уведомления"
         loadNotifications()
-        
+        refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     func loadNotifications() {
         networkManager.getNotifications { [weak self] notifications in
             self?.notifications = notifications.content
             self?.tableView.reloadData()
+            self?.refreshControl.endRefreshing()
         }
+    }
+    
+    @objc func refresh() {
+        loadNotifications()
     }
 }
 

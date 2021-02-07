@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartRestorePage" customModule="Squadix" customModuleProvider="target">
             <connections>
                 <outlet property="emailTextField" destination="zyf-7x-IlC" id="3s1-Rg-Qsx"/>
+                <outlet property="spinner" destination="jJE-3X-MeP" id="bs0-UM-Efu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,7 +27,7 @@
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zyf-7x-IlC" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
                             <rect key="frame" x="5" y="86" width="344" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="email"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" textContentType="email"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
                                     <integer key="value" value="40"/>
@@ -64,6 +65,9 @@
                         <constraint firstAttribute="trailing" secondItem="zyf-7x-IlC" secondAttribute="trailing" constant="5" id="zNT-m0-6ah"/>
                     </constraints>
                 </view>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jJE-3X-MeP">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -72,6 +76,8 @@
                 <constraint firstItem="vwk-d7-bzu" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="SwB-x4-3GQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vwk-d7-bzu" secondAttribute="trailing" constant="30" id="TM3-gV-6S6"/>
                 <constraint firstItem="vwk-d7-bzu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="e8b-9g-XKA"/>
+                <constraint firstItem="jJE-3X-MeP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eMZ-T1-Mwc"/>
+                <constraint firstItem="jJE-3X-MeP" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="hEK-qU-zci"/>
             </constraints>
             <point key="canvasLocation" x="-1.4492753623188408" y="93.75"/>
         </view>
