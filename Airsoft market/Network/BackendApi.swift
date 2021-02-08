@@ -47,6 +47,7 @@ enum StrikeServise{
     case upProduct(id: Int)
     case changePassword(oldPassword: String, newPassword: String)
     case resetPassword(email: String)
+    case resetConfirmation(newPassword: String, resetToken: String)
 }
 
 extension StrikeServise: TargetType {
@@ -151,12 +152,14 @@ extension StrikeServise: TargetType {
             return Path.Users.current
         case .resetPassword:
             return Path.Users.resetPassword
+        case .resetConfirmation:
+            return Path.Users.resetPasswordConfirmation
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation:
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory:
             return .delete
@@ -183,7 +186,7 @@ extension StrikeServise: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .login, .registration, .currency, .youtubeInfo:
+        case .login, .registration, .currency, .youtubeInfo, .resetPassword, .resetConfirmation:
             return nil
         default:
             return ["Authorization" : "Bearer " + (KeychainManager.accessToken ?? "")]
@@ -263,6 +266,11 @@ extension StrikeServise: TargetType {
         case .changePassword(let oldPassword, let newPassword):
             params["oldPassword"] = oldPassword
             params["newPassword"] = newPassword
+        case .resetPassword(let email):
+            params["email"] = email
+        case .resetConfirmation(let newPassword, let resetToken):
+            params["newPassword"] = newPassword
+            params["resetPasswordToken"] = resetToken
         default:
             return nil
         }

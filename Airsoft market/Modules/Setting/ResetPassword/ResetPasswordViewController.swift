@@ -28,7 +28,7 @@ class ResetPasswordViewController: BaseViewController {
     @IBAction func savePasswordAction(_ sender: Any) {
         spinner.startAnimating()
         
-        guard let oldPassword = oldPasswordField.text, !oldPassword.isEmpty, let password = newPasswordField.text, !password.isEmpty, let secondPasssword = secondNewPasswordField.text, !secondPasssword.isEmpty else {
+        guard let password = newPasswordField.text, !password.isEmpty, let secondPasssword = secondNewPasswordField.text, !secondPasssword.isEmpty else {
             PopupView(title: "", subtitle: "Поля не могут быть пустыми", image: UIImage(named: "cancel")).show()
             spinner.stopAnimating()
             return
@@ -47,14 +47,28 @@ class ResetPasswordViewController: BaseViewController {
         }
         
         if restoreToken != nil {
-            
+            networkManager.resetPasswordConfirmation(newPassword: password, token: restoreToken ?? "") { [weak self] in
+                self?.spinner.stopAnimating()
+                
+                let alert = UIAlertController(title: "", message: "Пароль успешно изменен", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: { _ in
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                    appDelegate.showLogin()
+                    KeychainManager.clearAll()
+                }))
+                self?.present(alert, animated: true, completion: nil)
+            } failure: {  [weak self] error in
+                self?.spinner.stopAnimating()
+                PopupView(title: "", subtitle: "Что-то пошло не так. Попробуйте позже", image: UIImage(named: "cancel")).show()
+            }
+
         } else {
-            guard oldPassword != password else {
-                PopupView(title: "", subtitle: "Пароли не могут совпадать", image: UIImage(named: "cancel")).show()
+            guard let oldPassword = oldPasswordField.text, !oldPassword.isEmpty, oldPassword != password else {
+                PopupView(title: "", subtitle: "Пароли не могут совпадать или быть пустыми", image: UIImage(named: "cancel")).show()
                 spinner.stopAnimating()
                 return
             }
-
+            
             networkManager.changePassword(currentPassword: oldPassword, newPassword: password) { [weak self] in
                 self?.newPasswordField.text = ""
                 self?.oldPasswordField.text = ""

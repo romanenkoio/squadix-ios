@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class AddTextPostPage: BaseViewController {
     
@@ -103,11 +104,25 @@ extension AddTextPostPage: UICollectionViewDelegate {
         
         var buttonTitile = imageData.indices.contains(indexPath.row) ? "Сделать новое фото" : "Сделать фото"
         alert.addAction(UIAlertAction(title: buttonTitile, style: .default) { [weak self] _ in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                self?.imagePicker.sourceType = .camera
-                self?.selectedIndex = indexPath.row
-                self?.present(self!.imagePicker, animated: true, completion: nil)
-            }
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: {accessGranted in
+                if  accessGranted {
+                    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                        DispatchQueue.main.async {
+                            self?.imagePicker.sourceType = .camera
+                            self?.selectedIndex = indexPath.row
+                            self?.present(self!.imagePicker, animated: true, completion: nil)
+                        }
+                    }
+                } else {
+                    let alert = UIAlertController(title: "Ошибка разрешений", message: "Приложению необходим доступ к камере", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Перейти в настройки", style: .default, handler: { action in
+                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                    }))
+                    DispatchQueue.main.async {
+                        self?.present(alert, animated: true)
+                    }
+                }
+            })
         })
         
         buttonTitile = imageData.indices.contains(indexPath.row) ? "Заменить фото из галереи" : "Выбрать из галереи"

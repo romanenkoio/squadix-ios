@@ -588,5 +588,18 @@ final class NetworkManager {
             }
         }
     }
+    
+    func resetPasswordConfirmation(newPassword: String, token: String, completion: (() -> Void)?, failure: ((String) -> Void)? = nil) {
+        provider.request(.resetConfirmation(newPassword: newPassword, resetToken: token)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
+                failure?(error.errorDescription ?? "Unknow")
+            }
+        }
+    }
 
 }

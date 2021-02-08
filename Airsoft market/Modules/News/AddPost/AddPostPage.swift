@@ -91,7 +91,8 @@ class AddPostPage: BaseViewController {
     }
     
     @IBAction func pasteFromPasteBoard(_ sender: Any) {
-        linkTextField.text = UIPasteboard.general.string
+        guard let paste = UIPasteboard.general.string else { return }
+        linkTextField.text = paste
         textFieldDidChange(linkTextField)
     }
     
