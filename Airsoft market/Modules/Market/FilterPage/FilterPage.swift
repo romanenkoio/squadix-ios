@@ -45,10 +45,14 @@ extension FilterPage: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.section == 1 {
-        categoryFilters[indexPath.row].status = !categoryFilters[indexPath.row].status
+            categoryFilters[indexPath.row].status = !categoryFilters[indexPath.row].status
         } else if indexPath.section == 0 {
             var newFilters: [Filter] = []
-            newFilters = categoryFilters.map({Filter(category: $0.category, status: true)})
+            if categoryFilters.filter({$0.status == true}).count == categoryFilters.count {
+                newFilters = categoryFilters.map({Filter(category: $0.category, status: false)})
+            } else {
+                newFilters = categoryFilters.map({Filter(category: $0.category, status: true)})
+            }
             categoryFilters = newFilters
         }
         
@@ -77,7 +81,7 @@ extension FilterPage: UITableViewDataSource {
    
             if let filterCell = cell as? CategoryCheckboxCell {
                 if indexPath.section == 0 {
-                    filterCell.filterDescriptionLabel.text = "Включить все"
+                    filterCell.filterDescriptionLabel.text = categoryFilters.filter({$0.status == true}).count == categoryFilters.count ? "Выключить все" : "Включить все"
                     filterCell.checkBoxImage.image = categoryFilters.filter({$0.status == true}).count == categoryFilters.count ? UIImage(named: "checkBox_fill") : UIImage(named: "checkBox")
                     filterCell.selectionStyle = categoryFilters.filter({$0.status == true}).count == categoryFilters.count ? .none : .default
                 } else {

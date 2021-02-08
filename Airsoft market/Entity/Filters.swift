@@ -15,7 +15,7 @@ struct Filter: Equatable {
     
     init(category: String, status: Bool = true) {
         self.category = category
-        self.status = true
+        self.status = status
     }
     
     init(filter: SavedFilter) {

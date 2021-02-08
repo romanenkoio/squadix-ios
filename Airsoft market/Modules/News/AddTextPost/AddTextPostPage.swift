@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Photos
 
 class AddTextPostPage: BaseViewController {
     
@@ -127,15 +128,31 @@ extension AddTextPostPage: UICollectionViewDelegate {
         
         buttonTitile = imageData.indices.contains(indexPath.row) ? "Заменить фото из галереи" : "Выбрать из галереи"
         alert.addAction(UIAlertAction(title: buttonTitile, style: .default) { [weak self]  _ in
-            if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-                self?.imagePicker.sourceType = .savedPhotosAlbum
-                self?.selectedIndex = indexPath.row
-                self?.present(self!.imagePicker, animated: true, completion: nil)
-            }
+            let status = PHPhotoLibrary.authorizationStatus()
+            
+            PHPhotoLibrary.requestAuthorization({ (newStatus) in
+                if (newStatus == PHAuthorizationStatus.authorized) {
+                    if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+                        DispatchQueue.main.async {
+                            self?.imagePicker.sourceType = .savedPhotosAlbum
+                            self?.selectedIndex = indexPath.row
+                            self?.present(self!.imagePicker, animated: true, completion: nil)
+                        }
+                    }
+                } else if (status == PHAuthorizationStatus.denied) {
+                    let alert = UIAlertController(title: "Ошибка разрешений", message: "Приложению необходим доступ к галерее", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Перейти в настройки", style: .default, handler: { action in
+                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                    }))
+                    DispatchQueue.main.async {
+                        self?.present(alert, animated: true)
+                    }
+                }
+            })
         })
         
         if imageData.indices.contains(indexPath.row) {
-            alert.addAction(UIAlertAction(title: "Удалить фото", style: .default) { [weak self] _ in
+            alert.addAction(UIAlertAction(title: "Удалить фото", style: .destructive) { [weak self] _ in
                 self?.imageData.remove(at: indexPath.row)
                 self?.collectionView.reloadData()
             })
