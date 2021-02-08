@@ -28,6 +28,7 @@ enum SettingsMenu {
     case sendNotification
     case categories
     case quality
+    case version
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
@@ -35,8 +36,9 @@ enum SettingsMenu {
         let actionSection: [SettingsMenu] = [.quality, .changePassword, .logout]
         let developerSection: [SettingsMenu] = [.chat, .debug, .forceCrash]
         let adminSection: [SettingsMenu] = [.categories, .sendNotification]
+        let systemSection: [SettingsMenu] = [.version]
         
-        return KeychainManager.isAdmin ? [settingsSection, infoSection, adminSection, actionSection, developerSection] : [settingsSection, infoSection, actionSection]
+        return KeychainManager.isAdmin ? [settingsSection, infoSection, adminSection, actionSection, developerSection, systemSection] : [settingsSection, infoSection, actionSection, systemSection]
     }
 }
 
@@ -50,6 +52,7 @@ class SettingsPage: BaseViewController {
         super.viewDidLoad()
         tableView.registerCell(SettingsCell.self)
         tableView.registerCell(SettingsSwitchCell.self)
+        tableView.registerCell(SimpleTextCell.self)
         tableView.setupDelegateData(self)
         title = "Настройки"
     }
@@ -274,6 +277,15 @@ extension SettingsPage: UITableViewDataSource {
                     vc.type = .confidence
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
+                return settingCell
+            }
+        case .version:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsSwitchCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsSwitchCell {
+                guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String else { return cell }
+                settingCell.settingsSwitchLabel.text = "Версия: \(version)_\(build)"
+                settingCell.settingsSwitch.isHidden = true
+                settingCell.isUserInteractionEnabled = false
                 return settingCell
             }
         case .sendNotification:
