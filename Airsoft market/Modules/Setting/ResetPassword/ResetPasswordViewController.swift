@@ -14,16 +14,33 @@ class ResetPasswordViewController: BaseViewController {
     @IBOutlet weak var oldPasswordField: StrikeInputField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    @IBOutlet weak var visibilityButton: UIButton!
+    @IBOutlet weak var newVisibilityButton: UIButton!
+    @IBOutlet weak var confirmVisibilityButton: UIButton!
+    
+    
     var restoreToken: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Смена пароля"
         oldPasswordField.isHidden = restoreToken != nil
+        visibilityButton.isHidden = restoreToken != nil
         
         navigationController?.setNavigationBarHidden(restoreToken != nil, animated: true)
         tabBarController?.tabBar.isHidden = restoreToken != nil
     }
+    
+    @IBAction func changeVisibility(_ sender: Any) {
+        newPasswordField.isSecureTextEntry = !newPasswordField.isSecureTextEntry
+        oldPasswordField.isSecureTextEntry = !oldPasswordField.isSecureTextEntry
+        secondNewPasswordField.isSecureTextEntry = !secondNewPasswordField.isSecureTextEntry
+        
+        confirmVisibilityButton.setImage(newPasswordField.isSecureTextEntry ? UIImage(named: "visibility") : UIImage(named: "visibility_off"), for: .normal)
+        visibilityButton.setImage(newPasswordField.isSecureTextEntry ? UIImage(named: "visibility") : UIImage(named: "visibility_off"), for: .normal)
+        newVisibilityButton.setImage(newPasswordField.isSecureTextEntry ? UIImage(named: "visibility") : UIImage(named: "visibility_off"), for: .normal)
+    }
+    
     
     @IBAction func savePasswordAction(_ sender: Any) {
         spinner.startAnimating()

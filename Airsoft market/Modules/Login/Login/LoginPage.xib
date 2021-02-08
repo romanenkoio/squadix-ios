@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,6 +16,7 @@
                 <outlet property="loginButton" destination="LQH-hU-tpr" id="LVT-t1-GF1"/>
                 <outlet property="passwordInpudField" destination="F5C-nD-moQ" id="C55-MR-glF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="visibilityButton" destination="POL-Wo-Rs0" id="51p-xF-uZG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,6 +29,9 @@
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIH-mv-jXX" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
                             <rect key="frame" x="20" y="30" width="334" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="FDc-LL-d9J"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="email"/>
                             <userDefinedRuntimeAttributes>
@@ -38,6 +42,9 @@
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F5C-nD-moQ" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
                             <rect key="frame" x="20" y="94" width="334" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="EkW-4T-t05"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
                             <userDefinedRuntimeAttributes>
@@ -76,9 +83,21 @@
                                 <action selector="restoreAction:" destination="-1" eventType="touchUpInside" id="Jig-t5-hfF"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POL-Wo-Rs0">
+                            <rect key="frame" x="309" y="94" width="40" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="OgV-8A-jBE"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="6" minY="5" maxX="6" maxY="5"/>
+                            <state key="normal" image="visibility"/>
+                            <connections>
+                                <action selector="showPassword:" destination="-1" eventType="touchUpInside" id="yDF-0H-zka"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="LQH-hU-tpr" firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" id="2xB-LF-pmm"/>
+                        <constraint firstAttribute="trailing" secondItem="POL-Wo-Rs0" secondAttribute="trailing" constant="25" id="3bh-lI-YSI"/>
                         <constraint firstItem="cIH-mv-jXX" firstAttribute="leading" secondItem="wDJ-U6-vMR" secondAttribute="leading" constant="20" id="A36-I2-KPb"/>
                         <constraint firstItem="1J5-pa-j12" firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" id="APv-j6-jgq"/>
                         <constraint firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" constant="20" id="GI9-OX-9O0"/>
@@ -86,12 +105,14 @@
                         <constraint firstItem="ACT-f1-CTW" firstAttribute="top" secondItem="LQH-hU-tpr" secondAttribute="bottom" constant="20" id="I7x-vP-qOM"/>
                         <constraint firstItem="ACT-f1-CTW" firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" id="Inf-pg-cBR"/>
                         <constraint firstItem="ACT-f1-CTW" firstAttribute="leading" secondItem="cIH-mv-jXX" secondAttribute="leading" id="Lp4-1H-gTB"/>
+                        <constraint firstItem="POL-Wo-Rs0" firstAttribute="top" secondItem="F5C-nD-moQ" secondAttribute="top" id="M0B-kQ-Wef"/>
                         <constraint firstItem="cIH-mv-jXX" firstAttribute="top" secondItem="wDJ-U6-vMR" secondAttribute="top" constant="30" id="P37-dX-DeJ"/>
                         <constraint firstItem="1J5-pa-j12" firstAttribute="top" secondItem="ACT-f1-CTW" secondAttribute="bottom" constant="20" id="Q53-j3-Cwp"/>
                         <constraint firstItem="LQH-hU-tpr" firstAttribute="top" secondItem="F5C-nD-moQ" secondAttribute="bottom" constant="60" id="RFE-hM-0CE"/>
                         <constraint firstItem="F5C-nD-moQ" firstAttribute="top" secondItem="cIH-mv-jXX" secondAttribute="bottom" constant="30" id="YYg-Jc-52Y"/>
                         <constraint firstItem="1J5-pa-j12" firstAttribute="leading" secondItem="cIH-mv-jXX" secondAttribute="leading" id="ciD-FC-asA"/>
                         <constraint firstItem="LQH-hU-tpr" firstAttribute="leading" secondItem="cIH-mv-jXX" secondAttribute="leading" id="ijq-LC-eUW"/>
+                        <constraint firstItem="POL-Wo-Rs0" firstAttribute="bottom" secondItem="F5C-nD-moQ" secondAttribute="bottom" id="kjF-Da-9aX"/>
                         <constraint firstAttribute="bottom" secondItem="1J5-pa-j12" secondAttribute="bottom" constant="20" id="tCb-0R-ojM"/>
                         <constraint firstItem="F5C-nD-moQ" firstAttribute="trailing" secondItem="cIH-mv-jXX" secondAttribute="trailing" id="v9E-OU-hWP"/>
                     </constraints>
@@ -113,6 +134,7 @@
         </view>
     </objects>
     <resources>
+        <image name="visibility" width="48" height="48"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

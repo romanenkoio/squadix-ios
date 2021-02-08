@@ -13,6 +13,7 @@ class LoginPage: UIViewController {
     @IBOutlet weak var passwordInpudField: StrikeInputField!
     @IBOutlet weak var loginButton: OliveButton!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var visibilityButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -25,6 +26,11 @@ class LoginPage: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    @IBAction func showPassword(_ sender: Any) {
+        passwordInpudField.isSecureTextEntry = !passwordInpudField.isSecureTextEntry
+        visibilityButton.setImage(passwordInpudField.isSecureTextEntry ? UIImage(named: "visibility") : UIImage(named: "visibility_off"), for: .normal)
     }
     
     @IBAction func registrationAction(_ sender: Any) {
