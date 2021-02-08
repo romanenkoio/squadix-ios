@@ -52,15 +52,7 @@ class AddPostPage: BaseViewController {
     }
     
     func getVideoID(link: String) -> String? {
-        do {
-            let regex = try NSRegularExpression(pattern: "(?<=v(=|/))([-a-zA-Z0-9_]+)|(?<=youtu.be/)([-a-zA-Z0-9_]+)", options: NSRegularExpression.Options.caseInsensitive)
-            let match = regex.firstMatch(in: link, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSMakeRange(0, link.lengthOfBytes(using: String.Encoding.utf8)))
-            guard let range = match?.range(at: 0) else { return nil }
-            let youTubeID = (link as NSString).substring(with: range)
-            return youTubeID
-        } catch {
-            return nil
-        }
+            return URLComponents(string: link)?.queryItems?.first(where: { $0.name == "v" })?.value
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
