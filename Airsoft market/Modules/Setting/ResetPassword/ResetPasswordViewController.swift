@@ -90,7 +90,7 @@ extension ResetPasswordViewController: DeeplinkRoutable {
     }
     
     static func canHandle(_ deeplink: Deeplink) -> Bool {
-        guard let url = deeplink.url, url.path.contains("/restore/") else { return false }
+        guard let url = deeplink.url, url.path.contains("/reset/") else { return false }
         return true
     }
     

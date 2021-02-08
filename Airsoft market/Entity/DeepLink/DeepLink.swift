@@ -54,7 +54,7 @@ class Deeplink: NSObject {
                 return .post
             }
             
-            if url.path.contains("/restore/") {
+            if url.path.contains("/reset/") {
                 return .restore
             }
             
