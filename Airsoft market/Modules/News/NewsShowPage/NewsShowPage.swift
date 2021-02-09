@@ -165,8 +165,15 @@ extension NewsShowPage: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AuthorCell.self), for: indexPath)
             if let profileCell = cell as? AuthorCell {
                 if !post.isPreview {
-                    profileCell.authorName.text = post.authorName
-                    profileCell.authorName.makeDefault()
+                    networkManager.getUserById(id: KeychainManager.profileID ?? 0) { (profile, error) in
+                        guard let profile = profile else { return }
+                        profileCell.authorName.text = profile.profileName
+                        profileCell.authorName.makeDefault()
+                        profileCell.postDateLabel.text = Date().dateToHumanString()
+                        if let pic = profile.profilePictureUrl {
+                            profileCell.profileAvatarImage.loadImageWith(pic)
+                        }
+                    }
                     let formatter = DateFormatter()
                     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                     
