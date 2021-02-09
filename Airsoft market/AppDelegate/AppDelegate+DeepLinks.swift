@@ -43,7 +43,8 @@ extension AppDelegate {
                 Deeplink.Handler.shared.handle(deeplink: urlDeeplink)
             }
             
-            if KeychainManager.accessToken == nil {
+            
+            if KeychainManager.accessToken == nil && (Deeplink.DeeplinkType.checkLinkType(url: url) == .event || Deeplink.DeeplinkType.checkLinkType(url: url) == .post || Deeplink.DeeplinkType.checkLinkType(url: url) == .product || Deeplink.DeeplinkType.checkLinkType(url: url) == .unknow) {
               return false
             } else {
                 completion()

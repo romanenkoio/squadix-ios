@@ -23,11 +23,11 @@ class ResetPasswordViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Смена пароля"
+        title = restoreToken == nil ? "Смена пароля" : "Восстановление пароля"
         oldPasswordField.isHidden = restoreToken != nil
         visibilityButton.isHidden = restoreToken != nil
         
-        navigationController?.setNavigationBarHidden(restoreToken != nil, animated: true)
+        navigationController?.setNavigationBarHidden(restoreToken == nil, animated: true)
         tabBarController?.tabBar.isHidden = restoreToken != nil
     }
     
@@ -103,7 +103,7 @@ class ResetPasswordViewController: BaseViewController {
 
 extension ResetPasswordViewController: DeeplinkRoutable {
     static func initControllerFromStoryboard() -> DeeplinkRoutable? {
-        ResetPasswordViewController.loadFromNib()
+        return ResetPasswordViewController.loadFromNib()
     }
     
     static func canHandle(_ deeplink: Deeplink) -> Bool {
@@ -119,6 +119,4 @@ extension ResetPasswordViewController: DeeplinkRoutable {
         guard let url = deeplink.url else {  return }
         restoreToken = url.lastPathComponent
     }
-    
-    
 }

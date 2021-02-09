@@ -80,6 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             options.dsn = "https://be2b52d8a54a43db975e7a690059a819@o484042.ingest.sentry.io/5536840"
             options.debug = false
         }
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
     
     private func findTopController(from _vc: UIViewController? = nil) -> UIViewController? {
