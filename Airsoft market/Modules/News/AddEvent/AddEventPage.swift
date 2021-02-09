@@ -101,6 +101,7 @@ class AddEventPage: BaseViewController {
                 self.spinner.stopAnimating()
                 self.navigationController?.popViewController(animated: true)
             }) { error in
+                self.spinner.stopAnimating()
                 print(error as Any)
             }
         }
@@ -123,10 +124,12 @@ class AddEventPage: BaseViewController {
         
         guard let startCoordText = startPointCoordinate.text, !startCoordText.isEmpty, Validator.shared.validate(string: startCoordText, pattern: Validator.Regexp.coordinates.rawValue), let startCoord = startCoordText.getCoordinates() else {
             showAlert(title: AlertErrors.coordinatesError.rawValue)
+            self.spinner.stopAnimating()
             return
         }
         guard let сoordText = eventCoordinate.text, !сoordText.isEmpty, Validator.shared.validate(string: сoordText, pattern: Validator.Regexp.coordinates.rawValue), let coord = сoordText.getCoordinates() else {
             showAlert(title: AlertErrors.coordinatesError.rawValue)
+            self.spinner.stopAnimating()
             return
         }
         
@@ -146,16 +149,19 @@ class AddEventPage: BaseViewController {
         let utilitesService = UtilitesManager()
     
         
-        
+        self.spinner.startAnimating()
         utilitesService.getAdress(lat: coord.latitude, long: coord.longitude, completion: { address in
             event.eventAdress = address.getAddressString()
+            self.spinner.startAnimating()
             utilitesService.getAdress(lat: startCoord.latitude, long: startCoord.longitude, completion: { address in
                 event.eventStartAdress = address.getAddressString()
                 completion(event)
             }, failure: { error in
+                self.spinner.stopAnimating()
                 print(error as Any)
             })
         }) { error in
+            self.spinner.stopAnimating()
             print(error as Any)
         }
     }
