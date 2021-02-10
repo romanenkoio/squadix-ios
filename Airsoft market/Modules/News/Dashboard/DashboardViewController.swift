@@ -30,6 +30,7 @@ class DashboardViewController: BaseViewController {
             self?.notifications = notifications.content
             self?.tableView.reloadData()
             self?.refreshControl.endRefreshing()
+            UIApplication.shared.applicationIconBadgeNumber = 0
         }
     }
     
