@@ -23,7 +23,6 @@ class MyProfileCell: BaseTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        avatarSlider.contentMode = .scaleAspectFill
     }
     
     @IBAction func avatarChangeAction(_ sender: Any) {

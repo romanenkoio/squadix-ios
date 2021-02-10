@@ -601,5 +601,18 @@ final class NetworkManager {
             }
         }
     }
+    
+    func deleteAvater(completion: (() -> Void)?, failure: ((String) -> Void)? = nil) {
+        provider.request(.deleteAvatar) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
+                failure?(error.errorDescription ?? "Unknow")
+            }
+        }
+    }
 
 }

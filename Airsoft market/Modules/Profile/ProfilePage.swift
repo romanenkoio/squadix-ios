@@ -142,7 +142,11 @@ class ProfilePage: BaseViewController {
           
           if (currentProfile?.profilePictureUrl) != nil {
                alert.addAction(UIAlertAction(title: "Удалить фото", style: .destructive) { [weak self]  _ in
-//                   запрос на удаление аватара
+                    self?.networkManager.deleteAvater {
+                         self?.loadProfile()
+                    } failure: { errror in
+                         PopupView(title: "", subtitle: "Ошибка. Попробуйте позже", image: UIImage(named: "cancel")).show()
+                    }
                })
           }
           
@@ -172,17 +176,19 @@ extension ProfilePage: UITableViewDataSource {
           case .profileInfo:
                cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyProfileCell.self), for: indexPath)
                if let myProfileCell = cell as? MyProfileCell {
+                    myProfileCell.avatarSlider.setupView()
                     myProfileCell.isUserInteractionEnabled = true
                     guard let profile = currentProfile else { return cell }
                     
                     if let picture = profile.profilePictureUrl {
                          myProfileCell.avatarSlider.setupImagesWithUrls([picture])
-//                         myProfileCell.avatarImage.loadImageWith(picture)
+                    } else if let image = UIImage(named: "avatar_placeholder") {
+                         myProfileCell.avatarSlider.setupImagesWithImages([image])
                     }
+                    
                     if let username = profile.profileName {
                          myProfileCell.userNameLabel.text = username
                     }
-                    
                     var reg = ""
                     
                     if let region = profile.country {
@@ -195,8 +201,6 @@ extension ProfilePage: UITableViewDataSource {
                     
                     myProfileCell.regionLabel.text = reg
                     myProfileCell.avatarButton.isHidden = profileID != nil
-                    
-                    
                     myProfileCell.adminBadgeLabel.isHidden = !profile.roles.contains(.admin)
                     myProfileCell.adminBadgeLabel.text = profile.roles.contains(.admin) ? Common.Roles.admin.displayRoleName : ""
                     

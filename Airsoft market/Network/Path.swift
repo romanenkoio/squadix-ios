@@ -22,6 +22,7 @@ struct Path {
         static let uploadAvatar = current + "/avatar"
         static let resetPassword = "reset"
         static let resetPasswordConfirmation = "reset-confirmation"
+        static let deleteAvatar = current + "/avatar"
     }
     
     struct Posts {

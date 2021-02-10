@@ -48,6 +48,7 @@ enum StrikeServise{
     case changePassword(oldPassword: String, newPassword: String)
     case resetPassword(email: String)
     case resetConfirmation(newPassword: String, resetToken: String)
+    case deleteAvatar
 }
 
 extension StrikeServise: TargetType {
@@ -154,6 +155,8 @@ extension StrikeServise: TargetType {
             return Path.Users.resetPassword
         case .resetConfirmation:
             return Path.Users.resetPasswordConfirmation
+        case .deleteAvatar:
+            return Path.Users.deleteAvatar
         }
     }
     
@@ -161,7 +164,7 @@ extension StrikeServise: TargetType {
         switch self {
         case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation:
             return .post
-        case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory:
+        case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar:
             return .delete
         case .editPost, .editProfile, .toggleLike, .deleteToken:
             return .put
