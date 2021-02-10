@@ -21,6 +21,8 @@ class NewsCell: BaseTableViewCell {
     @IBOutlet weak var promoImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var likeImage: UIButton!
     @IBOutlet weak var likeCount: UILabel!
+    @IBOutlet weak var imageCountView: UIView!
+    @IBOutlet weak var imageCountLabel: UILabel!
     private let networkManager = NetworkManager()
     var currentPost: Post?
     var currentEvent: Event?
@@ -94,6 +96,8 @@ class NewsCell: BaseTableViewCell {
             promoImage.loadImageWith(post.contentType != .video ? post.imageUrls![0] : videoPicUrl)
         }
         
+        imageCountView.isHidden = post.contentType == .video || post.imageUrls.count <= 1
+        imageCountLabel.text = "\(post.imageUrls.count)+"
         videoIndicator.isHidden = post.contentType != .video
         authorName.text = post.authorName
     }

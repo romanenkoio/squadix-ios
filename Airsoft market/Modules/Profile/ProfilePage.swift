@@ -140,9 +140,9 @@ class ProfilePage: BaseViewController {
                }
           })
           
-          if !(UIImage(named: "placeholder")?.pngData() == testImage!.pngData()) {
-               alert.addAction(UIAlertAction(title: "Удалить", style: .destructive) { [weak self]  _ in
-                    self?.testImage = UIImage(named: "placeholder")
+          if (currentProfile?.profilePictureUrl) != nil {
+               alert.addAction(UIAlertAction(title: "Удалить фото", style: .destructive) { [weak self]  _ in
+//                   запрос на удаление аватара
                })
           }
           
@@ -172,11 +172,12 @@ extension ProfilePage: UITableViewDataSource {
           case .profileInfo:
                cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MyProfileCell.self), for: indexPath)
                if let myProfileCell = cell as? MyProfileCell {
-                    
+                    myProfileCell.isUserInteractionEnabled = true
                     guard let profile = currentProfile else { return cell }
                     
                     if let picture = profile.profilePictureUrl {
-                         myProfileCell.avatarImage.loadImageWith(picture)
+                         myProfileCell.avatarSlider.setupImagesWithUrls([picture])
+//                         myProfileCell.avatarImage.loadImageWith(picture)
                     }
                     if let username = profile.profileName {
                          myProfileCell.userNameLabel.text = username
@@ -201,6 +202,11 @@ extension ProfilePage: UITableViewDataSource {
                     
                     myProfileCell.avatarAction = { [weak self] in
                          self?.didSelectAvatarChange()
+                    }
+                    myProfileCell.showAvatarAction = { [weak self] in
+                         if let sSelf = self {
+                              myProfileCell.avatarSlider.presentFullScreenController(from: sSelf)
+                         }
                     }
                     myProfileCell.selectionStyle = .none
                     return myProfileCell
