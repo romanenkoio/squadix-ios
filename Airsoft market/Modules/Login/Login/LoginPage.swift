@@ -19,7 +19,9 @@ class LoginPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Вход в аккаунт"
-        
+        let image = UIImage(named: "visibility")?.withRenderingMode(.alwaysTemplate)
+        visibilityButton.setImage(image, for: .normal)
+        visibilityButton.tintColor = .gray
     }
     
     
@@ -30,7 +32,7 @@ class LoginPage: UIViewController {
     
     @IBAction func showPassword(_ sender: Any) {
         passwordInpudField.isSecureTextEntry = !passwordInpudField.isSecureTextEntry
-        visibilityButton.setImage(passwordInpudField.isSecureTextEntry ? UIImage(named: "visibility") : UIImage(named: "visibility_off"), for: .normal)
+        visibilityButton.setImage(passwordInpudField.isSecureTextEntry ? UIImage(named: "visibility")?.withRenderingMode(.alwaysTemplate) : UIImage(named: "visibility_off")?.withRenderingMode(.alwaysTemplate), for: .normal)
     }
     
     @IBAction func registrationAction(_ sender: Any) {

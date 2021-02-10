@@ -26,6 +26,10 @@ class ResetPasswordViewController: BaseViewController {
         title = restoreToken == nil ? "Смена пароля" : "Восстановление пароля"
         oldPasswordField.isHidden = restoreToken != nil
         visibilityButton.isHidden = restoreToken != nil
+        let image = UIImage(named: "visibility")?.withRenderingMode(.alwaysTemplate)
+        visibilityButton.setImage(image, for: .normal)
+        newVisibilityButton.setImage(image, for: .normal)
+        confirmVisibilityButton.setImage(image, for: .normal)
         
         navigationController?.setNavigationBarHidden(restoreToken == nil, animated: true)
         tabBarController?.tabBar.isHidden = restoreToken != nil
@@ -36,9 +40,9 @@ class ResetPasswordViewController: BaseViewController {
         oldPasswordField.isSecureTextEntry = !oldPasswordField.isSecureTextEntry
         secondNewPasswordField.isSecureTextEntry = !secondNewPasswordField.isSecureTextEntry
         
-        confirmVisibilityButton.setImage(newPasswordField.isSecureTextEntry ? UIImage(named: "visibility") : UIImage(named: "visibility_off"), for: .normal)
-        visibilityButton.setImage(newPasswordField.isSecureTextEntry ? UIImage(named: "visibility") : UIImage(named: "visibility_off"), for: .normal)
-        newVisibilityButton.setImage(newPasswordField.isSecureTextEntry ? UIImage(named: "visibility") : UIImage(named: "visibility_off"), for: .normal)
+        confirmVisibilityButton.setImage(newPasswordField.isSecureTextEntry ? UIImage(named: "visibility")?.withRenderingMode(.alwaysTemplate) : UIImage(named: "visibility_off")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        visibilityButton.setImage(newPasswordField.isSecureTextEntry ? UIImage(named: "visibility")?.withRenderingMode(.alwaysTemplate) : UIImage(named: "visibility_off")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        newVisibilityButton.setImage(newPasswordField.isSecureTextEntry ? UIImage(named: "visibility")?.withRenderingMode(.alwaysTemplate) : UIImage(named: "visibility_off")?.withRenderingMode(.alwaysTemplate), for: .normal)
     }
     
     
