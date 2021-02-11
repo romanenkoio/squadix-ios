@@ -47,6 +47,7 @@ class SettingsPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let menu = SettingsMenu.getSettingsMenu()
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,11 +133,14 @@ extension SettingsPage: UITableViewDataSource {
                     if UIDevice.current.type == .simulator {
                         appDelegate.logout()
                     } else {
+                        self.spinner.startAnimating()
                         self.networkManager.unsubscribeNotification {
                             print("[NOTIFICATIONS] Unsubscribe")
+                            self.spinner.stopAnimating()
                             appDelegate.logout()
                             UIApplication.shared.applicationIconBadgeNumber = 0
                         } failure: { error in
+                            self.spinner.stopAnimating()
                             PopupView(title: "", subtitle: "Что-то пошло не так", image: UIImage(named: "cancel")).show(true, duration: 5)
                         }
                     }

@@ -67,8 +67,7 @@ class ProfilePage: BaseViewController {
           if profileID != nil {
                tableView.isHidden = true
           }
-          loadProfile(animated: true)
-         
+          loadProfile(animated: profileID != nil)
      }
      
      func configureFloatingMenu() {
@@ -258,14 +257,12 @@ extension ProfilePage: UITableViewDataSource {
 
 extension ProfilePage: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
      func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-          
-          
           if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
                testImage = img
                spinner.startAnimating()
                dismiss(animated: true, completion: nil)
           }
-          
+     
           guard let image = testImage else { return }
           let manager = NetworkManager()
           manager.updloadAvatar(image: image, completion: {
@@ -322,7 +319,6 @@ extension ProfilePage {
      func loadPostInfo() {
           let networkManager = NetworkManager()
           userPosts = []
-          spinner.startAnimating()
           guard let userID = profileID == nil ? KeychainManager.profileID : profileID else { return }
           networkManager.getPostsByUser(id: userID, completion: { [weak self] posts in
                self?.userPosts = posts.content
@@ -336,7 +332,6 @@ extension ProfilePage {
      func loadProductInfo() {
           let networkManager = NetworkManager()
           userPosts = []
-          spinner.startAnimating()
           guard let userID = profileID == nil ? KeychainManager.profileID : profileID else { return }
           networkManager.getProductsByUser(id: userID, completion: { [weak self] posts in
                self?.userProducts = posts

@@ -26,6 +26,8 @@ class EditPage: UIViewController {
     var selectedDate: Date?
     var profile: Profile?
     var isEdit: Bool = false
+    var userPostCount = 0
+    let manager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +62,23 @@ class EditPage: UIViewController {
         datePicker.maximumDate = maxDate
         
       
-        let manager = NetworkManager()
+     
         manager.getCurrentUser { (profile, rrror, _) in
             self.profile = profile
             self.preloadData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        spinner.startAnimating()
+        guard let userID = KeychainManager.profileID else { return }
+        manager.getProductsByUser(id: userID, completion: { [weak self] posts in
+            self?.userPostCount = posts.count
+             self?.spinner.stopAnimating()
+        }) { [weak self] error in
+             self?.spinner.stopAnimating()
+             print(error)
         }
     }
     
@@ -111,7 +126,7 @@ class EditPage: UIViewController {
     }
     
     func editProfile() {
-        
+        spinner.startAnimating()
         if isEdit {
             if countryTextField.text != "" {
                 profile?.country = countryTextField.text
@@ -127,14 +142,18 @@ class EditPage: UIViewController {
                 profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             }
             
-            if phoneTextField.text != "" {
-                if let phone = phoneTextField.text, !phone.isEmpty, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) {
-                    profile?.phone = phoneTextField.text
-                } else {
-                    let alert = UIAlertController(title: "Не верный формат телефона", message: "Формат номера: +375251234567", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
+            if let phone = phoneTextField.text, phone.isEmpty, userPostCount == 0 {
+                profile?.phone = ""
+            } else if let phone = phoneTextField.text, phone.isEmpty, userPostCount != 0 {
+                let alert = UIAlertController(title: "Ошибка удаления номера", message: "Вы не можете удалить номер пока у вас есть активные объявления.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            } else if let phone = phoneTextField.text, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) {
+                profile?.phone = phoneTextField.text
+            } else {
+                let alert = UIAlertController(title: "Неверный формат номера телефона", message: "Формат номера: +375251234567", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         } else {
             profile?.country = countryTextField.text
@@ -149,7 +168,7 @@ class EditPage: UIViewController {
                     profile?.phone = phoneTextField.text
                 } else {
                     let alert = UIAlertController(title: "Не верный формат телефона", message: "Формат номера: +375251234567", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Перейти в настройки", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
                     self.present(alert, animated: true)
                 }
             }
@@ -161,15 +180,16 @@ class EditPage: UIViewController {
         manager.editProfile(profile: profile) {
             self.spinner.stopAnimating()
             print("Updated complete")
-            if self.isEdit {
-                self.navigationController?.popViewController(animated: true)
+            manager.getCurrentUser { (profile, rrror, _) in
+                self.profile = profile
+                self.preloadData()
             }
+            PopupView(title: "", subtitle: "Профиль обновлён", image: UIImage(named: "confirm")).show()
         } failure: { error in
             print("[Edit profile]: \(error)")
             self.spinner.stopAnimating()
             PopupView(title: "", subtitle: "Не удалось обновить профиль", image: UIImage(named: "cancel")).show()
         }
-
     }
 }
 
