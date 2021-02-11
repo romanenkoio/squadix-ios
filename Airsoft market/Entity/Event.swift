@@ -10,6 +10,44 @@ import Foundation
 import UIKit
 import ObjectMapper
 
+enum eventType: String {
+    case stalker = "Сталкер"
+    case CQB
+    case milsim = "Милсим"
+    case pistol = "Пистолетка"
+    case team = "Сборная"
+    case scenario = "Сценарная"
+    case festival = "Фестиваль"
+    case training = "Тренировка"
+    case cup = "Соревнования"
+    case unknown = "Стандарт"
+    
+    var eventTypeImage: UIImage? {
+        switch self {
+        case .stalker:
+            return UIImage(named: "stalker")
+        case .CQB:
+            return UIImage(named: "CQB")
+        case .milsim:
+            return UIImage(named: "milsim")
+        case .pistol:
+            return UIImage(named: "pistol")
+        case .team:
+            return UIImage(named: "team")
+        case .scenario:
+            return UIImage(named: "scenario")
+        case .festival:
+            return UIImage(named: "festivale")
+        case .training:
+            return UIImage(named: "training")
+        case .cup:
+            return UIImage(named: "cup")
+        default:
+            return UIImage(named: "general")
+        }
+    }
+}
+
 class Event: BasePost {
     var createdAt: Date!
     var eventAdress: String?
@@ -21,6 +59,7 @@ class Event: BasePost {
     var eventLongitude: Double?
     var eventDate: Date!
     var startTime: Date!
+    var eventType: eventType! = .unknown
     
     required init?(map: Map) {
         super.init(map: map)

@@ -51,13 +51,9 @@ class AddPostPage: BaseViewController {
         }
     }
     
-    func getVideoID(link: String) -> String? {
-            return URLComponents(string: link)?.queryItems?.first(where: { $0.name == "v" })?.value
-    }
-    
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        guard let videoID = getVideoID(link: text), videoID != "" else {
+        guard let videoID = text.matches(for: Validator.Regexp.youtube.rawValue), videoID != "" else {
             headerTextField.text = ""
             descriptionTextView.text = ""
             previewImageView.image = UIImage(named: "placeholder")
@@ -131,7 +127,7 @@ class AddPostPage: BaseViewController {
         let newPost = Post()
         guard let id = KeychainManager.profileID, let title = headerTextField.text, let description = descriptionTextView.text, let link = linkTextField.text else { return nil }
         
-        guard let parsedLink = getVideoID(link: link) else { return nil}
+        guard let parsedLink = link.matches(for: Validator.Regexp.youtube.rawValue) else { return nil}
         if isEdit {
             guard let post = post else { return nil }
             newPost.id = post.id

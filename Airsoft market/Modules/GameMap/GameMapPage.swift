@@ -86,9 +86,28 @@ class GameMapPage: UIViewController {
             marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             marker.map = mapView
             marker.userData = item
-            let pin = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-            pin.image = UIImage(named: "general")
-            marker.iconView = pin
+            if item.eventType == .some(.unknown) {
+                let pin = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+                pin.image = item.eventType.eventTypeImage
+                marker.iconView = pin
+            } else {
+                let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+                view.backgroundColor = .white
+                let pin = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+                pin.translatesAutoresizingMaskIntoConstraints = false
+             
+                pin.image = item.eventType.eventTypeImage
+                view.addSubview(pin)
+                pin.translatesAutoresizingMaskIntoConstraints = true
+                pin.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
+                view.makeRound()
+                view.layer.borderWidth = 1
+                view.layer.borderColor = UIColor.gray.cgColor
+                marker.iconView = view
+            }
+        
+           
+          
             marker.isTappable = true
             marker.title = item.shortDescription
             markers.append(marker)

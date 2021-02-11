@@ -18,6 +18,7 @@ class Validator {
         case phone = "^(\\+375|375)(29|25|44|33)(\\d{3})(\\d{2})(\\d{2})$"
         case password = "[\\S]{8,25}"
         case email = "^[A-z0-9_.+-]+@[A-z0-9-]+(\\.[A-z0-9-]{2,})+$"
+        case youtube = "(?<=v(=|/))([-a-zA-Z0-9_]+)|(?<=youtu.be/)([-a-zA-Z0-9_]+)"
     }
     
     func validate(string: String, pattern: String) -> Bool {
