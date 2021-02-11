@@ -76,9 +76,11 @@ class AddEventPage: BaseViewController {
         if textField.tag == 1000 {
             dateFormatter.dateFormat = "HH:mm"
             datePicker.datePickerMode = .time
+            datePicker.minimumDate = Date()
         } else {
             dateFormatter.dateFormat = "dd.MM.yy HH:mm"
             datePicker.datePickerMode = .dateAndTime
+            datePicker.minimumDate = Date()
         }
     }
     
