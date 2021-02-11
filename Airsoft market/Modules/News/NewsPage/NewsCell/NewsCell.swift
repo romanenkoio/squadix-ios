@@ -146,5 +146,6 @@ class NewsCell: BaseTableViewCell {
         authorAvatar.image = UIImage(named: "avatar_placeholder")
         promoImageHeightConstraint.constant = 200
         promoImage.isHidden = false
+        imageCountView.isHidden = true
     }
 }

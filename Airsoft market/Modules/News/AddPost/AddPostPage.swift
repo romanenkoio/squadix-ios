@@ -86,6 +86,7 @@ class AddPostPage: BaseViewController {
     
     @IBAction func previewAction(_ sender: Any) {
         guard let post = buildPost() else { return }
+        post.isPreview = true
         navigationController?.pushViewController(VCFabric.getNewsShowPage(post: post), animated: true)
     }
     

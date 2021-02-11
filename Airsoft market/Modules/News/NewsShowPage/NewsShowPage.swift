@@ -76,8 +76,10 @@ class NewsShowPage: BaseViewController {
         tableView.registerCell(AuthorCell.self)
         tableView.registerCell(LikeCell.self)
         tableView.setupDelegateData(self)
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton)],
-                                               animated: true)
+        if let post = post, !post.isPreview {
+            navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton)],
+                                                   animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -145,7 +147,7 @@ extension NewsShowPage: UITableViewDataSource {
                     } else {
                         imageCell.imageSlideshow.setupImagesWithUrls(post.imageUrls!)
                     }
-                   
+                    
                     imageCell.imageSlideshow.isHidden = false
                     imageCell.playerView.isHidden = true
                     imageCell.action = {

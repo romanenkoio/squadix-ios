@@ -298,6 +298,8 @@ extension StrikeServise: TargetType {
     
     var validationType: ValidationType {
         switch self {
+        case .registration:
+            return .none
         default:
             return .successAndRedirectCodes
         }

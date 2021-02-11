@@ -128,7 +128,13 @@ class EditPage: UIViewController {
             }
             
             if phoneTextField.text != "" {
-                profile?.phone = phoneTextField.text
+                if let phone = phoneTextField.text, !phone.isEmpty, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) {
+                    profile?.phone = phoneTextField.text
+                } else {
+                    let alert = UIAlertController(title: "Не верный формат телефона", message: "Формат номера: +375251234567", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
             }
         } else {
             profile?.country = countryTextField.text
@@ -138,7 +144,15 @@ class EditPage: UIViewController {
             profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            profile?.phone = phoneTextField.text
+            if phoneTextField.text != "" {
+                if let phone = phoneTextField.text, !phone.isEmpty, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) {
+                    profile?.phone = phoneTextField.text
+                } else {
+                    let alert = UIAlertController(title: "Не верный формат телефона", message: "Формат номера: +375251234567", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Перейти в настройки", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
         }
     
         
