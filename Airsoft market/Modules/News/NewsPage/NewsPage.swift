@@ -50,13 +50,14 @@ class NewsPage: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+    
         loadData(content: contentType)
         getCurrentProfile()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        configureUI()
         networkManager.getCurrentUser { [weak self] (profile, error, id) in
             if let user = profile {
                 KeychainManager.store(value: user.roles.contains(.admin) , for: .isAdmin)
@@ -78,7 +79,7 @@ class NewsPage: BaseViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        feedProfileID = nil
+//        feedProfileID = nil
         segmentController.isHidden = false
         dashboardButton.isHidden = false
     }
@@ -139,11 +140,12 @@ class NewsPage: BaseViewController {
         }
         
         if feedProfileID != nil {
-            segmentController.isHidden = true
-            dashboardButton.isHidden = true
             segmentController.selectedSegmentIndex = 0
             title = "Новости пользователя"
         }
+        
+        segmentController.isHidden = feedProfileID != nil
+        dashboardButton.isHidden = feedProfileID != nil
         
         actionButton.isHidden = feedProfileID != nil
     }
