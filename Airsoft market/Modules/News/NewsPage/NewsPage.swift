@@ -50,14 +50,17 @@ class NewsPage: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        configureUI()
         loadData(content: contentType)
         getCurrentProfile()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        configureUI()
+        if feedProfileID != nil {
+            segmentController.selectedSegmentIndex = 0
+            title = "Новости пользователя"
+        }
         networkManager.getCurrentUser { [weak self] (profile, error, id) in
             if let user = profile {
                 KeychainManager.store(value: user.roles.contains(.admin) , for: .isAdmin)

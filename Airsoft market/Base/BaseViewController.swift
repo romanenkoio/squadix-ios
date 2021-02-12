@@ -38,10 +38,25 @@ class BaseViewController: UIViewController {
         }
     }
     
-    func showAlert(title: String) {
+    func showAlert(title: String, handler: VoidBlock? = nil) {
         let alert = UIAlertController(title: "Ошибка", message: title, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: { _ in
+            handler?()
+        }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showDestructiveAlert(handler: VoidBlock? = nil) {
+        let alert = UIAlertController(title: "", message: "Вы уверены?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Нет", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Да", style: UIAlertAction.Style.destructive, handler: { _ in
+            handler?()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showPopup(isError: Bool = false, title: String) {
+        PopupView(title: "", subtitle: title, image: isError ? UIImage(named: "cancel") : UIImage(named: "confirm")).show()
     }
 }
 

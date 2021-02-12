@@ -147,17 +147,19 @@ class ProductPage: BaseViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Удалить объявление", style: .destructive) { [weak self] _ in
-            self?.spinner.startAnimating()
-         
-            guard let product = self?.product else { return }
-            self?.service.deleteProduct(id: product.postID, completion: {
-                self?.spinner.stopAnimating()
-                self?.delegate?.updateProductFeed(productID: product.postID)
-                self?.navigationController?.popViewController(animated: true)
-            }) { error in
-                self?.spinner.stopAnimating()
-                print("Error: \(error)")
-            }
+            self?.showDestructiveAlert(handler: {
+                self?.spinner.startAnimating()
+             
+                guard let product = self?.product else { return }
+                self?.service.deleteProduct(id: product.postID, completion: {
+                    self?.spinner.stopAnimating()
+                    self?.delegate?.updateProductFeed(productID: product.postID)
+                    self?.navigationController?.popViewController(animated: true)
+                }) { error in
+                    self?.spinner.stopAnimating()
+                    print("Error: \(error)")
+                }
+            })
         })
         
         alert.addAction(UIAlertAction(title: "Назад", style: .cancel))

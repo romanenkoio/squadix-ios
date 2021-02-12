@@ -155,23 +155,25 @@ class EventShowPage: BaseViewController {
     
     @IBAction func moreButton(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-           
-           alert.addAction(UIAlertAction(title: "Удалить событие", style: .destructive) { [weak self] _ in
-               self?.spinner.startAnimating()
-               let service = NetworkManager()
-               guard let event = self?.event else { return }
-               service.deleteEvent(id: event.id, completion: {
-                   self?.spinner.stopAnimating()
-                self?.delegate?.deleteFromFeed(id: event.id, type: .event)
-                   self?.navigationController?.popViewController(animated: true)
-               }) { error in
-                   self?.spinner.stopAnimating()
-                   print("Error: \(error ?? "unknown")")
-               }
-           })
-           
-           alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
-           present(alert, animated: true)
+        
+        alert.addAction(UIAlertAction(title: "Удалить событие", style: .destructive) { [weak self] _ in
+            self?.showDestructiveAlert(handler: {
+                self?.spinner.startAnimating()
+                let service = NetworkManager()
+                guard let event = self?.event else { return }
+                service.deleteEvent(id: event.id, completion: {
+                    self?.spinner.stopAnimating()
+                    self?.delegate?.deleteFromFeed(id: event.id, type: .event)
+                    self?.navigationController?.popViewController(animated: true)
+                }) { error in
+                    self?.spinner.stopAnimating()
+                    print("Error: \(error ?? "unknown")")
+                }
+            })
+        })
+        
+        alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
+        present(alert, animated: true)
     }
     
 }

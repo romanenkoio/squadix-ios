@@ -96,17 +96,19 @@ class NewsShowPage: BaseViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Удалить пост", style: .destructive) { [weak self] _ in
-            self?.spinner.startAnimating()
-            let service = NetworkManager()
-            guard let post = self?.post else { return }
-            service.deletePost(id: post.id, completion: {
-                self?.spinner.stopAnimating()
-                self?.delegate?.deleteFromFeed(id: post.id, type: .feed)
-                self?.navigationController?.popViewController(animated: true)
-            }) { error in
-                self?.spinner.stopAnimating()
-                print("Error: \(error ?? "unknown")")
-            }
+            self?.showDestructiveAlert(handler: {
+                self?.spinner.startAnimating()
+                let service = NetworkManager()
+                guard let post = self?.post else { return }
+                service.deletePost(id: post.id, completion: {
+                    self?.spinner.stopAnimating()
+                    self?.delegate?.deleteFromFeed(id: post.id, type: .feed)
+                    self?.navigationController?.popViewController(animated: true)
+                }) { error in
+                    self?.spinner.stopAnimating()
+                    print("Error: \(error ?? "unknown")")
+                }
+            })
         })
         
         alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
