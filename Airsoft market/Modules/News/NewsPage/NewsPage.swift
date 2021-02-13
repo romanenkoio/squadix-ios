@@ -91,11 +91,6 @@ class NewsPage: BaseViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-//        segmentController.isHidden = false
-//        dashboardButton.isHidden = false
-    }
-    
     func configureFloatingMenu(with user: Profile? = nil) {
         actionButton.items = []
         actionButton.display(inViewController: self)
