@@ -141,11 +141,17 @@ class ProfilePage: BaseViewController {
           
           if (currentProfile?.profilePictureUrl) != nil {
                alert.addAction(UIAlertAction(title: "Удалить фото", style: .destructive) { [weak self]  _ in
-                    self?.networkManager.deleteAvater {
-                         self?.loadProfile()
-                    } failure: { errror in
-                         PopupView(title: "", subtitle: "Ошибка. Попробуйте позже", image: UIImage(named: "cancel")).show()
-                    }
+                    self?.showDestructiveAlert(handler: {
+                         self?.spinner.startAnimating()
+                         self?.networkManager.deleteAvater {
+                              self?.loadProfile()
+                              self?.showPopup(isError: false, title: "Аватар удалён")
+                              self?.spinner.stopAnimating()
+                         } failure: { errror in
+                              self?.spinner.stopAnimating()
+                              self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже")
+                         }
+                    })
                })
           }
           
