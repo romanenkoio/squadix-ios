@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Permissions: String {
+    case camera = "к камере"
+    case galery = "к галерее"
+}
+
 class BaseViewController: UIViewController {
     let networkManager = NetworkManager()
     let generator = UINotificationFeedbackGenerator()
@@ -53,6 +58,14 @@ class BaseViewController: UIViewController {
             handler?()
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showPermissionAlert(for permissions: Permissions) {
+        let alert = UIAlertController(title: "Ошибка разрешений", message: "Приложению необходим доступ \(permissions.rawValue)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Перейти в настройки", style: .default, handler: { action in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }))
+        present(alert, animated: true)
     }
     
     func showPopup(isError: Bool = false, title: String) {

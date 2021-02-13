@@ -115,12 +115,8 @@ extension AddTextPostPage: UICollectionViewDelegate {
                         }
                     }
                 } else {
-                    let alert = UIAlertController(title: "Ошибка разрешений", message: "Приложению необходим доступ к камере", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Перейти в настройки", style: .default, handler: { action in
-                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-                    }))
                     DispatchQueue.main.async {
-                        self?.present(alert, animated: true)
+                        self?.showPermissionAlert(for: .camera)
                     }
                 }
             })
@@ -140,12 +136,8 @@ extension AddTextPostPage: UICollectionViewDelegate {
                         }
                     }
                 } else if (status == PHAuthorizationStatus.denied) {
-                    let alert = UIAlertController(title: "Ошибка разрешений", message: "Приложению необходим доступ к галерее", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Перейти в настройки", style: .default, handler: { action in
-                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-                    }))
                     DispatchQueue.main.async {
-                        self?.present(alert, animated: true)
+                        self?.showPermissionAlert(for: .galery)
                     }
                 }
             })

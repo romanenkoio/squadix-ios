@@ -8,6 +8,7 @@
 
 import UIKit
 import JJFloatingActionButton
+import Photos
 
 enum ProfileMenuPoints {
      case profileInfo
@@ -126,17 +127,39 @@ class ProfilePage: BaseViewController {
           imagePicker.allowsEditing = true
           
           alert.addAction(UIAlertAction(title: "Выбрать из галереи", style: .default) { [weak self] _ in
-               if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-                    self?.imagePicker.sourceType = .savedPhotosAlbum
-                    self?.present(self!.imagePicker, animated: true, completion: nil)
-               }
+               let status = PHPhotoLibrary.authorizationStatus()
+               
+               PHPhotoLibrary.requestAuthorization({ (newStatus) in
+                    if (newStatus == PHAuthorizationStatus.authorized) {
+                         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+                              DispatchQueue.main.async {
+                                   self?.imagePicker.sourceType = .savedPhotosAlbum
+                                   self?.present(self!.imagePicker, animated: true, completion: nil)
+                              }
+                         }
+                    } else if (status == PHAuthorizationStatus.denied) {
+                         DispatchQueue.main.async {
+                              self?.showPermissionAlert(for: .galery)
+                         }
+                    }
+               })
           })
           
           alert.addAction(UIAlertAction(title: "Сделать фото", style: .default) { [weak self]  _ in
-               if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                    self?.imagePicker.sourceType = .camera
-                    self?.present(self!.imagePicker, animated: true, completion: nil)
-               }
+               AVCaptureDevice.requestAccess(for: .video, completionHandler: {accessGranted in
+                    if  accessGranted {
+                         if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                              DispatchQueue.main.async {
+                                   self?.imagePicker.sourceType = .camera
+                                   self?.present(self!.imagePicker, animated: true, completion: nil)
+                              }
+                         }
+                    } else {
+                         DispatchQueue.main.async {
+                              self?.showPermissionAlert(for: .camera)
+                         }
+                    }
+               })
           })
           
           if (currentProfile?.profilePictureUrl) != nil {
