@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditPage: UIViewController {
+class EditPage: BaseViewController {
     @IBOutlet weak var countryTextField: StrikeInputField!
     @IBOutlet weak var cityTextField: StrikeInputField!
     @IBOutlet weak var birthdayTextField: StrikeInputField!
@@ -184,11 +184,11 @@ class EditPage: UIViewController {
                 self.profile = profile
                 self.preloadData()
             }
-            PopupView(title: "", subtitle: "Профиль обновлён", image: UIImage(named: "confirm")).show()
+            self.showPopup(isError: false, title: "Профиль обновлён")
         } failure: { error in
             print("[Edit profile]: \(error)")
             self.spinner.stopAnimating()
-            PopupView(title: "", subtitle: "Не удалось обновить профиль", image: UIImage(named: "cancel")).show()
+            self.showPopup(isError: true, title: "Не удалось обновить профиль")
         }
     }
 }

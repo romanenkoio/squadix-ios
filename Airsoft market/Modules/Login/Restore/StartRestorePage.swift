@@ -25,17 +25,17 @@ class StartRestorePage: BaseViewController {
     @IBAction func restoreAction(_ sender: Any) {
         spinner.startAnimating()
         guard let email = emailTextField.text, !email.isEmpty, Validator.shared.validate(string: email, pattern: Validator.Regexp.email.rawValue) else {
-            PopupView.init(title: "", subtitle: "Проверьте правильность email", image: UIImage(named: "cancel")).show()
+            showPopup(isError: true, title: "Проверьте правильность email")
             spinner.stopAnimating()
             return
         }
-        networkManager.resetPassword(email: email) {
+        networkManager.resetPassword(email: email) { [weak self] in
             let alert = UIAlertController(title: "Успешно", message: "Проверьте вашу почту.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            self.spinner.stopAnimating()
+            self?.present(alert, animated: true, completion: nil)
+            self?.spinner.stopAnimating()
         } failure: { error in
-            PopupView(title: "Ошибка. Попробуйте позже", subtitle: nil, image: UIImage(named: "cancel")).show()
+            self.showPopup(isError: true, title: "Ошибка. Попробуйте позже")
             self.spinner.stopAnimating()
         }
 

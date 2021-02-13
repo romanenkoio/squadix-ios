@@ -99,14 +99,14 @@ class AddPostPage: BaseViewController {
         if isEdit {
             manager.editPost(post: post, { [weak self] in
                 self?.spinner.stopAnimating()
-                PopupView(title: "Опубликовано!", image:  UIImage(named: "confirm")).show()
+                self?.showPopup(isError: false, title: "Опубликовано!")
                 self?.isEditing = false
                 self?.delegate?.updateFeed(type: .feed)
                 self?.navigationController?.popToRootViewController(animated: true)
                 self?.spinner.stopAnimating()
             }) {  [weak self] _ in
                 self?.postButton.isEnabled = true
-                PopupView(title: "Не удалось обновить пост", image:  UIImage(named: "cancel")).show()
+                self?.showPopup(isError: true, title: "Не удалось обновить пост!")
                 self?.spinner.stopAnimating()
             }
         } else {
