@@ -61,6 +61,16 @@ class NewsPage: BaseViewController {
             segmentController.selectedSegmentIndex = 0
             title = "Новости пользователя"
         }
+        if feedProfileID != nil {
+            segmentController.selectedSegmentIndex = 0
+            title = "Новости пользователя"
+        }
+        
+        segmentController.isHidden = feedProfileID != nil
+        dashboardButton.isHidden = feedProfileID != nil
+        
+        actionButton.isHidden = feedProfileID != nil
+        
         networkManager.getCurrentUser { [weak self] (profile, error, id) in
             if let user = profile {
                 KeychainManager.store(value: user.roles.contains(.admin) , for: .isAdmin)
@@ -82,9 +92,8 @@ class NewsPage: BaseViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-//        feedProfileID = nil
-        segmentController.isHidden = false
-        dashboardButton.isHidden = false
+//        segmentController.isHidden = false
+//        dashboardButton.isHidden = false
     }
     
     func configureFloatingMenu(with user: Profile? = nil) {
