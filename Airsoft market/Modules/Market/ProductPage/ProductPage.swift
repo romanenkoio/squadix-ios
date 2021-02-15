@@ -22,10 +22,11 @@ enum ContentType {
     case region
     case description
     case postAvalible
+    case category
     
     static func getPoints() -> (menu: [[ContentType]], headers: [String])  {
         let firstSection: [ContentType] = [.authorInfo, .images]
-        let secondSection: [ContentType] = [.price, .region, .postAvalible]
+        let secondSection: [ContentType] = [.price, .region, .postAvalible, .category]
         let thirdSection: [ContentType] = [.description]
         return ([firstSection, secondSection, thirdSection], ["", "", "Описание"])
     }
@@ -247,6 +248,15 @@ extension ProductPage: UITableViewDataSource {
                     profileCell.simpleTextLabel.text = "Город: \(region)"
                 } else {
                     profileCell.simpleTextLabel.text = "Город не указан"
+                }
+                return profileCell
+            }
+        case .category:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SimpleTextCell.self), for: indexPath)
+            if let profileCell = cell as? SimpleTextCell {
+                profileCell.isUserInteractionEnabled = false
+                if let category = product.productCategory {
+                    profileCell.simpleTextLabel.text = "Категория: \(category)"
                 }
                 return profileCell
             }
