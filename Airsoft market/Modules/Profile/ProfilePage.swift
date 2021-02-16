@@ -250,7 +250,12 @@ extension ProfilePage: UITableViewDataSource {
                     profileCell.descriptionLabel.enabledTypes = [.url]
                     profileCell.descriptionLabel.customize { label in
                          label.handleURLTap { url in
-                              UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                              if Deeplink.DeeplinkType.checkLinkType(url: url) != .unknow {
+                                   Deeplink.Handler.shared.handle(deeplink: Deeplink(url: url))
+                              } else {
+                                   UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                              }
+                            
                          }
                     }
                     profileCell.isUserInteractionEnabled = true
