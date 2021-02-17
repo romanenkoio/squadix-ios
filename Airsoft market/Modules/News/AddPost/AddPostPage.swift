@@ -112,14 +112,14 @@ class AddPostPage: BaseViewController {
         } else {
             manager.postVideo(post: post, completion: { [weak self] in
                 self?.spinner.stopAnimating()
-                PopupView(title: "Опубликовано!", image:  UIImage(named: "confirm")).show()
+                self?.showPopup(isError: false, title: "Опубликовано!")
                 self?.isEditing = false
                 self?.delegate?.updateFeed(type: .feed)
                 self?.navigationController?.popViewController(animated: true)
             }) { [weak self] _ in
                 self?.postButton.isEnabled = true
                 self?.spinner.stopAnimating()
-                PopupView(title: "Не удалось опубликовтаь пост", image:  UIImage(named: "cancel")).show()
+                self?.showPopup(isError: false, title: "Не удалось опубликовтаь пост")
             }
         }
     }

@@ -111,7 +111,7 @@ class EventShowPage: BaseViewController {
                 for singleEvent in existingEvents {
                     if singleEvent.title == "Не забудь зарядить аккумуляторы к игре!" && singleEvent.startDate == eventStartDate {
                         DispatchQueue.main.async {
-                            PopupView(title: "", subtitle: "Уже было добавлено в календарь.", image: UIImage(named: "cancel")).show()
+                            self.showPopup(isError: true, title: "Уже было добавлено в календарь.")
                         }
                         return
                     }
@@ -140,7 +140,7 @@ class EventShowPage: BaseViewController {
                     do {
                         try self.eventStore.save(calendarEvent, span: .thisEvent, commit: true)
                         DispatchQueue.main.async {
-                            PopupView(title: "", subtitle: "Сохранено в календарь", image: UIImage(named: "confirm")).show()
+                            self.showPopup(title: "Сохранено в календарь")
                         }
                     } catch let error {
                         print(error)

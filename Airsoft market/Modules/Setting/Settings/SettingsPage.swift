@@ -141,7 +141,7 @@ extension SettingsPage: UITableViewDataSource {
                             UIApplication.shared.applicationIconBadgeNumber = 0
                         } failure: { error in
                             self.spinner.stopAnimating()
-                            PopupView(title: "", subtitle: "Что-то пошло не так", image: UIImage(named: "cancel")).show(true, duration: 5)
+                            self.showPopup(isError: true, title: "Что-то пошло не так")
                         }
                     }
                 }
@@ -313,9 +313,9 @@ extension SettingsPage: UITableViewDataSource {
                         guard let message = alert?.textFields![0].text, !message.isEmpty, let url = alert?.textFields![1].text else { return }
                         let utilites = UtilitesManager()
                         utilites.sendNotifications(message: message, url: url) {
-                            PopupView(title: "", subtitle: "Отправлено", image: UIImage(named: "confirm")).show()
+                            self.showPopup(title: "Отправлено")
                         } failure: { error in
-                            PopupView(title: "", subtitle: "Ошибка отправки", image: UIImage(named: "cancel")).show()
+                            self.showPopup(isError: true, title: "Ошибка отправки")
                         }
                     }))
                     

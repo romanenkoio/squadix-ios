@@ -20,7 +20,7 @@ enum DebugSetting: String, CaseIterable {
     }
 }
 
-class DebugPage: UIViewController {
+class DebugPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     let menu = DebugSetting.getPoints()
     
@@ -49,7 +49,7 @@ extension DebugPage: UITableViewDataSource {
             debugCell.action = {
                 guard let token = KeychainManager.accessToken else { return }
                 UIPasteboard.general.string = token
-                PopupView(title: "Скопировано", subtitle: nil, image: UIImage(named: "confirm")).show()
+                self.showPopup(title: "Скопировано")
             }
             return debugCell
         case .profileID:
@@ -57,7 +57,7 @@ extension DebugPage: UITableViewDataSource {
                 debugCell.infoLabel.text = "\(profileID)"
                 debugCell.action = {
                     UIPasteboard.general.string = "\(profileID)"
-                    PopupView(title: "Скопировано", subtitle: nil, image: UIImage(named: "confirm")).show()
+                    self.showPopup(title: "Скопировано")
                 }
             } else {
                 debugCell.infoLabel.text = "Нет данных"
@@ -69,7 +69,7 @@ extension DebugPage: UITableViewDataSource {
             debugCell.infoLabel.text = UIDevice.current.systemVersion
             debugCell.action = {
                 UIPasteboard.general.string = UIDevice.current.systemVersion
-                PopupView(title: "Скопировано", subtitle: nil, image: UIImage(named: "confirm")).show()
+                self.showPopup(title: "Скопировано")
             }
             return debugCell
         case .device:
@@ -77,7 +77,7 @@ extension DebugPage: UITableViewDataSource {
             debugCell.infoLabel.text = UIDevice.current.type.rawValue
             debugCell.action = {
                 UIPasteboard.general.string = UIDevice.current.type.rawValue
-                PopupView(title: "Скопировано", subtitle: nil, image: UIImage(named: "confirm")).show()
+                self.showPopup(title: "Скопировано")
             }
             return debugCell
         case .pushToken:
@@ -85,7 +85,7 @@ extension DebugPage: UITableViewDataSource {
             debugCell.infoLabel.text = KeychainManager.pushToken != nil ? KeychainManager.pushToken : "Нет данных"
             debugCell.action = {
                 UIPasteboard.general.string = KeychainManager.pushToken != nil ? KeychainManager.pushToken : "Нет данных"
-                PopupView(title: "Скопировано", subtitle: nil, image: UIImage(named: "confirm")).show()
+                self.showPopup(title: "Скопировано")
             }
             return debugCell
         }

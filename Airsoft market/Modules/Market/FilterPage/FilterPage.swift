@@ -35,7 +35,7 @@ class FilterPage: BaseViewController {
         RealmService.writeFilters(categoryFilters)
         saveButton.isEnabled = false
         delegate?.updateWithFilters()
-        PopupView(title: "Фильтры установлены!", subtitle: nil, image: nil).show()
+        showPopup(title: "Фильтры установлены!")
     }
 }
 

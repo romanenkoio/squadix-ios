@@ -522,7 +522,7 @@ extension NewsPage: UIContextMenuInteractionDelegate {
                     image.loadFromURL(from: pic, completition: { image in
                         UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
                     }) { error in
-                        PopupView(title: "Ошибка сохранения", subtitle: error, image: UIImage(named: "cancel")).show()
+                        self.showPopup(isError: true, title: "Ошибка сохранения")
                         print(error)
                     }
                 }
@@ -535,9 +535,9 @@ extension NewsPage: UIContextMenuInteractionDelegate {
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
-            PopupView(title: "Ошибка сохранения", subtitle: error.localizedDescription, image: UIImage(named: "cancel")).show()
+            self.showPopup(isError: true, title: "Ошибка сохранения")
         } else {
-            PopupView(title: "Сохранено", subtitle: "", image: UIImage(named: "confirm")).show()
+            self.showPopup(isError: false, title: "Сохранено")
         }
     }
 }
@@ -589,13 +589,13 @@ extension NewsPage: DeeplinkRoutable {
             networkManager.getPostByID(postID: id) { [weak self] post in
                 self?.navigationController?.pushViewController(VCFabric.getNewsShowPage(post: post), animated: true)
             }failure: { _ in
-                PopupView.init(title: "", subtitle: "Новость не найдена", image: UIImage(named: "cancel")).show()
+                self.showPopup(isError: true, title: "Новость не найдена")
             }
         } else if url.path.contains("/events/") {
             networkManager.getEventByID(postID: id) { [weak self] event in
                 self?.navigationController?.pushViewController(VCFabric.getEventShowPage(event: event), animated: true)
             } failure: { _ in
-                PopupView.init(title: "", subtitle: "Событие не найдено", image: UIImage(named: "cancel")).show()
+                self.showPopup(isError: true, title: "Событие не найдено")
             }
         }
     }

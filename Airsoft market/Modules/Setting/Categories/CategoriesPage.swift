@@ -59,10 +59,10 @@ extension CategoriesPage: UITableViewDelegate {
         
         let remove = UIContextualAction(style: .destructive, title: "Удалить") { (action, sourceView, completionHandler) in
             self.networkManager.deleteCategory(id: item) {
-                PopupView(title: "", subtitle: "Удалено", image: UIImage(named: "confirm")).show()
+                self.showPopup(title: "Удалено")
                 self.loadCategories()
             } failure: { error in
-                PopupView(title: "", subtitle: "Ошибка удаления", image: UIImage(named: "cancel")).show()
+                self.showPopup(isError: true, title: "Ошибка удаления")
             }
            
         }

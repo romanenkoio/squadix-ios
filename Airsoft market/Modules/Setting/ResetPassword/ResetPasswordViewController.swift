@@ -50,19 +50,19 @@ class ResetPasswordViewController: BaseViewController {
         spinner.startAnimating()
         
         guard let password = newPasswordField.text, !password.isEmpty, let secondPasssword = secondNewPasswordField.text, !secondPasssword.isEmpty else {
-            PopupView(title: "", subtitle: "Поля не могут быть пустыми", image: UIImage(named: "cancel")).show()
+            self.showPopup(isError: true, title: "Поля не могут быть пустыми")
             spinner.stopAnimating()
             return
         }
         
         guard  password == secondPasssword else {
-            PopupView(title: "", subtitle: "Пароли должны совпадать", image: UIImage(named: "cancel")).show()
+            self.showPopup(isError: true, title: "Пароли должны совпадать")
             spinner.stopAnimating()
             return
         }
         
         guard Validator.shared.validate(string: password, pattern: Validator.Regexp.password.rawValue), Validator.shared.validate(string: secondPasssword, pattern: Validator.Regexp.password.rawValue) else {
-            PopupView(title: "", subtitle: "Пароли должны быть от 8 символов", image: UIImage(named: "cancel")).show()
+            self.showPopup(isError: true, title: "Пароли должны быть от 8 символов")
             spinner.stopAnimating()
             return
         }
@@ -80,12 +80,12 @@ class ResetPasswordViewController: BaseViewController {
                 self?.present(alert, animated: true, completion: nil)
             } failure: {  [weak self] error in
                 self?.spinner.stopAnimating()
-                PopupView(title: "", subtitle: "Что-то пошло не так. Попробуйте позже", image: UIImage(named: "cancel")).show()
+                self?.showPopup(isError: true, title: "Что-то пошло не так. Попробуйте позже")
             }
 
         } else {
             guard let oldPassword = oldPasswordField.text, !oldPassword.isEmpty, oldPassword != password else {
-                PopupView(title: "", subtitle: "Пароли не могут совпадать или быть пустыми", image: UIImage(named: "cancel")).show()
+                self.showPopup(isError: true, title: "Пароли не могут совпадать или быть пустыми")
                 spinner.stopAnimating()
                 return
             }
@@ -95,9 +95,9 @@ class ResetPasswordViewController: BaseViewController {
                 self?.oldPasswordField.text = ""
                 self?.secondNewPasswordField.text = ""
                 self?.spinner.stopAnimating()
-                PopupView(title: "", subtitle: "Пароль успешно изменён", image: UIImage(named: "confirm")).show()
+                self?.showPopup(title: "Пароль успешно изменён")
             } failure: { [weak self] error in
-                PopupView(title: "", subtitle: error, image: UIImage(named: "cancel")).show()
+                self?.showPopup(isError: true, title: error)
                 self?.spinner.stopAnimating()
             }
         }

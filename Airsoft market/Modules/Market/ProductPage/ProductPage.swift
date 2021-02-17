@@ -129,7 +129,7 @@ class ProductPage: BaseViewController {
                 guard let contactUrl = URL.init(string: url) else { return }
                 UIApplication.shared.open(contactUrl)
             } else {
-                PopupView(title: "", subtitle: "Ошибка получения номера", image: UIImage(named: "cancel")).show()
+                self.showPopup(isError: true, title: "Ошибка получения номера")
                 self.spinner.stopAnimating()
                 return
             }
@@ -138,9 +138,9 @@ class ProductPage: BaseViewController {
     
     @IBAction func upAction(_ sender: Any) {
         networkManager.upProduct(id: product.postID) {
-            PopupView(title: "", subtitle: "Успешно поднято", image: UIImage(named: "confirm")).show()
+            self.showPopup(title: "Успешно поднято")
         } failure: { error in
-            PopupView(title: "", subtitle: "Что-то пошло не так", image: UIImage(named: "cancel")).show()
+            self.showPopup(isError: true, title: "Что-то пошло не так")
         }
     }
     
@@ -336,10 +336,10 @@ extension ProductPage: DeeplinkRoutable {
 //                self?.navigationController?.pushViewController(VCFabric.getProductPage(product: product), animated: true)
             } else {
                 self?.navigationController?.popViewController(animated: true)
-                PopupView(title: "", subtitle: "Объявление недоступно", image: UIImage(named: "cancel")).show()
+                self?.showPopup(isError: true, title: "Объявление недоступно")
             }
         } failure: { _ in
-            PopupView.init(title: "", subtitle: "Объявление не найдено", image: UIImage(named: "cancel")).show()
+            self.showPopup(isError: true, title: "Объявление не найдено")
         }
         
     }

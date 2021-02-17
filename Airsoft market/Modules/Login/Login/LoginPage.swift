@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginPage: UIViewController {
+class LoginPage: BaseViewController {
     @IBOutlet weak var emailTextField: StrikeInputField!
     @IBOutlet weak var passwordInpudField: StrikeInputField!
     @IBOutlet weak var loginButton: OliveButton!
@@ -60,10 +60,10 @@ class LoginPage: UIViewController {
                 self.indicator.stopAnimating()
                 print(error)
                 self.loginButton.isEnabled = true
-                PopupView.init(title: "", subtitle: LoginErrors.badCredentials.rawValue, image: UIImage(named: "cancel")).show()
+                self.showPopup(isError: true, title: LoginErrors.badCredentials.rawValue)
             })
         } else {
-            PopupView.init(title: "", subtitle: LoginErrors.invalide.rawValue, image: UIImage(named: "cancel")).show()
+            self.showPopup(isError: true, title: LoginErrors.invalide.rawValue)
         }
     }
     

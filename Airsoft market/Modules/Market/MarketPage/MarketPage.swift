@@ -123,7 +123,7 @@ class MarketPage: BaseViewController {
         }, failure: { [weak self] error in
             print("[NETWORK] \(error)")
             self?.spinner.stopAnimating()
-            PopupView(title: "", subtitle: "Ошибка обновления категорий", image: UIImage(named: "cancel")).show()
+            self?.showPopup(isError: true, title: "Ошибка обновления категорий")
         })
     }
     

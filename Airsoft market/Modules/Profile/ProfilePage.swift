@@ -99,7 +99,7 @@ class ProfilePage: BaseViewController {
                     alert.addAction(UIAlertAction(title: "Сохранить категорию", style: .default, handler: { [weak alert, self] (_) in
                          guard let categoryName = alert?.textFields![0].text, !categoryName.isEmpty else { return }
                          self?.networkManager.createCategory(with: categoryName, completion: { _ in
-                              PopupView(title: "", subtitle: "Категория добавлена", image: UIImage(named: "confirm")).show()
+                               self?.showPopup(title: "Категория добавлена")
                          })
                     }))
                     
@@ -304,7 +304,7 @@ extension ProfilePage: UIImagePickerControllerDelegate & UINavigationControllerD
                self.spinner.startAnimating()
           }) { error in
                self.spinner.startAnimating()
-               PopupView(title: "", subtitle: "Не удалось", image: UIImage(named: "cancel")).show()
+               self.showPopup(isError: true, title: "Не удалось")
                print(error ?? "Could'nt upload picture")
           }
      }

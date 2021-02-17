@@ -109,12 +109,12 @@ class AddProductPage: BaseViewController {
         product.postAvalible = postSwitcher.isOn
       
         networkManager.createProduct(product: product, images: imageData, completion: { [weak self] in
-            PopupView(title: "Объявление на модерации", subtitle: nil, image: UIImage(named: "confirm")).show()
+            self?.showPopup(title: "Объявление на модерации")
             self?.spinner.stopAnimating()
             self?.navigationController?.popViewController(animated: true)
             self?.delegate?.update()
         }) { [weak self] error in
-            PopupView(title: "Ошибка. Попробуйте позже", subtitle: nil, image: UIImage(named: "cancel")).show()
+            self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже")
             self?.postButton.isEnabled = true
             self?.spinner.stopAnimating()
             print(error ?? "Error")
