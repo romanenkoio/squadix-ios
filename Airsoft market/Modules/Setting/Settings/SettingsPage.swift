@@ -29,6 +29,7 @@ enum SettingsMenu {
     case categories
     case quality
     case version
+    case support
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
@@ -36,7 +37,7 @@ enum SettingsMenu {
         let actionSection: [SettingsMenu] = [.quality, .changePassword, .logout]
         let developerSection: [SettingsMenu] = [.chat, .debug, .forceCrash]
         let adminSection: [SettingsMenu] = [.categories, .sendNotification]
-        let systemSection: [SettingsMenu] = [.version]
+        let systemSection: [SettingsMenu] = [.support, .version]
         
         return KeychainManager.isAdmin ? [settingsSection, infoSection, adminSection, actionSection, developerSection, systemSection] : [settingsSection, infoSection, actionSection, systemSection]
     }
@@ -332,7 +333,21 @@ extension SettingsPage: UITableViewDataSource {
                 }
                 return settingCell
             }
+        case .support:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Поддержка"
+                settingCell.action = {
+                    if let url = URL(string: "vk://vk.com/squadix") {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                }
+                return settingCell
+            }
         }
+        
         
         return cell
     }

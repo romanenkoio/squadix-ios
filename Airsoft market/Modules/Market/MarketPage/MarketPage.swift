@@ -36,6 +36,7 @@ class MarketPage: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск по названию"
@@ -334,6 +335,7 @@ extension MarketPage {
         settingsButton.isHidden = profileID != nil
         adminButton.isHidden = profileID != nil
         addProductButton.isHidden = profileID != nil
+        title = "Новое объявление"
     }
 }
 
@@ -354,7 +356,6 @@ extension MarketPage: UISearchResultsUpdating {
                     sSelf.spinner.stopAnimating()
                     sSelf.marketData = products.filter({ $0.productName.lowercased().contains(find: searchText.lowercased())})
                     sSelf.tableView.reloadData()
-                  
                     sSelf.title = "Барахолка"
                 }) {  [weak self] error in
                     print(error)
