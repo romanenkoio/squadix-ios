@@ -1895,7 +1895,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.0a;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
 				PROVISIONING_PROFILE_SPECIFIER = SquadixDev;
@@ -1922,7 +1922,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.0a;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
 				PROVISIONING_PROFILE_SPECIFIER = SquadixDev;
