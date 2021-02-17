@@ -43,8 +43,8 @@ class BaseViewController: UIViewController {
         }
     }
     
-    func showAlert(title: String, handler: VoidBlock? = nil) {
-        let alert = UIAlertController(title: "Ошибка", message: title, preferredStyle: UIAlertController.Style.alert)
+    func showAlert(maintText: String = "Ошибка", title: String, handler: VoidBlock? = nil) {
+        let alert = UIAlertController(title: maintText, message: title, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: { _ in
             handler?()
         }))

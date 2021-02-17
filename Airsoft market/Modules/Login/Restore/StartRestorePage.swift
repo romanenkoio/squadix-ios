@@ -30,9 +30,7 @@ class StartRestorePage: BaseViewController {
             return
         }
         networkManager.resetPassword(email: email) { [weak self] in
-            let alert = UIAlertController(title: "Успешно", message: "Проверьте вашу почту.", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: nil))
-            self?.present(alert, animated: true, completion: nil)
+            self?.showAlert(maintText: "Успешно", title: "Проверьте вашу почту.")
             self?.spinner.stopAnimating()
         } failure: { error in
             self.showPopup(isError: true, title: "Ошибка. Попробуйте позже")

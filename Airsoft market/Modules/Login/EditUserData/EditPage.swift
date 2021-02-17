@@ -145,9 +145,7 @@ class EditPage: BaseViewController {
             if let phone = phoneTextField.text, phone.isEmpty, userPostCount == 0 {
                 profile?.phone = ""
             } else if let phone = phoneTextField.text, phone.isEmpty, userPostCount != 0 {
-                let alert = UIAlertController(title: "Ошибка удаления номера", message: "Вы не можете удалить номер пока у вас есть активные объявления.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
-                self.present(alert, animated: true)
+                self.showAlert(maintText: "Ошибка удаления номера", title: "Вы не можете удалить номер пока у вас есть активные объявления.", handler: nil)
             } else if let phone = phoneTextField.text, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) {
                 profile?.phone = phoneTextField.text
             } else {
