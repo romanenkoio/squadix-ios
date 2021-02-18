@@ -125,6 +125,7 @@ class ProductPage: BaseViewController {
                 return
             }
             if let phone = profile.phone {
+                Analytics.trackEvent("Get_phone")
                 self.spinner.stopAnimating()
                 let url = "tel://\(phone)"
                 guard let contactUrl = URL.init(string: url) else { return }
