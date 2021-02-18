@@ -66,6 +66,7 @@ class NewsPage: BaseViewController {
             title = "Новости пользователя"
         }
         
+        Analytics.trackEvent(segmentController.selectedSegmentIndex == 0 ? "News_screen" : "Event_screen")
         segmentController.isHidden = feedProfileID != nil
         dashboardButton.isHidden = feedProfileID != nil
         

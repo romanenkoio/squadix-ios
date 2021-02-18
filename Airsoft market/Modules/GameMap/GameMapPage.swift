@@ -68,6 +68,7 @@ class GameMapPage: UIViewController {
         swipe.direction = .down
         navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: calendarButton), UIBarButtonItem(customView: refreshButton)], animated: true)
         loadEvents()
+        Analytics.trackEvent("Game_map_screen")
     }
     
     @objc func swipeAction(gesture: UISwipeGestureRecognizer) -> Void {

@@ -90,6 +90,7 @@ class NewsShowPage: BaseViewController {
         } else {
             moreButton.isHidden = KeychainManager.profileID != id
         }
+        Analytics.trackEvent("Post_view_screen")
     }
     
     @IBAction func moreAction(_ sender: Any) {
@@ -220,6 +221,7 @@ extension NewsShowPage: UITableViewDataSource {
                         print("LikeAction canceled")
                         return
                     }
+                    Analytics.trackEvent(post.isLiked ? "Post_liked" : "Post_unliked")
                     self?.likeAction = self?.networkManager.toggleLike(postID: post.id, type: .feed, completion: { post in
                         self?.post?.likesCount = post.likesCount
                         self?.post?.isLiked = post.isLiked

@@ -67,6 +67,7 @@ class NewsCell: BaseTableViewCell {
                 print("LikaAction canceled")
                 return
             }
+            Analytics.trackEvent(post.isLiked ? "Post_liked" : "Post_unliked")
             self?.likeAction = self?.networkManager.toggleLike(postID: post.id, type: .feed, completion: { post in
                 self?.generator.notificationOccurred(.success)
                 self?.setLikeState(post: post)
@@ -120,9 +121,10 @@ class NewsCell: BaseTableViewCell {
         likeImage.setImage(UIImage(named: event.isLiked ? "like_fill" : "like"), for: .normal)
         action = { [weak self] in
             if self?.likeAction != nil {
-                print("LikaAction canceled")
+                print("LikeAction canceled")
                 return
             }
+            Analytics.trackEvent(event.isLiked ? "Post_liked" : "Post_unliked")
             self?.likeAction = self?.networkManager.toggleLike(postID: event.id, type: .event, completion: { event in
                 let updatedEvent = Event()
                 updatedEvent.likesCount = event.likesCount

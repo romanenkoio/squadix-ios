@@ -69,6 +69,7 @@ class ProfilePage: BaseViewController {
                tableView.isHidden = true
           }
           loadProfile(animated: profileID != nil)
+          Analytics.trackEvent(profileID == nil ? "Profile_screen" : "My_profile_screen")
      }
      
      func configureFloatingMenu() {
@@ -80,10 +81,12 @@ class ProfilePage: BaseViewController {
           
           actionButton.addItem(title: "Настройки", image: UIImage(named: "settings")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
                self?.navigationController?.pushViewController(SettingsPage.loadFromNib(), animated: true)
+               Analytics.trackEvent("Settings_screen")
           }
           
           actionButton.addItem(title: "Редактировать профиль", image: UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
                self?.navigationController?.pushViewController(VCFabric.getUserEditPage(isEdit: true, profile: self?.currentProfile), animated: true)
+               Analytics.trackEvent("Edit_profile_screen")
           }
           
           if KeychainManager.isAdmin {

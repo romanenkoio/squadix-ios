@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 enum Permissions: String {
     case camera = "к камере"
@@ -76,5 +77,22 @@ class BaseViewController: UIViewController {
 extension BaseViewController {
     enum AlertErrors: String {
         case coordinatesError = "Подходящий формат координат: 55.316078, 27.953750"
+    }
+}
+
+extension BaseViewController {
+    func trackEvent(_ event: String, params: [String : Any]? = nil) {
+        Analytics.trackEvent(event, params: params)
+    }
+    
+    func trackScreenView(_ value: String? = nil) {
+        Analytics.trackEvent(value ?? String(describing: self))
+    }
+}
+
+internal class Analytics {
+    static func trackEvent(_ event: String, params: [String : Any]? = nil) {
+        let eventStringReplaced = event.replacingOccurrences(of: "-", with: "_")
+        FirebaseAnalytics.Analytics.logEvent(eventStringReplaced, parameters: params)
     }
 }

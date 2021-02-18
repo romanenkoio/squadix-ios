@@ -12,6 +12,7 @@ import IQKeyboardManagerSwift
 import LocalAuthentication
 import UserNotifications
 import Sentry
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -81,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             options.debug = false
         }
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        FirebaseApp.configure()
     }
     
     private func findTopController(from _vc: UIViewController? = nil) -> UIViewController? {

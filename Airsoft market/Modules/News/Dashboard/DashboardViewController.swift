@@ -23,6 +23,7 @@ class DashboardViewController: BaseViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        Analytics.trackEvent("Dashboard_screen")
     }
     
     func loadNotifications() {

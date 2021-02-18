@@ -75,6 +75,7 @@ class EventShowPage: BaseViewController {
         
         moreButton.isHidden = event.authorID != KeychainManager.profileID
         contactButton.isHidden = event.authorID == KeychainManager.profileID
+        Analytics.trackEvent("Event_view_screen")
     }
     
     @IBAction func contactAction(_ sender: Any) {
@@ -343,6 +344,7 @@ extension EventShowPage: UITableViewDataSource {
                         print("LikeAction canceled")
                         return
                     }
+                    Analytics.trackEvent(event.isLiked ? "Event_liked" : "Event_unliked")
                     self?.likeAction = self?.networkManager.toggleLike(postID: event.id, type: .event, completion: { event in
                         self?.event?.likesCount = event.likesCount
                         self?.event?.isLiked = event.isLiked

@@ -56,7 +56,7 @@ class MarketPage: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        Analytics.trackEvent("Market_screen")
         guard KeychainManager.isAdmin else {
             adminButton.isHidden = true
             return
@@ -341,7 +341,6 @@ extension MarketPage {
 
 extension MarketPage: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
             if let searchText = searchController.searchBar.text, !searchText.isEmpty {
                 if searchRequest != nil {
                     searchRequest?.cancel()

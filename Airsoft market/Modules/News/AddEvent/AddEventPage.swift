@@ -101,6 +101,7 @@ class AddEventPage: BaseViewController {
                 self.delegate?.updateFeed(type: .event)
                 self.spinner.stopAnimating()
                 self.navigationController?.popViewController(animated: true)
+                Analytics.trackEvent("Event_added")
             }) { error in
                 self.spinner.stopAnimating()
                 print(error as Any)

@@ -21,6 +21,7 @@ class SearchPage: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        Analytics.trackEvent("User_search_screen")
     }
     
     func setup() {

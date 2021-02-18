@@ -27,6 +27,7 @@
 		7F295CD0247AF33A00B47F1F /* AddProductPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F295CCE247AF33A00B47F1F /* AddProductPage.swift */; };
 		7F295CD1247AF33A00B47F1F /* AddProductPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F295CCF247AF33A00B47F1F /* AddProductPage.xib */; };
 		7F2A127F25437C050041162A /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2A127E25437C050041162A /* QRGenerator.swift */; };
+		7F2B7ECD25DEBCE700A3284E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F2B7EBB25DEBCE600A3284E /* GoogleService-Info.plist */; };
 		7F2F005B247D12AC00CA886F /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2F005A247D12AC00CA886F /* BaseTabBarViewController.swift */; };
 		7F2F005D247D145D00CA886F /* StrikeInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2F005C247D145D00CA886F /* StrikeInputField.swift */; };
 		7F2FD85225586EC6007EA305 /* BookmarkPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2FD85025586EC6007EA305 /* BookmarkPage.swift */; };
@@ -320,6 +321,7 @@
 		7F295CCE247AF33A00B47F1F /* AddProductPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductPage.swift; sourceTree = "<group>"; };
 		7F295CCF247AF33A00B47F1F /* AddProductPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddProductPage.xib; sourceTree = "<group>"; };
 		7F2A127E25437C050041162A /* QRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
+		7F2B7EBB25DEBCE600A3284E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F2D36A22568644D0087615B /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		7F2F005A247D12AC00CA886F /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
 		7F2F005C247D145D00CA886F /* StrikeInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrikeInputField.swift; sourceTree = "<group>"; };
@@ -1222,6 +1224,7 @@
 		7FFE4C4D24771CD800212BAB = {
 			isa = PBXGroup;
 			children = (
+				7F2B7EBB25DEBCE600A3284E /* GoogleService-Info.plist */,
 				7F2D36A22568644D0087615B /* Pods.xcodeproj */,
 				7F98676D24D9CEFC007EF140 /* ResponceHandler.swift */,
 				7FFE4C5824771CD800212BAB /* Airsoft market */,
@@ -1509,6 +1512,7 @@
 				7FC9049225BF322700CF911E /* TextPage.xib in Resources */,
 				7F595B22247FFE7700D56E74 /* MapPage.xib in Resources */,
 				7F38F1BC25C5D12600FBD108 /* Rules.html in Resources */,
+				7F2B7ECD25DEBCE700A3284E /* GoogleService-Info.plist in Resources */,
 				7F4BF2622581800F00B82D20 /* OutMessageCell.xib in Resources */,
 				7FBAC53B24789C7F007F51BC /* MarketPage.xib in Resources */,
 				7FFE4C722477280200212BAB /* LoginPage.xib in Resources */,
@@ -1887,7 +1891,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1895,7 +1899,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0a;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
 				PROVISIONING_PROFILE_SPECIFIER = SquadixDev;
@@ -1914,7 +1918,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1922,7 +1926,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0a;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
 				PROVISIONING_PROFILE_SPECIFIER = SquadixDev;

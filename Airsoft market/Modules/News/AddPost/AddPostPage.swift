@@ -30,6 +30,7 @@ class AddPostPage: BaseViewController {
         super.viewDidLoad()
         linkTextField.addTarget(self, action: #selector(textFieldDidChange), for: .allEvents)
         configureUI()
+        Analytics.trackEvent("Add_post_screen")
     }
     
     func configureUI() {
@@ -115,6 +116,7 @@ class AddPostPage: BaseViewController {
                 self?.showPopup(isError: false, title: "Опубликовано!")
                 self?.isEditing = false
                 self?.delegate?.updateFeed(type: .feed)
+                Analytics.trackEvent("Post_video_added")
                 self?.navigationController?.popViewController(animated: true)
             }) { [weak self] _ in
                 self?.postButton.isEnabled = true

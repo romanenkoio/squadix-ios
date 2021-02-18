@@ -59,6 +59,7 @@ class ProductPage: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         configureUI()
+        Analytics.trackEvent("Product_screen")
     }
     
     func configureUI() {

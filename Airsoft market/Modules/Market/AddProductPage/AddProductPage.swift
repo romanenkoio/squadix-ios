@@ -112,6 +112,7 @@ class AddProductPage: BaseViewController {
             self?.showPopup(title: "Объявление на модерации")
             self?.spinner.stopAnimating()
             self?.navigationController?.popViewController(animated: true)
+            Analytics.trackEvent("Product_added")
             self?.delegate?.update()
         }) { [weak self] error in
             self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже")
