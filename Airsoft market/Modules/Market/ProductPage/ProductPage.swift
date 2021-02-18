@@ -141,6 +141,7 @@ class ProductPage: BaseViewController {
     @IBAction func upAction(_ sender: Any) {
         networkManager.upProduct(id: product.postID) {
             self.showPopup(title: "Успешно поднято")
+            Analytics.trackEvent("Up_product")
         } failure: { error in
             self.showPopup(isError: true, title: "Что-то пошло не так")
         }
