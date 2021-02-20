@@ -31,7 +31,7 @@ class ResetPasswordViewController: BaseViewController {
         newVisibilityButton.setImage(image, for: .normal)
         confirmVisibilityButton.setImage(image, for: .normal)
         
-        navigationController?.setNavigationBarHidden(restoreToken == nil, animated: true)
+        navigationController?.setNavigationBarHidden(restoreToken != nil, animated: true)
         tabBarController?.tabBar.isHidden = restoreToken != nil
     }
     
