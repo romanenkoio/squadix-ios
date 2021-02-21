@@ -31,23 +31,16 @@ class NotificationCell: BaseTableViewCell {
                 top.navigationController?.pushViewController(VCFabric.getProfilePage(for: id), animated: true)
             }
         case .decline:
-            if let url = notification.url, let prodUrl = URL(string: url) {
-                getProduct(url: prodUrl)
-            }
-            typeImageView.image = UIImage(named: "decline")
+            notificationImageView.image =  UIImage(named: "decline")
         case .aprooved:
-    
-            typeImageView.image = UIImage(named: "ok")
+            notificationImageView.image =  UIImage(named: "ok")
             action = {
                 if let url = notification.url {
                     Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
                 }
             }
-            if let url = notification.url, let prodUrl = URL(string: url) {
-                getProduct(url: prodUrl)
-            }
-
         case .system:
+            typeImageView.isHidden = true
             action = {
                 if let urlString = notification.url, let url = URL(string: urlString) {
                     Deeplink.Handler.shared.handle(deeplink: Deeplink(url: url))
@@ -58,8 +51,7 @@ class NotificationCell: BaseTableViewCell {
             print("Error")
         }
         
-        typeImageView.isHidden = notification.type == .some(.system)
-
+        typeImageView.isHidden = true
         messageTextLabel.text = notification.message
         
         let formatter = DateFormatter()

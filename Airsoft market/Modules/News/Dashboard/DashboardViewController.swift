@@ -10,8 +10,8 @@ import UIKit
 
 class DashboardViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     private var refreshControl = UIRefreshControl()
-    
     var notifications: [DasboardNotification] = []
     
     override func viewDidLoad() {
@@ -27,7 +27,9 @@ class DashboardViewController: BaseViewController {
     }
     
     func loadNotifications() {
+        spinner.startAnimating()
         networkManager.getNotifications { [weak self] notifications in
+            self?.spinner.stopAnimating()
             self?.notifications = notifications.content
             self?.tableView.reloadData()
             self?.refreshControl.endRefreshing()
