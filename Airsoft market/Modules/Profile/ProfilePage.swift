@@ -61,6 +61,7 @@ class ProfilePage: BaseViewController {
           title = "Профиль"
           configureFloatingMenu()
           actionButton.display(inViewController: self)
+          Analytics.trackEvent(profileID == nil ? "Profile_screen" : "My_profile_screen")
      }
      
      override func viewWillAppear(_ animated: Bool) {
@@ -69,7 +70,6 @@ class ProfilePage: BaseViewController {
                tableView.isHidden = true
           }
           loadProfile(animated: profileID != nil)
-          Analytics.trackEvent(profileID == nil ? "Profile_screen" : "My_profile_screen")
      }
      
      func configureFloatingMenu() {

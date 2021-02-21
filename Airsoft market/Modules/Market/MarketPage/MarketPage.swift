@@ -52,11 +52,11 @@ class MarketPage: BaseViewController {
         tableView.addSubview(refreshControl)
         adminButton.isHidden = true
         loadData()
+        Analytics.trackEvent("Market_screen")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        Analytics.trackEvent("Market_screen")
         guard KeychainManager.isAdmin else {
             adminButton.isHidden = true
             return

@@ -54,12 +54,12 @@ class ProductPage: BaseViewController {
         tableView.registerCell(SlideShowCell.self)
         tableView.registerCell(AuthorCell.self)
         tableView.registerCell(PostSwitcherCell.self)
+        Analytics.trackEvent("Product_screen")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         configureUI()
-        Analytics.trackEvent("Product_screen")
     }
     
     func configureUI() {

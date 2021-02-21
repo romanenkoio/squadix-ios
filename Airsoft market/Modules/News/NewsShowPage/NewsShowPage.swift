@@ -80,6 +80,7 @@ class NewsShowPage: BaseViewController {
             navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton)],
                                                    animated: true)
         }
+        Analytics.trackEvent("Post_view_screen")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,7 +91,6 @@ class NewsShowPage: BaseViewController {
         } else {
             moreButton.isHidden = KeychainManager.profileID != id
         }
-        Analytics.trackEvent("Post_view_screen")
     }
     
     @IBAction func moreAction(_ sender: Any) {
