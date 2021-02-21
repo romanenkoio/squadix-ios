@@ -14,6 +14,7 @@ enum DebugSetting: String, CaseIterable {
     case profileID
     case osVersion
     case device
+    case forseCrash
     
     static func getPoints() -> [DebugSetting] {
         return DebugSetting.allCases
@@ -52,6 +53,14 @@ extension DebugPage: UITableViewDataSource {
                 self.showPopup(title: "Скопировано")
             }
             return debugCell
+        case .forseCrash:
+            debugCell.titileLabel.text = type.rawValue
+            debugCell.infoLabel.text = "Крэш"
+            debugCell.action = {
+                    let fatal: [Int] = []
+                    _ = fatal[10]
+                }
+                return debugCell
         case .profileID:
             if let profileID = KeychainManager.profileID {
                 debugCell.infoLabel.text = "\(profileID)"

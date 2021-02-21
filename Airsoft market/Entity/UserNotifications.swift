@@ -15,25 +15,9 @@ class DasboardNotification: Mappable {
     var time: String!
     var url: String?
     var type: Common.NotificationType!
+    var isReaded: Bool = false
     
-    init(type: Common.NotificationType) {
-        switch type {
-        case .aprooved:
-            message = "Ваше объявление \"Электро глок\" опубликовано"
-        case .decline:
-            message = "Ваше объявление \"Страйкбольные гранаты\" отклонено."
-        case .like:
-            message = "Пользователь Михаил Кляшев поставил лайк вашему посту \"Лучшие гей-клубы города\""
-        case .system:
-            message = "Узнайте всё про последние обновления!"
-        case .none:
-            message = "Error"
-        }
-        
-        time = Date().dateToHumanString()
-        self.type = type
-        profileId = 1
-    }
+    init() { }
     
     required init?(map: Map) {
         mapping(map: map)
@@ -44,6 +28,7 @@ class DasboardNotification: Mappable {
         profileId      <- map["profileId"]
         time           <- map["createdAt"]
         url            <- map["url"]
+        isReaded       <- map["isReaded"]
         
         if let type =  map["type"].currentValue as? String {
             self.type = Common.shared.notificationType(type: type)
@@ -55,6 +40,7 @@ class DashboardContent: Mappable {
     var content: [DasboardNotification]!
     var totalElements: Int!
     var totalPages: Int!
+    var newCount: Int!
     
     required init?(map: Map) {
         mapping(map: map)
@@ -63,6 +49,7 @@ class DashboardContent: Mappable {
     func mapping(map: Map) {
         content             <- map["content"]
         totalElements       <- map["totalElements"]
-        totalPages           <- map["totalPages"]
+        totalPages          <- map["totalPages"]
+        newCount            <- map["newCount"]
     }
 }

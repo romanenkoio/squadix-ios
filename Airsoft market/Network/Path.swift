@@ -9,8 +9,8 @@
 import Foundation
 
 struct Path {
-    static let baseUrl = "https://api.squadix.co/"
-    static let baseDevUrl = "https://devapi.squadix.co/"
+    static let baseUrl = "https://prod.squadix.co/"
+    static let baseDevUrl = "https://api.squadix.co/"
     static let youtube = "https://www.googleapis.com"
     static let nbrb = "https://www.nbrb.by"
     

@@ -156,6 +156,12 @@ class NewsPage: BaseViewController {
         dashboardButton.isHidden = feedProfileID != nil
         
         actionButton.isHidden = feedProfileID != nil
+        
+        networkManager.getNotifications { [weak self] notifications in
+            if let count = notifications.newCount {
+                self?.dashboardButton.badgeValue = "\(count)"
+            }
+        }
     }
     
     @objc func refresh() {
@@ -484,10 +490,12 @@ extension NewsPage {
             title = "Новости"
             contentType = .feed
             newsData = []
+            eventData = []
             tableView.reloadData()
             page = 0
         } else if segmentController.selectedSegmentIndex == 1 {
             contentType = .event
+            newsData = []
             eventData = []
             tableView.reloadData()
             page = 0

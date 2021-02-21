@@ -64,8 +64,7 @@ extension StrikeServise: TargetType {
             return URL(string: Path.youtube)!
         default:
             #if DEBUG
-            return URL(string: Path.baseUrl)!
-//            return URL(string: Path.baseDevUrl)!
+            return URL(string: Path.baseDevUrl)!
             #else
             return URL(string: Path.baseUrl)!
             #endif

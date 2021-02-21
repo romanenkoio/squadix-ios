@@ -19,6 +19,6 @@ extension UIColor {
     }
     
     open class var promoColor: UIColor {
-         return UIColor(named: "SelectedProductColor")!
+         return UIColor(named: "selectedProductColor")!
     }
 }

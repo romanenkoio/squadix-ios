@@ -21,7 +21,6 @@ enum SettingsMenu {
     case testQR
     case eraseFilterData
     case changePassword
-    case forceCrash
     case privacy
     case userAgreement
     case chat
@@ -35,11 +34,11 @@ enum SettingsMenu {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
         let actionSection: [SettingsMenu] = [.quality, .changePassword, .logout]
-        let developerSection: [SettingsMenu] = [.chat, .debug, .forceCrash]
+        let developerSection: [SettingsMenu] = [.debug]
         let adminSection: [SettingsMenu] = [.categories, .sendNotification]
         let systemSection: [SettingsMenu] = [.support, .version]
         
-        return KeychainManager.isAdmin ? [settingsSection, infoSection, adminSection, actionSection, developerSection, systemSection] : [settingsSection, infoSection, actionSection, systemSection]
+        return KeychainManager.isAdmin ? [settingsSection, infoSection, actionSection, developerSection, systemSection] : [settingsSection, infoSection, actionSection, systemSection]
     }
 }
 
@@ -213,16 +212,6 @@ extension SettingsPage: UITableViewDataSource {
                 settingCell.settingLabel.text = "Сменить пароль"
                 settingCell.action = { [weak self] in
                     self?.navigationController?.pushViewController(ResetPasswordViewController.loadFromNib(), animated: true)
-                }
-                return settingCell
-            }
-        case .forceCrash:
-            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
-            if let settingCell = cell as? SettingsCell {
-                settingCell.settingLabel.text = "Force crash"
-                settingCell.action = {
-                    let fatal: [Int] = []
-                    _ = fatal[10]
                 }
                 return settingCell
             }

@@ -13,6 +13,7 @@ class NotificationCell: BaseTableViewCell {
     @IBOutlet weak var messageTextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var typeImageView: UIImageView!
+    @IBOutlet weak var mainView: UIView!
     
     var avatarAction: VoidBlock?
     var networkManager = NetworkManager()
@@ -23,6 +24,7 @@ class NotificationCell: BaseTableViewCell {
     }
     
     func setupView(notification: DasboardNotification) {
+        mainView.backgroundColor = notification.isReaded ? .promoColor : .white
         switch notification.type {
         case .like:
             typeImageView.image = UIImage(named: "like_fill")
