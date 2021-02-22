@@ -20,7 +20,8 @@ extension UIImageView {
 
 extension UIImage {
     func toBase64() -> String? {
-        guard let imageData = self.jpegData(compressionQuality: CGFloat(UsersData.shared.quality)) else { return nil }
+        guard let resizedImage = self.resizeImage(), let imageData = resizedImage.jpegData(compressionQuality: CGFloat(0.9))
+            else { return nil }
         return imageData.base64EncodedString(options: .endLineWithCarriageReturn)
     }
     
@@ -43,6 +44,30 @@ extension UIImage {
             }
         }
     }
+    
+    func resizeImage(targetSize: CGSize = CGSize(width: 700, height: 700)) -> UIImage? {
+       let size = self.size
+
+       let widthRatio  = targetSize.width  / size.width
+       let heightRatio = targetSize.height / size.height
+
+   
+       var newSize: CGSize
+       if(widthRatio > heightRatio) {
+           newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+       } else {
+           newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+       }
+
+       let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+       UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+       self.draw(in: rect)
+       let newImage = UIGraphicsGetImageFromCurrentImageContext()
+       UIGraphicsEndImageContext()
+
+       return newImage!
+   }
 }
 
 
