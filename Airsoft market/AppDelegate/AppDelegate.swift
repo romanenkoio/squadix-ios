@@ -13,6 +13,7 @@ import LocalAuthentication
 import UserNotifications
 import Sentry
 import Firebase
+import Kingfisher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -83,6 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         FirebaseApp.configure()
+        ImageCache.default.memoryStorage.config.totalCostLimit = 1
     }
     
     private func findTopController(from _vc: UIViewController? = nil) -> UIViewController? {
