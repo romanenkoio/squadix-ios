@@ -300,9 +300,10 @@ extension ProfilePage: UIImagePickerControllerDelegate & UINavigationControllerD
                dismiss(animated: true, completion: nil)
           }
      
-          guard let image = testImage else { return }
+          guard let image = testImage, let resizedImage = image.resizeImage(targetSize: CGSize(width: 1000, height: 1000))  else { return }
           let manager = NetworkManager()
-          manager.updloadAvatar(image: image, completion: {
+          
+          manager.updloadAvatar(image: resizedImage, completion: {
                self.loadProfile(animated: true)
                self.spinner.startAnimating()
           }) { error in
