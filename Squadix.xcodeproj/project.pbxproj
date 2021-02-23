@@ -290,6 +290,55 @@
 			remoteGlobalIDString = B39ECB203814E0B477049873DBEA123C;
 			remoteInfo = JJFloatingActionButton;
 		};
+		7F6F0C0C25E5324B00CF4F53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E2B63D462DB7F827C4B11FD51E4F8E2D;
+			remoteInfo = FirebaseCore;
+		};
+		7F6F0C0E25E5324B00CF4F53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8CC9178C366942FD6FF6A115604EAD58;
+			remoteInfo = FirebaseCoreDiagnostics;
+		};
+		7F6F0C1025E5324B00CF4F53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 13C8C8B254851998F9289F71229B28A2;
+			remoteInfo = FirebaseInstallations;
+		};
+		7F6F0C1225E5324B00CF4F53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 856B5CD56F194FAD26EA91620B66D614;
+			remoteInfo = GoogleDataTransport;
+		};
+		7F6F0C1425E5324B00CF4F53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B43874C6CBB50E7134FBEC24BABFE14F;
+			remoteInfo = GoogleUtilities;
+		};
+		7F6F0C1625E5324B00CF4F53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06FC5C9CF96D60C50FCD47D339C91951;
+			remoteInfo = nanopb;
+		};
+		7F6F0C1825E5324B00CF4F53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3347A1AB6546F0A3977529B8F199DC41;
+			remoteInfo = PromisesObjC;
+		};
 		7F84BFB225779F4800322CD3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
@@ -598,7 +647,12 @@
 			children = (
 				7F2D36B62568644D0087615B /* ActiveLabel.framework */,
 				7F2D36B82568644D0087615B /* Alamofire.framework */,
+				7F6F0C0D25E5324B00CF4F53 /* FirebaseCore.framework */,
+				7F6F0C0F25E5324B00CF4F53 /* FirebaseCoreDiagnostics.framework */,
+				7F6F0C1125E5324B00CF4F53 /* FirebaseInstallations.framework */,
 				7F2D36BC2568644D0087615B /* GoogleMapsUtils.framework */,
+				7F6F0C1325E5324B00CF4F53 /* GoogleDataTransport.framework */,
+				7F6F0C1525E5324B00CF4F53 /* GoogleUtilities.framework */,
 				7F2D36BE2568644D0087615B /* ImageSlideshow.framework */,
 				7F2D36C02568644D0087615B /* IQKeyboardManagerSwift.framework */,
 				7F434BD3256B2676000C8F1C /* JJFloatingActionButton.framework */,
@@ -606,8 +660,10 @@
 				7F2D36C42568644D0087615B /* Kingfisher.framework */,
 				7F2D36C62568644D0087615B /* Moya.framework */,
 				7F2D36C82568644D0087615B /* Moya_ObjectMapper.framework */,
+				7F6F0C1725E5324B00CF4F53 /* nanopb.framework */,
 				7F2D36CA2568644D0087615B /* ObjectMapper.framework */,
 				7F2D36CC2568644D0087615B /* Pods_Squadix.framework */,
+				7F6F0C1925E5324B00CF4F53 /* FBLPromises.framework */,
 				7F2D36CE2568644D0087615B /* Realm.framework */,
 				7F2D36D02568644D0087615B /* RealmSwift.framework */,
 				7F84BFB325779F4800322CD3 /* Sentry.framework */,
@@ -1481,6 +1537,55 @@
 			remoteRef = 7F434BD2256B2676000C8F1C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7F6F0C0D25E5324B00CF4F53 /* FirebaseCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FirebaseCore.framework;
+			remoteRef = 7F6F0C0C25E5324B00CF4F53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F6F0C0F25E5324B00CF4F53 /* FirebaseCoreDiagnostics.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FirebaseCoreDiagnostics.framework;
+			remoteRef = 7F6F0C0E25E5324B00CF4F53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F6F0C1125E5324B00CF4F53 /* FirebaseInstallations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FirebaseInstallations.framework;
+			remoteRef = 7F6F0C1025E5324B00CF4F53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F6F0C1325E5324B00CF4F53 /* GoogleDataTransport.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GoogleDataTransport.framework;
+			remoteRef = 7F6F0C1225E5324B00CF4F53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F6F0C1525E5324B00CF4F53 /* GoogleUtilities.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GoogleUtilities.framework;
+			remoteRef = 7F6F0C1425E5324B00CF4F53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F6F0C1725E5324B00CF4F53 /* nanopb.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = nanopb.framework;
+			remoteRef = 7F6F0C1625E5324B00CF4F53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F6F0C1925E5324B00CF4F53 /* FBLPromises.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBLPromises.framework;
+			remoteRef = 7F6F0C1825E5324B00CF4F53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7F84BFB325779F4800322CD3 /* Sentry.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1891,7 +1996,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1918,7 +2023,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
