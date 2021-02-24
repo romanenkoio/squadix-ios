@@ -58,6 +58,7 @@ class BaseViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Да", style: UIAlertAction.Style.destructive, handler: { _ in
             handler?()
         }))
+        getFeedback(type: .warning)
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -71,6 +72,11 @@ class BaseViewController: UIViewController {
     
     func showPopup(isError: Bool = false, title: String) {
         PopupView(title: "", subtitle: title, image: isError ? UIImage(named: "cancel") : UIImage(named: "confirm")).show()
+    }
+    
+    func getFeedback(type: UINotificationFeedbackGenerator.FeedbackType) {
+        generator.prepare()
+        generator.notificationOccurred(type)
     }
 }
 

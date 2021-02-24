@@ -117,6 +117,7 @@ class AddPostPage: BaseViewController {
                 self?.isEditing = false
                 self?.delegate?.updateFeed(type: .feed)
                 Analytics.trackEvent("Post_video_added")
+                self?.getFeedback(type: .success)
                 self?.navigationController?.popViewController(animated: true)
             }) { [weak self] _ in
                 self?.postButton.isEnabled = true

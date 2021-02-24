@@ -43,6 +43,7 @@ class AddTextPostPage: BaseViewController {
         manager.postVideo(post: post, completion: { [weak self] in
             self?.updatableDelegate?.updateFeed(type: .feed)
             Analytics.trackEvent("Post_added")
+            self?.getFeedback(type: .success)
             self?.navigationController?.popViewController(animated: true)
             self?.spinner.stopAnimating()
             }, failure: { [weak self] error in
