@@ -52,8 +52,14 @@ extension AppDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if let tabBar = UIApplication.shared.keyWindow?.rootViewController as? BaseTabBarViewController, let nav = tabBar.viewControllers?[0] as? UINavigationController, let tab = nav.viewControllers.first as? NewsPage  {
-            tab.dashboardButton.badgeValue = "!"
+            let manager = NetworkManager()
+            manager.getNotifications { notification in
+                let count = notification.content.filter({$0.isReaded == false}).count
+                tab.dashboardButton.badgeValue = "\(count)"
+                UIApplication.shared.applicationIconBadgeNumber = count
+            }
         }
+        
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
