@@ -614,5 +614,19 @@ final class NetworkManager {
             }
         }
     }
+    
+    
+    func markNotificationsAsRead(completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.markNotificationsAsRead) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
+                failure?()
+            }
+        }
+    }
 
 }

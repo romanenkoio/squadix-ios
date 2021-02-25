@@ -28,7 +28,7 @@ class DasboardNotification: Mappable {
         profileId      <- map["profileId"]
         time           <- map["createdAt"]
         url            <- map["url"]
-        isReaded       <- map["isReaded"]
+        isReaded       <- map["readed"]
         
         if let type =  map["type"].currentValue as? String {
             self.type = Common.shared.notificationType(type: type)
@@ -50,6 +50,5 @@ class DashboardContent: Mappable {
         content             <- map["content"]
         totalElements       <- map["totalElements"]
         totalPages          <- map["totalPages"]
-        newCount            <- map["newCount"]
     }
 }

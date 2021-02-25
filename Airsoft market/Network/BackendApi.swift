@@ -49,6 +49,7 @@ enum StrikeServise{
     case resetPassword(email: String)
     case resetConfirmation(newPassword: String, resetToken: String)
     case deleteAvatar
+    case markNotificationsAsRead
 }
 
 extension StrikeServise: TargetType {
@@ -140,7 +141,7 @@ extension StrikeServise: TargetType {
             return Path.Categories.path
         case .registerToken:
             return Path.Device.path
-        case .getNotifications:
+        case .getNotifications, .markNotificationsAsRead:
             return Path.Notifications.notifications
         case .deleteCategory(let id):
             return Path.Categories.path + "/\(id)"
@@ -165,7 +166,7 @@ extension StrikeServise: TargetType {
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar:
             return .delete
-        case .editPost, .editProfile, .toggleLike, .deleteToken:
+        case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead:
             return .put
         case .upProduct, .changePassword:
             return .patch

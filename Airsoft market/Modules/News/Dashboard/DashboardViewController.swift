@@ -34,6 +34,9 @@ class DashboardViewController: BaseViewController {
             self?.tableView.reloadData()
             self?.refreshControl.endRefreshing()
             UIApplication.shared.applicationIconBadgeNumber = 0
+            self?.networkManager.markNotificationsAsRead {
+                print("Mark as read")
+            }
         }
     }
     

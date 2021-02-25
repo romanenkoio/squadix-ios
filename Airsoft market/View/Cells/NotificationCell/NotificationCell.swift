@@ -24,7 +24,7 @@ class NotificationCell: BaseTableViewCell {
     }
     
     func setupView(notification: DasboardNotification) {
-        mainView.backgroundColor = notification.isReaded ? .promoColor : .white
+        mainView.backgroundColor = notification.isReaded ? .white : .promoColor 
         switch notification.type {
         case .like:
             typeImageView.image = UIImage(named: "like_fill")

@@ -158,9 +158,9 @@ class NewsPage: BaseViewController {
         actionButton.isHidden = feedProfileID != nil
         
         networkManager.getNotifications { [weak self] notifications in
-            if let count = notifications.newCount {
-                self?.dashboardButton.badgeValue = "\(count)"
-            }
+            let count = notifications.content.filter({$0.isReaded == false}).count
+            self?.dashboardButton.badgeValue = count == 0 ? "" : "\(count)"
+            UIApplication.shared.applicationIconBadgeNumber = count
         }
     }
     
