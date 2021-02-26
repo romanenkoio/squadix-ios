@@ -26,6 +26,10 @@ class DashboardViewController: BaseViewController {
         Analytics.trackEvent("Dashboard_screen")
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        CacheManager.shared.cleanCache()
+    }
     func loadNotifications() {
         spinner.startAnimating()
         networkManager.getNotifications { [weak self] notifications in

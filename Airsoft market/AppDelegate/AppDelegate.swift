@@ -39,6 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        KingfisherManager.shared.cache.clearMemoryCache()
+        KingfisherManager.shared.cache.clearDiskCache()
+        KingfisherManager.shared.cache.cleanExpiredDiskCache()
+    }
+    
     func showLogin() {
         window?.rootViewController = BaseNavigationController(rootViewController: LoginPage.loadFromNib())
     }
@@ -85,6 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         FirebaseApp.configure()
         ImageCache.default.memoryStorage.config.totalCostLimit = 1
+        ImageCache.default.diskStorage.config.sizeLimit = 100 * 1024 * 1024
     }
     
     private func findTopController(from _vc: UIViewController? = nil) -> UIViewController? {

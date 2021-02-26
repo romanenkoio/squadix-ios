@@ -487,6 +487,7 @@ extension NewsPage: UITableViewDelegate {
 extension NewsPage {
     @objc func segmentWasChanged() {
         if segmentController.selectedSegmentIndex == 0 {
+            CacheManager.shared.cleanCache()
             title = "Новости"
             contentType = .feed
             newsData = []
@@ -494,6 +495,7 @@ extension NewsPage {
             tableView.reloadData()
             page = 0
         } else if segmentController.selectedSegmentIndex == 1 {
+            CacheManager.shared.cleanCache()
             contentType = .event
             newsData = []
             eventData = []

@@ -51,6 +51,7 @@
 		7F4BF26D2581890B00B82D20 /* InMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4BF26B2581890B00B82D20 /* InMessageCell.swift */; };
 		7F4BF26E2581890B00B82D20 /* InMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4BF26C2581890B00B82D20 /* InMessageCell.xib */; };
 		7F50F65E247889DD003E3FB4 /* NewsPage+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50F65D247889DD003E3FB4 /* NewsPage+TableView.swift */; };
+		7F510A9725E93ED1009DCB17 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F510A9625E93ED1009DCB17 /* CacheManager.swift */; };
 		7F521FFC24AFBE1300140156 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F521FFB24AFBE1300140156 /* KeychainManager.swift */; };
 		7F54C50624E8E15F005E46D0 /* AddEventPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F54C50424E8E15F005E46D0 /* AddEventPage.swift */; };
 		7F54C50724E8E15F005E46D0 /* AddEventPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F54C50524E8E15F005E46D0 /* AddEventPage.xib */; };
@@ -396,6 +397,7 @@
 		7F4BF26B2581890B00B82D20 /* InMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMessageCell.swift; sourceTree = "<group>"; };
 		7F4BF26C2581890B00B82D20 /* InMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InMessageCell.xib; sourceTree = "<group>"; };
 		7F50F65D247889DD003E3FB4 /* NewsPage+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsPage+TableView.swift"; sourceTree = "<group>"; };
+		7F510A9625E93ED1009DCB17 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		7F521FFB24AFBE1300140156 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		7F54C50424E8E15F005E46D0 /* AddEventPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventPage.swift; sourceTree = "<group>"; };
 		7F54C50524E8E15F005E46D0 /* AddEventPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddEventPage.xib; sourceTree = "<group>"; };
@@ -1244,6 +1246,7 @@
 				7FC4D66B25544EC000F1E508 /* PushService.swift */,
 				7FC4D6702554549300F1E508 /* NetworkMonitor.swift */,
 				7F1DF26C25584ECF00D4E7CF /* Validator.swift */,
+				7F510A9625E93ED1009DCB17 /* CacheManager.swift */,
 			);
 			path = Utilites;
 			sourceTree = "<group>";
@@ -1735,6 +1738,7 @@
 				7F595B37248052E900D56E74 /* PopupView.swift in Sources */,
 				7FAC3854247FB43000EEFB24 /* UIView+Extensions.swift in Sources */,
 				7F295CD0247AF33A00B47F1F /* AddProductPage.swift in Sources */,
+				7F510A9725E93ED1009DCB17 /* CacheManager.swift in Sources */,
 				7F2A127F25437C050041162A /* QRGenerator.swift in Sources */,
 				7FC4D6712554549300F1E508 /* NetworkMonitor.swift in Sources */,
 				7F595B2C248037B700D56E74 /* CategoryCheckboxCell.swift in Sources */,
@@ -1996,7 +2000,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2023,7 +2027,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
