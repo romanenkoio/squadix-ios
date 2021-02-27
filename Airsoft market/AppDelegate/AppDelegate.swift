@@ -41,8 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         KingfisherManager.shared.cache.clearMemoryCache()
-        KingfisherManager.shared.cache.clearDiskCache()
-        KingfisherManager.shared.cache.cleanExpiredDiskCache()
+//        KingfisherManager.shared.cache.clearDiskCache()
+//        KingfisherManager.shared.cache.cleanExpiredDiskCache()
+//        RealmService.eraseFilters()
     }
     
     func showLogin() {

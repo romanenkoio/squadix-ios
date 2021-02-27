@@ -14,8 +14,8 @@ final class CacheManager {
     private init() {}
     
     func cleanCache() {
-        KingfisherManager.shared.cache.clearMemoryCache()
+//        KingfisherManager.shared.cache.clearMemoryCache()
 //        KingfisherManager.shared.cache.clearDiskCache()
-        KingfisherManager.shared.cache.cleanExpiredDiskCache()
+//        KingfisherManager.shared.cache.cleanExpiredDiskCache()
     }
 }
