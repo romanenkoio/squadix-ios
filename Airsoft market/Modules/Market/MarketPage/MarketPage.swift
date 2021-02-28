@@ -335,7 +335,7 @@ extension MarketPage {
         settingsButton.isHidden = profileID != nil
         adminButton.isHidden = profileID != nil
         addProductButton.isHidden = profileID != nil
-        title = "Новое объявление"
+        title = "Барахолка" 
     }
 }
 
