@@ -49,7 +49,7 @@
                             <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress" secureTextEntry="YES" textContentType="password"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                    <integer key="value" value="20"/>
+                                    <integer key="value" value="30"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </textField>

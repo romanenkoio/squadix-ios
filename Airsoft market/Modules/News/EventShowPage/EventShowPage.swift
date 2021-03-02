@@ -248,7 +248,8 @@ extension EventShowPage: UITableViewDataSource {
         case .decription:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SimpleTextCell.self), for: indexPath)
             if let profileCell = cell as? SimpleTextCell {
-                profileCell.isUserInteractionEnabled = false
+                profileCell.isUserInteractionEnabled = true
+                profileCell.selectionStyle = .none
                 profileCell.simpleTextLabel.textAlignment = .justified
                 profileCell.setupTextWith(event.description)
                 return profileCell

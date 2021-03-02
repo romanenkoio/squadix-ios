@@ -53,13 +53,13 @@ class EditPage: BaseViewController {
         birthdayTextField.inputView = datePicker
         datePicker.addTarget(self, action: #selector(selectDateAction(picker:)), for: .valueChanged)
         
-        let calendar = Calendar.current
-        let currentDate = Date()
-        var components = DateComponents()
-        components.calendar = calendar
-        components.year = -10
-        let maxDate = calendar.date(byAdding: components, to: currentDate)!
-        datePicker.maximumDate = maxDate
+//        let calendar = Calendar.current
+//        let currentDate = Date()
+//        var components = DateComponents()
+//        components.calendar = calendar
+//        components.year = -10
+//        let maxDate = calendar.date(byAdding: components, to: currentDate)!
+//        datePicker.maximumDate = maxDate
         
       
      
