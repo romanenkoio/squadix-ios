@@ -23,7 +23,8 @@ enum ProfileMenuPoints {
 class ProfilePage: BaseViewController {
      @IBOutlet weak var tableView: UITableView!
      @IBOutlet weak var spinner: UIActivityIndicatorView!
-
+     @IBOutlet var blockButton: UIButton!
+     
      var testImage = UIImage(named: "placeholder")
      var imagePicker = UIImagePickerController()
      var refreshControl = UIRefreshControl()
@@ -62,6 +63,8 @@ class ProfilePage: BaseViewController {
           configureFloatingMenu()
           actionButton.display(inViewController: self)
           Analytics.trackEvent(profileID == nil ? "Profile_screen" : "My_profile_screen")
+          navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: blockButton)],
+                                                animated: true)
      }
      
      override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +73,19 @@ class ProfilePage: BaseViewController {
                tableView.isHidden = true
           }
           loadProfile(animated: profileID != nil)
+     }
+     
+     @IBAction func moreButtonAction(_ sender: Any) {
+          let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+          
+          alert.addAction(UIAlertAction(title: "Заблокировать пользователя", style: .destructive, handler: { _ in
+               self.showDestructiveAlert(handler: {
+                    
+               })
+          }))
+          alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
+          
+          present(alert, animated: true)
      }
      
      func configureFloatingMenu() {
@@ -88,6 +104,7 @@ class ProfilePage: BaseViewController {
                self?.navigationController?.pushViewController(VCFabric.getUserEditPage(isEdit: true, profile: self?.currentProfile), animated: true)
                Analytics.trackEvent("Edit_profile_screen")
           }
+     
           
           if KeychainManager.isAdmin {
                actionButton.addItem(title: "Создать категорию", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
@@ -333,6 +350,7 @@ extension ProfilePage {
                     self?.refreshControl.endRefreshing()
                     self?.tableView.isHidden = false
                     self?.spinner.stopAnimating()
+                    self?.blockButton.isHidden = KeychainManager.profileID == self?.currentProfile?.id
                }
           } else {
                let networkManager = NetworkManager()
@@ -347,6 +365,7 @@ extension ProfilePage {
                     self?.refreshControl.endRefreshing()
                     self?.tableView.isHidden = false
                     self?.spinner.stopAnimating()
+                    self?.blockButton.isHidden = KeychainManager.profileID == self?.currentProfile?.id
                }
                
           }
