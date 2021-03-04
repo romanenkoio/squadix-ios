@@ -8,7 +8,40 @@
 
 import UIKit
 import GoogleMaps
+import GoogleMapsUtils
 
+class EventMarker: GMSMarker {
+    let event: Event
+    
+    init(event: Event) {
+        self.event = event
+        super.init()
+        guard let latitude = event.eventLatitude, let longitude = event.eventLongitude else { return }
+        self.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.isTappable = true
+        self.title = event.shortDescription
+        
+        if event.eventType == .some(.unknown) {
+            let pin = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            pin.image = event.eventType.eventTypeImage
+            self.iconView = pin
+        } else {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            view.backgroundColor = .white
+            let pin = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            pin.translatesAutoresizingMaskIntoConstraints = false
+            
+            pin.image = event.eventType.eventTypeImage
+            view.addSubview(pin)
+            pin.translatesAutoresizingMaskIntoConstraints = true
+            pin.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
+            view.makeRound()
+            view.layer.borderWidth = 1
+            view.layer.borderColor = UIColor.gray.cgColor
+            self.iconView = view
+        }
+    }
+}
 
 class GameMapPage: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
@@ -87,37 +120,12 @@ class GameMapPage: UIViewController {
         var markers: [GMSMarker] = []
         
         for item in isFiltered ? filteredEventsData : eventsData {
-            let marker = GMSMarker()
-            guard let latitude = item.eventLatitude, let longitude = item.eventLongitude else { return }
-            marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            marker.map = mapView
-            marker.userData = item
-            if item.eventType == .some(.unknown) {
-                let pin = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-                pin.image = item.eventType.eventTypeImage
-                marker.iconView = pin
-            } else {
-                let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-                view.backgroundColor = .white
-                let pin = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-                pin.translatesAutoresizingMaskIntoConstraints = false
-             
-                pin.image = item.eventType.eventTypeImage
-                view.addSubview(pin)
-                pin.translatesAutoresizingMaskIntoConstraints = true
-                pin.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
-                view.makeRound()
-                view.layer.borderWidth = 1
-                view.layer.borderColor = UIColor.gray.cgColor
-                marker.iconView = view
-            }
-        
-           
-          
-            marker.isTappable = true
-            marker.title = item.shortDescription
-            markers.append(marker)
+            markers.append(EventMarker(event: item))
         }
+        
+        markers.forEach({
+            $0.map = mapView
+        })
         
         if let firstPos = markers.first?.position {
             var bounds = GMSCoordinateBounds(coordinate: firstPos, coordinate: firstPos)
@@ -268,9 +276,9 @@ class GameMapPage: UIViewController {
 
 extension GameMapPage: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        guard let event = marker.userData as? Event else { return false }
-        self.event = event
-        triggerInfoView(shouldShow: true, event: event)
+        guard let eventMarker = marker as? EventMarker, eventMarker.event.id != self.event?.id else { return false }
+        triggerInfoView(shouldShow: true, event: eventMarker.event)
+        self.event = eventMarker.event
         return true
     }
     
