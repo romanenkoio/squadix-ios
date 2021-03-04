@@ -14,7 +14,8 @@ extension UIImageView {
     func loadImageWith(_ url: String) {
         guard let newUrlStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         self.kf.setImage(with: URL(string: newUrlStr),
-        placeholder: UIImage(named: "placeholder"))
+        placeholder: UIImage(named: "placeholder"),
+        options: [.scaleFactor(UIScreen.main.scale)])
     }
 }
 
