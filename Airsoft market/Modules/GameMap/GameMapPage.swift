@@ -47,13 +47,20 @@ class GameMapPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupMapView()
+        configureView()
+        loadEvents()
+        locationManager.requestAlwaysAuthorization()
+        Analytics.trackEvent("Game_map_screen")
+    }
+    
+    func setupMapView() {
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
-        mapView.settings.compassButton = true
-        locationManager.requestAlwaysAuthorization()
+    }
+    
+    func configureView() {
         authorImageView.makeRound()
-        
         title = "Карта игр"
         
         eventInfoCotainer.clipsToBounds = true
@@ -67,8 +74,6 @@ class GameMapPage: UIViewController {
         eventInfoCotainer.addGestureRecognizer(swipe)
         swipe.direction = .down
         navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: calendarButton), UIBarButtonItem(customView: refreshButton)], animated: true)
-        loadEvents()
-        Analytics.trackEvent("Game_map_screen")
     }
     
     @objc func swipeAction(gesture: UISwipeGestureRecognizer) -> Void {
