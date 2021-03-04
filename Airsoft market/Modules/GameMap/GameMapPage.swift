@@ -19,7 +19,7 @@ class EventMarker: GMSMarker {
         guard let latitude = event.eventLatitude, let longitude = event.eventLongitude else { return }
         self.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         self.isTappable = true
-        self.title = event.shortDescription
+//        self.title = event.shortDescription
         
         if event.eventType == .some(.unknown) {
             let pin = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -43,6 +43,20 @@ class EventMarker: GMSMarker {
     }
 }
 
+class ClusterItem: NSObject, GMUClusterItem {
+    let position: CLLocationCoordinate2D
+    let event: Event
+
+    init(event: Event) {
+        self.event = event
+        guard let latitude = event.eventLatitude, let longitude = event.eventLongitude else {
+            self.position = CLLocationCoordinate2D(latitude: 53.867987582981286, longitude: 27.590943689217745)
+            return
+        }
+        self.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+}
+
 class GameMapPage: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var eventInfoCotainer: UIView!
@@ -62,6 +76,7 @@ class GameMapPage: UIViewController {
     var filteredEventsData: [Event] = []
     var event: Event?
     var isFiltered = false
+    var clusterManager: GMUClusterManager!
     
     var isYandexAvalible: Bool {
         return UIApplication.shared.canOpenURL(URL.init(string: "yandexnavi://")!)
@@ -83,8 +98,18 @@ class GameMapPage: UIViewController {
         setupMapView()
         configureView()
         loadEvents()
+        setupClusterManager()
         locationManager.requestAlwaysAuthorization()
         Analytics.trackEvent("Game_map_screen")
+    }
+    
+    func setupClusterManager() {
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
+        renderer.delegate = self
+        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
+        clusterManager.setDelegate(self, mapDelegate: self)
     }
     
     func setupMapView() {
@@ -117,15 +142,18 @@ class GameMapPage: UIViewController {
     
     func getMapWithEvent() {
         mapView.clear()
-        var markers: [GMSMarker] = []
+        clusterManager.clearItems()
+        var markers: [EventMarker] = []
         
         for item in isFiltered ? filteredEventsData : eventsData {
             markers.append(EventMarker(event: item))
         }
         
         markers.forEach({
-            $0.map = mapView
+//            $0.map = mapView
+            clusterManager.add(ClusterItem(event: $0.event))
         })
+        clusterManager.cluster()
         
         if let firstPos = markers.first?.position {
             var bounds = GMSCoordinateBounds(coordinate: firstPos, coordinate: firstPos)
@@ -297,6 +325,29 @@ extension GameMapPage {
         }) { [weak self] error in
             self?.spinner.stopAnimating()
             print(error)
+        }
+    }
+}
+
+extension GameMapPage: GMUClusterManagerDelegate {
+    func clusterManager(_ clusterManager: GMUClusterManager, didTap cluster: GMUCluster) -> Bool {
+           print("tap cluster")
+           return false
+       }
+
+       func clusterManager(_ clusterManager: GMUClusterManager, didTap clusterItem: GMUClusterItem) -> Bool {
+           print("tap cluster item")
+           return false
+       }
+}
+
+extension GameMapPage: GMUClusterRendererDelegate {
+    func renderer(_ renderer: GMUClusterRenderer, markerFor object: Any) -> GMSMarker? {
+        switch object {
+        case let clusterItem as ClusterItem:
+            return EventMarker(event: clusterItem.event)
+        default:
+            return nil
         }
     }
 }
