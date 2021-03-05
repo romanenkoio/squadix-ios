@@ -34,14 +34,13 @@ class EventDescriptionPage: BaseViewController {
     private var isYandexAvalible: Bool {
         return UIApplication.shared.canOpenURL(URL.init(string: "yandexnavi://")!)
     }
+    
     private var isGoogleMapsAvalible: Bool {
         return UIApplication.shared.canOpenURL(URL.init(string: "comgooglemaps://")!)
     }
-    private var isYandexMapsAvalible: Bool {
-        return UIApplication.shared.canOpenURL(URL.init(string: "yandexmaps://")!)
-    }
+   
     private var isRouteVisible: Bool {
-        return isYandexAvalible && isYandexMapsAvalible && isGoogleMapsAvalible
+        return isYandexAvalible && isGoogleMapsAvalible
     }
     
     override func viewDidLoad() {
@@ -101,5 +100,39 @@ class EventDescriptionPage: BaseViewController {
         configureEvent(event: events[currentEventIndex])
         previesButton.isEnabled = currentEventIndex != 0
         nextButton.isEnabled = currentEventIndex != events.count - 1
+    }
+    
+    
+    @IBAction func routeAction(_ sender: Any) {
+                let backAction = UIAlertAction(title: "Отмена", style: .cancel)
+                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+                guard let latitude = self.events[currentEventIndex].eventLatitude, let longitude = self.events[currentEventIndex].eventLongitude else { return }
+        
+                let yandexAction = UIAlertAction(title: "Yandex навигатор", style: .default) { _ in
+                    guard let url = URL.init(string: "yandexnavi://build_route_on_map?lat_to=\(latitude)&lon_to=\(longitude)") else { return }
+        
+                    UIApplication.shared.open(url)
+                }
+        
+                let googleAction = UIAlertAction(title: "Google Maps", style: .default) { _ in
+                    guard let url = URL.init(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving") else { return }
+        
+                    UIApplication.shared.open(url)
+                }
+        
+                if isYandexAvalible {
+                    alert.addAction(yandexAction)
+                }
+        
+                if isGoogleMapsAvalible {
+                    alert.addAction(googleAction)
+                }
+        
+                if isGoogleMapsAvalible || isYandexAvalible {
+                    alert.addAction(backAction)
+                }
+        
+                self.present(alert, animated: true, completion: nil)
     }
 }
