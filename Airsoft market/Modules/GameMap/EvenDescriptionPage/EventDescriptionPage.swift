@@ -65,7 +65,7 @@ class EventDescriptionPage: BaseViewController {
         }
         descriptionLabel.text = event.shortDescription
         eventTimeLabel.text = event.startTime.dateForEvent()
-        indicateLabel.text = "\(currentEventIndex + 1) из \(events.count - 1)"
+        indicateLabel.text = "\(currentEventIndex + 1) из \(events.count)"
     }
     
     @objc func tapView() {

@@ -236,6 +236,7 @@ extension GameMapPage: GMSMapViewDelegate {
         let vc = VCFabric.getEventDescriptonPage(events: [eventMarker.event])
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
+        vc.delegate = self
         navigationController?.present(vc, animated: true)
         return true
     }
