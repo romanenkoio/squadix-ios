@@ -106,7 +106,7 @@ class GameMapPage: UIViewController {
     func setupClusterManager() {
         let iconGenerator = GMUDefaultClusterIconGenerator()
         let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
+        let renderer = PinRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
         renderer.delegate = self
         clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
         clusterManager.setDelegate(self, mapDelegate: self)
@@ -191,8 +191,6 @@ class GameMapPage: UIViewController {
             self?.view.layoutIfNeeded()
         }
     }
-    
-    
     
     //    MARK: Actions
     @IBAction func openProfileAction(_ sender: Any) {
@@ -331,14 +329,16 @@ extension GameMapPage {
 
 extension GameMapPage: GMUClusterManagerDelegate {
     func clusterManager(_ clusterManager: GMUClusterManager, didTap cluster: GMUCluster) -> Bool {
-           print("tap cluster")
-           return false
-       }
-
-       func clusterManager(_ clusterManager: GMUClusterManager, didTap clusterItem: GMUClusterItem) -> Bool {
-           print("tap cluster item")
-           return false
-       }
+        print("tap cluster")
+        guard let clusterEvents = cluster.items as? [ClusterItem] else { return false }
+//        triggerInfoView(shouldShow: true, event: clusterEvents[0].event)
+        return false
+    }
+    
+    func clusterManager(_ clusterManager: GMUClusterManager, didTap clusterItem: GMUClusterItem) -> Bool {
+        print("tap cluster item")
+        return false
+    }
 }
 
 extension GameMapPage: GMUClusterRendererDelegate {
@@ -349,5 +349,12 @@ extension GameMapPage: GMUClusterRendererDelegate {
         default:
             return nil
         }
+    }
+}
+
+
+class PinRenderer: GMUDefaultClusterRenderer {
+    override func shouldRender(as cluster: GMUCluster, atZoom zoom: Float) -> Bool {
+        return cluster.count > 1 ? true : false
     }
 }
