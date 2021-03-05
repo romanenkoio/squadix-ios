@@ -10,6 +10,12 @@ import UIKit
 import GoogleMaps
 import GoogleMapsUtils
 
+class PinRenderer: GMUDefaultClusterRenderer {
+    override func shouldRender(as cluster: GMUCluster, atZoom zoom: Float) -> Bool {
+        return cluster.count > 1 ? true : false
+    }
+}
+
 class EventMarker: GMSMarker {
     let event: Event
     
@@ -59,37 +65,17 @@ class ClusterItem: NSObject, GMUClusterItem {
 
 class GameMapPage: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var eventInfoCotainer: UIView!
-    @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var authorImageView: UIImageView!
-    @IBOutlet weak var eventDateLabel: UILabel!
-    @IBOutlet weak var authorNameLabel: UILabel!
-    @IBOutlet weak var containerHeight: NSLayoutConstraint!
-    @IBOutlet weak var routeButton: OliveButton!
     @IBOutlet var calendarButton: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var refreshButton: UIButton!
     
     let networkManager = NetworkManager()
-    var isExpand = false
     var eventsData: [Event] = []
     var filteredEventsData: [Event] = []
-    var event: Event?
     var isFiltered = false
     var clusterManager: GMUClusterManager!
     
-    var isYandexAvalible: Bool {
-        return UIApplication.shared.canOpenURL(URL.init(string: "yandexnavi://")!)
-    }
-    var isGoogleMapsAvalible: Bool {
-        return UIApplication.shared.canOpenURL(URL.init(string: "comgooglemaps://")!)
-    }
-    var isYandexMapsAvalible: Bool {
-        return UIApplication.shared.canOpenURL(URL.init(string: "yandexmaps://")!)
-    }
-    var isRouteVisible: Bool{
-        return isYandexAvalible && isYandexMapsAvalible && isGoogleMapsAvalible
-    }
+
     
     var locationManager = CLLocationManager()
     
@@ -118,27 +104,11 @@ class GameMapPage: UIViewController {
     }
     
     func configureView() {
-        authorImageView.makeRound()
-        title = "Карта игр"
         
-        eventInfoCotainer.clipsToBounds = true
-        eventInfoCotainer.layer.cornerRadius = 20
-        eventInfoCotainer.dropShadow()
-        eventInfoCotainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        triggerInfoView(shouldShow: false, duration: 0)
-        eventInfoCotainer.isHidden = true
-        isExpand = false
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
-        eventInfoCotainer.addGestureRecognizer(swipe)
-        swipe.direction = .down
+        title = "Карта игр"
         navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: calendarButton), UIBarButtonItem(customView: refreshButton)], animated: true)
     }
     
-    @objc func swipeAction(gesture: UISwipeGestureRecognizer) -> Void {
-        if gesture.direction == .down {
-            triggerInfoView(shouldShow: false)
-        }
-    }
     
     func getMapWithEvent() {
         mapView.clear()
@@ -150,7 +120,6 @@ class GameMapPage: UIViewController {
         }
         
         markers.forEach({
-//            $0.map = mapView
             clusterManager.add(ClusterItem(event: $0.event))
         })
         clusterManager.cluster()
@@ -160,58 +129,20 @@ class GameMapPage: UIViewController {
             for marker in markers {
                 bounds = bounds.includingCoordinate(marker.position)
             }
-            let insets = UIEdgeInsets(top: 60, left: 50, bottom: isExpand ? 200 : 30, right: 50)
+            let insets = UIEdgeInsets(top: 60, left: 50, bottom:  30, right: 50)
             let update = GMSCameraUpdate.fit(bounds, with: insets)
             mapView?.animate(with: update)
             mapView.animate(toZoom: 10)
         }
     }
     
-    func triggerInfoView(shouldShow: Bool, duration: Float = 0.5, event: Event = Event()) {
-        eventInfoCotainer.isHidden = false
-        
-        if shouldShow {
-            eventDateLabel.text = "Дата: \(event.eventDate.dateToHumanString())"
-            eventTitleLabel.text = event.shortDescription
-            authorNameLabel.text = event.authorName
-            routeButton.isHidden = !isRouteVisible
-            guard let userID = event.authorID else { return }
-            networkManager.getUserById(id: userID) { [weak self] profile, _ in
-                if let image = profile?.profilePictureUrl {
-                    self?.authorImageView.loadImageWith(image)
-                } else {
-                    self?.authorImageView.image = UIImage(named: "avatar_placeholder")
-                }
-            }
-        }
-        
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.containerHeight.priority = shouldShow ? UILayoutPriority(rawValue: 250) : UILayoutPriority(rawValue: 1000)
-            self?.isExpand = !shouldShow
-            self?.view.layoutIfNeeded()
-        }
-    }
-    
     //    MARK: Actions
-    @IBAction func openProfileAction(_ sender: Any) {
-        guard let id = event?.authorID else { return }
-        navigationController?.pushViewController(VCFabric.getProfilePage(for: id), animated: true)
-    }
-    
-    @IBAction func expandAction(_ sender: Any) {
-        triggerInfoView(shouldShow: isExpand)
-    }
     
     @IBAction func refreshAction(_ sender: Any) {
-        triggerInfoView(shouldShow: false)
         loadEvents()
     }
     
-    @IBAction func showEventAction(_ sender: Any) {
-        guard let event = event else { return  }
-        navigationController?.pushViewController(VCFabric.getEventShowPage(event: event), animated: true)
-    }
-    
+
     @IBAction func selectCalendar(_ sender: Any) {
         
         let datePicker = UIDatePicker()
@@ -242,7 +173,6 @@ class GameMapPage: UIViewController {
         
         let resetAction = UIAlertAction(title: "Сброс", style: .default, handler: { _ in
             self.isFiltered = false
-            self.triggerInfoView(shouldShow: false)
             self.getMapWithEvent()
         })
         
@@ -256,55 +186,57 @@ class GameMapPage: UIViewController {
     }
     
     @IBAction func routeToEventAction(_ sender: Any) {
-        let backAction = UIAlertAction(title: "Отмена", style: .cancel)
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        guard let latitude = self.event?.eventLatitude, let longitude = self.event?.eventLongitude else { return }
-        
-        let yandexAction = UIAlertAction(title: "Yandex навигатор", style: .default) { _ in
-            guard let url = URL.init(string: "yandexnavi://build_route_on_map?lat_to=\(latitude)&lon_to=\(longitude)") else { return }
-            
-            UIApplication.shared.open(url)
-        }
-        
-        let googleAction = UIAlertAction(title: "Google Maps", style: .default) { _ in
-            guard let url = URL.init(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving") else { return }
-            
-            UIApplication.shared.open(url)
-        }
-        
-        let yandexMapAction = UIAlertAction(title: "Yandex карты", style: .default) { _ in
-            guard let coordinate = self.mapView.myLocation else { return }
-            guard let url = URL.init(string: "yandexmaps://maps.yandex.com/?rtext=\(coordinate.coordinate.latitude),\(coordinate.coordinate.longitude)~\(latitude),\(longitude)") else { return }
-            
-            UIApplication.shared.open(url)
-        }
-        
-        if isYandexMapsAvalible {
-            alert.addAction(yandexMapAction)
-        }
-        
-        if isYandexAvalible {
-            alert.addAction(yandexAction)
-        }
-        
-        if isGoogleMapsAvalible {
-            alert.addAction(googleAction)
-        }
-        
-        if isGoogleMapsAvalible || isYandexAvalible || isYandexMapsAvalible {
-            alert.addAction(backAction)
-        }
-        
-        self.present(alert, animated: true, completion: nil)
+//        let backAction = UIAlertAction(title: "Отмена", style: .cancel)
+//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//
+//        guard let latitude = self.event?.eventLatitude, let longitude = self.event?.eventLongitude else { return }
+//
+//        let yandexAction = UIAlertAction(title: "Yandex навигатор", style: .default) { _ in
+//            guard let url = URL.init(string: "yandexnavi://build_route_on_map?lat_to=\(latitude)&lon_to=\(longitude)") else { return }
+//
+//            UIApplication.shared.open(url)
+//        }
+//
+//        let googleAction = UIAlertAction(title: "Google Maps", style: .default) { _ in
+//            guard let url = URL.init(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving") else { return }
+//
+//            UIApplication.shared.open(url)
+//        }
+//
+//        let yandexMapAction = UIAlertAction(title: "Yandex карты", style: .default) { _ in
+//            guard let coordinate = self.mapView.myLocation else { return }
+//            guard let url = URL.init(string: "yandexmaps://maps.yandex.com/?rtext=\(coordinate.coordinate.latitude),\(coordinate.coordinate.longitude)~\(latitude),\(longitude)") else { return }
+//
+//            UIApplication.shared.open(url)
+//        }
+//
+//        if isYandexMapsAvalible {
+//            alert.addAction(yandexMapAction)
+//        }
+//
+//        if isYandexAvalible {
+//            alert.addAction(yandexAction)
+//        }
+//
+//        if isGoogleMapsAvalible {
+//            alert.addAction(googleAction)
+//        }
+//
+//        if isGoogleMapsAvalible || isYandexAvalible || isYandexMapsAvalible {
+//            alert.addAction(backAction)
+//        }
+//
+//        self.present(alert, animated: true, completion: nil)
     }
 }
 
 extension GameMapPage: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        guard let eventMarker = marker as? EventMarker, eventMarker.event.id != self.event?.id else { return false }
-        triggerInfoView(shouldShow: true, event: eventMarker.event)
-        self.event = eventMarker.event
+        guard let eventMarker = marker as? EventMarker else { return false }
+        let vc = VCFabric.getEventDescriptonPage(events: [eventMarker.event])
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        navigationController?.present(vc, animated: true)
         return true
     }
     
@@ -331,7 +263,11 @@ extension GameMapPage: GMUClusterManagerDelegate {
     func clusterManager(_ clusterManager: GMUClusterManager, didTap cluster: GMUCluster) -> Bool {
         print("tap cluster")
         guard let clusterEvents = cluster.items as? [ClusterItem] else { return false }
-//        triggerInfoView(shouldShow: true, event: clusterEvents[0].event)
+        let vc = VCFabric.getEventDescriptonPage(events: clusterEvents.map({ $0.event}))
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.delegate = self
+        navigationController?.present(vc, animated: true)
         return false
     }
     
@@ -353,8 +289,14 @@ extension GameMapPage: GMUClusterRendererDelegate {
 }
 
 
-class PinRenderer: GMUDefaultClusterRenderer {
-    override func shouldRender(as cluster: GMUCluster, atZoom zoom: Float) -> Bool {
-        return cluster.count > 1 ? true : false
+
+
+extension GameMapPage: EventInfoDelegate {
+    func showEvent(event: Event) {
+        navigationController?.pushViewController(VCFabric.getEventShowPage(event: event), animated: true)
+    }
+    
+    func showProfile(id: Int) {
+        navigationController?.pushViewController(VCFabric.getProfilePage(for: id), animated: true)
     }
 }

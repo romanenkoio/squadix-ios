@@ -154,6 +154,8 @@
 		7FBCEA4225BC9A39002E59B4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCEA4125BC9A39002E59B4 /* UIViewController+Extension.swift */; };
 		7FBE31DD25B5DBD00046898E /* IncomePreviewMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE31DB25B5DBD00046898E /* IncomePreviewMessageCell.swift */; };
 		7FBE31DE25B5DBD00046898E /* IncomePreviewMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */; };
+		7FC4D55425F2502B00CCBACF /* EventDescriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D55225F2502B00CCBACF /* EventDescriptionPage.swift */; };
+		7FC4D55525F2502B00CCBACF /* EventDescriptionPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FC4D55325F2502B00CCBACF /* EventDescriptionPage.xib */; };
 		7FC4D66C25544EC000F1E508 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D66B25544EC000F1E508 /* PushService.swift */; };
 		7FC4D6712554549300F1E508 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D6702554549300F1E508 /* NetworkMonitor.swift */; };
 		7FC9049125BF322700CF911E /* TextPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC9048F25BF322700CF911E /* TextPage.swift */; };
@@ -500,6 +502,8 @@
 		7FBCEA4125BC9A39002E59B4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		7FBE31DB25B5DBD00046898E /* IncomePreviewMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomePreviewMessageCell.swift; sourceTree = "<group>"; };
 		7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomePreviewMessageCell.xib; sourceTree = "<group>"; };
+		7FC4D55225F2502B00CCBACF /* EventDescriptionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDescriptionPage.swift; sourceTree = "<group>"; };
+		7FC4D55325F2502B00CCBACF /* EventDescriptionPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDescriptionPage.xib; sourceTree = "<group>"; };
 		7FC4D66B25544EC000F1E508 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		7FC4D6702554549300F1E508 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		7FC9048F25BF322700CF911E /* TextPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPage.swift; sourceTree = "<group>"; };
@@ -892,6 +896,7 @@
 		7F67540B24D229FE004981CC /* GameMap */ = {
 			isa = PBXGroup;
 			children = (
+				7FC4D55125F2500900CCBACF /* EvenDescriptionPage */,
 				7F67540C24D22A1E004981CC /* GameMapPage.swift */,
 				7F67540D24D22A1E004981CC /* GameMapPage.xib */,
 			);
@@ -1188,6 +1193,15 @@
 				7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */,
 			);
 			path = IncomePreviewMessageCell;
+			sourceTree = "<group>";
+		};
+		7FC4D55125F2500900CCBACF /* EvenDescriptionPage */ = {
+			isa = PBXGroup;
+			children = (
+				7FC4D55225F2502B00CCBACF /* EventDescriptionPage.swift */,
+				7FC4D55325F2502B00CCBACF /* EventDescriptionPage.xib */,
+			);
+			path = EvenDescriptionPage;
 			sourceTree = "<group>";
 		};
 		7FC9047D25BF31B600CF911E /* TextPage */ = {
@@ -1627,6 +1641,7 @@
 				7F9B1469247EB07F007D4819 /* PostSwitcherCell.xib in Resources */,
 				7FCE1E6924F6FA73000499EC /* AdminPage.xib in Resources */,
 				7F9B1473247EDB05007D4819 /* EventShowPage.xib in Resources */,
+				7FC4D55525F2502B00CCBACF /* EventDescriptionPage.xib in Resources */,
 				7FFE4C6624771CDB00212BAB /* LaunchScreen.storyboard in Resources */,
 				7F595B3C2480686800D56E74 /* SettingsPage.xib in Resources */,
 				7F595B2D248037B700D56E74 /* CategoryCheckboxCell.xib in Resources */,
@@ -1740,6 +1755,7 @@
 				7F295CD0247AF33A00B47F1F /* AddProductPage.swift in Sources */,
 				7F510A9725E93ED1009DCB17 /* CacheManager.swift in Sources */,
 				7F2A127F25437C050041162A /* QRGenerator.swift in Sources */,
+				7FC4D55425F2502B00CCBACF /* EventDescriptionPage.swift in Sources */,
 				7FC4D6712554549300F1E508 /* NetworkMonitor.swift in Sources */,
 				7F595B2C248037B700D56E74 /* CategoryCheckboxCell.swift in Sources */,
 				7F595B3224803A0000D56E74 /* FilterPage.swift in Sources */,

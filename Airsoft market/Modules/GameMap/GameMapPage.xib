@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17504.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,16 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameMapPage" customModule="Squadix" customModuleProvider="target">
             <connections>
-                <outlet property="authorImageView" destination="J3Z-QL-W0F" id="gtr-gE-dOs"/>
-                <outlet property="authorNameLabel" destination="Y5h-Qf-4ky" id="4D9-vs-O9O"/>
                 <outlet property="calendarButton" destination="HqU-Bi-brA" id="adp-N8-c8e"/>
-                <outlet property="containerHeight" destination="Y28-tx-LJQ" id="U2R-8A-U4Z"/>
-                <outlet property="eventDateLabel" destination="r83-Ux-TmA" id="JMb-ot-0gU"/>
-                <outlet property="eventInfoCotainer" destination="H9Q-n9-1Lu" id="4QO-Yh-vk4"/>
-                <outlet property="eventTitleLabel" destination="ArG-Bk-22c" id="8H1-Vp-orh"/>
                 <outlet property="mapView" destination="wt8-VB-Ubr" id="3ro-2x-lzE"/>
                 <outlet property="refreshButton" destination="DnF-2a-k5N" id="aCQ-Ka-p56"/>
-                <outlet property="routeButton" destination="CP7-Is-T6W" id="edO-Od-L7t"/>
                 <outlet property="spinner" destination="GsD-JL-ytj" id="GhV-p0-3ot"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -34,122 +27,6 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H9Q-n9-1Lu">
-                    <rect key="frame" x="5" y="576" width="404" height="286"/>
-                    <subviews>
-                        <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Сборная игра у &quot;Ящеров&quot; " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArG-Bk-22c">
-                            <rect key="frame" x="20" y="22" width="294" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5D-RA-kLt">
-                            <rect key="frame" x="334" y="7.5" width="50" height="50"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="DWb-B6-0iT"/>
-                                <constraint firstAttribute="width" constant="50" id="jfw-iH-sf6"/>
-                            </constraints>
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" image="expand">
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                            </state>
-                            <connections>
-                                <action selector="expandAction:" destination="-1" eventType="touchUpInside" id="4UT-0M-TZi"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Завтра в 12.50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r83-Ux-TmA">
-                            <rect key="frame" x="20" y="48" width="294" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="J3Z-QL-W0F">
-                            <rect key="frame" x="20" y="86" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="Uef-Jz-HU6"/>
-                                <constraint firstAttribute="width" constant="50" id="vpg-wo-WLz"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="СКВД &quot;Ящер&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5h-Qf-4ky">
-                            <rect key="frame" x="85" y="86" width="299" height="50"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hV-RP-olJ" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="20" y="166" width="364" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="FJP-Sf-OpL"/>
-                            </constraints>
-                            <state key="normal" title="Перейти к событию"/>
-                            <connections>
-                                <action selector="showEventAction:" destination="-1" eventType="touchUpInside" id="HXZ-ms-26a"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CP7-Is-T6W" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="20" y="226" width="364" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="8aa-z1-vV7"/>
-                            </constraints>
-                            <state key="normal" title="Проложить маршрут"/>
-                            <connections>
-                                <action selector="routeToEventAction:" destination="-1" eventType="touchUpInside" id="pNz-6x-D5d"/>
-                            </connections>
-                        </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-o4-9A2">
-                            <rect key="frame" x="157" y="8" width="90" height="6"/>
-                            <color key="backgroundColor" systemColor="systemGrayColor"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="90" id="Smc-Fd-EfM"/>
-                                <constraint firstAttribute="height" constant="6" id="f2Z-JX-vJn"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="3"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVr-Ra-RmA">
-                            <rect key="frame" x="20" y="86" width="364" height="50"/>
-                            <connections>
-                                <action selector="openProfileAction:" destination="-1" eventType="touchUpInside" id="iXY-5V-DXP"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="d5D-RA-kLt" firstAttribute="leading" secondItem="ArG-Bk-22c" secondAttribute="trailing" constant="20" id="2oJ-FC-ods"/>
-                        <constraint firstItem="Y5h-Qf-4ky" firstAttribute="centerY" secondItem="J3Z-QL-W0F" secondAttribute="centerY" id="5CK-i9-7KY"/>
-                        <constraint firstAttribute="bottom" secondItem="CP7-Is-T6W" secondAttribute="bottom" constant="20" id="5iS-2Z-TDD"/>
-                        <constraint firstItem="0hV-RP-olJ" firstAttribute="leading" secondItem="H9Q-n9-1Lu" secondAttribute="leading" constant="20" id="7lo-QR-7uh"/>
-                        <constraint firstItem="JVr-Ra-RmA" firstAttribute="bottom" secondItem="J3Z-QL-W0F" secondAttribute="bottom" id="9Ox-mF-Exo"/>
-                        <constraint firstItem="ArG-Bk-22c" firstAttribute="top" secondItem="gR2-o4-9A2" secondAttribute="bottom" constant="8" id="AfL-be-Gk4"/>
-                        <constraint firstItem="gR2-o4-9A2" firstAttribute="top" secondItem="H9Q-n9-1Lu" secondAttribute="top" constant="8" id="BMc-eL-3My"/>
-                        <constraint firstItem="r83-Ux-TmA" firstAttribute="trailing" secondItem="ArG-Bk-22c" secondAttribute="trailing" id="BdI-IL-7tW"/>
-                        <constraint firstItem="Y5h-Qf-4ky" firstAttribute="leading" secondItem="J3Z-QL-W0F" secondAttribute="trailing" constant="15" id="E9N-ra-pqd"/>
-                        <constraint firstItem="d5D-RA-kLt" firstAttribute="centerY" secondItem="ArG-Bk-22c" secondAttribute="centerY" id="Ia4-Ti-FkF"/>
-                        <constraint firstItem="JVr-Ra-RmA" firstAttribute="leading" secondItem="J3Z-QL-W0F" secondAttribute="leading" id="JN3-az-0fp"/>
-                        <constraint firstItem="CP7-Is-T6W" firstAttribute="leading" secondItem="0hV-RP-olJ" secondAttribute="leading" id="MES-uP-UFk"/>
-                        <constraint firstItem="J3Z-QL-W0F" firstAttribute="top" secondItem="r83-Ux-TmA" secondAttribute="bottom" constant="20" id="OvC-O8-tHQ"/>
-                        <constraint firstItem="Y5h-Qf-4ky" firstAttribute="bottom" secondItem="J3Z-QL-W0F" secondAttribute="bottom" id="Pac-2Q-0WD"/>
-                        <constraint firstAttribute="trailing" secondItem="0hV-RP-olJ" secondAttribute="trailing" constant="20" id="S8s-dX-SUT"/>
-                        <constraint firstItem="0hV-RP-olJ" firstAttribute="top" secondItem="J3Z-QL-W0F" secondAttribute="bottom" constant="30" id="V47-dv-h6k"/>
-                        <constraint firstAttribute="height" priority="250" id="Y28-tx-LJQ"/>
-                        <constraint firstItem="J3Z-QL-W0F" firstAttribute="leading" secondItem="ArG-Bk-22c" secondAttribute="leading" id="Z7e-1d-q1B"/>
-                        <constraint firstItem="JVr-Ra-RmA" firstAttribute="trailing" secondItem="Y5h-Qf-4ky" secondAttribute="trailing" id="eoB-7h-OmX"/>
-                        <constraint firstItem="r83-Ux-TmA" firstAttribute="top" secondItem="ArG-Bk-22c" secondAttribute="bottom" constant="5" id="hyY-Rf-ojN"/>
-                        <constraint firstItem="CP7-Is-T6W" firstAttribute="trailing" secondItem="0hV-RP-olJ" secondAttribute="trailing" id="m52-Y0-UBT"/>
-                        <constraint firstAttribute="trailing" secondItem="Y5h-Qf-4ky" secondAttribute="trailing" constant="20" id="nG0-Sv-DLH"/>
-                        <constraint firstItem="gR2-o4-9A2" firstAttribute="centerX" secondItem="H9Q-n9-1Lu" secondAttribute="centerX" id="nm9-ip-d1k"/>
-                        <constraint firstItem="JVr-Ra-RmA" firstAttribute="top" secondItem="J3Z-QL-W0F" secondAttribute="top" id="qMu-Xf-2ER"/>
-                        <constraint firstItem="r83-Ux-TmA" firstAttribute="leading" secondItem="ArG-Bk-22c" secondAttribute="leading" id="rgH-OR-5U5"/>
-                        <constraint firstAttribute="trailing" secondItem="d5D-RA-kLt" secondAttribute="trailing" constant="20" id="sad-WO-kqw"/>
-                        <constraint firstItem="CP7-Is-T6W" firstAttribute="top" secondItem="0hV-RP-olJ" secondAttribute="bottom" constant="20" id="w6b-yO-JmV"/>
-                        <constraint firstItem="Y5h-Qf-4ky" firstAttribute="top" secondItem="J3Z-QL-W0F" secondAttribute="top" id="wAB-3K-Iy4"/>
-                        <constraint firstItem="ArG-Bk-22c" firstAttribute="leading" secondItem="H9Q-n9-1Lu" secondAttribute="leading" constant="20" id="ygL-Sv-vpm"/>
-                    </constraints>
-                </view>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="GsD-JL-ytj">
                     <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                 </activityIndicatorView>
@@ -158,13 +35,10 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="wt8-VB-Ubr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2TU-Kv-Cch"/>
-                <constraint firstItem="H9Q-n9-1Lu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="Atb-CF-pbK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wt8-VB-Ubr" secondAttribute="bottom" id="Pwg-pe-JLo"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wt8-VB-Ubr" secondAttribute="trailing" id="jhR-ag-ANs"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="H9Q-n9-1Lu" secondAttribute="bottom" id="ppC-xU-QRX"/>
                 <constraint firstItem="wt8-VB-Ubr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="q4p-IP-neA"/>
                 <constraint firstItem="GsD-JL-ytj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uKo-wW-PoY"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="H9Q-n9-1Lu" secondAttribute="trailing" constant="5" id="vMM-Gl-GvD"/>
                 <constraint firstItem="GsD-JL-ytj" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="w5a-dF-FzI"/>
             </constraints>
             <point key="canvasLocation" x="27.536231884057973" y="13.392857142857142"/>
@@ -200,15 +74,10 @@
         </button>
     </objects>
     <resources>
-        <image name="avatar_placeholder" width="200" height="189.33332824707031"/>
         <image name="calendar" width="48" height="48"/>
-        <image name="expand" width="12" height="8"/>
         <image name="refresh" width="48" height="48"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

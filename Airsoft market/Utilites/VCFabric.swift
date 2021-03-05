@@ -120,4 +120,11 @@ class VCFabric {
        
         return vc
     }
+    
+    static func getEventDescriptonPage(events: [Event]) -> EventDescriptionPage {
+        let vc = EventDescriptionPage.loadFromNib()
+        vc.events = events
+        return vc
+    }
+    
 }
