@@ -135,7 +135,7 @@ class EventShowPage: BaseViewController {
                     calendarEvent.addAlarm(EKAlarm(relativeOffset: -86400))
                     calendarEvent.startDate = event.startTime
                     calendarEvent.isAllDay = false
-                    calendarEvent.notes = "\(event.shortDescription ?? "") \nПодробнее в приложении Squadix: \nhttps://squadix.co/events/\(event.id)"
+                    calendarEvent.notes = "\(event.shortDescription) \nПодробнее в приложении Squadix: \nhttps://squadix.co/events/\(event.id)"
                     calendarEvent.endDate = currentCalendar.date(byAdding: .hour, value: 5, to: event.startTime)
                     calendarEvent.calendar = gameCalendar
                     do {
@@ -148,7 +148,9 @@ class EventShowPage: BaseViewController {
                     }
                 }
             } else {
-                self.showAlert(title: "Нет доступа к календарю")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Нет доступа к календарю")
+                }
             }
         }
     }

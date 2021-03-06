@@ -184,50 +184,6 @@ class GameMapPage: UIViewController {
         
         present(alert, animated: true)
     }
-    
-    @IBAction func routeToEventAction(_ sender: Any) {
-//        let backAction = UIAlertAction(title: "Отмена", style: .cancel)
-//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//
-//        guard let latitude = self.event?.eventLatitude, let longitude = self.event?.eventLongitude else { return }
-//
-//        let yandexAction = UIAlertAction(title: "Yandex навигатор", style: .default) { _ in
-//            guard let url = URL.init(string: "yandexnavi://build_route_on_map?lat_to=\(latitude)&lon_to=\(longitude)") else { return }
-//
-//            UIApplication.shared.open(url)
-//        }
-//
-//        let googleAction = UIAlertAction(title: "Google Maps", style: .default) { _ in
-//            guard let url = URL.init(string: "comgooglemaps://?saddr=&daddr=\(latitude),\(longitude)&directionsmode=driving") else { return }
-//
-//            UIApplication.shared.open(url)
-//        }
-//
-//        let yandexMapAction = UIAlertAction(title: "Yandex карты", style: .default) { _ in
-//            guard let coordinate = self.mapView.myLocation else { return }
-//            guard let url = URL.init(string: "yandexmaps://maps.yandex.com/?rtext=\(coordinate.coordinate.latitude),\(coordinate.coordinate.longitude)~\(latitude),\(longitude)") else { return }
-//
-//            UIApplication.shared.open(url)
-//        }
-//
-//        if isYandexMapsAvalible {
-//            alert.addAction(yandexMapAction)
-//        }
-//
-//        if isYandexAvalible {
-//            alert.addAction(yandexAction)
-//        }
-//
-//        if isGoogleMapsAvalible {
-//            alert.addAction(googleAction)
-//        }
-//
-//        if isGoogleMapsAvalible || isYandexAvalible || isYandexMapsAvalible {
-//            alert.addAction(backAction)
-//        }
-//
-//        self.present(alert, animated: true, completion: nil)
-    }
 }
 
 extension GameMapPage: GMSMapViewDelegate {
