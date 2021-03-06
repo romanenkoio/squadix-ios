@@ -256,7 +256,7 @@ extension ProfilePage: UITableViewDataSource {
                          self?.didSelectAvatarChange()
                     }
                     myProfileCell.showAvatarAction = { [weak self] in
-                         if let sSelf = self {
+                         if profile.profilePictureUrl != nil, let sSelf = self {
                               myProfileCell.avatarSlider.presentFullScreenController(from: sSelf)
                          }
                     }
