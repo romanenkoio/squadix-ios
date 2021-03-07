@@ -73,14 +73,24 @@ class ProfilePage: BaseViewController {
                tableView.isHidden = true
           }
           loadProfile(animated: profileID != nil)
+          blockButton.isHidden = profileID == KeychainManager.profileID
      }
      
      @IBAction func moreButtonAction(_ sender: Any) {
+          guard let profile = currentProfile, let profileID = profile.id else { return }
           let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
           
-          alert.addAction(UIAlertAction(title: "Заблокировать пользователя", style: .destructive, handler: { _ in
-               self.showDestructiveAlert(handler: {
-                    
+          alert.addAction(UIAlertAction(title: profile.isBlocked ? "Разблокировать пользователя" : "Заблокировать пользователя", style: .destructive, handler: { [weak self]_ in
+               self?.showDestructiveAlert(handler: {
+                    if profile.isBlocked {
+                         self?.networkManager.unblockUser(id: profileID) {
+                              self?.showAlert(maintText: "", title: "Пользователь разблокирован. Теперь вы можете видеть его посты в ленте.", handler: nil)
+                         }
+                    } else {
+                         self?.networkManager.blockUser(id: profileID, completion: {
+                              self?.showAlert(maintText: "", title: "Новости пользователя будут скрыты из вашей ленты.", handler: nil)
+                         })
+                    }
                })
           }))
           alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
@@ -248,6 +258,7 @@ extension ProfilePage: UITableViewDataSource {
                     }
                     
                     myProfileCell.regionLabel.text = reg
+                    
                     myProfileCell.avatarButton.isHidden = profileID != nil
                     myProfileCell.adminBadgeLabel.isHidden = !profile.roles.contains(.admin)
                     myProfileCell.adminBadgeLabel.text = profile.roles.contains(.admin) ? Common.Roles.admin.displayRoleName : ""

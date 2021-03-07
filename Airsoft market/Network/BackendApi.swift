@@ -50,6 +50,8 @@ enum StrikeServise{
     case resetConfirmation(newPassword: String, resetToken: String)
     case deleteAvatar
     case markNotificationsAsRead
+    case blockUser(id: Int)
+    case unblockUser(id: Int)
 }
 
 extension StrikeServise: TargetType {
@@ -74,6 +76,8 @@ extension StrikeServise: TargetType {
     
     var path: String {
         switch self {
+        case .blockUser, .unblockUser:
+            return Path.Users.block
         case .login:
             return Path.Users.login
         case .registration:
@@ -162,9 +166,9 @@ extension StrikeServise: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser:
             return .post
-        case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar:
+        case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser:
             return .delete
         case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead:
             return .put
@@ -274,6 +278,8 @@ extension StrikeServise: TargetType {
         case .resetConfirmation(let newPassword, let resetToken):
             params["newPassword"] = newPassword
             params["resetPasswordToken"] = resetToken
+        case .blockUser(let id), .unblockUser(let id):
+            params["id"] = id
         default:
             return nil
         }

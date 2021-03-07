@@ -23,6 +23,7 @@ struct Path {
         static let resetPassword = "reset"
         static let resetPasswordConfirmation = "reset-confirmation"
         static let deleteAvatar = current + "/avatar"
+        static let block = current + "/ignore"
     }
     
     struct Posts {

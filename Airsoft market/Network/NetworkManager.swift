@@ -628,5 +628,32 @@ final class NetworkManager {
             }
         }
     }
+    
+    func blockUser(id: Int, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.blockUser(id: id)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
+                failure?()
+            }
+        }
+    }
+    
+    func unblockUser(id: Int, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.blockUser(id: id)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                ResponceHandler.handleError(error: error)
+                failure?()
+            }
+        }
+    }
+
 
 }
