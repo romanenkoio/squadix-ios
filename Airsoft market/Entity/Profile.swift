@@ -39,7 +39,7 @@ struct Profile: Mappable {
         city                    <- map["city"]
         profileDescription      <- map["description"]
         phone                   <- map["phone"]
-        isBlocked               <- map["isBlocked"]
+        isBlocked               <- map["blocked"]
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
