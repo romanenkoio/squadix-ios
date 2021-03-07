@@ -80,15 +80,17 @@ class ProfilePage: BaseViewController {
           guard let profile = currentProfile, let profileID = profile.id else { return }
           let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
           
-          alert.addAction(UIAlertAction(title: profile.isBlocked ? "Разблокировать пользователя" : "Заблокировать пользователя", style: .destructive, handler: { [weak self]_ in
+          alert.addAction(UIAlertAction(title: profile.isBlocked ? "Разблокировать пользователя" : "Заблокировать пользователя", style: profile.isBlocked ? .default : .destructive, handler: { [weak self]_ in
                self?.showDestructiveAlert(handler: {
                     if profile.isBlocked {
                          self?.networkManager.unblockUser(id: profileID) {
                               self?.showAlert(maintText: "", title: "Пользователь разблокирован. Теперь вы можете видеть его посты в ленте.", handler: nil)
+                              self?.loadProfile()
                          }
                     } else {
                          self?.networkManager.blockUser(id: profileID, completion: {
                               self?.showAlert(maintText: "", title: "Новости пользователя будут скрыты из вашей ленты.", handler: nil)
+                              self?.loadProfile()
                          })
                     }
                })
