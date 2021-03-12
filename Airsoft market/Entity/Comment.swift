@@ -27,6 +27,17 @@ class Comment: Mappable {
     
     init() {}
     
+    init(isTest: Bool) {
+        userID = 1
+        isLiked = false
+        authorName = "Илья Романенко"
+        id = 10
+        entityId = 5
+        text = "Текст комментаия, тестовый, больше текста, что б поширше, поширше. Ещё больше, да, давай ещё"
+        likeCount = 20
+        createdAt = Date()
+    }
+    
     func mapping(map: Map) {
         userID                  <- map["userId"]
         isLiked                 <- map["liked"]

@@ -21,12 +21,14 @@ enum NewsMenuPoint {
     case decription
     case source
     case like
+    case comments
 
     
     static func getMenuForPost(post: Post) -> [[NewsMenuPoint]]  {
         var sectionWithImage: [NewsMenuPoint] = []
         let sectionWithoutImage : [NewsMenuPoint] = [ .authorInfo, .decription]
         let likeSection: [NewsMenuPoint] = [.like]
+        let commentSection: [NewsMenuPoint] = [.comments]
         
         switch post.contentType {
         case .image:
@@ -37,10 +39,10 @@ enum NewsMenuPoint {
             if post.isPreview {
                 return [sectionWithImage]
             }
-            return [sectionWithImage, likeSection]
+            return [sectionWithImage, likeSection, commentSection]
         case .video:
             sectionWithImage =  [ .authorInfo, .images, .decription]
-            return [sectionWithImage, likeSection]
+            return [sectionWithImage, likeSection, commentSection]
         case .none:
             return []
         }
@@ -57,6 +59,7 @@ class NewsShowPage: BaseViewController {
     var likeAction: Cancellable? = nil
     var menu: [[NewsMenuPoint]] = []
     
+    var comments: [Comment] = [Comment(isTest: true), Comment(isTest: true), Comment(isTest: true), Comment(isTest: true), Comment(isTest: true)]
     var post: Post? {
           didSet {
               guard let post = post else { return }
@@ -75,6 +78,7 @@ class NewsShowPage: BaseViewController {
         tableView.registerCell(SlideShowCell.self)
         tableView.registerCell(AuthorCell.self)
         tableView.registerCell(LikeCell.self)
+        tableView.registerCell(CommentCell.self)
         tableView.setupDelegateData(self)
         if let post = post, !post.isPreview {
             navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton)],
@@ -129,6 +133,9 @@ extension NewsShowPage: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if menu[section].contains(.comments) {
+            return comments.count
+        }
         return menu[section].count
     }
     
@@ -210,6 +217,13 @@ extension NewsShowPage: UITableViewDataSource {
                 profileCell.isUserInteractionEnabled = true
                 profileCell.simpleTextLabel.text = post.source
                 return profileCell
+            }
+        case .comments:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self), for: indexPath)
+            if let commentCell = cell as? CommentCell {
+                commentCell.isUserInteractionEnabled = true
+                commentCell.setupCell(comment: comments[indexPath.row])
+                return commentCell
             }
         case .like:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LikeCell.self), for: indexPath)

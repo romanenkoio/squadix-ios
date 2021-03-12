@@ -21,6 +21,8 @@ class CommentCell: BaseTableViewCell {
     func setupCell(comment: Comment) {
         if let avatar = comment.authorAvatarURL {
             authorAvatar.loadImageWith(avatar)
+        } else {
+            authorAvatar.image = UIImage(named: "avatar_placeholder")
         }
         authorName.text = comment.authorName
         commentTextLabel.text = comment.text
@@ -33,6 +35,11 @@ class CommentCell: BaseTableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        authorAvatar.image = UIImage(named: "placeholder")
+        authorAvatar.image = UIImage(named: "avatar_placeholder")
     }
+    
+    @IBAction func tapAvatarAction(_ sender: Any) {
+        
+    }
+    
 }
