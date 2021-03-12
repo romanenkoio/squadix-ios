@@ -9,6 +9,7 @@
 import UIKit
 import ImageSlideshow
 import Moya
+import GrowingTextView
 
 protocol LikeDelegate: class {
     func updateLike(inPost: Post?)
@@ -53,8 +54,12 @@ class NewsShowPage: BaseViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var moreButton: UIButton!
+    @IBOutlet weak var growingTextView: GrowingTextView!
+    @IBOutlet weak var sendCommentButton: UIButton!
+    
     weak var delegate: UpdateFeedDelegate?
     weak var likeDelegate: LikeDelegate?
+    var offset: CGPoint = CGPoint(x: 0, y: 0)
         
     var likeAction: Cancellable? = nil
     var menu: [[NewsMenuPoint]] = []
@@ -85,6 +90,10 @@ class NewsShowPage: BaseViewController {
                                                    animated: true)
         }
         Analytics.trackEvent("Post_view_screen")
+        
+        growingTextView.layer.borderWidth = 1
+        growingTextView.layer.borderColor = UIColor.lightGray.cgColor
+        growingTextView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -285,3 +294,17 @@ extension NewsShowPage: UITableViewDataSource {
         return cell
     }
 }
+
+extension NewsShowPage: GrowingTextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+    
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+    }
+}
+

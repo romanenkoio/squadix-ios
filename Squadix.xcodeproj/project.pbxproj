@@ -43,6 +43,8 @@
 		7F40280D24C62DB50018E49F /* AddPostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40280B24C62DB50018E49F /* AddPostPage.swift */; };
 		7F40280E24C62DB50018E49F /* AddPostPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F40280C24C62DB50018E49F /* AddPostPage.xib */; };
 		7F44868225CC79520055C511 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F44868125CC79520055C511 /* Updatable.swift */; };
+		7F4A701325FC23A600F77458 /* ImputCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4A701125FC23A600F77458 /* ImputCommentCell.swift */; };
+		7F4A701425FC23A600F77458 /* ImputCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4A701225FC23A600F77458 /* ImputCommentCell.xib */; };
 		7F4A8B2324CF8C24006B3856 /* UINavigation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4A8B2224CF8C24006B3856 /* UINavigation+Extensions.swift */; };
 		7F4BF2612581800F00B82D20 /* OutMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4BF25F2581800F00B82D20 /* OutMessageCell.swift */; };
 		7F4BF2622581800F00B82D20 /* OutMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4BF2602581800F00B82D20 /* OutMessageCell.xib */; };
@@ -296,6 +298,13 @@
 			remoteGlobalIDString = B39ECB203814E0B477049873DBEA123C;
 			remoteInfo = JJFloatingActionButton;
 		};
+		7F4A700F25FC238700F77458 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE6DD8FC166ED967B4261137B1A50A96;
+			remoteInfo = GrowingTextView;
+		};
 		7F6F0C0C25E5324B00CF4F53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
@@ -394,6 +403,8 @@
 		7F40280B24C62DB50018E49F /* AddPostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostPage.swift; sourceTree = "<group>"; };
 		7F40280C24C62DB50018E49F /* AddPostPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPostPage.xib; sourceTree = "<group>"; };
 		7F44868125CC79520055C511 /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
+		7F4A701125FC23A600F77458 /* ImputCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImputCommentCell.swift; sourceTree = "<group>"; };
+		7F4A701225FC23A600F77458 /* ImputCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImputCommentCell.xib; sourceTree = "<group>"; };
 		7F4A8B2224CF8C24006B3856 /* UINavigation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Extensions.swift"; sourceTree = "<group>"; };
 		7F4BF25F2581800F00B82D20 /* OutMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutMessageCell.swift; sourceTree = "<group>"; };
 		7F4BF2602581800F00B82D20 /* OutMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutMessageCell.xib; sourceTree = "<group>"; };
@@ -567,6 +578,7 @@
 		7F14047724885EA60028C907 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7F4A6FF225FC238700F77458 /* InputCommentCell */,
 				7FBE31C825B5DB970046898E /* ConservationsCell */,
 				7FCFDD4624BA7A6200D8660F /* DebugCell */,
 				7F904E422485ADB000DF8AC5 /* SimpleTextCell */,
@@ -582,8 +594,7 @@
 				7F595B2E2480396B00D56E74 /* CategoryCheckCell */,
 				7F84BFA025779F4800322CD3 /* LikeCell */,
 				7FBC5A2F257B06D9000B037A /* NotificationCell */,
-				7FBDA5D825FB57A400DFA779 /* CommentCell.swift */,
-				7FBDA5D925FB57A400DFA779 /* CommentCell.xib */,
+				7F4A701625FC23AD00F77458 /* CommentCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -668,6 +679,7 @@
 				7F2D36BC2568644D0087615B /* GoogleMapsUtils.framework */,
 				7F6F0C1325E5324B00CF4F53 /* GoogleDataTransport.framework */,
 				7F6F0C1525E5324B00CF4F53 /* GoogleUtilities.framework */,
+				7F4A701025FC238700F77458 /* GrowingTextView.framework */,
 				7F2D36BE2568644D0087615B /* ImageSlideshow.framework */,
 				7F2D36C02568644D0087615B /* IQKeyboardManagerSwift.framework */,
 				7F434BD3256B2676000C8F1C /* JJFloatingActionButton.framework */,
@@ -722,6 +734,24 @@
 				7F40280C24C62DB50018E49F /* AddPostPage.xib */,
 			);
 			path = AddPost;
+			sourceTree = "<group>";
+		};
+		7F4A6FF225FC238700F77458 /* InputCommentCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F4A701125FC23A600F77458 /* ImputCommentCell.swift */,
+				7F4A701225FC23A600F77458 /* ImputCommentCell.xib */,
+			);
+			path = InputCommentCell;
+			sourceTree = "<group>";
+		};
+		7F4A701625FC23AD00F77458 /* CommentCell */ = {
+			isa = PBXGroup;
+			children = (
+				7FBDA5D825FB57A400DFA779 /* CommentCell.swift */,
+				7FBDA5D925FB57A400DFA779 /* CommentCell.xib */,
+			);
+			path = CommentCell;
 			sourceTree = "<group>";
 		};
 		7F4BF24C25817FDE00B82D20 /* IncomeMessageCell */ = {
@@ -1563,6 +1593,13 @@
 			remoteRef = 7F434BD2256B2676000C8F1C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7F4A701025FC238700F77458 /* GrowingTextView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GrowingTextView.framework;
+			remoteRef = 7F4A700F25FC238700F77458 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7F6F0C0D25E5324B00CF4F53 /* FirebaseCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1669,6 +1706,7 @@
 				7FB364B9247E96570013C78B /* SlideShowCell.xib in Resources */,
 				7F4BF2692581844D00B82D20 /* ConservationPage.xib in Resources */,
 				7F84BFB825779F8000322CD3 /* ResetPasswordViewController.xib in Resources */,
+				7F4A701425FC23A600F77458 /* ImputCommentCell.xib in Resources */,
 				7FAC773425CD990C009B903A /* StartRestorePage.xib in Resources */,
 				7F55F47224FC483400F81F28 /* AddTextPostPage.xib in Resources */,
 				7FBC5A28257AFF95000B037A /* DashboardViewController.xib in Resources */,
@@ -1757,6 +1795,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F4A701325FC23A600F77458 /* ImputCommentCell.swift in Sources */,
 				7F03F151248404A300EF0749 /* NetworkManager.swift in Sources */,
 				7FB48D7A24BF20D000046403 /* NetworkResponce.swift in Sources */,
 				7FBCEA4225BC9A39002E59B4 /* UIViewController+Extension.swift in Sources */,
