@@ -13,6 +13,11 @@ class CommentCell: BaseTableViewCell {
     @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var commentTextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    
+    var tapAvatarAction: VoidBlock?
+    var reportAction: VoidBlock?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,8 +30,11 @@ class CommentCell: BaseTableViewCell {
             authorAvatar.image = UIImage(named: "avatar_placeholder")
         }
         authorName.text = comment.authorName
+        likeCountLabel.text = "\(comment.likeCount)"
+        likeCountLabel.isHidden = comment.likeCount == 0
         commentTextLabel.text = comment.text
         timeLabel.text = comment.createdAt?.dateToHumanString()
+        likeButton.setImage(UIImage(named: comment.isLiked ? "like_fill" : "like"), for: .normal)
     }
 
     @IBAction func likeAction(_ sender: Any) {
@@ -39,7 +47,10 @@ class CommentCell: BaseTableViewCell {
     }
     
     @IBAction func tapAvatarAction(_ sender: Any) {
-        
+        tapAvatarAction?()
     }
     
+    @IBAction func reportAction(_ sender: Any) {
+        reportAction?()
+    }
 }

@@ -142,7 +142,13 @@ extension NewsShowPage: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SlideShowCell.self), for: indexPath)
         
-        let type = menu[indexPath.section][indexPath.row]
+        var type = NewsMenuPoint.decription
+        if menu[indexPath.section].contains(.comments) {
+            type = .comments
+        } else {
+            type = menu[indexPath.section][indexPath.row]
+        }
+        
         guard let post = post else { return cell }
         
         switch type {
@@ -223,6 +229,33 @@ extension NewsShowPage: UITableViewDataSource {
             if let commentCell = cell as? CommentCell {
                 commentCell.isUserInteractionEnabled = true
                 commentCell.setupCell(comment: comments[indexPath.row])
+                commentCell.action = { [weak self] in
+                    guard let comment = self?.comments[indexPath.row] else { return }
+                    comment.isLiked = !comment.isLiked
+                    
+                    comment.likeCount = comment.isLiked ? comment.likeCount + 1 : comment.likeCount - 1
+                    self?.comments[indexPath.row] = comment
+                    let indexPath = IndexPath(item: indexPath.row, section: indexPath.section)
+                    tableView.reloadRows(at: [indexPath], with: .none)
+//                   лайкнуть пост
+                }
+                
+                commentCell.tapAvatarAction = { [weak self] in
+                    guard let comment = self?.comments[indexPath.row] else { return }
+                    self?.navigationController?.pushViewController(VCFabric.getProfilePage(for: comment.userID), animated: true)
+                }
+                
+                commentCell.reportAction = { [weak self] in
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    alert.addAction(UIAlertAction(title: "Пожаловаться", style: .destructive, handler: { _ in
+                        self?.showDestructiveAlert(handler: {
+                            //                           отправить репорт
+                        })
+                    }))
+                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
+                    
+                    self?.present(alert, animated: true)
+                }
                 return commentCell
             }
         case .like:

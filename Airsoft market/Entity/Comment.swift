@@ -34,7 +34,7 @@ class Comment: Mappable {
         id = 10
         entityId = 5
         text = "Текст комментаия, тестовый, больше текста, что б поширше, поширше. Ещё больше, да, давай ещё"
-        likeCount = 20
+        likeCount = 0
         createdAt = Date()
     }
     
