@@ -545,7 +545,7 @@ extension NewsPage: UIContextMenuInteractionDelegate {
     }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
+        if error != nil {
             self.showPopup(isError: true, title: "Ошибка сохранения")
         } else {
             self.showPopup(isError: false, title: "Сохранено")

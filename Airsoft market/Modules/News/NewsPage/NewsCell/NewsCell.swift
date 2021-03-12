@@ -23,6 +23,7 @@ class NewsCell: BaseTableViewCell {
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var imageCountView: UIView!
     @IBOutlet weak var imageCountLabel: UILabel!
+    @IBOutlet weak var comentCountLabel: UILabel!
     private let networkManager = NetworkManager()
     var currentPost: Post?
     var currentEvent: Event?
