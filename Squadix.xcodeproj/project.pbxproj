@@ -152,6 +152,9 @@
 		7FBC5A2C257B002D000B037A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC5A2A257B002D000B037A /* NotificationCell.swift */; };
 		7FBC5A2D257B002D000B037A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBC5A2B257B002D000B037A /* NotificationCell.xib */; };
 		7FBCEA4225BC9A39002E59B4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBCEA4125BC9A39002E59B4 /* UIViewController+Extension.swift */; };
+		7FBDA5BB25FB569900DFA779 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDA5BA25FB569900DFA779 /* Comment.swift */; };
+		7FBDA5DA25FB57A400DFA779 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBDA5D825FB57A400DFA779 /* CommentCell.swift */; };
+		7FBDA5DB25FB57A400DFA779 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBDA5D925FB57A400DFA779 /* CommentCell.xib */; };
 		7FBE31DD25B5DBD00046898E /* IncomePreviewMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE31DB25B5DBD00046898E /* IncomePreviewMessageCell.swift */; };
 		7FBE31DE25B5DBD00046898E /* IncomePreviewMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */; };
 		7FC4D55425F2502B00CCBACF /* EventDescriptionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4D55225F2502B00CCBACF /* EventDescriptionPage.swift */; };
@@ -500,6 +503,9 @@
 		7FBC5A2A257B002D000B037A /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		7FBC5A2B257B002D000B037A /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		7FBCEA4125BC9A39002E59B4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		7FBDA5BA25FB569900DFA779 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		7FBDA5D825FB57A400DFA779 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		7FBDA5D925FB57A400DFA779 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		7FBE31DB25B5DBD00046898E /* IncomePreviewMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomePreviewMessageCell.swift; sourceTree = "<group>"; };
 		7FBE31DC25B5DBD00046898E /* IncomePreviewMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomePreviewMessageCell.xib; sourceTree = "<group>"; };
 		7FC4D55225F2502B00CCBACF /* EventDescriptionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDescriptionPage.swift; sourceTree = "<group>"; };
@@ -576,6 +582,8 @@
 				7F595B2E2480396B00D56E74 /* CategoryCheckCell */,
 				7F84BFA025779F4800322CD3 /* LikeCell */,
 				7FBC5A2F257B06D9000B037A /* NotificationCell */,
+				7FBDA5D825FB57A400DFA779 /* CommentCell.swift */,
+				7FBDA5D925FB57A400DFA779 /* CommentCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -625,6 +633,7 @@
 				7FEE9C1F257D91F900031D43 /* UserNotifications.swift */,
 				7FA9E85D25B6341F0085EA34 /* Message.swift */,
 				7F15DCB925C4AAC700FF277A /* BasePost.swift */,
+				7FBDA5BA25FB569900DFA779 /* Comment.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1654,6 +1663,7 @@
 				7FE1731B2478854A00CBAFB3 /* NewsCell.xib in Resources */,
 				7F7DC401247C1C5900A53E7C /* ProfileCell.xib in Resources */,
 				7F54C50724E8E15F005E46D0 /* AddEventPage.xib in Resources */,
+				7FBDA5DB25FB57A400DFA779 /* CommentCell.xib in Resources */,
 				7FFE4C6324771CDB00212BAB /* Assets.xcassets in Resources */,
 				7FFE4C6124771CD800212BAB /* Main.storyboard in Resources */,
 				7FB364B9247E96570013C78B /* SlideShowCell.xib in Resources */,
@@ -1776,11 +1786,13 @@
 				7F595B3B2480686800D56E74 /* SettingsPage.swift in Sources */,
 				7FB7E70425855BB800DC0FB9 /* CategoriesPage.swift in Sources */,
 				7F44868225CC79520055C511 /* Updatable.swift in Sources */,
+				7FBDA5DA25FB57A400DFA779 /* CommentCell.swift in Sources */,
 				7FE17315247884D000CBAFB3 /* NewsPage.swift in Sources */,
 				7F93DE3924D0237100039378 /* FullPicturePage.swift in Sources */,
 				7F4A8B2324CF8C24006B3856 /* UINavigation+Extensions.swift in Sources */,
 				7F9B1461247EA4F8007D4819 /* AuthorCell.swift in Sources */,
 				7F78717524D9E43700E501C2 /* EditPage.swift in Sources */,
+				7FBDA5BB25FB569900DFA779 /* Comment.swift in Sources */,
 				7F9ACA4124E9EBC6003E7972 /* UtilitesAPI.swift in Sources */,
 				7F14047624885D640028C907 /* BaseTableViewCell.swift in Sources */,
 				7F01C1BC254E090F007CC5A9 /* ProductCategories.swift in Sources */,

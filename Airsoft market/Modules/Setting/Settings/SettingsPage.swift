@@ -141,7 +141,8 @@ extension SettingsPage: UITableViewDataSource {
                             UIApplication.shared.applicationIconBadgeNumber = 0
                         } failure: { error in
                             self.spinner.stopAnimating()
-                            self.showPopup(isError: true, title: "Что-то пошло не так")
+                            appDelegate.logout()
+//                            self.showPopup(isError: true, title: "Что-то пошло не так")
                         }
                     }
                 }

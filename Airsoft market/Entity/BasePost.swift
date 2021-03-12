@@ -20,6 +20,7 @@ class BasePost: Mappable {
     var isLiked = false
     var isPreview = false
     var id: Int = 0
+    var commentsCount: Int = 0
     
     required init?(map: Map) {
         mapping(map: map)
@@ -37,5 +38,6 @@ class BasePost: Mappable {
         authorName              <- map["authorName"]
         authorAvatarURL         <- map["authorAvatarUrl"]
         id                      <- map["id"]
+        commentsCount           <- map["commentsCount"]
     }
 }
