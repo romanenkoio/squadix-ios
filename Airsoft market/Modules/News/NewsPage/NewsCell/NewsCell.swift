@@ -59,7 +59,7 @@ class NewsCell: BaseTableViewCell {
         } else {
             authorAvatar.image = UIImage(named: "avatar_placeholder")
         }
-        
+        comentCountLabel.text = "\(post.commentsCount)"
         headerTitleLabel.text = post.contentType == .image ? post.description : post.shortDescription
         likeCount.text = "\(post.likesCount)"
         likeImage.setImage(UIImage(named: post.isLiked ? "like_fill" : "like"), for: .normal)
@@ -111,6 +111,7 @@ class NewsCell: BaseTableViewCell {
         } else {
             authorAvatar.image = UIImage(named: "avatar_placeholder")
         }
+        comentCountLabel.text = "\(event.commentsCount)"
         headerTitleLabel.text = event.shortDescription
         dateLabel.text = event.eventDate.dateToHumanString()
         authorName.text = event.authorName

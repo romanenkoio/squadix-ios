@@ -24,7 +24,7 @@ class CommentCell: BaseTableViewCell {
         }
         authorName.text = comment.authorName
         commentTextLabel.text = comment.text
-        timeLabel.text = comment.createdAt
+        timeLabel.text = comment.createdAt?.dateToHumanString()
     }
 
     @IBAction func likeAction(_ sender: Any) {
