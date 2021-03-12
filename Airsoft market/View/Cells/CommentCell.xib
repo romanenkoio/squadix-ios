@@ -81,6 +81,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="like" width="64" height="64"/>
+        <image name="like" width="36" height="36"/>
     </resources>
 </document>

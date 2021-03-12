@@ -97,7 +97,7 @@
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                        <state key="normal" image="like"/>
+                                        <state key="normal" image="like_fill"/>
                                         <connections>
                                             <action selector="likeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lby-3X-Jcf"/>
                                         </connections>
@@ -109,12 +109,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlz-cb-Z42">
-                                        <rect key="frame" x="88" y="0.0" width="48" height="50"/>
-                                        <inset key="imageEdgeInsets" minX="12" minY="15" maxX="12" maxY="12"/>
+                                        <rect key="frame" x="88" y="0.0" width="36" height="50"/>
+                                        <inset key="imageEdgeInsets" minX="6" minY="13" maxX="6" maxY="13"/>
                                         <state key="normal" image="comment"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgF-eX-AeZ">
-                                        <rect key="frame" x="136" y="15" width="41.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgF-eX-AeZ">
+                                        <rect key="frame" x="132" y="15" width="10.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -124,7 +124,7 @@
                                     <constraint firstItem="xlz-cb-Z42" firstAttribute="top" secondItem="xh0-dH-lmS" secondAttribute="top" id="2xJ-b4-Iub"/>
                                     <constraint firstItem="2ke-vo-uN1" firstAttribute="centerY" secondItem="xh0-dH-lmS" secondAttribute="centerY" id="67C-Lv-NhB"/>
                                     <constraint firstItem="HgF-eX-AeZ" firstAttribute="centerY" secondItem="VLe-Ci-KKm" secondAttribute="centerY" id="BU9-sw-8X2"/>
-                                    <constraint firstItem="HgF-eX-AeZ" firstAttribute="leading" secondItem="xlz-cb-Z42" secondAttribute="trailing" id="PFw-h0-kHv"/>
+                                    <constraint firstItem="HgF-eX-AeZ" firstAttribute="leading" secondItem="xlz-cb-Z42" secondAttribute="trailing" constant="8" id="PFw-h0-kHv"/>
                                     <constraint firstItem="xh0-dH-lmS" firstAttribute="top" secondItem="VLe-Ci-KKm" secondAttribute="top" id="T7a-yB-sHq"/>
                                     <constraint firstItem="xh0-dH-lmS" firstAttribute="leading" secondItem="VLe-Ci-KKm" secondAttribute="leading" id="TLF-g1-lgr"/>
                                     <constraint firstAttribute="height" constant="50" id="jJh-JL-6RP"/>
@@ -218,8 +218,8 @@
     </objects>
     <resources>
         <image name="avatar_placeholder" width="200" height="189.33332824707031"/>
-        <image name="comment" width="48" height="48"/>
-        <image name="like" width="64" height="64"/>
+        <image name="comment" width="36" height="36"/>
+        <image name="like_fill" width="32" height="30"/>
         <image name="placeholder" width="350" height="350"/>
         <image name="video" catalog="system" width="128" height="83"/>
         <namedColor name="mainStrikeColor">
