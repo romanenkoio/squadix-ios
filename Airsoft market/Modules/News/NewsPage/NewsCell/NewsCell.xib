@@ -24,7 +24,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SFt-ko-Pga">
                                 <rect key="frame" x="0.0" y="75" width="350" height="285.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тайтл" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKa-5g-7Fa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тайтл" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKa-5g-7Fa" customClass="ActiveLabel" customModule="ActiveLabel">
                                         <rect key="frame" x="10" y="0.0" width="330" height="53.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
@@ -216,10 +216,15 @@
             <point key="canvasLocation" x="65.217391304347828" y="9.0401785714285712"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="xKa-5g-7Fa">
+            <size key="intrinsicContentSize" width="39" height="17"/>
+        </designable>
+    </designables>
     <resources>
         <image name="avatar_placeholder" width="200" height="189.33332824707031"/>
         <image name="comment" width="36" height="36"/>
-        <image name="like_fill" width="32" height="30"/>
+        <image name="like_fill" width="32" height="29"/>
         <image name="placeholder" width="350" height="350"/>
         <image name="video" catalog="system" width="128" height="83"/>
         <namedColor name="mainStrikeColor">

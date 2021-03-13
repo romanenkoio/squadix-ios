@@ -8,10 +8,11 @@
 
 import UIKit
 import Moya
+import ActiveLabel
 
 class NewsCell: BaseTableViewCell {
     @IBOutlet weak var authorAvatar: UIImageView!
-    @IBOutlet weak var headerTitleLabel: UILabel!
+    @IBOutlet weak var headerTitleLabel: ActiveLabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var promoImage: UIImageView!
     @IBOutlet weak var authorName: UILabel!

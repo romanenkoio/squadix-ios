@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class CommentCell: BaseTableViewCell {
     @IBOutlet weak var authorAvatar: UIImageView!
     @IBOutlet weak var authorName: UILabel!
-    @IBOutlet weak var commentTextLabel: UILabel!
+    @IBOutlet weak var commentTextLabel: ActiveLabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeCountLabel: UILabel!
@@ -35,6 +36,13 @@ class CommentCell: BaseTableViewCell {
         commentTextLabel.text = comment.text
         timeLabel.text = comment.createdAt?.dateToHumanString()
         likeButton.setImage(UIImage(named: comment.isLiked ? "like_fill" : "like"), for: .normal)
+        commentTextLabel.numberOfLines = 0
+        commentTextLabel.enabledTypes = [.url]
+        commentTextLabel.customize { label in
+            label.handleURLTap { url in
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
     }
 
     @IBAction func likeAction(_ sender: Any) {
