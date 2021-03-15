@@ -257,7 +257,6 @@ extension MarketPage: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MarketCell.self), for: indexPath)
         if let marketCell = cell as? MarketCell {
             marketCell.productNameLabel.text = marketData[indexPath.row].productName
-            marketCell.commentCountLabel.text = "\(marketData[indexPath.row].commentCount)"
             let reg = marketData[indexPath.row].productRegion == nil ? "Город не указан" : marketData[indexPath.row].productRegion
             marketCell.regionLabel.text = reg
             

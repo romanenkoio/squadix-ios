@@ -68,8 +68,6 @@ struct Path {
                 return Path.Events.path + "/\(postID)/comments"
             case .feed:
                 return Path.Posts.path + "/\(postID)/comments"
-            case .product:
-                return Path.Products.path + "/\(postID)/comments"
             default:
                 return ""
             }
@@ -81,8 +79,6 @@ struct Path {
                 return Path.Events.path + "/comments/\(commentID)/like"
             case .feed:
                 return Path.Posts.path + "/comments/\(commentID)/like"
-            case .product:
-                return Path.Products.path + "/comments/\(commentID)/like"
             default:
                 return ""
             }
@@ -94,8 +90,6 @@ struct Path {
                 return Path.Events.path + "/comments/\(commentID)"
             case .feed:
                 return Path.Posts.path + "/comments/\(commentID)"
-            case .product:
-                return Path.Products.path + "/comments/\(commentID)"
             default:
                 return ""
             }
