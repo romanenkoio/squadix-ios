@@ -63,6 +63,7 @@ class NewsShowPage: BaseViewController {
         
     var likeAction: Cancellable? = nil
     var menu: [[NewsMenuPoint]] = []
+    var shouldScroll = false
     
     var comments: [Comment] = []
     var post: Post? {
@@ -104,6 +105,11 @@ class NewsShowPage: BaseViewController {
         } else {
             moreButton.isHidden = KeychainManager.profileID != id
         }
+        getComment()
+    }
+    
+    @IBAction func sendCommentAction(_ sender: Any) {
+        sendComment()
     }
     
     @IBAction func moreAction(_ sender: Any) {
@@ -240,13 +246,15 @@ extension NewsShowPage: UITableViewDataSource {
                 commentCell.setupCell(comment: comments[indexPath.row])
                 commentCell.action = { [weak self] in
                     guard let comment = self?.comments[indexPath.row] else { return }
-                    comment.isLiked = !comment.isLiked
-                    
-                    comment.likeCount = comment.isLiked ? comment.likeCount + 1 : comment.likeCount - 1
-                    self?.comments[indexPath.row] = comment
-                    let indexPath = IndexPath(item: indexPath.row, section: indexPath.section)
-                    tableView.reloadRows(at: [indexPath], with: .none)
-//                   лайкнуть пост
+                    self?.networkManager.likeComment(postType: NewsType.feed, commentID: comment.id, completion: { updatedComment in
+                        comment.isLiked = updatedComment.isLiked
+                        comment.likeCount = updatedComment.likeCount
+                        self?.comments[indexPath.row] = comment
+                        let indexPath = IndexPath(item: indexPath.row, section: indexPath.section)
+                        tableView.reloadRows(at: [indexPath], with: .none)
+                    }, failure: {
+                        self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже")
+                    })
                 }
                 
                 commentCell.tapAvatarAction = { [weak self] in
@@ -255,14 +263,27 @@ extension NewsShowPage: UITableViewDataSource {
                 }
                 
                 commentCell.reportAction = { [weak self] in
+                    guard let comment = self?.comments[indexPath.row] else { return }
                     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                    alert.addAction(UIAlertAction(title: "Пожаловаться", style: .destructive, handler: { _ in
-                        self?.showDestructiveAlert(handler: {
-                            //                           отправить репорт
-                        })
-                    }))
-                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
                     
+                    if comment.userID == KeychainManager.profileID || KeychainManager.isAdmin {
+                       
+                        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { _ in
+                            self?.showDestructiveAlert(handler: {
+                                self?.deleteComment(commentID: comment.id)
+                            })
+                        }))
+                    }
+                    
+                    if comment.userID != KeychainManager.profileID {
+                        alert.addAction(UIAlertAction(title: "Пожаловаться", style: .destructive, handler: { _ in
+                            self?.showDestructiveAlert(handler: {
+                                //                           отправить репорт
+                            })
+                        }))
+                    }
+                  
+                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
                     self?.present(alert, animated: true)
                 }
                 return commentCell
@@ -308,3 +329,53 @@ extension NewsShowPage: GrowingTextViewDelegate {
     }
 }
 
+extension NewsShowPage: Commentable {
+    func likeComment(commentID: Int) {
+        networkManager.likeComment(postType: NewsType.feed, commentID: commentID) { [weak self] comment in
+            guard let section = self?.menu.count else { return }
+            self?.tableView.reloadSections(IndexSet(integer: section - 1), with: .bottom)
+        }
+    }
+    
+    func sendComment() {
+        spinner.startAnimating()
+        guard let id = post?.id, let text = growingTextView.text else { return }
+        networkManager.postComment(postType: NewsType.feed, postID: id, text: text) { [weak self] in
+            self?.spinner.stopAnimating()
+            self?.getComment()
+            self?.growingTextView.text = ""
+            self?.shouldScroll = true
+        } failure: { [weak self] in
+            self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
+            self?.spinner.stopAnimating()
+        }
+
+    }
+    
+    func getComment() {
+        guard let id = post?.id else { return }
+        comments = []
+        networkManager.getComment(postType: NewsType.feed, postID: id) { [weak self] comments in
+            guard let section = self?.menu.count else { return }
+            self?.comments = comments
+            self?.tableView.reloadSections(IndexSet(integer: section - 1), with: .bottom)
+            guard let sSelf = self else { return }
+            if sSelf.shouldScroll {
+                guard let row = self?.comments.count, let section = self?.menu.count else { return }
+                sSelf.tableView.beginUpdates()
+                sSelf.tableView.endUpdates()
+                sSelf.tableView.scrollToRow(at: IndexPath(row: row - 1, section: section - 1), at: .top, animated: false)
+                sSelf.shouldScroll = false
+            }
+        }
+    }
+    
+    func deleteComment(commentID: Int) {
+        networkManager.deleteComment(postType: NewsType.feed, commentID: commentID, completion: { [weak self] in
+            self?.getComment()
+            self?.showPopup(title: "Удалено")
+        }, failure: { [weak self] in
+            self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже.")
+        })
+    }
+}

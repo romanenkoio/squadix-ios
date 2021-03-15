@@ -55,6 +55,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                     <state key="normal" image="send"/>
+                    <connections>
+                        <action selector="sendCommentAction:" destination="-1" eventType="touchUpInside" id="hZ6-1G-SCC"/>
+                    </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b6o-TT-VSP">
                     <rect key="frame" x="0.0" y="44" width="414" height="758"/>

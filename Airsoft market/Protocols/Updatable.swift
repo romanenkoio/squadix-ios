@@ -16,5 +16,5 @@ protocol Commentable {
     func sendComment()
     func getComment()
     func likeComment(commentID: Int)
-    func deleteComment()
+    func deleteComment(commentID: Int)
 }

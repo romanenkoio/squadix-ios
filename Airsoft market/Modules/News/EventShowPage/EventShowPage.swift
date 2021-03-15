@@ -390,12 +390,7 @@ extension EventShowPage: UITableViewDataSource {
                        
                         alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { _ in
                             self?.showDestructiveAlert(handler: {
-                                self?.networkManager.deleteComment(postType: NewsType.event, commentID: comment.id, completion: {
-                                    self?.getComment()
-                                    self?.showPopup(title: "Удалено")
-                                }, failure: {
-                                    self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже.")
-                                })
+                                self?.deleteComment(commentID: comment.id)
                             })
                         }))
                     }
@@ -506,9 +501,12 @@ extension EventShowPage: Commentable {
         }
     }
     
-    func deleteComment() {
-        
+    func deleteComment(commentID: Int) {
+        networkManager.deleteComment(postType: NewsType.event, commentID: commentID, completion: { [weak self] in
+            self?.getComment()
+            self?.showPopup(title: "Удалено")
+        }, failure: { [weak self] in
+            self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже.")
+        })
     }
-    
-    
 }
