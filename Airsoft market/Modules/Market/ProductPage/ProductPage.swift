@@ -22,11 +22,12 @@ enum ContentType {
     case region
     case description
     case postAvalible
+    case reserve
     case category
     
     static func getPoints() -> (menu: [[ContentType]], headers: [String])  {
         let firstSection: [ContentType] = [.authorInfo, .images]
-        let secondSection: [ContentType] = [.price, .region, .postAvalible, .category]
+        let secondSection: [ContentType] = [.price, .region, .postAvalible, .category, ]
         let thirdSection: [ContentType] = [.description]
         
         return ([firstSection, secondSection, thirdSection, ], ["", "", "Описание"])
@@ -161,6 +162,12 @@ class ProductPage: BaseViewController {
             })
         })
         
+        if product.authorID == KeychainManager.profileID {
+            alert.addAction(UIAlertAction(title: "Поставить в резерв", style: .default) { [weak self] _ in
+                
+            })
+        }
+        
         alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
         present(alert, animated: true)
     }
@@ -237,6 +244,13 @@ extension ProductPage: UITableViewDataSource {
                         profileCell.simpleTextLabel.text = "Цена: \(price) руб"
                     }
                 }
+                return profileCell
+            }
+        case .reserve:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SimpleTextCell.self), for: indexPath)
+            if let profileCell = cell as? SimpleTextCell {
+                profileCell.isUserInteractionEnabled = false
+                profileCell.textLabel?.text = product.reserv ? "Зарезервировано: да" : "Зарезервировано: нет"
                 return profileCell
             }
         case .region:
