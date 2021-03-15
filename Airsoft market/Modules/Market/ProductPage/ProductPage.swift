@@ -8,6 +8,7 @@
 
 import UIKit
 import ImageSlideshow
+import GrowingTextView
 
 typealias VoidBlock = () -> Void
 
@@ -23,12 +24,15 @@ enum ContentType {
     case description
     case postAvalible
     case category
+    case comments
     
     static func getPoints() -> (menu: [[ContentType]], headers: [String])  {
         let firstSection: [ContentType] = [.authorInfo, .images]
         let secondSection: [ContentType] = [.price, .region, .postAvalible, .category]
         let thirdSection: [ContentType] = [.description]
-        return ([firstSection, secondSection, thirdSection], ["", "", "Описание"])
+        let commentsSection: [ContentType] = [.comments]
+        
+        return ([firstSection, secondSection, thirdSection, commentsSection], ["", "", "Описание", "Комментарии"])
     }
 }
 
@@ -37,15 +41,18 @@ class ProductPage: BaseViewController {
     @IBOutlet var contactButton: UIButton!
     @IBOutlet var moreButton: UIButton!
     @IBOutlet var upButton: UIButton!
-    
+    @IBOutlet weak var commentTextView: GrowingTextView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     weak var delegate: UpdateProductFeed?
     
     lazy var service = NetworkManager()
     var menu: [[ContentType]] = []
     var sectionDescription: [String] = []
+    var comments: [Comment] = []
     var product: MarketProduct!
     let formatter = DateFormatter()
+    var shouldScroll = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +61,7 @@ class ProductPage: BaseViewController {
         tableView.registerCell(SlideShowCell.self)
         tableView.registerCell(AuthorCell.self)
         tableView.registerCell(PostSwitcherCell.self)
+        tableView.registerCell(CommentCell.self)
         Analytics.trackEvent("Product_screen")
     }
     
@@ -97,22 +105,22 @@ class ProductPage: BaseViewController {
             upButton.isHidden = true
         }
         
-        #if DEBUG
+   
         if let date = formatter.date(from: product.upTime), date.canUpAction(), product.authorID == KeychainManager.profileID  {
-            upButton.isHidden = false
-        } else if KeychainManager.isAdmin  {
             upButton.isHidden = false
         } else {
             upButton.isHidden = true
         }
-        #else
-        upButton.isHidden = true
-        print("Up button hide in prod!")
-        #endif
         
         upButton.isHidden = !KeychainManager.isAdmin
         
+        commentTextView.layer.borderWidth = 1
+        commentTextView.layer.borderColor = UIColor.lightGray.cgColor
        
+    }
+    
+    @IBAction func sendCommentAction(_ sender: Any) {
+        sendComment()
     }
     
     @IBAction func contactAction(_ sender: Any) {
@@ -183,7 +191,13 @@ extension ProductPage: UITableViewDelegate {
 extension ProductPage: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SlideShowCell.self), for: indexPath)
-        let type = menu[indexPath.section][indexPath.row]
+        
+        var type = ContentType.authorInfo
+        if menu[indexPath.section].contains(.comments) {
+            type = .comments
+        } else {
+            type = menu[indexPath.section][indexPath.row]
+        }
         
         switch type {
         case .images:
@@ -272,6 +286,56 @@ extension ProductPage: UITableViewDataSource {
                 }
                 return profileCell
             }
+        case .comments:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self), for: indexPath)
+            if let commentCell = cell as? CommentCell {
+                commentCell.isUserInteractionEnabled = true
+                commentCell.setupCell(comment: comments[indexPath.row])
+                commentCell.action = { [weak self] in
+                    guard let comment = self?.comments[indexPath.row] else { return }
+                    self?.networkManager.likeComment(postType: NewsType.event, commentID: comment.id, completion: { updatedComment in
+                        comment.isLiked = updatedComment.isLiked
+                        comment.likeCount = updatedComment.likeCount
+                        self?.comments[indexPath.row] = comment
+                        let indexPath = IndexPath(item: indexPath.row, section: indexPath.section)
+                        tableView.reloadRows(at: [indexPath], with: .none)
+                    }, failure: {
+                        self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже")
+                    })
+                }
+                
+                commentCell.tapAvatarAction = { [weak self] in
+                    guard let comment = self?.comments[indexPath.row] else { return }
+                    self?.navigationController?.pushViewController(VCFabric.getProfilePage(for: comment.userID), animated: true)
+                }
+                
+                
+                commentCell.reportAction = { [weak self] in
+                    guard let comment = self?.comments[indexPath.row] else { return }
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    
+                    if comment.userID == KeychainManager.profileID || KeychainManager.isAdmin {
+                       
+                        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { _ in
+                            self?.showDestructiveAlert(handler: {
+                                self?.deleteComment(commentID: comment.id)
+                            })
+                        }))
+                    }
+                    
+                    if comment.userID != KeychainManager.profileID {
+                        alert.addAction(UIAlertAction(title: "Пожаловаться", style: .destructive, handler: { _ in
+                            self?.showDestructiveAlert(handler: {
+                                //                           отправить репорт
+                            })
+                        }))
+                    }
+                  
+                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
+                    self?.present(alert, animated: true)
+                }
+                return commentCell
+            }
         case .postAvalible:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostSwitcherCell.self), for: indexPath)
             if let postCell = cell as? PostSwitcherCell {
@@ -348,4 +412,53 @@ extension ProductPage: DeeplinkRoutable {
     }
 }
 
+extension ProductPage: Commentable {
+    func likeComment(commentID: Int) {
+        networkManager.likeComment(postType: NewsType.product, commentID: commentID) { [weak self] comment in
+            guard let section = self?.menu.count else { return }
+            self?.tableView.reloadSections(IndexSet(integer: section - 1), with: .bottom)
+        }
+    }
+    
+    func sendComment() {
+        spinner.startAnimating()
+        guard let id = product?.postID, let text = commentTextView.text else { return }
+        networkManager.postComment(postType: NewsType.product, postID: id, text: text) { [weak self] in
+            self?.spinner.stopAnimating()
+            self?.getComment()
+            self?.commentTextView.text = ""
+            self?.shouldScroll = true
+        } failure: { [weak self] in
+            self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
+            self?.spinner.stopAnimating()
+        }
 
+    }
+    
+    func getComment() {
+        guard let id = product?.postID else { return }
+        comments = []
+        networkManager.getComment(postType: NewsType.product, postID: id) { [weak self] comments in
+            guard let section = self?.menu.count else { return }
+            self?.comments = comments
+            self?.tableView.reloadSections(IndexSet(integer: section - 1), with: .bottom)
+            guard let sSelf = self else { return }
+            if sSelf.shouldScroll {
+                guard let row = self?.comments.count, let section = self?.menu.count else { return }
+                sSelf.tableView.beginUpdates()
+                sSelf.tableView.endUpdates()
+                sSelf.tableView.scrollToRow(at: IndexPath(row: row - 1, section: section - 1), at: .top, animated: false)
+                sSelf.shouldScroll = false
+            }
+        }
+    }
+    
+    func deleteComment(commentID: Int) {
+        networkManager.deleteComment(postType: NewsType.product, commentID: commentID, completion: { [weak self] in
+            self?.getComment()
+            self?.showPopup(title: "Удалено")
+        }, failure: { [weak self] in
+            self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже.")
+        })
+    }
+}

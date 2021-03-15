@@ -35,6 +35,11 @@ extension UIView {
         layer.maskedCorners = [  .layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
+    func roundedCorners() {
+        layer.cornerRadius = 10
+        layer.maskedCorners = [  .layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+    }
+    
     func getConvertedFrame(fromSubview subview: UIView) -> CGRect? {
         guard subview.isDescendant(of: self) else {
             return nil

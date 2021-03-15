@@ -20,6 +20,7 @@ enum NewsType {
     case feed
     case userFeed
     case event
+    case product
 }
 
 class NewsPage: BaseViewController {
@@ -196,6 +197,8 @@ extension NewsPage {
             loadUserPosts()
         case .event:
             loadEvents()
+        default:
+            return
         }
         isLoadinInProgress = true
     }
@@ -479,6 +482,8 @@ extension NewsPage: UITableViewDelegate {
                 if page < totalEventPages {
                     loadData(content: contentType)
                 }
+            default:
+                return
             }
         }
     }

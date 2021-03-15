@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MarketCell" rowHeight="154" id="KGk-i7-Jjw" customClass="MarketCell" customModule="Airsoft_market" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MarketCell" rowHeight="154" id="KGk-i7-Jjw" customClass="MarketCell" customModule="Squadix" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="299" height="161"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -52,9 +53,40 @@
                                 <color key="textColor" name="priceColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mb-LG-4uP">
+                                <rect key="frame" x="8" y="102" width="89" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment" translatesAutoresizingMaskIntoConstraints="NO" id="i3C-8B-fLB">
+                                        <rect key="frame" x="1" y="1" width="38" height="38"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="7x3-A1-J0o"/>
+                                            <constraint firstAttribute="width" constant="38" id="QYh-F5-X7O"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uD7-TG-qB5">
+                                        <rect key="frame" x="43" y="9.5" width="44" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1WU-Hq-zH2"/>
+                                    <constraint firstItem="uD7-TG-qB5" firstAttribute="leading" secondItem="i3C-8B-fLB" secondAttribute="trailing" constant="4" id="9Ly-X9-AUy"/>
+                                    <constraint firstItem="i3C-8B-fLB" firstAttribute="top" secondItem="9Mb-LG-4uP" secondAttribute="top" constant="1" id="GOs-Kf-X0y"/>
+                                    <constraint firstItem="uD7-TG-qB5" firstAttribute="centerY" secondItem="9Mb-LG-4uP" secondAttribute="centerY" id="M1g-79-s0Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="i3C-8B-fLB" secondAttribute="trailing" constant="50" id="P7X-i0-SA9"/>
+                                    <constraint firstItem="i3C-8B-fLB" firstAttribute="leading" secondItem="9Mb-LG-4uP" secondAttribute="leading" constant="1" id="PxK-4c-9sf"/>
+                                    <constraint firstAttribute="trailing" secondItem="uD7-TG-qB5" secondAttribute="trailing" constant="2" id="gTB-ND-a5V"/>
+                                    <constraint firstAttribute="bottom" secondItem="i3C-8B-fLB" secondAttribute="bottom" constant="1" id="pbe-Yo-sWL"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="9Mb-LG-4uP" secondAttribute="bottom" constant="8" id="2BB-GW-rgT"/>
                             <constraint firstAttribute="trailing" secondItem="K66-zw-x5X" secondAttribute="trailing" constant="10" id="AGg-Ij-IUj"/>
                             <constraint firstAttribute="height" constant="150" id="Dck-jt-3nf"/>
                             <constraint firstItem="K66-zw-x5X" firstAttribute="leading" secondItem="E6a-vv-rD3" secondAttribute="trailing" constant="10" id="Mc0-P7-7hl"/>
@@ -64,6 +96,7 @@
                             <constraint firstAttribute="bottom" secondItem="duq-wd-Hbc" secondAttribute="bottom" constant="10" id="Vzq-w4-wu7"/>
                             <constraint firstItem="sfI-8h-cUS" firstAttribute="top" secondItem="ems-NN-Ymi" secondAttribute="bottom" constant="3" id="YF6-Xa-EK0"/>
                             <constraint firstItem="sfI-8h-cUS" firstAttribute="bottom" secondItem="duq-wd-Hbc" secondAttribute="bottom" id="ZoA-gd-NLf"/>
+                            <constraint firstItem="9Mb-LG-4uP" firstAttribute="leading" secondItem="p5w-8f-3Hd" secondAttribute="leading" constant="8" id="gFq-aW-HAw"/>
                             <constraint firstItem="E6a-vv-rD3" firstAttribute="top" secondItem="p5w-8f-3Hd" secondAttribute="top" id="ji8-1e-ARN"/>
                             <constraint firstItem="E6a-vv-rD3" firstAttribute="leading" secondItem="p5w-8f-3Hd" secondAttribute="leading" id="kUm-rM-iGX"/>
                             <constraint firstAttribute="trailing" secondItem="duq-wd-Hbc" secondAttribute="trailing" constant="10" id="nIe-Zh-h9h"/>
@@ -81,22 +114,28 @@
                     <constraint firstAttribute="trailing" secondItem="p5w-8f-3Hd" secondAttribute="trailing" constant="5" id="zsD-cx-w4E"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="cellView" destination="p5w-8f-3Hd" id="8sm-Q9-WZM"/>
+                <outlet property="commentCountLabel" destination="uD7-TG-qB5" id="Pe5-5u-nFN"/>
+                <outlet property="commentCountView" destination="9Mb-LG-4uP" id="zJb-Rq-KCW"/>
                 <outlet property="productDateLabel" destination="sfI-8h-cUS" id="dCt-Qz-8m2"/>
                 <outlet property="productImage" destination="E6a-vv-rD3" id="ZBX-QH-sYd"/>
                 <outlet property="productNameLabel" destination="K66-zw-x5X" id="r3A-tS-2vb"/>
                 <outlet property="productPriceLabel" destination="duq-wd-Hbc" id="nI7-q0-nfC"/>
                 <outlet property="regionLabel" destination="ems-NN-Ymi" id="BcW-nL-SuB"/>
             </connections>
-            <point key="canvasLocation" x="183" y="8"/>
+            <point key="canvasLocation" x="181.8840579710145" y="7.7008928571428568"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="comment" width="36" height="36"/>
         <namedColor name="priceColor">
             <color red="0.050980392156862744" green="0.62352941176470589" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
