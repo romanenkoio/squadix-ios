@@ -93,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         ImageCache.default.memoryStorage.config.totalCostLimit = 1
         ImageCache.default.diskStorage.config.sizeLimit = 100 * 1024 * 1024
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
     }
     
     private func findTopController(from _vc: UIViewController? = nil) -> UIViewController? {

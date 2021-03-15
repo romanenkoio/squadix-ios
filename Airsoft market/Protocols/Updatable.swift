@@ -11,3 +11,10 @@ import Foundation
 protocol Updatable: class {
     func update()
 }
+
+protocol Commentable {
+    func sendComment()
+    func getComment()
+    func likeComment(commentID: Int)
+    func deleteComment()
+}

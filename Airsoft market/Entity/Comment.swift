@@ -41,12 +41,13 @@ class Comment: Mappable {
     func mapping(map: Map) {
         userID                  <- map["userId"]
         isLiked                 <- map["liked"]
-        authorName              <- map["authorName"]
-        authorAvatarURL         <- map["authorAvatarUrl"]
+        authorName              <- map["userName"]
+        authorAvatarURL         <- map["userAvatarUrl"]
         id                      <- map["id"]
         entityId                <- map["entityId"]
         text                    <- map["text"]
-        likeCount               <- map["likeCount"]
+        likeCount               <- map["likesCount"]
+        isLiked                 <- map["liked"]
         
         if let created = map["createdAt"].currentValue as? String {
             let eventFormatter = DateFormatter()
@@ -57,5 +58,22 @@ class Comment: Mappable {
                 self.createdAt = nil
             }
         }
+    }
+}
+
+
+class CommentContent: Mappable {
+    var content: [Comment]!
+    var totalElements: Int!
+    var totalPages: Int!
+    
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        content         <- map["content"]
+        totalElements   <- map["totalElements"]
+        totalPages      <- map["totalPages"]
     }
 }

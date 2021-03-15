@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventShowPage" customModule="Squadix" customModuleProvider="target">
             <connections>
                 <outlet property="calendarButton" destination="6yG-JJ-Kus" id="D6m-KA-b1z"/>
+                <outlet property="commentSendButton" destination="nYg-s1-L4m" id="yhc-yR-UUR"/>
+                <outlet property="commentTextView" destination="FTF-jW-K6J" id="CMq-gU-sH9"/>
                 <outlet property="contactButton" destination="Muf-3j-fLq" id="ZpP-z2-C9d"/>
                 <outlet property="moreButton" destination="wKe-qs-5ZR" id="3sD-cd-aHX"/>
                 <outlet property="spinner" destination="GsM-74-a01" id="doB-kl-lUh"/>
@@ -25,20 +27,57 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pai-M6-ZVL">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                 </tableView>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="GsM-74-a01">
                     <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                 </activityIndicatorView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FTF-jW-K6J" customClass="GrowingTextView" customModule="GrowingTextView">
+                    <rect key="frame" x="5" y="812" width="349" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="minHeight">
+                            <integer key="value" value="40"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
+                            <real key="value" value="150"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="trimWhiteSpaceWhenEndEditing" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Оставьте своё слово в истории..."/>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYg-s1-L4m">
+                    <rect key="frame" x="364" y="812" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="3aD-hn-XOt"/>
+                        <constraint firstAttribute="width" constant="40" id="wvw-N5-7Yw"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <state key="normal" image="send"/>
+                    <connections>
+                        <action selector="sendCommentAction:" destination="-1" eventType="touchUpInside" id="007-fb-n7q"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="pai-M6-ZVL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="9bB-Kg-hn1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FTF-jW-K6J" secondAttribute="bottom" constant="10" id="J6A-HY-GBI"/>
+                <constraint firstItem="nYg-s1-L4m" firstAttribute="leading" secondItem="FTF-jW-K6J" secondAttribute="trailing" constant="10" id="JnL-jy-bdu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nYg-s1-L4m" secondAttribute="bottom" constant="10" id="NoR-le-mxz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nYg-s1-L4m" secondAttribute="trailing" constant="10" id="Nxx-QZ-hua"/>
                 <constraint firstItem="GsM-74-a01" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YoX-ss-mQ7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pai-M6-ZVL" secondAttribute="trailing" id="c5Z-gr-tGM"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pai-M6-ZVL" secondAttribute="bottom" id="jZg-ml-WsS"/>
+                <constraint firstItem="FTF-jW-K6J" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="ea4-co-zvR"/>
+                <constraint firstItem="FTF-jW-K6J" firstAttribute="top" secondItem="pai-M6-ZVL" secondAttribute="bottom" constant="10" id="inY-fC-jcp"/>
                 <constraint firstItem="pai-M6-ZVL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="mTw-UE-4e6"/>
                 <constraint firstItem="GsM-74-a01" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="uow-Lt-Mx7"/>
             </constraints>
@@ -89,10 +128,22 @@
             <point key="canvasLocation" x="228.98550724637684" y="-231.02678571428569"/>
         </button>
     </objects>
+    <designables>
+        <designable name="FTF-jW-K6J">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="add_alarm" width="48" height="48"/>
         <image name="message" width="170.66667175292969" height="170.66667175292969"/>
         <image name="more" width="48" height="48"/>
+        <image name="send" width="48" height="48"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

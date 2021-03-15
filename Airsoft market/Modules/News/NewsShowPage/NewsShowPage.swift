@@ -64,7 +64,7 @@ class NewsShowPage: BaseViewController {
     var likeAction: Cancellable? = nil
     var menu: [[NewsMenuPoint]] = []
     
-    var comments: [Comment] = [Comment(isTest: true), Comment(isTest: true), Comment(isTest: true), Comment(isTest: true), Comment(isTest: true)]
+    var comments: [Comment] = []
     var post: Post? {
           didSet {
               guard let post = post else { return }

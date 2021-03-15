@@ -52,6 +52,10 @@ enum StrikeServise{
     case markNotificationsAsRead
     case blockUser(id: Int)
     case unblockUser(id: Int)
+    case getComments(postType: NewsType, postID: Int)
+    case postComment(postType: NewsType, postID: Int, text: String)
+    case likeComment(postType: NewsType, commentID: Int)
+    case deleteComment(postType: NewsType, commentID: Int)
 }
 
 extension StrikeServise: TargetType {
@@ -161,16 +165,22 @@ extension StrikeServise: TargetType {
             return Path.Users.resetPasswordConfirmation
         case .deleteAvatar:
             return Path.Users.deleteAvatar
+        case .getComments(let postType, let postID), .postComment(let postType, let postID, _):
+            return Path.Comments.comments(postType: postType, postID: postID)
+        case .likeComment(let postType, let commentID):
+            return Path.Comments.likeComment(postType: postType, commentID: commentID)
+        case .deleteComment(let postType, let commentID):
+            return Path.Comments.deleteComment(postType: postType, commentID: commentID)
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment:
             return .post
-        case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser:
+        case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment:
             return .delete
-        case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead:
+        case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead, .likeComment:
             return .put
         case .upProduct, .changePassword:
             return .patch
@@ -280,6 +290,8 @@ extension StrikeServise: TargetType {
             params["resetPasswordToken"] = resetToken
         case .blockUser(let id), .unblockUser(let id):
             params["id"] = id
+        case .postComment(_, _, let text):
+            params["text"] = text
         default:
             return nil
         }
@@ -304,7 +316,7 @@ extension StrikeServise: TargetType {
     
     var validationType: ValidationType {
         switch self {
-        case .registration:
+        case .registration, .getComments:
             return .none
         default:
             return .successAndRedirectCodes

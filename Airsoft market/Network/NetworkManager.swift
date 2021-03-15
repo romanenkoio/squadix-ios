@@ -654,6 +654,60 @@ final class NetworkManager {
             }
         }
     }
+    
+    func getComment(postType: NewsType, postID: Int, completion: (([Comment]) -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.getComments(postType: postType, postID: postID)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                guard let comments = try? response.mapObject(CommentContent.self) else { return }
+                completion?(comments.content)
+            case .failure(_):
+                failure?()
+            }
+        }
+    }
+    
+    func postComment(postType: NewsType, postID: Int, text: String, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.postComment(postType: postType, postID: postID, text: text)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+               
+                completion?()
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
+    
+    func likeComment(postType: NewsType, commentID: Int, completion: ((Comment) -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.likeComment(postType: postType, commentID: commentID)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                guard let comment = try? response.mapObject(Comment.self) else { return }
+                completion?(comment)
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
+    
+    func deleteComment(postType: NewsType, commentID: Int, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.deleteComment(postType: postType, commentID: commentID)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
 
 
 }

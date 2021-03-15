@@ -61,6 +61,43 @@ struct Path {
         static let path = "categories"
     }
     
+    struct Comments {
+        static func comments(postType: NewsType, postID: Int) -> String {
+            switch postType {
+            case .event:
+                return Path.Events.path + "/\(postID)/comments"
+            case .feed:
+                return Path.Posts.path + "/\(postID)/comments"
+            default:
+                return ""
+            }
+        }
+        
+        static func likeComment(postType: NewsType, commentID: Int) -> String {
+            switch postType {
+            case .event:
+                return Path.Events.path + "/comments/\(commentID)/like"
+            case .feed:
+                return Path.Posts.path + "/comments/\(commentID)/like"
+            default:
+                return ""
+            }
+        }
+        
+        static func deleteComment(postType: NewsType, commentID: Int) -> String {
+            switch postType {
+            case .event:
+                return Path.Events.path + "/comments/\(commentID)"
+            case .feed:
+                return Path.Posts.path + "/comments/\(commentID)"
+            default:
+                return ""
+            }
+        }
+        
+    
+    }
+    
     struct Additional {
         static let nbrb = "/api/exrates/rates/145"
         static let youtube = "/youtube/v3/videos"

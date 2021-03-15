@@ -19,7 +19,6 @@ class NewsCell: BaseTableViewCell {
     @IBOutlet weak var createDate: UILabel!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var videoIndicator: UIImageView!
-    @IBOutlet weak var promoImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var likeImage: UIButton!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var imageCountView: UIView!
@@ -91,11 +90,9 @@ class NewsCell: BaseTableViewCell {
         }
         
         if post.contentType == .image, post.imageUrls.count == 0 {
-            promoImageHeightConstraint.constant = 0
             promoImage.isHidden = true
         } else {
             promoImage.isHidden = false
-            promoImageHeightConstraint.constant = 200
             promoImage.loadImageWith(post.contentType != .video ? post.imageUrls![0] : videoPicUrl)
         }
         
@@ -149,7 +146,6 @@ class NewsCell: BaseTableViewCell {
         likeCount.text = "0"
         likeImage.setImage(UIImage(named: "like"), for: .normal)
         authorAvatar.image = UIImage(named: "avatar_placeholder")
-        promoImageHeightConstraint.constant = 200
         promoImage.isHidden = false
         imageCountView.isHidden = true
     }

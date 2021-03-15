@@ -11,6 +11,7 @@ import CoreLocation
 import ImageSlideshow
 import Moya
 import EventKit
+import GrowingTextView
 
 enum EventMenuPoint {
     case images
@@ -23,16 +24,19 @@ enum EventMenuPoint {
     case starteEventTime
     case eventTime
     case like
+    case comments
     
     static func getManuForEvent(event: Event) -> (menu: [[EventMenuPoint]], headers: [String]) {
         let authorSection: [EventMenuPoint] = [ .authorInfo, .images]
         let firstSection: [EventMenuPoint] = [.eventTime, .starteEventTime, .eventCoordinates, .startCoordinates]
         let secondSection: [EventMenuPoint] =  [.decription]
         let likeSection: [EventMenuPoint] = [.like]
+        let commentSection: [EventMenuPoint] = [.comments]
+        
         if event.isPreview {
             return ([authorSection, firstSection, secondSection], ["", "Координаты", "Описание"])
         }
-        return ([authorSection, firstSection, secondSection, likeSection], ["", "Координаты", "Описание", ""])
+        return ([authorSection, firstSection, secondSection, likeSection, commentSection], ["", "Координаты", "Описание", "", "Комментарии"])
     }
 }
 
@@ -42,7 +46,10 @@ class EventShowPage: BaseViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var contactButton: UIButton!
     @IBOutlet var calendarButton: UIButton!
+    @IBOutlet weak var commentTextView: GrowingTextView!
+    @IBOutlet weak var commentSendButton: UIButton!
     
+    var shouldScroll = false
     var likeAction: Cancellable? = nil
     lazy var service = NetworkManager()
     lazy var eventStore = EKEventStore()
@@ -53,6 +60,7 @@ class EventShowPage: BaseViewController {
     var sectionDescription: [String] = []
     var isPreview = false
     var previewImages: [UIImage] = []
+    var comments: [Comment] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +75,7 @@ class EventShowPage: BaseViewController {
         tableView.registerCell(SlideShowCell.self)
         tableView.registerCell(AuthorCell.self)
         tableView.registerCell(LikeCell.self)
+        tableView.registerCell(CommentCell.self)
         
         navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: moreButton),
                                                UIBarButtonItem(customView: contactButton),
@@ -76,7 +85,15 @@ class EventShowPage: BaseViewController {
         moreButton.isHidden = event.authorID != KeychainManager.profileID
         contactButton.isHidden = event.authorID == KeychainManager.profileID
         Analytics.trackEvent("Event_view_screen")
+        commentTextView.layer.borderWidth = 1
+        commentTextView.layer.borderColor = UIColor.lightGray.cgColor
+        getComment()
     }
+    
+    @IBAction func sendCommentAction(_ sender: Any) {
+        sendComment()
+    }
+    
     
     @IBAction func contactAction(_ sender: Any) {
         guard let event = event else { return }
@@ -193,12 +210,21 @@ extension EventShowPage: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if menu[section].contains(.comments) {
+            return comments.count
+        }
         return menu[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ActionCell.self), for: indexPath)
-        let type = menu[indexPath.section][indexPath.row]
+        
+        var type = EventMenuPoint.authorInfo
+        if menu[indexPath.section].contains(.comments) {
+            type = .comments
+        } else {
+            type = menu[indexPath.section][indexPath.row]
+        }
         
         guard let event = event else { return cell }
         switch type {
@@ -332,6 +358,61 @@ extension EventShowPage: UITableViewDataSource {
                 
                 return profileCell
             }
+        case .comments:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self), for: indexPath)
+            if let commentCell = cell as? CommentCell {
+                commentCell.isUserInteractionEnabled = true
+                commentCell.setupCell(comment: comments[indexPath.row])
+                commentCell.action = { [weak self] in
+                    guard let comment = self?.comments[indexPath.row] else { return }
+                    self?.networkManager.likeComment(postType: NewsType.event, commentID: comment.id, completion: { updatedComment in
+                        comment.isLiked = updatedComment.isLiked
+                        comment.likeCount = updatedComment.likeCount
+                        self?.comments[indexPath.row] = comment
+                        let indexPath = IndexPath(item: indexPath.row, section: indexPath.section)
+                        tableView.reloadRows(at: [indexPath], with: .none)
+                    }, failure: {
+                        self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже")
+                    })
+                }
+                
+                commentCell.tapAvatarAction = { [weak self] in
+                    guard let comment = self?.comments[indexPath.row] else { return }
+                    self?.navigationController?.pushViewController(VCFabric.getProfilePage(for: comment.userID), animated: true)
+                }
+                
+                
+                commentCell.reportAction = { [weak self] in
+                    guard let comment = self?.comments[indexPath.row] else { return }
+                    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    
+                    if comment.userID == KeychainManager.profileID || KeychainManager.isAdmin {
+                       
+                        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { _ in
+                            self?.showDestructiveAlert(handler: {
+                                self?.networkManager.deleteComment(postType: NewsType.event, commentID: comment.id, completion: {
+                                    self?.getComment()
+                                    self?.showPopup(title: "Удалено")
+                                }, failure: {
+                                    self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже.")
+                                })
+                            })
+                        }))
+                    }
+                    
+                    if comment.userID != KeychainManager.profileID {
+                        alert.addAction(UIAlertAction(title: "Пожаловаться", style: .destructive, handler: { _ in
+                            self?.showDestructiveAlert(handler: {
+                                //                           отправить репорт
+                            })
+                        }))
+                    }
+                  
+                    alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
+                    self?.present(alert, animated: true)
+                }
+                return commentCell
+            }
         case .like:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LikeCell.self), for: indexPath)
             if let profileCell = cell as? LikeCell {
@@ -375,8 +456,59 @@ extension EventShowPage: UITableViewDataSource {
         switch section {
         case 0, 3:
             return 0
+        case 4:
+            return comments.count == 0 ? 0 : 40
         default:
             return 40
         }
     }
+}
+
+
+extension EventShowPage: Commentable {
+    func likeComment(commentID: Int) {
+        networkManager.likeComment(postType: NewsType.event, commentID: commentID) { [weak self] comment in
+            guard let section = self?.menu.count else { return }
+            self?.tableView.reloadSections(IndexSet(integer: section - 1), with: .bottom)
+        }
+    }
+    
+    func sendComment() {
+        spinner.startAnimating()
+        guard let id = event?.id, let text = commentTextView.text else { return }
+        networkManager.postComment(postType: NewsType.event, postID: id, text: text) { [weak self] in
+            self?.spinner.stopAnimating()
+            self?.getComment()
+            self?.commentTextView.text = ""
+            self?.shouldScroll = true
+        } failure: { [weak self] in
+            self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
+            self?.spinner.stopAnimating()
+        }
+
+    }
+    
+    func getComment() {
+        guard let id = event?.id else { return }
+        comments = []
+        networkManager.getComment(postType: NewsType.event, postID: id) { [weak self] comments in
+            guard let section = self?.menu.count else { return }
+            self?.comments = comments
+            self?.tableView.reloadSections(IndexSet(integer: section - 1), with: .bottom)
+            guard let sSelf = self else { return }
+            if sSelf.shouldScroll {
+                guard let row = self?.comments.count, let section = self?.menu.count else { return }
+                sSelf.tableView.beginUpdates()
+                sSelf.tableView.endUpdates()
+                sSelf.tableView.scrollToRow(at: IndexPath(row: row - 1, section: section - 1), at: .top, animated: false)
+                sSelf.shouldScroll = false
+            }
+        }
+    }
+    
+    func deleteComment() {
+        
+    }
+    
+    
 }
