@@ -15,16 +15,10 @@ class MarketCell: UITableViewCell {
     @IBOutlet weak var regionLabel: UILabel!
     @IBOutlet weak var productDateLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
-    @IBOutlet weak var commentCountView: UIView!
-    @IBOutlet weak var commentCountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         productImage.roundedBottomCornerImage()
         cellView.dropShadow()
-        commentCountView.roundedCorners()
     }
-
- 
-    
 }
