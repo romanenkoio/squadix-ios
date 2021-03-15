@@ -20,7 +20,6 @@ enum NewsType {
     case feed
     case userFeed
     case event
-    case product
 }
 
 class NewsPage: BaseViewController {
