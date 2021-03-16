@@ -49,6 +49,8 @@ class NotificationCell: BaseTableViewCell {
                 }
             }
             notificationImageView.image = UIImage(named: "AppIcon")
+        case .report:
+            notificationImageView.image = UIImage(named: "report")
         default:
             print("Error")
         }

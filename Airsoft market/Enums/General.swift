@@ -63,6 +63,7 @@ class Common {
         case aprooved
         case decline
         case system
+        case report
         case none
     }
     
@@ -76,6 +77,8 @@ class Common {
             return .decline
         case "SYSTEM":
             return .system
+        case "REPORT":
+            return .report
         default:
             return .none
         }
