@@ -82,7 +82,6 @@ class EventShowPage: BaseViewController {
                                                UIBarButtonItem(customView: calendarButton)],
                                               animated: true)
         
-        moreButton.isHidden = event.authorID != KeychainManager.profileID
         contactButton.isHidden = event.authorID == KeychainManager.profileID
         Analytics.trackEvent("Event_view_screen")
         commentTextView.layer.borderWidth = 1
@@ -174,23 +173,41 @@ class EventShowPage: BaseViewController {
     
     
     @IBAction func moreButton(_ sender: Any) {
+        guard let id = event?.id else { return }
+        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Удалить событие", style: .destructive) { [weak self] _ in
-            self?.showDestructiveAlert(handler: {
-                self?.spinner.startAnimating()
-                let service = NetworkManager()
-                guard let event = self?.event else { return }
-                service.deleteEvent(id: event.id, completion: {
-                    self?.spinner.stopAnimating()
-                    self?.delegate?.deleteFromFeed(id: event.id, type: .event)
-                    self?.navigationController?.popViewController(animated: true)
-                }) { error in
-                    self?.spinner.stopAnimating()
-                    print("Error: \(error ?? "unknown")")
-                }
+        if id == KeychainManager.profileID || KeychainManager.isAdmin {
+            alert.addAction(UIAlertAction(title: "Удалить событие", style: .destructive) { [weak self] _ in
+                self?.showDestructiveAlert(handler: {
+                    self?.spinner.startAnimating()
+                    let service = NetworkManager()
+                    guard let event = self?.event else { return }
+                    service.deleteEvent(id: event.id, completion: {
+                        self?.spinner.stopAnimating()
+                        self?.delegate?.deleteFromFeed(id: event.id, type: .event)
+                        self?.navigationController?.popViewController(animated: true)
+                    }) { error in
+                        self?.spinner.stopAnimating()
+                        print("Error: \(error ?? "unknown")")
+                    }
+                })
             })
-        })
+        }
+        
+        if id != KeychainManager.profileID && !KeychainManager.isAdmin {
+            alert.addAction(UIAlertAction(title: "Пожаловаться", style: .destructive) { [weak self] _ in
+                self?.showDestructiveAlert(handler: {
+                    self?.spinner.startAnimating()
+                    self?.networkManager.report(link: "https://squadix.co/events/\(id)") {
+                        self?.spinner.stopAnimating()
+                        self?.showPopup(title: "Отправлено.")
+                    } failure: {
+                        self?.showPopup(isError: true, title: "Ошибка, попробуйте позже.")
+                    }
+                })
+            })
+        }
         
         alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
         present(alert, animated: true)
@@ -398,7 +415,12 @@ extension EventShowPage: UITableViewDataSource {
                     if comment.userID != KeychainManager.profileID {
                         alert.addAction(UIAlertAction(title: "Пожаловаться", style: .destructive, handler: { _ in
                             self?.showDestructiveAlert(handler: {
-                                //                           отправить репорт
+                                self?.networkManager.report(link: "https://squadix.co/events/\(event.id)?comment=\(comment.id ?? 0)") {
+                                    self?.spinner.stopAnimating()
+                                    self?.showPopup(title: "Отправлено.")
+                                } failure: {
+                                    self?.showPopup(isError: true, title: "Ошибка, попробуйте позже.")
+                                }
                             })
                         }))
                     }

@@ -103,6 +103,9 @@ struct Path {
         static let youtube = "/youtube/v3/videos"
     }
     
+    struct Report {
+        static let path = "report"
+    }
     struct Device {
         static let path = "devices"
     }

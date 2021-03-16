@@ -56,6 +56,7 @@ enum StrikeServise{
     case postComment(postType: NewsType, postID: Int, text: String)
     case likeComment(postType: NewsType, commentID: Int)
     case deleteComment(postType: NewsType, commentID: Int)
+    case report(link: String)
 }
 
 extension StrikeServise: TargetType {
@@ -171,12 +172,14 @@ extension StrikeServise: TargetType {
             return Path.Comments.likeComment(postType: postType, commentID: commentID)
         case .deleteComment(let postType, let commentID):
             return Path.Comments.deleteComment(postType: postType, commentID: commentID)
+        case .report:
+            return Path.Report.path
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report:
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment:
             return .delete
@@ -292,6 +295,8 @@ extension StrikeServise: TargetType {
             params["id"] = id
         case .postComment(_, _, let text):
             params["text"] = text
+        case .report(let link):
+            params["link"] = link
         default:
             return nil
         }

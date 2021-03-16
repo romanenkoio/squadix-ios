@@ -99,12 +99,6 @@ class NewsShowPage: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        guard let id = post?.authorID else { return }
-        if KeychainManager.isAdmin {
-            moreButton.isHidden = false
-        } else {
-            moreButton.isHidden = KeychainManager.profileID != id
-        }
         getComment()
     }
     
@@ -113,23 +107,42 @@ class NewsShowPage: BaseViewController {
     }
     
     @IBAction func moreAction(_ sender: Any) {
+        guard let id = post?.id else { return }
+        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Удалить пост", style: .destructive) { [weak self] _ in
-            self?.showDestructiveAlert(handler: {
-                self?.spinner.startAnimating()
-                let service = NetworkManager()
-                guard let post = self?.post else { return }
-                service.deletePost(id: post.id, completion: {
-                    self?.spinner.stopAnimating()
-                    self?.delegate?.deleteFromFeed(id: post.id, type: .feed)
-                    self?.navigationController?.popViewController(animated: true)
-                }) { error in
-                    self?.spinner.stopAnimating()
-                    print("Error: \(error ?? "unknown")")
-                }
+        if id == KeychainManager.profileID || KeychainManager.isAdmin {
+            alert.addAction(UIAlertAction(title: "Удалить пост", style: .destructive) { [weak self] _ in
+                self?.showDestructiveAlert(handler: {
+                    self?.spinner.startAnimating()
+                    let service = NetworkManager()
+                    guard let post = self?.post else { return }
+                    service.deletePost(id: post.id, completion: {
+                        self?.spinner.stopAnimating()
+                        self?.delegate?.deleteFromFeed(id: post.id, type: .feed)
+                        self?.navigationController?.popViewController(animated: true)
+                    }) { error in
+                        self?.spinner.stopAnimating()
+                        print("Error: \(error ?? "unknown")")
+                    }
+                })
             })
-        })
+        }
+        
+        if id != KeychainManager.profileID && !KeychainManager.isAdmin {
+            alert.addAction(UIAlertAction(title: "Пожаловаться", style: .destructive) { [weak self] _ in
+                self?.showDestructiveAlert(handler: {
+                    self?.spinner.startAnimating()
+                    self?.networkManager.report(link: "https://squadix.co/news/\(id)") {
+                        self?.spinner.stopAnimating()
+                        self?.showPopup(title: "Отправлено.")
+                    } failure: {
+                        self?.showPopup(isError: true, title: "Ошибка, попробуйте позже.")
+                    }
+                })
+            })
+        }
+
         
         alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
         present(alert, animated: true)
@@ -278,7 +291,12 @@ extension NewsShowPage: UITableViewDataSource {
                     if comment.userID != KeychainManager.profileID {
                         alert.addAction(UIAlertAction(title: "Пожаловаться", style: .destructive, handler: { _ in
                             self?.showDestructiveAlert(handler: {
-                                //                           отправить репорт
+                                self?.networkManager.report(link: "https://squadix.co/news/\(post.id)?comment=\(comment.id ?? 0)") {
+                                    self?.spinner.stopAnimating()
+                                    self?.showPopup(title: "Отправлено.")
+                                } failure: {
+                                    self?.showPopup(isError: true, title: "Ошибка, попробуйте позже.")
+                                }
                             })
                         }))
                     }

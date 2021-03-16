@@ -708,6 +708,18 @@ final class NetworkManager {
             }
         }
     }
-
+    
+    func report(link: String, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.report(link: link)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
 
 }
