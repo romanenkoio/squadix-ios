@@ -23,8 +23,15 @@ class Reports: Mappable {
     
     func mapping(map: Map) {
         link            <- map["link"]
-        createdAt       <- map["createdAt"]
         reporterID      <- map["reporterID"]
         isReaded        <- map["isReaded"]
+        
+        if let created = map["createdAt"].currentValue as? String {
+            if let localDate = formatter.date(from: created) {
+                self.createdAt = localDate
+            } else {
+                self.createdAt = nil
+            }
+        }
     }
 }
