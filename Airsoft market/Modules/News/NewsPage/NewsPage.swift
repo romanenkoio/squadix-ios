@@ -602,13 +602,21 @@ extension NewsPage: DeeplinkRoutable {
         guard let url = deeplink.url,  let postID = url.path.matches(for: "[0-9]+").first, let id = Int(postID) else { return }
         if url.path.contains("/news/") {
             networkManager.getPostByID(postID: id) { [weak self] post in
-                self?.navigationController?.pushViewController(VCFabric.getNewsShowPage(post: post), animated: true)
+                let vc = VCFabric.getNewsShowPage(post: post)
+                if let value = url.valueOf("comment"), let commentID = Int(value)  {
+                    vc.commetnForScroll = commentID
+                }
+                self?.navigationController?.pushViewController(vc, animated: true)
             }failure: { _ in
                 self.showPopup(isError: true, title: "Новость не найдена")
             }
         } else if url.path.contains("/events/") {
             networkManager.getEventByID(postID: id) { [weak self] event in
-                self?.navigationController?.pushViewController(VCFabric.getEventShowPage(event: event), animated: true)
+                let vc = VCFabric.getEventShowPage(event: event)
+                if let value = url.valueOf("comment"), let commentID = Int(value)  {
+                    vc.commetnForScroll = commentID
+                }
+                self?.navigationController?.pushViewController(vc, animated: true)
             } failure: { _ in
                 self.showPopup(isError: true, title: "Событие не найдено")
             }

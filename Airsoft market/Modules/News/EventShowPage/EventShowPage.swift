@@ -87,6 +87,18 @@ class EventShowPage: BaseViewController {
         commentTextView.layer.borderWidth = 1
         commentTextView.layer.borderColor = UIColor.lightGray.cgColor
         getComment()
+        if commetnForScroll != 0 {
+            reportScroll = { [weak self] in
+                guard let index = self?.comments.firstIndex(where: { $0.id == self?.commetnForScroll}), let section = self?.menu.count  else { return }
+                let indexPath = IndexPath(row: index, section: section - 1)
+                self?.tableView.scrollToRow(at: indexPath, at: .none, animated: true)
+                
+                guard let currentCell = self?.tableView.cellForRow(at: indexPath) as? CommentCell else { return }
+                currentCell.backgroundColor = .yellow
+                self?.reportScroll = nil
+                self?.commetnForScroll = 0
+            }
+        }
     }
     
     @IBAction func sendCommentAction(_ sender: Any) {
@@ -517,9 +529,10 @@ extension EventShowPage: Commentable {
                 guard let row = self?.comments.count, let section = self?.menu.count else { return }
                 sSelf.tableView.beginUpdates()
                 sSelf.tableView.endUpdates()
-                sSelf.tableView.scrollToRow(at: IndexPath(row: row - 1, section: section - 1), at: .top, animated: false)
+                sSelf.tableView.scrollToRow(at: IndexPath(row: row - 1, section: section - 1), at: .none, animated: false)
                 sSelf.shouldScroll = false
             }
+            sSelf.reportScroll?()
         }
     }
     

@@ -21,6 +21,8 @@ class BaseViewController: UIViewController {
     var profileID: Int?
     var page = 0
     var isLoadinInProgress = false
+    var reportScroll: VoidBlock?
+    var commetnForScroll: Int = 0
     
     var shouldBackSwipe: Bool {
         return true
