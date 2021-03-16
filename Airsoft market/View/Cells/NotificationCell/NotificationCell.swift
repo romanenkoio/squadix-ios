@@ -51,6 +51,11 @@ class NotificationCell: BaseTableViewCell {
             notificationImageView.image = UIImage(named: "AppIcon")
         case .report:
             notificationImageView.image = UIImage(named: "report")
+            action = {
+                if let url = notification.url {
+                    Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
+                }
+            }
         default:
             print("Error")
         }
