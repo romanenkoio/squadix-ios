@@ -27,6 +27,8 @@ class Reports: Mappable {
         isReaded        <- map["isReaded"]
         
         if let created = map["createdAt"].currentValue as? String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
             if let localDate = formatter.date(from: created) {
                 self.createdAt = localDate
             } else {

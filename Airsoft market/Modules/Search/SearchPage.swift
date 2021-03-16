@@ -22,6 +22,7 @@ class SearchPage: BaseViewController {
         super.viewDidLoad()
         setup()
         Analytics.trackEvent("User_search_screen")
+        loadUsers()
     }
     
     func setup() {
@@ -43,7 +44,6 @@ class SearchPage: BaseViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        loadUsers()
     }
     
     func loadUsers(searchInProgress: Bool = false) {
@@ -84,10 +84,13 @@ extension SearchPage: UISearchResultsUpdating {
 extension SearchPage: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if isSearchInProgress {
-            navigationController?.pushViewController(VCFabric.getProfilePage(for: searchData[indexPath.row].id), animated: true)
-        } else {
-            navigationController?.pushViewController(VCFabric.getProfilePage(for: usersData[indexPath.row].id), animated: true)
+            navigationController?.pushViewController(VCFabric.getProfilePage(for: isSearchInProgress ? searchData[indexPath.row].id : usersData[indexPath.row].id), animated: true)
+     
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height - 300)) {
+            loadUsers()
         }
     }
 }
