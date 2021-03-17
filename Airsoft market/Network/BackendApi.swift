@@ -296,7 +296,7 @@ extension StrikeServise: TargetType {
         case .postComment(_, _, let text):
             params["text"] = text
         case .report(let link):
-            params["link"] = link
+            params["url"] = link
         default:
             return nil
         }

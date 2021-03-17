@@ -104,7 +104,7 @@ struct Path {
     }
     
     struct Report {
-        static let path = "report"
+        static let path = "reports/"
     }
     struct Device {
         static let path = "devices"
