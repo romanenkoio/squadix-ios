@@ -721,5 +721,18 @@ final class NetworkManager {
             }
         }
     }
+    
+    func editProduct(product: MarketProduct, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.editProduct(product: product)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
 
 }

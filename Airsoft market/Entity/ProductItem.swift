@@ -36,7 +36,7 @@ class MarketProduct: Mappable {
     var phone: String?
     var status: ProductStatus? = .unknown
     var upTime: String!
-    var reserv: Bool = false
+    var reserved: Bool = false
     var authorPhone: String?
     
     required init?(map: Map) {
@@ -60,7 +60,7 @@ class MarketProduct: Mappable {
         authorAvatarURL  <- map["authorAvatarUrl"]
         authorName       <- map["authorName"]
         upTime           <- map["upTime"]
-        reserv           <- map["reserv"]
+        reserved         <- map["reserved"]
         authorPhone      <- map["authorPhone"]
         
         if let tempStatus = map["status"].currentValue as? String {
@@ -77,22 +77,25 @@ class MarketProduct: Mappable {
         }
     }
     
-    func asParams(with images: [UIImage])  -> [String: Any] {
+    func asParams(isEdit: Bool = false, with images: [UIImage])  -> [String: Any] {
         var params = [String: Any]()
         
-        var imagedata: [String] = []
-        for image in images {
-            if let codedImage = image.toBase64() {
-                imagedata.append(codedImage)
+        if !isEdit {
+            var imagedata: [String] = []
+            for image in images {
+                if let codedImage = image.toBase64() {
+                    imagedata.append(codedImage)
+                }
             }
+            params["images"] = imagedata
         }
         
-        params["images"] = imagedata
         params["category"] = productCategory
         params["description"] = description
         params["name"] = productName
         params["price"] = price
         params["region"] = productRegion
+        params["reserved"] = reserved
         params["postalDeliveryAvailable"] = postAvalible
         return params
     }

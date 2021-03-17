@@ -27,7 +27,7 @@ enum ContentType {
     
     static func getPoints() -> (menu: [[ContentType]], headers: [String])  {
         let firstSection: [ContentType] = [.authorInfo, .images]
-        let secondSection: [ContentType] = [.price, .region, .postAvalible, .category, ]
+        let secondSection: [ContentType] = [.price, .region, .postAvalible, .category, .reserve]
         let thirdSection: [ContentType] = [.description]
         
         return ([firstSection, secondSection, thirdSection, ], ["", "", "Описание"])
@@ -136,6 +136,19 @@ class ProductPage: BaseViewController {
     @IBAction func moreAction(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
+        if product.authorID == KeychainManager.profileID {
+            alert.addAction(UIAlertAction(title: product.reserved ? "Снять с резерва" : "Поставить в резерв", style: .default) { [weak self] _ in
+                guard let prod = self?.product else { return }
+                self?.networkManager.editProduct(product: prod, completion: {
+                    self?.product.reserved = !prod.reserved
+                    self?.tableView.reloadData()
+                    self?.showPopup(title: prod.reserved ? "Поставлено в резерв" : "Снято с резерва")
+                }, failure: {
+                    self?.showPopup(isError: true, title: "Ошибка, попробуйте позже.")
+                })
+            })
+        }
+        
         alert.addAction(UIAlertAction(title: "Удалить объявление", style: .destructive) { [weak self] _ in
             self?.showDestructiveAlert(handler: {
                 self?.spinner.startAnimating()
@@ -151,12 +164,6 @@ class ProductPage: BaseViewController {
                 }
             })
         })
-        
-        if product.authorID == KeychainManager.profileID {
-            alert.addAction(UIAlertAction(title: "Поставить в резерв", style: .default) { [weak self] _ in
-                
-            })
-        }
         
         alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
         present(alert, animated: true)
@@ -240,7 +247,8 @@ extension ProductPage: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SimpleTextCell.self), for: indexPath)
             if let profileCell = cell as? SimpleTextCell {
                 profileCell.isUserInteractionEnabled = false
-                profileCell.textLabel?.text = product.reserv ? "Зарезервировано: да" : "Зарезервировано: нет"
+                profileCell.simpleTextLabel.text = product.reserved ? "Зарезервировано: да" : "Зарезервировано: нет"
+                profileCell.backgroundColor = product.reserved ? .yellow : .white
                 return profileCell
             }
         case .region:

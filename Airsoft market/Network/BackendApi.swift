@@ -57,6 +57,7 @@ enum StrikeServise{
     case likeComment(postType: NewsType, commentID: Int)
     case deleteComment(postType: NewsType, commentID: Int)
     case report(link: String)
+    case editProduct(product: MarketProduct)
 }
 
 extension StrikeServise: TargetType {
@@ -174,6 +175,8 @@ extension StrikeServise: TargetType {
             return Path.Comments.deleteComment(postType: postType, commentID: commentID)
         case .report:
             return Path.Report.path
+        case .editProduct(let product):
+            return Path.Products.path + "/\(product.postID)"
         }
     }
     
@@ -183,7 +186,7 @@ extension StrikeServise: TargetType {
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment:
             return .delete
-        case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead, .likeComment:
+        case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead, .likeComment, .editProduct:
             return .put
         case .upProduct, .changePassword:
             return .patch
@@ -297,6 +300,8 @@ extension StrikeServise: TargetType {
             params["text"] = text
         case .report(let link):
             params["url"] = link
+        case .editProduct(let product):
+            params = product.asParams(isEdit: true, with: [])
         default:
             return nil
         }
