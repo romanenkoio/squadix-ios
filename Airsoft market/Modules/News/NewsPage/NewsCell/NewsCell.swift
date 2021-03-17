@@ -27,7 +27,6 @@ class NewsCell: BaseTableViewCell {
     private let networkManager = NetworkManager()
     var currentPost: Post?
     var currentEvent: Event?
-    var author: Profile!
     var videoPicUrl = ""
     var likeAction: Cancellable? = nil
     
@@ -148,5 +147,6 @@ class NewsCell: BaseTableViewCell {
         authorAvatar.image = UIImage(named: "avatar_placeholder")
         promoImage.isHidden = false
         imageCountView.isHidden = true
+        comentCountLabel.text = "0"
     }
 }
