@@ -67,8 +67,12 @@ struct Profile: Mappable {
             }
         }
         
-        if city  != "" {
+        if city != "" {
             params["city"] = city
+        }
+        
+        if team != "" {
+            params["team"] = team
         }
         
         if country != "" {

@@ -22,6 +22,7 @@ class EditPage: BaseViewController {
     @IBOutlet weak var userNameTextField: StrikeInputField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var phoneTextField: StrikeInputField!
+    @IBOutlet weak var teamTextField: StrikeInputField!
     
     var selectedDate: Date?
     var profile: Profile?
@@ -52,16 +53,6 @@ class EditPage: BaseViewController {
         
         birthdayTextField.inputView = datePicker
         datePicker.addTarget(self, action: #selector(selectDateAction(picker:)), for: .valueChanged)
-        
-//        let calendar = Calendar.current
-//        let currentDate = Date()
-//        var components = DateComponents()
-//        components.calendar = calendar
-//        components.year = -10
-//        let maxDate = calendar.date(byAdding: components, to: currentDate)!
-//        datePicker.maximumDate = maxDate
-        
-      
      
         manager.getCurrentUser { (profile, rrror, _) in
             self.profile = profile
@@ -85,6 +76,7 @@ class EditPage: BaseViewController {
     func preloadData() {
         countryTextField.text = "Беларусь"
         cityTextField.text = profile?.city
+        teamTextField.text = profile?.team
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
@@ -137,6 +129,7 @@ class EditPage: BaseViewController {
             
             profile?.city = cityTextField.text
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if userNameTextField.text != "" {
                 profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -158,6 +151,7 @@ class EditPage: BaseViewController {
             if let date = selectedDate {
                 profile?.birthday = date
             }
+            profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
