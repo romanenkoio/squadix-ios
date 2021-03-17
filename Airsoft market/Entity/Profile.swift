@@ -22,7 +22,7 @@ struct Profile: Mappable {
     var birthday: Date?
     var roles: [Common.Roles]!
     var isBlocked: Bool = false
-    var team: String = ""
+    var team: String?
     
     init() {
     }

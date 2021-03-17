@@ -11,6 +11,7 @@ import ActiveLabel
 
 class DescriptionPointCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: ActiveLabel!
+    @IBOutlet weak var commandLabel: ActiveLabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

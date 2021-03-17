@@ -280,6 +280,13 @@ extension ProfilePage: UITableViewDataSource {
                cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DescriptionPointCell.self), for: indexPath)
                if let profileCell = cell as? DescriptionPointCell {
                     profileCell.descriptionLabel.text = currentProfile?.profileDescription
+                    if let team = currentProfile?.team {
+                         profileCell.commandLabel.isHidden = false
+                         profileCell.commandLabel.text = "Команда: \(team)"
+                    } else {
+                         profileCell.commandLabel.isHidden = true
+                    }
+                   
                     profileCell.descriptionLabel.enabledTypes = [.url]
                     profileCell.descriptionLabel.customize { label in
                          label.handleURLTap { url in
