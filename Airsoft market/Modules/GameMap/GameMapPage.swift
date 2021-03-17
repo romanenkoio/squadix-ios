@@ -132,7 +132,6 @@ class GameMapPage: UIViewController {
             let insets = UIEdgeInsets(top: 60, left: 50, bottom:  30, right: 50)
             let update = GMSCameraUpdate.fit(bounds, with: insets)
             mapView?.animate(with: update)
-            mapView.animate(toZoom: 10)
         }
     }
     
@@ -244,9 +243,6 @@ extension GameMapPage: GMUClusterRendererDelegate {
         }
     }
 }
-
-
-
 
 extension GameMapPage: EventInfoDelegate {
     func showEvent(event: Event) {
