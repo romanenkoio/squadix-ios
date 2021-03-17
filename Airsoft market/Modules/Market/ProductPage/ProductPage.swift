@@ -112,25 +112,15 @@ class ProductPage: BaseViewController {
     }
     
     @IBAction func contactAction(_ sender: Any) {
-        
-        spinner.startAnimating()
-        service.getUserById(id: product.authorID) { (profile, error) in
-            guard let profile = profile else {
-                print(error as Any)
-                self.spinner.stopAnimating()
-                return
-            }
-            if let phone = profile.phone {
-                Analytics.trackEvent("Get_phone")
-                self.spinner.stopAnimating()
-                let url = "tel://\(phone)"
-                guard let contactUrl = URL.init(string: url) else { return }
-                UIApplication.shared.open(contactUrl)
-            } else {
-                self.showPopup(isError: true, title: "Ошибка получения номера")
-                self.spinner.stopAnimating()
-                return
-            }
+        if let phone = product.authorPhone {
+            Analytics.trackEvent("Get_phone")
+            self.spinner.stopAnimating()
+            let url = "tel://\(phone)"
+            guard let contactUrl = URL.init(string: url) else { return }
+            UIApplication.shared.open(contactUrl)
+        } else {
+            self.showPopup(isError: true, title: "Ошибка получения номера")
+            return
         }
     }
     
