@@ -33,11 +33,13 @@ class MarketProduct: Mappable {
     var isPreview = false
     var authorAvatarURL: String?
     var authorName: String?
-    var phone: String?
     var status: ProductStatus? = .unknown
     var upTime: String!
     var reserved: Bool = false
     var authorPhone: String?
+    var authorVK: String?
+    var authorInst: String?
+    var authorTg: String?
     
     required init?(map: Map) {
         mapping(map: map)
@@ -62,6 +64,9 @@ class MarketProduct: Mappable {
         upTime           <- map["upTime"]
         reserved         <- map["reserved"]
         authorPhone      <- map["authorPhone"]
+        authorVK         <- map["authorVk"]
+        authorInst       <- map["authorInst"]
+        authorTg         <- map["authorTg"]
         
         if let tempStatus = map["status"].currentValue as? String {
             switch tempStatus {
@@ -97,6 +102,10 @@ class MarketProduct: Mappable {
         params["region"] = productRegion
         params["reserved"] = reserved
         params["postalDeliveryAvailable"] = postAvalible
+//        params["authorPhone"] = authorPhone
+//        params["authorVk"] = authorVK
+//        params["authorInst"] = authorInst
+//        params["authorTg"] = authorTg
         return params
     }
 }

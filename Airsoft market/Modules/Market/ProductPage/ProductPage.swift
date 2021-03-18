@@ -112,16 +112,48 @@ class ProductPage: BaseViewController {
     }
     
     @IBAction func contactAction(_ sender: Any) {
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
         if let phone = product.authorPhone {
-            Analytics.trackEvent("Get_phone")
-            self.spinner.stopAnimating()
-            let url = "tel://\(phone)"
-            guard let contactUrl = URL.init(string: url) else { return }
-            UIApplication.shared.open(contactUrl)
-        } else {
-            self.showPopup(isError: true, title: "Ошибка получения номера")
-            return
+            alert.addAction(UIAlertAction(title: "Позвонить", style: .default, handler: { _ in
+                Analytics.trackEvent("Get_phone")
+                let url = "tel://\(phone)"
+                guard let contactUrl = URL.init(string: url) else { return }
+                UIApplication.shared.open(contactUrl)
+            }))
         }
+        
+        if let vk = product.authorVK, let url = URL.init(string: "vk://"), UIApplication.shared.canOpenURL(url) {
+            alert.addAction(UIAlertAction(title: "VK", style: .default, handler: { _ in
+                if let url = URL(string: "vk://vk.com/\(vk)") {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            }))
+        }
+        
+        if let ints = product.authorInst, let url = URL.init(string: "instagram://"), UIApplication.shared.canOpenURL(url) {
+            alert.addAction(UIAlertAction(title: "Instagram", style: .default, handler: { _ in
+                if let url = URL(string: "instagram://user?username=\(ints)") {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            }))
+        }
+        
+        if let tg = product.authorTg, let url = URL.init(string: "tg://"), UIApplication.shared.canOpenURL(url) {
+            alert.addAction(UIAlertAction(title: "Telegram", style: .default, handler: { _ in
+                let url = "tg://resolve?domain=\(tg)"
+                guard let contactUrl = URL.init(string: url) else { return }
+                UIApplication.shared.open(contactUrl)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Назад", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func upAction(_ sender: Any) {

@@ -22,6 +22,7 @@
 	<string>ca-app-pub-1691656751144965~5666536368</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>instagram</string>
 		<string>yandexmaps</string>
 		<string>comgooglemaps</string>
 		<string>yandexnavi</string>
