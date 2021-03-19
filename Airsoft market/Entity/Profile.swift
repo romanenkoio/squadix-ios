@@ -23,6 +23,7 @@ struct Profile: Mappable {
     var roles: [Common.Roles]!
     var isBlocked: Bool = false
     var team: String?
+    var rating = 0
     
     init() {
     }
@@ -42,6 +43,7 @@ struct Profile: Mappable {
         phone                   <- map["phone"]
         isBlocked               <- map["blocked"]
         team                    <- map["team"]
+        rating                  <- map["rating"]
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
