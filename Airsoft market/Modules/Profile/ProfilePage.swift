@@ -263,7 +263,7 @@ extension ProfilePage: UITableViewDataSource {
                     
                     myProfileCell.avatarButton.isHidden = profileID != nil
                     
-                    myProfileCell.adminBadgeLabel.text = profile.roles.contains(.admin) ? "Администратор" : "Рейтинг: \(profile.rating)"
+                    myProfileCell.adminBadgeLabel.text = profile.roles.contains(.admin) ? "Администратор" : "Рейтинг активности: \(profile.rating)"
                     
                     myProfileCell.avatarAction = { [weak self] in
                          self?.didSelectAvatarChange()
