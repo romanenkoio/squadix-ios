@@ -100,6 +100,7 @@ class NewsShowPage: BaseViewController {
             growingTextView.isHidden = isPrev
             sendCommentButton.isHidden = isPrev
         }
+        sendCommentButton.isEnabled = false
         
     }
     
@@ -354,14 +355,7 @@ extension NewsShowPage: UITableViewDataSource {
 
 extension NewsShowPage: GrowingTextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-    
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
+        sendCommentButton.isEnabled = !textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
 

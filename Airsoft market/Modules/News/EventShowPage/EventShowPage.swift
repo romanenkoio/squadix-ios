@@ -86,6 +86,7 @@ class EventShowPage: BaseViewController {
         Analytics.trackEvent("Event_view_screen")
         commentTextView.layer.borderWidth = 1
         commentTextView.layer.borderColor = UIColor.lightGray.cgColor
+        commentTextView.delegate = self
         getComment()
         if commetnForScroll != 0 {
             reportScroll = { [weak self] in
@@ -101,6 +102,7 @@ class EventShowPage: BaseViewController {
         }
         commentTextView.isHidden = event.isPreview
         commentSendButton.isHidden = event.isPreview
+        commentSendButton.isEnabled = false
     }
     
     @IBAction func sendCommentAction(_ sender: Any) {
@@ -545,5 +547,11 @@ extension EventShowPage: Commentable {
         }, failure: { [weak self] in
             self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже.")
         })
+    }
+}
+
+extension EventShowPage: GrowingTextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        commentSendButton.isEnabled = !textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
