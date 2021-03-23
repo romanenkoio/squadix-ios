@@ -96,6 +96,10 @@ class NewsShowPage: BaseViewController {
         growingTextView.layer.borderColor = UIColor.lightGray.cgColor
         growingTextView.delegate = self
         
+        if let isPrev = post?.isPreview {
+            growingTextView.isHidden = isPrev
+            sendCommentButton.isHidden = isPrev
+        }
         
     }
     

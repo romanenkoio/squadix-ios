@@ -99,6 +99,8 @@ class EventShowPage: BaseViewController {
                 self?.commetnForScroll = 0
             }
         }
+        commentTextView.isHidden = event.isPreview
+        commentSendButton.isHidden = event.isPreview
     }
     
     @IBAction func sendCommentAction(_ sender: Any) {
