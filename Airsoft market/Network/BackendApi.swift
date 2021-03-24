@@ -31,8 +31,8 @@ enum StrikeServise{
     case deleteProduct(id: Int)
     case saveProduct(product: MarketProduct,  images: [UIImage])
     case getProductByUser(id: Int, page: Int?)
-    case getAllUsers
-    case moderatingProducts(page: Int? = nil)
+    case getAllUsers(page: Int?)
+    case moderatingProducts(page: Int?)
     case updateProductStatus(prodictID: Int, status: ProductStatus, reason: String? = nil)
     case toggleLike(postID: Int, type: NewsType)
     case getCategories
@@ -302,6 +302,8 @@ extension StrikeServise: TargetType {
             params["url"] = link
         case .editProduct(let product):
             params = product.asParams(isEdit: true, with: [])
+        case .getAllUsers(let page):
+            params["page"] = page
         default:
             return nil
         }
@@ -317,7 +319,7 @@ extension StrikeServise: TargetType {
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .youtubeInfo, .getUserPosts, .getProductByUser, .posts, .events, .activeProductsWithFilters, .moderatingProducts:
+        case .youtubeInfo, .getUserPosts, .getProductByUser, .posts, .events, .activeProductsWithFilters, .moderatingProducts, .getAllUsers:
             return URLEncoding.queryString
         default:
             return JSONEncoding.prettyPrinted

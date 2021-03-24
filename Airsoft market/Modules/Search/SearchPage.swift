@@ -7,22 +7,27 @@
 //
 
 import UIKit
+import Moya
 
 class SearchPage: BaseViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     let manager = NetworkManager()
     var usersData: [Profile] = []
     var searchData: [Profile] = []
     var isSearchInProgress = false
+    var totalUserPages = 0
+    var userRequest: Cancellable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         Analytics.trackEvent("User_search_screen")
-        loadUsers()
+        page = 0
+        loadUsers(page: page)
     }
     
     func setup() {
@@ -46,19 +51,55 @@ class SearchPage: BaseViewController {
         tableView.addSubview(refreshControl)
     }
     
-    func loadUsers(searchInProgress: Bool = false) {
-        manager.getAllUsers(completion: { users in
-            self.usersData = users.sorted(by: { $0.profileName < $1.profileName }).filter({$0.id != KeychainManager.profileID})
-            self.tableView.reloadData()
+    func loadUsers(searchInProgress: Bool = false, page: Int? = nil) {
+        if userRequest != nil {
+            userRequest?.cancel()
+            userRequest = nil
+        }
+        
+        if page == 0 {
+            usersData = []
+            tableView.reloadData()
+            spinner.stopAnimating()
+        }
+        
+        spinner.startAnimating()
+        userRequest = manager.getAllUsers(page: page, completion: { [weak self] users in
+            guard let sSelf = self else { return }
+            sSelf.spinner.stopAnimating()
+            sSelf.totalUserPages = users.totalPages
+            
+            if users.content.count != 0 {
+                var indexPathes: [IndexPath] = []
+                sSelf.tableView.beginUpdates()
+                
+                for item in users.content {
+                    sSelf.usersData.append(item)
+                    indexPathes.append(IndexPath(item: sSelf.usersData.count - 1, section: 0))
+                }
+                
+                sSelf.tableView.insertRows(at: indexPathes, with: .automatic)
+                sSelf.tableView.endUpdates()
+                sSelf.tableView.reloadData()
+                sSelf.userRequest = nil
+                sSelf.page += 1
+            } else {
+                sSelf.userRequest = nil
+                print(" [NETWORK] Загружены все пользователи")
+            }
+            sSelf.spinner.stopAnimating()
         }) { error in
             print(error)
+            self.spinner.stopAnimating()
         }
     }
     
     @objc func refresh() {
         refreshControl.endRefreshing()
         isSearchInProgress = false
-        loadUsers()
+        page = 0
+        loadUsers(page: page)
+        
         searchController.searchBar.text = ""
     }
 }
@@ -90,7 +131,7 @@ extension SearchPage: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height - 300)) {
-            loadUsers()
+            loadUsers(page: page)
         }
     }
 }

@@ -34,7 +34,7 @@ enum NewsMenuPoint {
         switch post.contentType {
         case .image:
             if post.imageUrls.count == 0 && post.previewImages.count == 0 {
-                  return [sectionWithoutImage, likeSection]
+                return [sectionWithoutImage, likeSection, commentSection]
             }
             sectionWithImage =  [ .authorInfo, .decription, .images]
             if post.isPreview {

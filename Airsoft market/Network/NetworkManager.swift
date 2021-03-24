@@ -356,21 +356,19 @@ final class NetworkManager {
         }
     }
     
-    func getAllUsers(completion: @escaping ([Profile]) -> Void, failure: @escaping (String) -> Void  ) {
-        provider.request(.getAllUsers) { result in
+    @discardableResult
+    func getAllUsers(page: Int? = nil, completion: @escaping (ProfileContent) -> Void, failure: @escaping (String) -> Void  ) -> Cancellable? {
+        provider.request(.getAllUsers(page: page)) { result in
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
-                guard let users = try? response.mapArray(Profile.self) else {
+                guard let usersContent = try? response.mapObject(ProfileContent.self) else {
                     failure("Cannot load user posts")
                     return
                 }
-                completion(users)
+                completion(usersContent)
             case .failure(let error):
-                ResponceHandler.handleError(error: error)
-                var err = NetworkError()
-                err.message = error.errorDescription ?? "Unknown"
-                failure(err.message)
+            print(error)
             }
         }
     }

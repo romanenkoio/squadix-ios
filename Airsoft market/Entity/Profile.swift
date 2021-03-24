@@ -97,3 +97,19 @@ struct Profile: Mappable {
     }
 }
 
+
+class ProfileContent: Mappable {
+    var content: [Profile]!
+    var totalElements: Int!
+    var totalPages: Int!
+    
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        content         <- map["content"]
+        totalElements   <- map["totalElements"]
+        totalPages      <- map["totalPages"]
+    }
+}

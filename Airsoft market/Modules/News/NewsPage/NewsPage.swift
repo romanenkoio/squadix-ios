@@ -304,7 +304,7 @@ extension NewsPage {
                 sSelf.tableView.endUpdates()
                 sSelf.tableView.reloadData()
                 sSelf.isLoadinInProgress = false
-                self?.page += 1
+                sSelf.page += 1
             } else {
                 sSelf.isLoadinInProgress = false
                 print(" [NETWORK] Загружены все ивенты")
