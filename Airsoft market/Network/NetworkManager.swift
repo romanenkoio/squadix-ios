@@ -357,13 +357,13 @@ final class NetworkManager {
     }
     
     @discardableResult
-    func getAllUsers(page: Int? = nil, completion: @escaping (ProfileContent) -> Void, failure: @escaping (String) -> Void  ) -> Cancellable? {
-        provider.request(.getAllUsers(page: page)) { result in
+    func getAllUsers(page: Int? = nil, querry: String? = nil, completion: @escaping (ProfileContent) -> Void, failure: @escaping (String) -> Void  ) -> Cancellable? {
+        provider.request(.getAllUsers(page: page, querry: querry)) { result in
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
                 guard let usersContent = try? response.mapObject(ProfileContent.self) else {
-                    failure("Cannot load user posts")
+                    failure("Cannot load users")
                     return
                 }
                 completion(usersContent)

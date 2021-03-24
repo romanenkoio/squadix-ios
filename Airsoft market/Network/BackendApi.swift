@@ -31,7 +31,7 @@ enum StrikeServise{
     case deleteProduct(id: Int)
     case saveProduct(product: MarketProduct,  images: [UIImage])
     case getProductByUser(id: Int, page: Int?)
-    case getAllUsers(page: Int?)
+    case getAllUsers(page: Int?, querry: String?)
     case moderatingProducts(page: Int?)
     case updateProductStatus(prodictID: Int, status: ProductStatus, reason: String? = nil)
     case toggleLike(postID: Int, type: NewsType)
@@ -302,8 +302,9 @@ extension StrikeServise: TargetType {
             params["url"] = link
         case .editProduct(let product):
             params = product.asParams(isEdit: true, with: [])
-        case .getAllUsers(let page):
+        case .getAllUsers(let page, let querry):
             params["page"] = page
+            params["name"] = querry
         default:
             return nil
         }

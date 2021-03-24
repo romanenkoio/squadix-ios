@@ -17,10 +17,13 @@ class SearchPage: BaseViewController {
     
     let manager = NetworkManager()
     var usersData: [Profile] = []
-    var searchData: [Profile] = []
-    var isSearchInProgress = false
     var totalUserPages = 0
     var userRequest: Cancellable?
+    var querry: String? {
+        didSet {
+            page = 0
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,7 @@ class SearchPage: BaseViewController {
     func setup() {
         title = "Поиск"
         searchController.searchResultsUpdater = self
+        searchController.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск... "
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -51,7 +55,7 @@ class SearchPage: BaseViewController {
         tableView.addSubview(refreshControl)
     }
     
-    func loadUsers(searchInProgress: Bool = false, page: Int? = nil) {
+    func loadUsers(page: Int? = nil, querry: String? = nil) {
         if userRequest != nil {
             userRequest?.cancel()
             userRequest = nil
@@ -64,7 +68,7 @@ class SearchPage: BaseViewController {
         }
         
         spinner.startAnimating()
-        userRequest = manager.getAllUsers(page: page, completion: { [weak self] users in
+        userRequest = manager.getAllUsers(page: page, querry: querry, completion: { [weak self] users in
             guard let sSelf = self else { return }
             sSelf.spinner.stopAnimating()
             sSelf.totalUserPages = users.totalPages
@@ -96,36 +100,34 @@ class SearchPage: BaseViewController {
     
     @objc func refresh() {
         refreshControl.endRefreshing()
-        isSearchInProgress = false
         page = 0
-        loadUsers(page: page)
-        
-        searchController.searchBar.text = ""
+        loadUsers(page: page, querry: querry)
     }
 }
 
-extension SearchPage: UISearchResultsUpdating {
+extension SearchPage: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            searchData.removeAll()
-            isSearchInProgress = true
-            for item in usersData {
-                if item.profileName.lowercased().contains(find: searchText.lowercased()) {
-                    searchData.append(item)
-                }
-            }
-            tableView.reloadData()
-        } else if let text = searchController.searchBar.text, text.isEmpty {
-            isSearchInProgress = false
-            loadUsers()
+        guard let text = searchController.searchBar.text else { return }
+        if !text.isEmpty {
+            querry = text
+            loadUsers(page: page, querry: text)
         }
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.text = ""
+        loadUsers(page: 0)
+    }
+    
+    func willPresentSearchController(_ searchController: UISearchController) {
+        page = 0
     }
 }
 
 extension SearchPage: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-            navigationController?.pushViewController(VCFabric.getProfilePage(for: isSearchInProgress ? searchData[indexPath.row].id : usersData[indexPath.row].id), animated: true)
+            navigationController?.pushViewController(VCFabric.getProfilePage(for: usersData[indexPath.row].id), animated: true)
      
     }
     
@@ -138,14 +140,14 @@ extension SearchPage: UITableViewDelegate {
 
 extension SearchPage: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearchInProgress ? searchData.count : usersData.count
+        return usersData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ProfileSearchCell.self), for: indexPath)
         
         if let profileCell = cell as? ProfileSearchCell {
-            let item = isSearchInProgress ? searchData[indexPath.row] : usersData[indexPath.row]
+            let item = usersData[indexPath.row]
             if let pic = item.profilePictureUrl {
                  profileCell.profileAvatar.loadImageWith(pic)
             } else {
@@ -160,7 +162,7 @@ extension SearchPage: UITableViewDataSource {
                 reg = region
             }
             
-            if let city = item.city {
+            if let city = item.city, !city.isEmpty {
                 reg += ", \(city)"
             }
             
