@@ -12,7 +12,6 @@ class NotificationCell: BaseTableViewCell {
     @IBOutlet weak var notificationImageView: UIImageView!
     @IBOutlet weak var messageTextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var mainView: UIView!
     
     var avatarAction: VoidBlock?
@@ -26,41 +25,28 @@ class NotificationCell: BaseTableViewCell {
     func setupView(notification: DasboardNotification) {
         mainView.backgroundColor = notification.isReaded ? .white : .promoColor 
         switch notification.type {
-        case .like:
-            typeImageView.image = UIImage(named: "like_fill")
-            avatarAction = {
-                guard let id = notification.profileId, let top = self.navigationController()?.topViewController else { return }
-                top.navigationController?.pushViewController(VCFabric.getProfilePage(for: id), animated: true)
-            }
         case .decline:
             notificationImageView.image =  UIImage(named: "decline")
         case .aprooved:
             notificationImageView.image =  UIImage(named: "ok")
-            action = {
-                if let url = notification.url {
-                    Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
-                }
-            }
         case .system:
-            typeImageView.isHidden = true
-            action = {
-                if let urlString = notification.url, let url = URL(string: urlString) {
-                    Deeplink.Handler.shared.handle(deeplink: Deeplink(url: url))
-                }
-            }
             notificationImageView.image = UIImage(named: "AppIcon")
         case .report:
             notificationImageView.image = UIImage(named: "report")
-            action = {
-                if let url = notification.url {
-                    Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
-                }
-            }
+        case .comment:
+            notificationImageView.image = UIImage(named: "coment")
         default:
             print("Error")
         }
         
-        typeImageView.isHidden = true
+        if notification.type != .decline {
+            action = {
+                if let url = notification.url, !url.isEmpty {
+                    Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))
+                }
+            }
+        }
+    
         messageTextLabel.text = notification.message
         
         let formatter = DateFormatter()

@@ -30,6 +30,7 @@ class DashboardViewController: BaseViewController {
         super.viewDidDisappear(true)
         CacheManager.shared.cleanCache()
     }
+    
     func loadNotifications() {
         spinner.startAnimating()
         networkManager.getNotifications { [weak self] notifications in
