@@ -24,12 +24,17 @@ class SearchPage: BaseViewController {
             page = 0
         }
     }
+    var isTeamSearch = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         Analytics.trackEvent("User_search_screen")
         page = 0
+        guard !isTeamSearch else {
+            navigationItem.searchController = nil
+            return
+        }
         loadUsers(page: page)
     }
     
@@ -99,6 +104,9 @@ class SearchPage: BaseViewController {
     }
     
     @objc func refresh() {
+        guard !isTeamSearch else {
+            return
+        }
         refreshControl.endRefreshing()
         page = 0
         loadUsers(page: page, querry: querry)
@@ -133,6 +141,9 @@ extension SearchPage: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height - 300)) {
+            guard !isTeamSearch else {
+                return
+            }
             loadUsers(page: page)
         }
     }

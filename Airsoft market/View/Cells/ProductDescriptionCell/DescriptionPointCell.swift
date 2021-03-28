@@ -11,9 +11,16 @@ import ActiveLabel
 
 class DescriptionPointCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: ActiveLabel!
-    @IBOutlet weak var commandLabel: ActiveLabel!
+    @IBOutlet weak var commandLabel: UIButton!
+    var searchAction: VoidBlock?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    @IBAction func findTeamPersonsAction(_ sender: Any) {
+        searchAction?()
+    }
+    
 }
+

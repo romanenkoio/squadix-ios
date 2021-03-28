@@ -282,7 +282,18 @@ extension ProfilePage: UITableViewDataSource {
                     profileCell.descriptionLabel.text = currentProfile?.profileDescription
                     if let team = currentProfile?.team {
                          profileCell.commandLabel.isHidden = false
-                         profileCell.commandLabel.text = "Команда: \(team)"
+                         profileCell.commandLabel.setTitle("Команда: \(team)", for: .normal)
+                      
+                         profileCell.searchAction = { [weak self] in
+                              self?.spinner.startAnimating()
+                              self?.networkManager.getAllUsers { profiles in
+                                   self?.spinner.stopAnimating()
+                                   let teamPeoples = profiles.content.filter({ $0.team?.lowercased() == self?.currentProfile?.team?.lowercased()})
+                                   self?.navigationController?.pushViewController(VCFabric.getSearchWithTeam(people: teamPeoples), animated: true)
+                              } failure: { _ in
+                                   print("Search team error")
+                              }
+                         }
                     } else {
                          profileCell.commandLabel.isHidden = true
                     }

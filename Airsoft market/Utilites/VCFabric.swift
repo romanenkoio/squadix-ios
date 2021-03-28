@@ -127,4 +127,11 @@ class VCFabric {
         return vc
     }
     
+    static func getSearchWithTeam(people: [Profile]) -> SearchPage {
+        let vc = SearchPage.loadFromNib()
+        vc.isTeamSearch = true
+        vc.usersData = people
+        return vc
+    }
+    
 }

@@ -20,17 +20,15 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lfm-rL-qUp">
                         <rect key="frame" x="26" y="11" width="268" height="191"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psn-Ic-FDs" customClass="ActiveLabel" customModule="ActiveLabel">
-                                <rect key="frame" x="0.0" y="0.0" width="268" height="74"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="hKI-Kq-LOZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.56862745100000001" green="0.56862745100000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX1-3Q-d4e">
+                                <rect key="frame" x="0.0" y="0.0" width="268" height="100.5"/>
+                                <state key="normal" title="Команда"/>
+                                <connections>
+                                    <action selector="findTeamPersonsAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kWl-yw-k9B"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4X-XU-4fN" customClass="ActiveLabel" customModule="ActiveLabel">
-                                <rect key="frame" x="0.0" y="84" width="268" height="107"/>
+                                <rect key="frame" x="0.0" y="110.5" width="268" height="80.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="vby-Zb-QmY"/>
                                 </constraints>
@@ -40,11 +38,7 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Psn-Ic-FDs" secondAttribute="trailing" id="3rE-2f-WUg"/>
-                            <constraint firstItem="Psn-Ic-FDs" firstAttribute="top" secondItem="Lfm-rL-qUp" secondAttribute="top" id="Av7-vp-SDe"/>
                             <constraint firstItem="Q4X-XU-4fN" firstAttribute="leading" secondItem="Lfm-rL-qUp" secondAttribute="leading" id="BOb-hL-IbY"/>
-                            <constraint firstItem="Q4X-XU-4fN" firstAttribute="top" secondItem="Psn-Ic-FDs" secondAttribute="bottom" constant="10" id="BjG-eG-geQ"/>
-                            <constraint firstItem="Psn-Ic-FDs" firstAttribute="leading" secondItem="Lfm-rL-qUp" secondAttribute="leading" id="WlJ-hb-pev"/>
                             <constraint firstAttribute="trailing" secondItem="Q4X-XU-4fN" secondAttribute="trailing" id="dQe-tW-2lX"/>
                             <constraint firstAttribute="bottom" secondItem="Q4X-XU-4fN" secondAttribute="bottom" id="mPP-iv-Aop"/>
                         </constraints>
@@ -60,16 +54,13 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="commandLabel" destination="Psn-Ic-FDs" id="hF8-Rb-pef"/>
+                <outlet property="commandLabel" destination="tX1-3Q-d4e" id="iLp-3c-upa"/>
                 <outlet property="descriptionLabel" destination="Q4X-XU-4fN" id="WDm-vQ-BQj"/>
             </connections>
             <point key="canvasLocation" x="134.78260869565219" y="189.84375"/>
         </tableViewCell>
     </objects>
     <designables>
-        <designable name="Psn-Ic-FDs">
-            <size key="intrinsicContentSize" width="36" height="17"/>
-        </designable>
         <designable name="Q4X-XU-4fN">
             <size key="intrinsicContentSize" width="36" height="17"/>
         </designable>
