@@ -75,6 +75,9 @@ class SearchPage: BaseViewController {
         spinner.startAnimating()
         userRequest = manager.getAllUsers(page: page, querry: querry, completion: { [weak self] users in
             guard let sSelf = self else { return }
+            if KeychainManager.isAdmin {
+                sSelf.title = "Пользователей: \(users.totalElements ?? 0)"
+            }
             sSelf.spinner.stopAnimating()
             sSelf.totalUserPages = users.totalPages
             
