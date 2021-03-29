@@ -114,6 +114,10 @@ struct Path {
         static let path = "like"
     }
     
+    struct Version {
+        static let path = "version"
+    }
+    
     struct Notifications {
         static let path = "notifications"
         static let notifications = path + "/me"

@@ -138,6 +138,7 @@
 		7FAC3854247FB43000EEFB24 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3853247FB43000EEFB24 /* UIView+Extensions.swift */; };
 		7FAC773325CD990C009B903A /* StartRestorePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC773125CD990C009B903A /* StartRestorePage.swift */; };
 		7FAC773425CD990C009B903A /* StartRestorePage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FAC773225CD990C009B903A /* StartRestorePage.xib */; };
+		7FB0BD51261283D50069775C /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB0BD50261283D50069775C /* Version.swift */; };
 		7FB34601254E27BE00851FF6 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB34600254E27BE00851FF6 /* Filters.swift */; };
 		7FB364B8247E96570013C78B /* SlideShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB364B6247E96570013C78B /* SlideShowCell.swift */; };
 		7FB364B9247E96570013C78B /* SlideShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FB364B7247E96570013C78B /* SlideShowCell.xib */; };
@@ -500,6 +501,7 @@
 		7FAC3853247FB43000EEFB24 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		7FAC773125CD990C009B903A /* StartRestorePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRestorePage.swift; sourceTree = "<group>"; };
 		7FAC773225CD990C009B903A /* StartRestorePage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartRestorePage.xib; sourceTree = "<group>"; };
+		7FB0BD50261283D50069775C /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		7FB34600254E27BE00851FF6 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		7FB364B6247E96570013C78B /* SlideShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShowCell.swift; sourceTree = "<group>"; };
 		7FB364B7247E96570013C78B /* SlideShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideShowCell.xib; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 				7F15DCB925C4AAC700FF277A /* BasePost.swift */,
 				7FBDA5BA25FB569900DFA779 /* Comment.swift */,
 				7F31B1CF2600BF2800454180 /* Reports.swift */,
+				7FB0BD50261283D50069775C /* Version.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1887,6 +1890,7 @@
 				7F9B1479247F0530007D4819 /* ProfileSearchCell.swift in Sources */,
 				7FBC5A27257AFF95000B037A /* DashboardViewController.swift in Sources */,
 				7F595B2624800E9700D56E74 /* MyProfileCell.swift in Sources */,
+				7FB0BD51261283D50069775C /* Version.swift in Sources */,
 				7FE45A732501848A00574B47 /* ImagePreviewPage.swift in Sources */,
 				7F9B1475247EDFBA007D4819 /* Event.swift in Sources */,
 				7F55F47124FC483400F81F28 /* AddTextPostPage.swift in Sources */,

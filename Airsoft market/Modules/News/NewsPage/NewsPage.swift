@@ -53,6 +53,19 @@ class NewsPage: BaseViewController {
         configureUI()
         loadData(content: contentType)
         getCurrentProfile()
+        
+        if UsersData.shared.informNevVersion {
+            networkManager.getVersion { [weak self] actualVersion in
+                guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+                if currentVersion != actualVersion.version {
+                    self?.showAlert(maintText: "", title: "Доступно обновление", handler: {
+                        if let url = URL(string: "itms-apps://apple.com/app/id1538492084") {
+                            UIApplication.shared.open(url)
+                        }
+                    }, buttonTitle: "Обновить")
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

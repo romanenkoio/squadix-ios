@@ -29,9 +29,10 @@ enum SettingsMenu {
     case quality
     case version
     case support
+    case newVersionInfo
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
-        let settingsSection: [SettingsMenu] = [.showUSDPrice]
+        let settingsSection: [SettingsMenu] = [.showUSDPrice, .newVersionInfo]
         let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
         let actionSection: [SettingsMenu] = [.changePassword, .logout]
         let developerSection: [SettingsMenu] = [.debug]
@@ -92,6 +93,17 @@ extension SettingsPage: UITableViewDataSource {
                 settingCell.settingsSwitch.isOn = UsersData.shared.isUSDCurrencyEnabled
                 settingCell.action = {
                     UsersData.shared.isUSDCurrencyEnabled = !UsersData.shared.isUSDCurrencyEnabled
+                }
+
+                return settingCell
+            }
+        case .newVersionInfo:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsSwitchCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsSwitchCell {
+                settingCell.settingsSwitchLabel.text = "Оповещение об обновлениях"
+                settingCell.settingsSwitch.isOn = UsersData.shared.informNevVersion
+                settingCell.action = {
+                    UsersData.shared.informNevVersion = !UsersData.shared.informNevVersion
                 }
 
                 return settingCell

@@ -58,6 +58,7 @@ enum StrikeServise{
     case deleteComment(postType: NewsType, commentID: Int)
     case report(link: String)
     case editProduct(product: MarketProduct)
+    case version
 }
 
 extension StrikeServise: TargetType {
@@ -177,6 +178,8 @@ extension StrikeServise: TargetType {
             return Path.Report.path
         case .editProduct(let product):
             return Path.Products.path + "/\(product.postID)"
+        case .version:
+            return Path.Version.path
         }
     }
     

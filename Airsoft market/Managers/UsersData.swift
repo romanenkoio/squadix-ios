@@ -60,6 +60,16 @@ final class UsersData {
         }
     }
     
+    var informNevVersion: Bool {
+        get {
+            let isEnabled = UserDefaults.standard.value(forKey: #function) as? Bool
+            return isEnabled ?? true
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: #function)
+        }
+    }
+    
     var quality: Float {
         get {
             let savedQuality = UserDefaults.standard.value(forKey: #function) as? Float

@@ -46,9 +46,9 @@ class BaseViewController: UIViewController {
         }
     }
     
-    func showAlert(maintText: String = "Ошибка", title: String, handler: VoidBlock? = nil) {
+    func showAlert(maintText: String = "Ошибка", title: String, handler: VoidBlock? = nil, buttonTitle: String = "Ok") {
         let alert = UIAlertController(title: maintText, message: title, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: { _ in
+        alert.addAction(UIAlertAction(title: buttonTitle, style: UIAlertAction.Style.default, handler: { _ in
             handler?()
         }))
         self.present(alert, animated: true, completion: nil)
