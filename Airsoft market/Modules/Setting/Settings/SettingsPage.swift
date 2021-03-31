@@ -32,7 +32,7 @@ enum SettingsMenu {
     case newVersionInfo
     
     static func getSettingsMenu() -> [[SettingsMenu]] {
-        let settingsSection: [SettingsMenu] = [.showUSDPrice, .newVersionInfo]
+        let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
         let actionSection: [SettingsMenu] = [.changePassword, .logout]
         let developerSection: [SettingsMenu] = [.debug]

@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class Version: Mappable {
-    var version: String!
+    var buildVersion: Int?
     
     required init?(map: Map) {
         mapping(map: map)
@@ -20,6 +20,8 @@ class Version: Mappable {
     }
     
     func mapping(map: Map) {
-        version      <- map["ios"]
+        if let build = map["ios"].currentValue as? String, let buildNubmer = Int(build) {
+            buildVersion = buildNubmer
+        }
     }
 }

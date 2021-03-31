@@ -104,3 +104,15 @@ internal class Analytics {
         FirebaseAnalytics.Analytics.logEvent(eventStringReplaced, parameters: params)
     }
 }
+
+extension BaseViewController {
+    func getVersion() -> String? {
+        
+        return nil
+    }
+    
+    func getBuildVersion() -> Int? {
+        guard let buildString = Bundle.main.infoDictionary?["CFBundleVersion"] as? String, let build = Int(buildString) else { return nil }
+        return build
+    }
+}

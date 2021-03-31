@@ -733,15 +733,15 @@ final class NetworkManager {
         }
     }
     
-    func getVersion(completion: ((Version) -> Void)?, failure: (() -> Void)? = nil) {
+    func getVersion(completion: ((Int) -> Void)?, failure: (() -> Void)? = nil) {
         provider.request(.version) { result in
             switch result {
             case let .success(response):
-                guard let version = try? response.mapObject(Version.self) else {
+                guard let version = try? response.mapObject(Version.self), let build = version.buildVersion  else {
                     failure?()
                     return
                 }
-                completion?(version)
+                completion?(build)
             case .failure( _):
                 failure?()
             }

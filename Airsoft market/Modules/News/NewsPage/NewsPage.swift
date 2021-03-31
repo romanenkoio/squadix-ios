@@ -36,14 +36,14 @@ class NewsPage: BaseViewController {
             tableView.reloadData()
         }
     }
-
+    
     var contentType: NewsType = .feed
     var feedProfileID: Int?
     var totalEventPages = 0
     var totalNewsPages = 0
     
     private var refreshControl = UIRefreshControl()
- 
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     var actionButton = JJFloatingActionButton()
@@ -55,10 +55,9 @@ class NewsPage: BaseViewController {
         getCurrentProfile()
         
         if UsersData.shared.informNevVersion {
-            networkManager.getVersion { [weak self] actualVersion in
-                guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
-                if currentVersion != actualVersion.version {
-                    self?.showAlert(maintText: "", title: "Доступно обновление", handler: {
+            networkManager.getVersion { [weak self] actualBuild in
+                if let deviceBuild = self?.getBuildVersion(), deviceBuild < actualBuild {
+                    self?.showAlert(maintText: "", title: "Доступно обновление. Для стабильной работы приложения его необходимо обновить.", handler: {
                         if let url = URL(string: "itms-apps://apple.com/app/id1538492084") {
                             UIApplication.shared.open(url)
                         }
@@ -67,131 +66,131 @@ class NewsPage: BaseViewController {
             }
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        if feedProfileID != nil {
-            segmentController.selectedSegmentIndex = 0
-            title = "Новости пользователя"
-        }
-        if feedProfileID != nil {
-            segmentController.selectedSegmentIndex = 0
-            title = "Новости пользователя"
-        }
-        
-        Analytics.trackEvent(segmentController.selectedSegmentIndex == 0 ? "News_screen" : "Event_screen")
-        segmentController.isHidden = feedProfileID != nil
-        dashboardButton.isHidden = feedProfileID != nil
-        
-        actionButton.isHidden = feedProfileID != nil
-        
-        networkManager.getCurrentUser { [weak self] (profile, error, id) in
-            if let user = profile {
-                KeychainManager.store(value: user.roles.contains(.admin) , for: .isAdmin)
-                KeychainManager.store(value: user.roles.contains(.organizer) , for: .isOrganizer)
-            }
-            self?.configureFloatingMenu(with: profile)
-            guard KeychainManager.isAdmin else { return }
-            self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
-                guard let moderatingCount = moderatingProducts.totalElements else { return }
-                UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.totalElements
-                if let tabItems = self?.tabBarController?.tabBar.items {
-                    let tabItem = tabItems[1]
-                    tabItem.badgeValue = moderatingCount == 0 ? nil : "\(moderatingCount)"
-                }
-            } failure: { error in
-                print("[NETWORK] Moderating products \(error)")
-            }
-        }
+
+override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    if feedProfileID != nil {
+        segmentController.selectedSegmentIndex = 0
+        title = "Новости пользователя"
+    }
+    if feedProfileID != nil {
+        segmentController.selectedSegmentIndex = 0
+        title = "Новости пользователя"
     }
     
-    func configureFloatingMenu(with user: Profile? = nil) {
-        actionButton.items = []
-        actionButton.display(inViewController: self)
-        actionButton.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        actionButton.buttonColor = .mainStrikeColor
-        actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
-        
-        if KeychainManager.isAdmin || KeychainManager.isOrganizer {
-            actionButton.addItem(title: "Событие", image: UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
-                let vc = AddEventPage.loadFromNib()
-                vc.delegate = self
-                self?.navigationController?.pushViewController(vc, animated: true)
+    Analytics.trackEvent(segmentController.selectedSegmentIndex == 0 ? "News_screen" : "Event_screen")
+    segmentController.isHidden = feedProfileID != nil
+    dashboardButton.isHidden = feedProfileID != nil
+    
+    actionButton.isHidden = feedProfileID != nil
+    
+    networkManager.getCurrentUser { [weak self] (profile, error, id) in
+        if let user = profile {
+            KeychainManager.store(value: user.roles.contains(.admin) , for: .isAdmin)
+            KeychainManager.store(value: user.roles.contains(.organizer) , for: .isOrganizer)
+        }
+        self?.configureFloatingMenu(with: profile)
+        guard KeychainManager.isAdmin else { return }
+        self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
+            guard let moderatingCount = moderatingProducts.totalElements else { return }
+            UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.totalElements
+            if let tabItems = self?.tabBarController?.tabBar.items {
+                let tabItem = tabItems[1]
+                tabItem.badgeValue = moderatingCount == 0 ? nil : "\(moderatingCount)"
             }
+        } failure: { error in
+            print("[NETWORK] Moderating products \(error)")
         }
-        
-        actionButton.addItem(title: "Пост", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
-            let vc = AddTextPostPage.loadFromNib()
-            vc.updatableDelegate = self
-            self?.navigationController?.pushViewController(vc, animated: true)
-        }
-        
-        actionButton.addItem(title: "Видео", image: UIImage(named: "video_plus")) { [weak self] item in
-            let vc = AddPostPage.loadFromNib()
+    }
+}
+
+func configureFloatingMenu(with user: Profile? = nil) {
+    actionButton.items = []
+    actionButton.display(inViewController: self)
+    actionButton.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+    actionButton.buttonColor = .mainStrikeColor
+    actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
+    
+    if KeychainManager.isAdmin || KeychainManager.isOrganizer {
+        actionButton.addItem(title: "Событие", image: UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
+            let vc = AddEventPage.loadFromNib()
             vc.delegate = self
             self?.navigationController?.pushViewController(vc, animated: true)
         }
-        
-        actionButton.configureDefaultItem { item in
-            item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
-            item.titleLabel.textColor = .white
-            item.buttonColor = .white
-            item.buttonImageColor = .black
-        }
     }
     
-    private func configureUI() {
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: dashboardButton)],
-                                              animated: true)
-        refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        tableView.addSubview(refreshControl)
-        tableView.setupDelegateData(self)
-        tableView.registerCell(NewsCell.self)
-        
-        self.navigationItem.titleView = segmentController
+    actionButton.addItem(title: "Пост", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
+        let vc = AddTextPostPage.loadFromNib()
+        vc.updatableDelegate = self
+        self?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    actionButton.addItem(title: "Видео", image: UIImage(named: "video_plus")) { [weak self] item in
+        let vc = AddPostPage.loadFromNib()
+        vc.delegate = self
+        self?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    actionButton.configureDefaultItem { item in
+        item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+        item.titleLabel.textColor = .white
+        item.buttonColor = .white
+        item.buttonImageColor = .black
+    }
+}
+
+private func configureUI() {
+    navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: dashboardButton)],
+                                          animated: true)
+    refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
+    refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+    tableView.addSubview(refreshControl)
+    tableView.setupDelegateData(self)
+    tableView.registerCell(NewsCell.self)
+    
+    self.navigationItem.titleView = segmentController
+    segmentController.selectedSegmentIndex = 0
+    segmentController.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
+    
+    segmentController.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 30.0)
+    segmentController.addTarget(self, action: #selector(segmentWasChanged), for: .valueChanged)
+    
+    if let tabBar = self.tabBarController?.tabBar {
+        tabBar.isHidden = false
+    }
+    
+    if feedProfileID != nil {
         segmentController.selectedSegmentIndex = 0
-        segmentController.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
-        
-        segmentController.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 30.0)
-        segmentController.addTarget(self, action: #selector(segmentWasChanged), for: .valueChanged)
-        
-        if let tabBar = self.tabBarController?.tabBar {
-            tabBar.isHidden = false
-        }
-        
-        if feedProfileID != nil {
-            segmentController.selectedSegmentIndex = 0
-            title = "Новости пользователя"
-        }
-        
-        segmentController.isHidden = feedProfileID != nil
-        dashboardButton.isHidden = feedProfileID != nil
-        
-        actionButton.isHidden = feedProfileID != nil
-        
-        networkManager.getNotifications { [weak self] notifications in
-            let count = notifications.content.filter({$0.isReaded == false}).count
-            self?.dashboardButton.badgeValue = count == 0 ? "" : "\(count)"
-            UIApplication.shared.applicationIconBadgeNumber = count
-        }
+        title = "Новости пользователя"
     }
     
-    @objc func refresh() {
-        page = 0
-        isLoadinInProgress = false
-        totalEventPages = 0
-        totalNewsPages = 0
-        newsData = []
-        eventData = []
-        refreshControl.endRefreshing()
-        loadData(content: contentType)
-    }
+    segmentController.isHidden = feedProfileID != nil
+    dashboardButton.isHidden = feedProfileID != nil
     
-    @IBAction func actionDasboardOpen(_ sender: Any) {
-        navigationController?.pushViewController(DashboardViewController.loadFromNib(), animated: true)
-        dashboardButton.badgeValue = ""
+    actionButton.isHidden = feedProfileID != nil
+    
+    networkManager.getNotifications { [weak self] notifications in
+        let count = notifications.content.filter({$0.isReaded == false}).count
+        self?.dashboardButton.badgeValue = count == 0 ? "" : "\(count)"
+        UIApplication.shared.applicationIconBadgeNumber = count
     }
+}
+
+@objc func refresh() {
+    page = 0
+    isLoadinInProgress = false
+    totalEventPages = 0
+    totalNewsPages = 0
+    newsData = []
+    eventData = []
+    refreshControl.endRefreshing()
+    loadData(content: contentType)
+}
+
+@IBAction func actionDasboardOpen(_ sender: Any) {
+    navigationController?.pushViewController(DashboardViewController.loadFromNib(), animated: true)
+    dashboardButton.badgeValue = ""
+}
 }
 
 //MARK: Feed service
@@ -235,7 +234,7 @@ extension NewsPage {
                     sSelf.tableView.insertRows(at: [IndexPath(item: sSelf.newsData.count - 1, section: 0)], with: .bottom)
                 }
                 
-               
+                
                 sSelf.tableView.endUpdates()
                 sSelf.isLoadinInProgress = false
                 sSelf.page += 1
@@ -406,7 +405,7 @@ extension NewsPage: UITableViewDataSource {
                     newsCell.authorAvatar.addInteraction(interaction)
                 }
                 newsCell.setupNews(with: item)
-
+                
                 return newsCell
             } else if segmentController.selectedSegmentIndex == 1 {
                 
@@ -527,7 +526,7 @@ extension NewsPage: UIContextMenuInteractionDelegate {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: { () -> UIViewController? in
             guard let inter = interaction as? ObjectInteraction else { return nil }
             let vc = ImagePreviewPage.loadFromNib()
-        
+            
             guard let post = inter.object as? BasePost, let pic = post.authorAvatarURL else { return nil }
             vc.imageUrl = pic
             return vc
