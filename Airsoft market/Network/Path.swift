@@ -115,7 +115,8 @@ struct Path {
     }
     
     struct Version {
-        static let path = "version"
+        static let path = "versions"
+        static let actual = Version.path + "/recent"
     }
     
     struct Notifications {

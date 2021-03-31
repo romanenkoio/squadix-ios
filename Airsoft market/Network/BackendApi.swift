@@ -179,7 +179,7 @@ extension StrikeServise: TargetType {
         case .editProduct(let product):
             return Path.Products.path + "/\(product.postID)"
         case .version:
-            return Path.Version.path
+            return Path.Version.actual
         }
     }
     
