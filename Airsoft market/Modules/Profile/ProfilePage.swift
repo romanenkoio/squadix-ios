@@ -15,7 +15,7 @@ enum ProfileMenuPoints {
      case description
      case profileStack
      
-     static func getMenuForUser() -> [ProfileMenuPoints]{
+     static func getMenuForUser() -> [ProfileMenuPoints] {
           return [.profileInfo, description, .profileStack]
      }
 }
@@ -143,6 +143,10 @@ class ProfilePage: BaseViewController {
                actionButton.addItem(title: "Сохранённые места", image: UIImage(named: "bookmarks")) { [weak self] item in
                     self?.navigationController?.pushViewController(VCFabric.getBookmarkPage(), animated: true)
                }
+          }
+          
+          actionButton.addItem(title: "Создать команду", image: UIImage(named: "createTeam")) { [weak self] item in
+               self?.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
           }
           
           actionButton.configureDefaultItem { item in

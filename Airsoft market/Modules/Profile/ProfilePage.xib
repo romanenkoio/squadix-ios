@@ -57,7 +57,7 @@
             <connections>
                 <action selector="moreButtonAction:" destination="-1" eventType="touchUpInside" id="jf0-UZ-pU5"/>
             </connections>
-            <point key="canvasLocation" x="188.40579710144928" y="-231.36160714285714"/>
+            <point key="canvasLocation" x="187.19999999999999" y="-231.63418290854574"/>
         </button>
     </objects>
     <resources>

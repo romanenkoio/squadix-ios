@@ -10,6 +10,7 @@ import UIKit
 import ImageSlideshow
 
 typealias VoidBlock = () -> Void
+typealias UserBlock = (Profile) -> Void
 
 protocol UpdateProductFeed: class {
     func updateProductFeed(productID: Int)

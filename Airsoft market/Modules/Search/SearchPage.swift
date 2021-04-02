@@ -10,10 +10,11 @@ import UIKit
 import Moya
 
 class SearchPage: BaseViewController {
-    let searchController = UISearchController(searchResultsController: nil)
-    var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    var refreshControl = UIRefreshControl()
     
     let manager = NetworkManager()
     var usersData: [Profile] = []
@@ -25,6 +26,7 @@ class SearchPage: BaseViewController {
         }
     }
     var isTeamSearch = false
+    var selectUser: UserBlock?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,8 +140,12 @@ extension SearchPage: UISearchResultsUpdating, UISearchControllerDelegate {
 extension SearchPage: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if selectUser == nil {
             navigationController?.pushViewController(VCFabric.getProfilePage(for: usersData[indexPath.row].id), animated: true)
-     
+        } else {
+            selectUser?(usersData[indexPath.row])
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

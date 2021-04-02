@@ -42,6 +42,10 @@
 		7F38F1BD25C5D12600FBD108 /* TermsOfUse.html in Resources */ = {isa = PBXBuildFile; fileRef = 7F38F1BA25C5D12600FBD108 /* TermsOfUse.html */; };
 		7F38F1BE25C5D12600FBD108 /* Confidential.html in Resources */ = {isa = PBXBuildFile; fileRef = 7F38F1BB25C5D12600FBD108 /* Confidential.html */; };
 		7F3C847424D4174400D3DC4A /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C847324D4174400D3DC4A /* AppDelegate+Notifications.swift */; };
+		7F3D7D43261706F900F020B3 /* TeamPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3D7D41261706F900F020B3 /* TeamPage.swift */; };
+		7F3D7D44261706F900F020B3 /* TeamPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3D7D42261706F900F020B3 /* TeamPage.xib */; };
+		7F3D7D4A261709C100F020B3 /* TeamAvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3D7D48261709C100F020B3 /* TeamAvatarCell.swift */; };
+		7F3D7D4B261709C100F020B3 /* TeamAvatarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3D7D49261709C100F020B3 /* TeamAvatarCell.xib */; };
 		7F40280D24C62DB50018E49F /* AddPostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F40280B24C62DB50018E49F /* AddPostPage.swift */; };
 		7F40280E24C62DB50018E49F /* AddPostPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F40280C24C62DB50018E49F /* AddPostPage.xib */; };
 		7F44868225CC79520055C511 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F44868125CC79520055C511 /* Updatable.swift */; };
@@ -113,6 +117,10 @@
 		7F93DE3924D0237100039378 /* FullPicturePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F93DE3724D0237100039378 /* FullPicturePage.swift */; };
 		7F93DE3A24D0237100039378 /* FullPicturePage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F93DE3824D0237100039378 /* FullPicturePage.xib */; };
 		7F96166325C4705D00C6C8F7 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96166225C4705D00C6C8F7 /* Path.swift */; };
+		7F96AE162616FF4400C064BE /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96AE152616FF4400C064BE /* Team.swift */; };
+		7F96AE352617004600C064BE /* Creatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96AE342617004600C064BE /* Creatable.swift */; };
+		7F96AE392617021C00C064BE /* CreateTeamPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96AE372617021C00C064BE /* CreateTeamPage.swift */; };
+		7F96AE3A2617021C00C064BE /* CreateTeamPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F96AE382617021C00C064BE /* CreateTeamPage.xib */; };
 		7F9835212484505B000DE3AA /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9835202484505B000DE3AA /* UsersData.swift */; };
 		7F98676E24D9CEFC007EF140 /* ResponceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98676D24D9CEFC007EF140 /* ResponceHandler.swift */; };
 		7F9ACA4124E9EBC6003E7972 /* UtilitesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ACA4024E9EBC6003E7972 /* UtilitesAPI.swift */; };
@@ -174,6 +182,10 @@
 		7FCFDD4524BA781F00D8660F /* DebugPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FCFDD4324BA781F00D8660F /* DebugPage.xib */; };
 		7FCFDD4924BA7A7B00D8660F /* DebugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCFDD4724BA7A7B00D8660F /* DebugCell.swift */; };
 		7FCFDD4A24BA7A7B00D8660F /* DebugCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FCFDD4824BA7A7B00D8660F /* DebugCell.xib */; };
+		7FD70CDC261710EF008C784C /* TeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD70CDA261710EF008C784C /* TeamMemberCell.swift */; };
+		7FD70CDD261710EF008C784C /* TeamMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD70CDB261710EF008C784C /* TeamMemberCell.xib */; };
+		7FD70CE126171B31008C784C /* PeopleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD70CDF26171B31008C784C /* PeopleCollectionCell.swift */; };
+		7FD70CE226171B31008C784C /* PeopleCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FD70CE026171B31008C784C /* PeopleCollectionCell.xib */; };
 		7FE17315247884D000CBAFB3 /* NewsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE17313247884D000CBAFB3 /* NewsPage.swift */; };
 		7FE17316247884D000CBAFB3 /* NewsPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FE17314247884D000CBAFB3 /* NewsPage.xib */; };
 		7FE1731A2478854A00CBAFB3 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE173182478854A00CBAFB3 /* NewsCell.swift */; };
@@ -405,6 +417,10 @@
 		7F38F1BB25C5D12600FBD108 /* Confidential.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Confidential.html; sourceTree = "<group>"; };
 		7F3C847324D4174400D3DC4A /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		7F3C847524D41A6900D3DC4A /* Airsoft market.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Airsoft market.entitlements"; sourceTree = "<group>"; };
+		7F3D7D41261706F900F020B3 /* TeamPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPage.swift; sourceTree = "<group>"; };
+		7F3D7D42261706F900F020B3 /* TeamPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamPage.xib; sourceTree = "<group>"; };
+		7F3D7D48261709C100F020B3 /* TeamAvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAvatarCell.swift; sourceTree = "<group>"; };
+		7F3D7D49261709C100F020B3 /* TeamAvatarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamAvatarCell.xib; sourceTree = "<group>"; };
 		7F40280B24C62DB50018E49F /* AddPostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostPage.swift; sourceTree = "<group>"; };
 		7F40280C24C62DB50018E49F /* AddPostPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPostPage.xib; sourceTree = "<group>"; };
 		7F44868125CC79520055C511 /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
@@ -476,6 +492,10 @@
 		7F93DE3724D0237100039378 /* FullPicturePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPicturePage.swift; sourceTree = "<group>"; };
 		7F93DE3824D0237100039378 /* FullPicturePage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullPicturePage.xib; sourceTree = "<group>"; };
 		7F96166225C4705D00C6C8F7 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		7F96AE152616FF4400C064BE /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		7F96AE342617004600C064BE /* Creatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creatable.swift; sourceTree = "<group>"; };
+		7F96AE372617021C00C064BE /* CreateTeamPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamPage.swift; sourceTree = "<group>"; };
+		7F96AE382617021C00C064BE /* CreateTeamPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTeamPage.xib; sourceTree = "<group>"; };
 		7F9835202484505B000DE3AA /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
 		7F98676D24D9CEFC007EF140 /* ResponceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponceHandler.swift; sourceTree = "<group>"; };
 		7F9ACA4024E9EBC6003E7972 /* UtilitesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitesAPI.swift; sourceTree = "<group>"; };
@@ -537,6 +557,10 @@
 		7FCFDD4324BA781F00D8660F /* DebugPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugPage.xib; sourceTree = "<group>"; };
 		7FCFDD4724BA7A7B00D8660F /* DebugCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCell.swift; sourceTree = "<group>"; };
 		7FCFDD4824BA7A7B00D8660F /* DebugCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugCell.xib; sourceTree = "<group>"; };
+		7FD70CDA261710EF008C784C /* TeamMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberCell.swift; sourceTree = "<group>"; };
+		7FD70CDB261710EF008C784C /* TeamMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamMemberCell.xib; sourceTree = "<group>"; };
+		7FD70CDF26171B31008C784C /* PeopleCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCollectionCell.swift; sourceTree = "<group>"; };
+		7FD70CE026171B31008C784C /* PeopleCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleCollectionCell.xib; sourceTree = "<group>"; };
 		7FE17313247884D000CBAFB3 /* NewsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPage.swift; sourceTree = "<group>"; };
 		7FE17314247884D000CBAFB3 /* NewsPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsPage.xib; sourceTree = "<group>"; };
 		7FE173182478854A00CBAFB3 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -584,6 +608,8 @@
 		7F14047724885EA60028C907 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7FD70CBD261710DA008C784C /* TeamMemberCell */,
+				7F3D7D472617099E00F020B3 /* TeamAvatarCell */,
 				7F4A6FF225FC238700F77458 /* InputCommentCell */,
 				7FBE31C825B5DB970046898E /* ConservationsCell */,
 				7FCFDD4624BA7A6200D8660F /* DebugCell */,
@@ -601,6 +627,8 @@
 				7F84BFA025779F4800322CD3 /* LikeCell */,
 				7FBC5A2F257B06D9000B037A /* NotificationCell */,
 				7F4A701625FC23AD00F77458 /* CommentCell */,
+				7FD70CDF26171B31008C784C /* PeopleCollectionCell.swift */,
+				7FD70CE026171B31008C784C /* PeopleCollectionCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -653,6 +681,7 @@
 				7FBDA5BA25FB569900DFA779 /* Comment.swift */,
 				7F31B1CF2600BF2800454180 /* Reports.swift */,
 				7FB0BD50261283D50069775C /* Version.swift */,
+				7F96AE152616FF4400C064BE /* Team.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -733,6 +762,24 @@
 				7F3723B0255472D9003AA115 /* AppDelegate+DeepLinks.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		7F3D7D24261706E400F020B3 /* TeamPage */ = {
+			isa = PBXGroup;
+			children = (
+				7F3D7D41261706F900F020B3 /* TeamPage.swift */,
+				7F3D7D42261706F900F020B3 /* TeamPage.xib */,
+			);
+			path = TeamPage;
+			sourceTree = "<group>";
+		};
+		7F3D7D472617099E00F020B3 /* TeamAvatarCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F3D7D48261709C100F020B3 /* TeamAvatarCell.swift */,
+				7F3D7D49261709C100F020B3 /* TeamAvatarCell.xib */,
+			);
+			path = TeamAvatarCell;
 			sourceTree = "<group>";
 		};
 		7F40280624C62D520018E49F /* AddPost */ = {
@@ -1059,6 +1106,15 @@
 			path = Popups;
 			sourceTree = "<group>";
 		};
+		7F96AE3C2617022F00C064BE /* CreateTeam */ = {
+			isa = PBXGroup;
+			children = (
+				7F96AE372617021C00C064BE /* CreateTeamPage.swift */,
+				7F96AE382617021C00C064BE /* CreateTeamPage.xib */,
+			);
+			path = CreateTeam;
+			sourceTree = "<group>";
+		};
 		7F9ACA3F24E9EBAE003E7972 /* UtilitesManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1119,6 +1175,7 @@
 				7F9D375C25549C1F00BDAC1E /* DeepLinkRoutable.swift */,
 				7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */,
 				7F44868125CC79520055C511 /* Updatable.swift */,
+				7F96AE342617004600C064BE /* Creatable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1297,6 +1354,15 @@
 			path = DebugCell;
 			sourceTree = "<group>";
 		};
+		7FD70CBD261710DA008C784C /* TeamMemberCell */ = {
+			isa = PBXGroup;
+			children = (
+				7FD70CDA261710EF008C784C /* TeamMemberCell.swift */,
+				7FD70CDB261710EF008C784C /* TeamMemberCell.xib */,
+			);
+			path = TeamMemberCell;
+			sourceTree = "<group>";
+		};
 		7FE173112478848800CBAFB3 /* Utilites */ = {
 			isa = PBXGroup;
 			children = (
@@ -1392,6 +1458,7 @@
 		7FFE4C6D247727C000212BAB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7F3D7D24261706E400F020B3 /* TeamPage */,
 				7FC9047D25BF31B600CF911E /* TextPage */,
 				7F4BF265258183F400B82D20 /* ConservationPage */,
 				7FE45A702501845500574B47 /* ImagePreviewPage */,
@@ -1403,6 +1470,7 @@
 				7F7DC3F8247C00EA00A53E7C /* Profile */,
 				7F595B38248067C100D56E74 /* Setting */,
 				7F93DE3624D0230500039378 /* Popups */,
+				7F96AE3C2617022F00C064BE /* CreateTeam */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1690,15 +1758,18 @@
 				7F595B22247FFE7700D56E74 /* MapPage.xib in Resources */,
 				7F38F1BC25C5D12600FBD108 /* Rules.html in Resources */,
 				7F2B7ECD25DEBCE700A3284E /* GoogleService-Info.plist in Resources */,
+				7FD70CE226171B31008C784C /* PeopleCollectionCell.xib in Resources */,
 				7F4BF2622581800F00B82D20 /* OutMessageCell.xib in Resources */,
 				7FBAC53B24789C7F007F51BC /* MarketPage.xib in Resources */,
 				7FFE4C722477280200212BAB /* LoginPage.xib in Resources */,
 				7F9B1469247EB07F007D4819 /* PostSwitcherCell.xib in Resources */,
 				7FCE1E6924F6FA73000499EC /* AdminPage.xib in Resources */,
 				7F9B1473247EDB05007D4819 /* EventShowPage.xib in Resources */,
+				7FD70CDD261710EF008C784C /* TeamMemberCell.xib in Resources */,
 				7FC4D55525F2502B00CCBACF /* EventDescriptionPage.xib in Resources */,
 				7FFE4C6624771CDB00212BAB /* LaunchScreen.storyboard in Resources */,
 				7F595B3C2480686800D56E74 /* SettingsPage.xib in Resources */,
+				7F96AE3A2617021C00C064BE /* CreateTeamPage.xib in Resources */,
 				7F595B2D248037B700D56E74 /* CategoryCheckboxCell.xib in Resources */,
 				7F40280E24C62DB50018E49F /* AddPostPage.xib in Resources */,
 				7F904E462485ADCC00DF8AC5 /* SimpleTextCell.xib in Resources */,
@@ -1724,11 +1795,13 @@
 				7FFE4C7724772E0100212BAB /* RegistrationPage.xib in Resources */,
 				7FBC5A2D257B002D000B037A /* NotificationCell.xib in Resources */,
 				7F38F1BE25C5D12600FBD108 /* Confidential.html in Resources */,
+				7F3D7D44261706F900F020B3 /* TeamPage.xib in Resources */,
 				7FBE31DE25B5DBD00046898E /* IncomePreviewMessageCell.xib in Resources */,
 				7F4BF26E2581890B00B82D20 /* InMessageCell.xib in Resources */,
 				7FE45A742501848A00574B47 /* ImagePreviewPage.xib in Resources */,
 				7F9B147A247F0530007D4819 /* ProfileSearchCell.xib in Resources */,
 				7F9B1462247EA4F8007D4819 /* AuthorCell.xib in Resources */,
+				7F3D7D4B261709C100F020B3 /* TeamAvatarCell.xib in Resources */,
 				7F595B4524810F8E00D56E74 /* SettingsSwitchCell.xib in Resources */,
 				7FCFDD4A24BA7A7B00D8660F /* DebugCell.xib in Resources */,
 				7F904E3F248583E600DF8AC5 /* HorisontalStackCell.xib in Resources */,
@@ -1812,7 +1885,9 @@
 				7FAC3854247FB43000EEFB24 /* UIView+Extensions.swift in Sources */,
 				7F295CD0247AF33A00B47F1F /* AddProductPage.swift in Sources */,
 				7F510A9725E93ED1009DCB17 /* CacheManager.swift in Sources */,
+				7F96AE392617021C00C064BE /* CreateTeamPage.swift in Sources */,
 				7F2A127F25437C050041162A /* QRGenerator.swift in Sources */,
+				7F96AE352617004600C064BE /* Creatable.swift in Sources */,
 				7FC4D55425F2502B00CCBACF /* EventDescriptionPage.swift in Sources */,
 				7FC4D6712554549300F1E508 /* NetworkMonitor.swift in Sources */,
 				7F595B2C248037B700D56E74 /* CategoryCheckboxCell.swift in Sources */,
@@ -1830,11 +1905,13 @@
 				7F31B1D02600BF2800454180 /* Reports.swift in Sources */,
 				7F9D375D25549C1F00BDAC1E /* DeepLinkRoutable.swift in Sources */,
 				7F019126250AB84F0049C8F0 /* BaseViewController.swift in Sources */,
+				7FD70CE126171B31008C784C /* PeopleCollectionCell.swift in Sources */,
 				7FA9E85E25B6341F0085EA34 /* Message.swift in Sources */,
 				7F904E412485A20C00DF8AC5 /* UIColor+Extensions.swift in Sources */,
 				7F595B3B2480686800D56E74 /* SettingsPage.swift in Sources */,
 				7FB7E70425855BB800DC0FB9 /* CategoriesPage.swift in Sources */,
 				7F44868225CC79520055C511 /* Updatable.swift in Sources */,
+				7F3D7D4A261709C100F020B3 /* TeamAvatarCell.swift in Sources */,
 				7FBDA5DA25FB57A400DFA779 /* CommentCell.swift in Sources */,
 				7FE17315247884D000CBAFB3 /* NewsPage.swift in Sources */,
 				7F93DE3924D0237100039378 /* FullPicturePage.swift in Sources */,
@@ -1852,6 +1929,7 @@
 				7F5FD058247DC93900AF7D47 /* NewsShowPage.swift in Sources */,
 				7F54C50624E8E15F005E46D0 /* AddEventPage.swift in Sources */,
 				7F22CA1F255895E400F9DF27 /* MapUpdatable.swift in Sources */,
+				7F96AE162616FF4400C064BE /* Team.swift in Sources */,
 				7F7DC40B247C747B00A53E7C /* WhiteButton.swift in Sources */,
 				7FC9049125BF322700CF911E /* TextPage.swift in Sources */,
 				7F84BFB725779F8000322CD3 /* ResetPasswordViewController.swift in Sources */,
@@ -1878,6 +1956,7 @@
 				7F4BF2682581844D00B82D20 /* ConservationPage.swift in Sources */,
 				7FB34601254E27BE00851FF6 /* Filters.swift in Sources */,
 				7FCFDD4924BA7A7B00D8660F /* DebugCell.swift in Sources */,
+				7FD70CDC261710EF008C784C /* TeamMemberCell.swift in Sources */,
 				7FCFDD4424BA781F00D8660F /* DebugPage.swift in Sources */,
 				7F295CBE247AC93A00B47F1F /* ProductItem.swift in Sources */,
 				7F96166325C4705D00C6C8F7 /* Path.swift in Sources */,
@@ -1920,6 +1999,7 @@
 				7F9835212484505B000DE3AA /* UsersData.swift in Sources */,
 				7FFD7E48248D5DFD00825AEF /* UIDevice+Extensions.swift in Sources */,
 				7F22CA33255897D500F9DF27 /* General.swift in Sources */,
+				7F3D7D43261706F900F020B3 /* TeamPage.swift in Sources */,
 				7F40280D24C62DB50018E49F /* AddPostPage.swift in Sources */,
 				7F7DC406247C599500A53E7C /* BaseNavigationController.swift in Sources */,
 				7F839BB6250F8C6700925ADF /* YoutobeInfo.swift in Sources */,

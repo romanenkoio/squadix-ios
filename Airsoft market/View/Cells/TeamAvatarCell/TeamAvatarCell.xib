@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="287" id="KGk-i7-Jjw" customClass="TeamAvatarCell" customModule="Squadix" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="287"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="287"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPV-WC-Efd" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                        <rect key="frame" x="85" y="20" width="150" height="150"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="DeH-PK-r6U"/>
+                            <constraint firstAttribute="width" constant="150" id="ecp-Xe-7P9"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVh-pm-HQo">
+                        <rect key="frame" x="195" y="130" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="AWF-Da-SKd"/>
+                            <constraint firstAttribute="width" constant="40" id="zGo-Ec-iX7"/>
+                        </constraints>
+                        <state key="normal" image="take_photo"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название команды" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spQ-kc-XS3">
+                        <rect key="frame" x="36" y="190" width="248" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="mcN-at-K0g"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujl-yC-har">
+                        <rect key="frame" x="36" y="235" width="248" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="5Uc-xR-egZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="ujl-yC-har" secondAttribute="bottom" constant="20" id="1KH-UH-jAm"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="spQ-kc-XS3" secondAttribute="trailing" constant="20" id="4RC-9Z-O2j"/>
+                    <constraint firstItem="ujl-yC-har" firstAttribute="leading" secondItem="spQ-kc-XS3" secondAttribute="leading" id="4Yx-1A-bTf"/>
+                    <constraint firstItem="ujl-yC-har" firstAttribute="top" secondItem="spQ-kc-XS3" secondAttribute="bottom" constant="10" id="6mf-Gl-xaq"/>
+                    <constraint firstItem="ujl-yC-har" firstAttribute="trailing" secondItem="spQ-kc-XS3" secondAttribute="trailing" id="Hsc-YV-PCz"/>
+                    <constraint firstItem="LPV-WC-Efd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="NYB-Jt-B0x"/>
+                    <constraint firstItem="LPV-WC-Efd" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="UKj-3e-gFI"/>
+                    <constraint firstItem="dVh-pm-HQo" firstAttribute="trailing" secondItem="LPV-WC-Efd" secondAttribute="trailing" id="Zhl-oZ-TMT"/>
+                    <constraint firstItem="dVh-pm-HQo" firstAttribute="bottom" secondItem="LPV-WC-Efd" secondAttribute="bottom" id="cNb-A9-gGy"/>
+                    <constraint firstItem="spQ-kc-XS3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="gYr-1c-8IX"/>
+                    <constraint firstItem="spQ-kc-XS3" firstAttribute="top" secondItem="LPV-WC-Efd" secondAttribute="bottom" constant="20" id="vpg-XL-WTw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="avatarSlider" destination="LPV-WC-Efd" id="Qmz-F2-cEv"/>
+                <outlet property="regionLabel" destination="ujl-yC-har" id="ipg-V4-Luo"/>
+                <outlet property="teamNameLabel" destination="spQ-kc-XS3" id="Ect-5f-LIj"/>
+            </connections>
+            <point key="canvasLocation" x="11.594202898550726" y="195.87053571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="take_photo" width="80" height="80"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
