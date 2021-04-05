@@ -34,7 +34,7 @@ class NotificationCell: BaseTableViewCell {
         case .report:
             notificationImageView.image = UIImage(named: "report")
         case .comment:
-            notificationImageView.image = UIImage(named: "coment")
+            notificationImageView.image = UIImage(named: "comment_notification")
         default:
             print("Error")
         }

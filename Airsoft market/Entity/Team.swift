@@ -18,6 +18,7 @@ class Team: Mappable {
     var id = 0
     var teamAvatar = ""
     var smallTeamAvatar = ""
+    var ownerID = 0
     
     required init?(map: Map) {
         mapping(map: map)
@@ -35,6 +36,7 @@ class Team: Mappable {
         id                  <- map["id"]
         teamAvatar          <- map["teamAvatar"]
         smallTeamAvatar     <- map["smallTeamAvatar"]
+        ownerID             <- map["ownerID"]
     }
 }
 
