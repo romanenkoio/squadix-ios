@@ -259,7 +259,7 @@ extension ProfilePage: UITableViewDataSource {
                          reg = region
                     }
                     
-                    if let city = profile.city {
+                    if let city = profile.city, !city.isEmpty {
                          reg += ", \(city)"
                     }
                     
@@ -267,9 +267,7 @@ extension ProfilePage: UITableViewDataSource {
                     
                     myProfileCell.avatarButton.isHidden = profileID != nil
                     
-//                    myProfileCell.adminBadgeLabel.text = profile.roles.contains(.admin) ? "Администратор" : "Рейтинг активности: \(profile.rating)"
-                    
-                    myProfileCell.adminBadgeLabel.text = profile.roles.contains(.admin) ? "Администратор" : ""
+                    myProfileCell.adminBadgeLabel.text = profile.roles.contains(.admin) ? "Администратор" : "Рейтинг активности: \(profile.rating)"
                     
                     myProfileCell.avatarAction = { [weak self] in
                          self?.didSelectAvatarChange()
