@@ -36,7 +36,6 @@ enum SettingsMenu {
         let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
         let actionSection: [SettingsMenu] = [.changePassword, .logout]
         let developerSection: [SettingsMenu] = [.debug]
-//        let adminSection: [SettingsMenu] = [.categories, .sendNotification]
         let systemSection: [SettingsMenu] = [.support, .version]
         
         return KeychainManager.isAdmin ? [settingsSection, infoSection, actionSection, developerSection, systemSection] : [settingsSection, infoSection, actionSection, systemSection]

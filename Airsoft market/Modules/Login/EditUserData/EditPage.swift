@@ -7,15 +7,13 @@
 //
 
 import UIKit
+import GrowingTextView
 
 class EditPage: BaseViewController {
     @IBOutlet weak var countryTextField: StrikeInputField!
     @IBOutlet weak var cityTextField: StrikeInputField!
     @IBOutlet weak var birthdayTextField: StrikeInputField!
-    @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var contatinerHeight: NSLayoutConstraint!
-    @IBOutlet weak var textViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var descriptionContainer: UIView!
+    @IBOutlet weak var descriptionTextView: GrowingTextView!
     @IBOutlet weak var mainSaveButton: OliveButton!
     @IBOutlet weak var saveButton: OliveButton!
     @IBOutlet weak var skipButton: WhiteButton!
@@ -23,6 +21,8 @@ class EditPage: BaseViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var phoneTextField: StrikeInputField!
     @IBOutlet weak var teamTextField: StrikeInputField!
+    @IBOutlet weak var tgField: StrikeInputField!
+    @IBOutlet weak var vkField: StrikeInputField!
     
     var selectedDate: Date?
     var profile: Profile?
@@ -33,10 +33,6 @@ class EditPage: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
-        descriptionContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        descriptionTextView.delegate = self
         
         title = "Детали"
         
@@ -45,6 +41,8 @@ class EditPage: BaseViewController {
         skipButton.isHidden = isEdit
 
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
+        descriptionTextView.layer.borderWidth = 1
+        
         let datePicker = UIDatePicker()
         if #available(iOS 13.4, *) {
             datePicker.preferredDatePickerStyle = .wheels
@@ -77,6 +75,8 @@ class EditPage: BaseViewController {
         countryTextField.text = "Беларусь"
         cityTextField.text = profile?.city
         teamTextField.text = profile?.team
+        vkField.text = profile?.vk
+        tgField.text = profile?.tg
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
@@ -87,10 +87,6 @@ class EditPage: BaseViewController {
         descriptionTextView.text = profile?.profileDescription
         userNameTextField.text = profile?.profileName
         phoneTextField.text = profile?.phone
-        let size = CGSize(width: descriptionTextView.frame.width, height: .infinity)
-        let estimatedSize = descriptionTextView.sizeThatFits(size)
-        contatinerHeight.constant = estimatedSize.height
-        textViewHeight.constant = estimatedSize.height
         view.layoutIfNeeded()
     }
     
@@ -127,7 +123,9 @@ class EditPage: BaseViewController {
                 profile?.birthday = date
             }
             
-            profile?.city = cityTextField.text
+            profile?.vk = vkField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            profile?.tg = tgField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             
@@ -155,6 +153,9 @@ class EditPage: BaseViewController {
             profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            profile?.vk = vkField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            profile?.tg = tgField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            
             if phoneTextField.text != "" {
                 if let phone = phoneTextField.text, !phone.isEmpty, Validator.shared.validate(string: phone, pattern: Validator.Regexp.phone.rawValue) {
                     profile?.phone = phoneTextField.text
@@ -182,15 +183,5 @@ class EditPage: BaseViewController {
             self.spinner.stopAnimating()
             self.showPopup(isError: true, title: "Не удалось обновить профиль")
         }
-    }
-}
-
-extension EditPage: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        let size = CGSize(width: textView.frame.width, height: .infinity)
-        let estimatedSize = textView.sizeThatFits(size)
-        contatinerHeight.constant = estimatedSize.height
-        textViewHeight.constant = estimatedSize.height
-        view.layoutIfNeeded()
     }
 }

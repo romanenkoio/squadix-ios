@@ -125,27 +125,16 @@ class ProductPage: BaseViewController {
             }))
         }
         
-        if let vk = product.authorVK, let url = URL.init(string: "vk://"), UIApplication.shared.canOpenURL(url) {
+        if let vk = product.authorVK {
+            guard let url = URL(string: "vk://vk.com/\(vk)") else { return }
             alert.addAction(UIAlertAction(title: "VK", style: .default, handler: { _ in
-                if let url = URL(string: "vk://vk.com/\(vk)") {
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url)
-                    }
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
                 }
             }))
         }
         
-        if let ints = product.authorInst, let url = URL.init(string: "instagram://"), UIApplication.shared.canOpenURL(url) {
-            alert.addAction(UIAlertAction(title: "Instagram", style: .default, handler: { _ in
-                if let url = URL(string: "instagram://user?username=\(ints)") {
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url)
-                    }
-                }
-            }))
-        }
-        
-        if let tg = product.authorTg, let url = URL.init(string: "tg://"), UIApplication.shared.canOpenURL(url) {
+        if let tg = product.authorTg {
             alert.addAction(UIAlertAction(title: "Telegram", style: .default, handler: { _ in
                 let url = "tg://resolve?domain=\(tg)"
                 guard let contactUrl = URL.init(string: url) else { return }

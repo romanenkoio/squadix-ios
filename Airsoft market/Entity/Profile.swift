@@ -24,6 +24,8 @@ struct Profile: Mappable {
     var isBlocked: Bool = false
     var team: String?
     var rating = 0
+    var vk: String?
+    var tg: String?
     
     init() {
     }
@@ -44,6 +46,8 @@ struct Profile: Mappable {
         isBlocked               <- map["blocked"]
         team                    <- map["team"]
         rating                  <- map["rating"]
+        vk                      <- map["vk"]
+        tg                      <- map["tg"]
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -91,6 +95,14 @@ struct Profile: Mappable {
         
         if phone != "" {
             params["phone"] = phone
+        }
+        
+        if tg != "" {
+            params["tg"] = tg
+        }
+        
+        if vk != "" {
+            params["vk"] = vk
         }
         
         return params

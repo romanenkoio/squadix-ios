@@ -14,19 +14,18 @@
             <connections>
                 <outlet property="birthdayTextField" destination="FQy-qZ-Q5P" id="mvJ-he-L5Y"/>
                 <outlet property="cityTextField" destination="9xq-bQ-taH" id="mSQ-Yt-1gT"/>
-                <outlet property="contatinerHeight" destination="WLB-p2-vjW" id="gHP-Ye-ysM"/>
                 <outlet property="countryTextField" destination="Swx-Ae-KYZ" id="F96-au-GC4"/>
-                <outlet property="descriptionContainer" destination="fNA-D1-n72" id="Xxe-C5-FFX"/>
-                <outlet property="descriptionTextView" destination="oSe-uo-3sl" id="IpO-AU-IVW"/>
+                <outlet property="descriptionTextView" destination="e7R-BZ-hKG" id="3TH-dm-uLr"/>
                 <outlet property="mainSaveButton" destination="kin-dD-8EX" id="dX6-ss-0bf"/>
                 <outlet property="phoneTextField" destination="HHw-kl-CJB" id="GEC-5X-s1U"/>
                 <outlet property="saveButton" destination="FHN-cb-cJ9" id="6sz-bw-CAt"/>
                 <outlet property="skipButton" destination="be8-Tl-pQF" id="qeI-hY-aRx"/>
                 <outlet property="spinner" destination="WOd-Yh-g3f" id="Ohh-A7-lVf"/>
                 <outlet property="teamTextField" destination="6Oj-0v-mgb" id="3Ai-fQ-QZj"/>
-                <outlet property="textViewHeight" destination="yE6-LY-lKc" id="2hu-Ez-AHG"/>
+                <outlet property="tgField" destination="pQS-VN-8MR" id="2GT-du-iWc"/>
                 <outlet property="userNameTextField" destination="ck8-03-pKF" id="XJV-Qy-qWo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="vkField" destination="aTR-FP-2HQ" id="Vwb-da-6dj"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -39,179 +38,201 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8B-XI-pzd">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="День рождения" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FQy-qZ-Q5P" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="20" y="226" width="374" height="34"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="34" id="luv-4V-9rG"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNA-D1-n72">
-                            <rect key="frame" x="20" y="350" width="374" height="34"/>
                             <subviews>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oSe-uo-3sl">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="День рождения" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FQy-qZ-Q5P" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="226" width="374" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="luv-4V-9rG"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Команда" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Oj-0v-mgb" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="280" width="374" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="4cK-45-1on"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Телефон" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HHw-kl-CJB" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="64" width="374" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="axd-TA-mWp"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Город" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9xq-bQ-taH" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="172" width="374" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="bZf-VL-dFQ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Беларусь" borderStyle="roundedRect" placeholder="Страна" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-Ae-KYZ" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="118" width="374" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="5Hw-Xf-ftf"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя пользователя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ck8-03-pKF" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="10" width="374" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="BU4-S5-rpk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ник в Telegram, например username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pQS-VN-8MR" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="334" width="374" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="yHM-9S-6G6"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ник VK, например username или id124312414" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aTR-FP-2HQ" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="388" width="374" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="bz3-9d-e74"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="О себе:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fc-eg-AIw">
+                                    <rect key="frame" x="20" y="442" width="374" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="16" id="UOz-V7-DtB"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="e7R-BZ-hKG" customClass="GrowingTextView" customModule="GrowingTextView">
+                                    <rect key="frame" x="20" y="461" width="374" height="200"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="34" id="yE6-LY-lKc"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="LYk-3H-k9p"/>
                                     </constraints>
                                     <color key="textColor" systemColor="labelColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="5"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="minHeight">
+                                            <real key="value" value="200"/>
                                         </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
+                                            <real key="value" value="500"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="trimWhiteSpaceWhenEndEditing" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </textView>
+                                <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ks-OK-Qhy">
+                                    <rect key="frame" x="20" y="681" width="374" height="40"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be8-Tl-pQF" customClass="WhiteButton" customModule="Squadix" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="0.0" width="157" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="sfZ-u1-5SN"/>
+                                            </constraints>
+                                            <state key="normal" title="Пропустить"/>
+                                            <connections>
+                                                <action selector="skipAction:" destination="-1" eventType="touchUpInside" id="SxJ-pp-C68"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHN-cb-cJ9" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
+                                            <rect key="frame" x="197" y="0.0" width="157" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="pJU-gU-Wwb"/>
+                                            </constraints>
+                                            <state key="normal" title="Сохранить"/>
+                                            <connections>
+                                                <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="Vbv-Wj-q9n"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kin-dD-8EX" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="0.0" width="334" height="40"/>
+                                            <state key="normal" title="Сохранить"/>
+                                            <connections>
+                                                <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="JAf-v9-dSK"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="be8-Tl-pQF" firstAttribute="leading" secondItem="4ks-OK-Qhy" secondAttribute="leading" constant="20" id="04s-tV-ZxG"/>
+                                        <constraint firstAttribute="height" constant="40" id="2Yj-Gt-s8q"/>
+                                        <constraint firstAttribute="bottom" secondItem="kin-dD-8EX" secondAttribute="bottom" id="3Ub-8F-Aeg"/>
+                                        <constraint firstAttribute="bottom" secondItem="be8-Tl-pQF" secondAttribute="bottom" id="92U-uI-HWY"/>
+                                        <constraint firstItem="FHN-cb-cJ9" firstAttribute="bottom" secondItem="be8-Tl-pQF" secondAttribute="bottom" id="FHw-oi-jd1"/>
+                                        <constraint firstAttribute="trailing" secondItem="kin-dD-8EX" secondAttribute="trailing" constant="20" id="FIM-RB-qsB"/>
+                                        <constraint firstItem="kin-dD-8EX" firstAttribute="leading" secondItem="4ks-OK-Qhy" secondAttribute="leading" constant="20" id="Uwa-gb-a8P"/>
+                                        <constraint firstAttribute="bottom" secondItem="FHN-cb-cJ9" secondAttribute="bottom" id="ZSb-dv-LGn"/>
+                                        <constraint firstItem="kin-dD-8EX" firstAttribute="top" secondItem="4ks-OK-Qhy" secondAttribute="top" id="Zdn-RG-4HF"/>
+                                        <constraint firstItem="FHN-cb-cJ9" firstAttribute="height" secondItem="be8-Tl-pQF" secondAttribute="height" id="a9O-of-KOd"/>
+                                        <constraint firstItem="FHN-cb-cJ9" firstAttribute="top" secondItem="4ks-OK-Qhy" secondAttribute="top" id="bMu-5u-r9L"/>
+                                        <constraint firstItem="FHN-cb-cJ9" firstAttribute="leading" secondItem="be8-Tl-pQF" secondAttribute="trailing" constant="20" id="dXt-6n-u0t"/>
+                                        <constraint firstItem="be8-Tl-pQF" firstAttribute="top" secondItem="4ks-OK-Qhy" secondAttribute="top" id="eVd-np-gub"/>
+                                        <constraint firstItem="be8-Tl-pQF" firstAttribute="width" secondItem="FHN-cb-cJ9" secondAttribute="width" id="mpM-ur-nTo"/>
+                                        <constraint firstAttribute="trailing" secondItem="FHN-cb-cJ9" secondAttribute="trailing" constant="20" id="wDF-CH-MsQ"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="oSe-uo-3sl" firstAttribute="leading" secondItem="fNA-D1-n72" secondAttribute="leading" id="24o-WV-xfI"/>
-                                <constraint firstAttribute="bottom" secondItem="oSe-uo-3sl" secondAttribute="bottom" id="7lI-Ga-CAa"/>
-                                <constraint firstAttribute="trailing" secondItem="oSe-uo-3sl" secondAttribute="trailing" id="O7h-ES-YT7"/>
-                                <constraint firstItem="oSe-uo-3sl" firstAttribute="top" secondItem="fNA-D1-n72" secondAttribute="top" id="TcT-9p-jbk"/>
-                                <constraint firstAttribute="height" constant="34" id="WLB-p2-vjW"/>
+                                <constraint firstItem="FQy-qZ-Q5P" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="0ZU-4E-Vx6"/>
+                                <constraint firstItem="6Oj-0v-mgb" firstAttribute="top" secondItem="FQy-qZ-Q5P" secondAttribute="bottom" constant="20" id="3Uy-rL-DRD"/>
+                                <constraint firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" constant="20" id="BbK-Cw-4zZ"/>
+                                <constraint firstItem="9xq-bQ-taH" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="CaH-3R-V4Y"/>
+                                <constraint firstItem="aTR-FP-2HQ" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="Exl-LI-wib"/>
+                                <constraint firstItem="e7R-BZ-hKG" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="GEj-Gt-iUI"/>
+                                <constraint firstItem="4ks-OK-Qhy" firstAttribute="leading" secondItem="M8B-XI-pzd" secondAttribute="leading" constant="20" id="GiT-hO-vYw"/>
+                                <constraint firstItem="HHw-kl-CJB" firstAttribute="top" secondItem="ck8-03-pKF" secondAttribute="bottom" constant="20" id="I8Z-Qt-lQV"/>
+                                <constraint firstItem="8Fc-eg-AIw" firstAttribute="top" secondItem="aTR-FP-2HQ" secondAttribute="bottom" constant="20" id="M3l-qI-ZTU"/>
+                                <constraint firstItem="8Fc-eg-AIw" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="Obj-fB-1Py"/>
+                                <constraint firstItem="aTR-FP-2HQ" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="P0G-IK-38k"/>
+                                <constraint firstItem="6Oj-0v-mgb" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="TWb-bi-LDd"/>
+                                <constraint firstItem="FQy-qZ-Q5P" firstAttribute="top" secondItem="9xq-bQ-taH" secondAttribute="bottom" constant="20" id="Tq8-kV-bk9"/>
+                                <constraint firstItem="9xq-bQ-taH" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="UIA-P9-DrO"/>
+                                <constraint firstItem="e7R-BZ-hKG" firstAttribute="top" secondItem="8Fc-eg-AIw" secondAttribute="bottom" constant="3" id="UOf-0a-fL0"/>
+                                <constraint firstItem="HHw-kl-CJB" firstAttribute="leading" secondItem="M8B-XI-pzd" secondAttribute="leading" constant="20" symbolic="YES" id="VVq-cV-9uk"/>
+                                <constraint firstItem="Swx-Ae-KYZ" firstAttribute="top" secondItem="HHw-kl-CJB" secondAttribute="bottom" constant="20" id="WLi-eX-vch"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4ks-OK-Qhy" secondAttribute="bottom" constant="20" id="aTY-uj-ORF"/>
+                                <constraint firstItem="ck8-03-pKF" firstAttribute="top" secondItem="M8B-XI-pzd" secondAttribute="top" constant="10" id="aVP-Fp-LxJ"/>
+                                <constraint firstAttribute="trailing" secondItem="4ks-OK-Qhy" secondAttribute="trailing" constant="20" id="bAP-nw-EiO"/>
+                                <constraint firstItem="6Oj-0v-mgb" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="cxb-1H-9TJ"/>
+                                <constraint firstItem="pQS-VN-8MR" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="dYM-Ul-who"/>
+                                <constraint firstItem="ck8-03-pKF" firstAttribute="leading" secondItem="M8B-XI-pzd" secondAttribute="leading" constant="20" id="drb-1v-0Cf"/>
+                                <constraint firstItem="FQy-qZ-Q5P" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="eM3-3D-6Ii"/>
+                                <constraint firstItem="e7R-BZ-hKG" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="j19-s0-1sv"/>
+                                <constraint firstItem="Swx-Ae-KYZ" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="nMS-TU-WY5"/>
+                                <constraint firstItem="HHw-kl-CJB" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="pLT-yf-g96"/>
+                                <constraint firstItem="HHw-kl-CJB" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="qn4-F1-gyd"/>
+                                <constraint firstItem="4ks-OK-Qhy" firstAttribute="top" secondItem="e7R-BZ-hKG" secondAttribute="bottom" constant="20" id="rb9-ro-yqb"/>
+                                <constraint firstItem="aTR-FP-2HQ" firstAttribute="top" secondItem="pQS-VN-8MR" secondAttribute="bottom" constant="20" id="tn4-na-DaU"/>
+                                <constraint firstItem="Swx-Ae-KYZ" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="ur7-Bt-mWg"/>
+                                <constraint firstItem="8Fc-eg-AIw" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="usT-Vf-8sh"/>
+                                <constraint firstItem="9xq-bQ-taH" firstAttribute="top" secondItem="Swx-Ae-KYZ" secondAttribute="bottom" constant="20" id="wUO-t5-CBt"/>
+                                <constraint firstItem="pQS-VN-8MR" firstAttribute="top" secondItem="6Oj-0v-mgb" secondAttribute="bottom" constant="20" id="xZh-Mv-vro"/>
+                                <constraint firstItem="pQS-VN-8MR" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="yJd-8J-HRw"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ks-OK-Qhy">
-                            <rect key="frame" x="20" y="758" width="374" height="40"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be8-Tl-pQF" customClass="WhiteButton" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="0.0" width="157" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="sfZ-u1-5SN"/>
-                                    </constraints>
-                                    <state key="normal" title="Пропустить"/>
-                                    <connections>
-                                        <action selector="skipAction:" destination="-1" eventType="touchUpInside" id="SxJ-pp-C68"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHN-cb-cJ9" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="197" y="0.0" width="157" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="pJU-gU-Wwb"/>
-                                    </constraints>
-                                    <state key="normal" title="Сохранить"/>
-                                    <connections>
-                                        <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="Vbv-Wj-q9n"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kin-dD-8EX" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="0.0" width="334" height="40"/>
-                                    <state key="normal" title="Сохранить"/>
-                                    <connections>
-                                        <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="JAf-v9-dSK"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="be8-Tl-pQF" firstAttribute="leading" secondItem="4ks-OK-Qhy" secondAttribute="leading" constant="20" id="04s-tV-ZxG"/>
-                                <constraint firstAttribute="height" constant="40" id="2Yj-Gt-s8q"/>
-                                <constraint firstAttribute="bottom" secondItem="kin-dD-8EX" secondAttribute="bottom" id="3Ub-8F-Aeg"/>
-                                <constraint firstAttribute="bottom" secondItem="be8-Tl-pQF" secondAttribute="bottom" id="92U-uI-HWY"/>
-                                <constraint firstItem="FHN-cb-cJ9" firstAttribute="bottom" secondItem="be8-Tl-pQF" secondAttribute="bottom" id="FHw-oi-jd1"/>
-                                <constraint firstAttribute="trailing" secondItem="kin-dD-8EX" secondAttribute="trailing" constant="20" id="FIM-RB-qsB"/>
-                                <constraint firstItem="kin-dD-8EX" firstAttribute="leading" secondItem="4ks-OK-Qhy" secondAttribute="leading" constant="20" id="Uwa-gb-a8P"/>
-                                <constraint firstAttribute="bottom" secondItem="FHN-cb-cJ9" secondAttribute="bottom" id="ZSb-dv-LGn"/>
-                                <constraint firstItem="kin-dD-8EX" firstAttribute="top" secondItem="4ks-OK-Qhy" secondAttribute="top" id="Zdn-RG-4HF"/>
-                                <constraint firstItem="FHN-cb-cJ9" firstAttribute="height" secondItem="be8-Tl-pQF" secondAttribute="height" id="a9O-of-KOd"/>
-                                <constraint firstItem="FHN-cb-cJ9" firstAttribute="top" secondItem="4ks-OK-Qhy" secondAttribute="top" id="bMu-5u-r9L"/>
-                                <constraint firstItem="FHN-cb-cJ9" firstAttribute="leading" secondItem="be8-Tl-pQF" secondAttribute="trailing" constant="20" id="dXt-6n-u0t"/>
-                                <constraint firstItem="be8-Tl-pQF" firstAttribute="top" secondItem="4ks-OK-Qhy" secondAttribute="top" id="eVd-np-gub"/>
-                                <constraint firstItem="be8-Tl-pQF" firstAttribute="width" secondItem="FHN-cb-cJ9" secondAttribute="width" id="mpM-ur-nTo"/>
-                                <constraint firstAttribute="trailing" secondItem="FHN-cb-cJ9" secondAttribute="trailing" constant="20" id="wDF-CH-MsQ"/>
-                            </constraints>
-                        </view>
-                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Команда" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Oj-0v-mgb" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="20" y="280" width="374" height="34"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="34" id="4cK-45-1on"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Телефон" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HHw-kl-CJB" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="20" y="64" width="374" height="34"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="34" id="axd-TA-mWp"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                        </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="О себе:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VX7-el-hlj">
-                            <rect key="frame" x="20" y="334" width="374" height="16"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Город" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9xq-bQ-taH" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="20" y="172" width="374" height="34"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="34" id="bZf-VL-dFQ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Беларусь" borderStyle="roundedRect" placeholder="Страна" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-Ae-KYZ" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="20" y="118" width="374" height="34"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="34" id="5Hw-Xf-ftf"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя пользователя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ck8-03-pKF" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="20" y="10" width="374" height="34"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="WOd-Yh-g3f">
                             <rect key="frame" x="188.5" y="390.5" width="37" height="37"/>
                             <color key="color" name="mainStrikeColor"/>
                         </activityIndicatorView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="FQy-qZ-Q5P" firstAttribute="top" secondItem="9xq-bQ-taH" secondAttribute="bottom" constant="20" id="16D-zI-F1A"/>
-                        <constraint firstItem="4ks-OK-Qhy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fNA-D1-n72" secondAttribute="bottom" constant="20" id="2Av-mL-VPa"/>
-                        <constraint firstItem="VX7-el-hlj" firstAttribute="trailing" secondItem="Swx-Ae-KYZ" secondAttribute="trailing" id="5OZ-vK-gMi"/>
                         <constraint firstItem="M8B-XI-pzd" firstAttribute="trailing" secondItem="qdm-9V-DkH" secondAttribute="trailing" id="6z8-d6-Paq"/>
                         <constraint firstItem="WOd-Yh-g3f" firstAttribute="centerX" secondItem="qdm-9V-DkH" secondAttribute="centerX" id="Agl-Ul-3U6"/>
                         <constraint firstItem="M8B-XI-pzd" firstAttribute="top" secondItem="qdm-9V-DkH" secondAttribute="top" id="EOV-i9-23T"/>
-                        <constraint firstItem="ck8-03-pKF" firstAttribute="trailing" secondItem="Swx-Ae-KYZ" secondAttribute="trailing" id="EgF-DL-Nuz"/>
-                        <constraint firstItem="fNA-D1-n72" firstAttribute="top" secondItem="VX7-el-hlj" secondAttribute="bottom" id="FGI-a9-2vf"/>
-                        <constraint firstItem="HHw-kl-CJB" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="FaJ-yZ-maW"/>
-                        <constraint firstItem="VX7-el-hlj" firstAttribute="leading" secondItem="Swx-Ae-KYZ" secondAttribute="leading" id="GuZ-c5-aSn"/>
                         <constraint firstAttribute="bottom" secondItem="M8B-XI-pzd" secondAttribute="bottom" id="GxF-le-3do"/>
                         <constraint firstItem="M8B-XI-pzd" firstAttribute="leading" secondItem="qdm-9V-DkH" secondAttribute="leading" id="LQ8-xj-sNg"/>
-                        <constraint firstItem="VX7-el-hlj" firstAttribute="top" secondItem="6Oj-0v-mgb" secondAttribute="bottom" constant="20" id="PUg-9Y-b5d"/>
-                        <constraint firstItem="fNA-D1-n72" firstAttribute="trailing" secondItem="FQy-qZ-Q5P" secondAttribute="trailing" id="PxV-MW-Bih"/>
-                        <constraint firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" constant="20" id="RXt-qu-0JD"/>
-                        <constraint firstItem="9xq-bQ-taH" firstAttribute="leading" secondItem="Swx-Ae-KYZ" secondAttribute="leading" id="S0e-jC-1cG"/>
-                        <constraint firstAttribute="trailing" secondItem="4ks-OK-Qhy" secondAttribute="trailing" constant="20" id="Tfi-gD-VAI"/>
-                        <constraint firstItem="HHw-kl-CJB" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="WpY-YP-VJK"/>
-                        <constraint firstItem="Swx-Ae-KYZ" firstAttribute="top" secondItem="HHw-kl-CJB" secondAttribute="bottom" constant="20" id="WvF-g6-F4i"/>
-                        <constraint firstItem="9xq-bQ-taH" firstAttribute="trailing" secondItem="Swx-Ae-KYZ" secondAttribute="trailing" id="Y99-Xl-hgd"/>
-                        <constraint firstItem="fNA-D1-n72" firstAttribute="leading" secondItem="FQy-qZ-Q5P" secondAttribute="leading" id="Z7V-8t-Hb1"/>
-                        <constraint firstItem="6Oj-0v-mgb" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="f09-x0-XhQ"/>
-                        <constraint firstItem="ck8-03-pKF" firstAttribute="leading" secondItem="qdm-9V-DkH" secondAttribute="leading" constant="20" id="hcG-2e-hMz"/>
-                        <constraint firstItem="4ks-OK-Qhy" firstAttribute="leading" secondItem="qdm-9V-DkH" secondAttribute="leading" constant="20" id="jFd-Va-KG1"/>
-                        <constraint firstItem="HHw-kl-CJB" firstAttribute="top" secondItem="ck8-03-pKF" secondAttribute="bottom" constant="20" id="jaY-Ob-8mr"/>
-                        <constraint firstItem="9xq-bQ-taH" firstAttribute="top" secondItem="Swx-Ae-KYZ" secondAttribute="bottom" constant="20" id="p25-Vn-6zd"/>
                         <constraint firstItem="WOd-Yh-g3f" firstAttribute="centerY" secondItem="qdm-9V-DkH" secondAttribute="centerY" id="s95-qx-mPB"/>
-                        <constraint firstItem="6Oj-0v-mgb" firstAttribute="top" secondItem="FQy-qZ-Q5P" secondAttribute="bottom" constant="20" id="uZA-AP-ajl"/>
-                        <constraint firstItem="6Oj-0v-mgb" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="v7O-an-Pqm"/>
-                        <constraint firstItem="FQy-qZ-Q5P" firstAttribute="trailing" secondItem="9xq-bQ-taH" secondAttribute="trailing" id="v9d-fm-gMN"/>
-                        <constraint firstItem="FQy-qZ-Q5P" firstAttribute="leading" secondItem="9xq-bQ-taH" secondAttribute="leading" id="wpJ-V2-oEy"/>
-                        <constraint firstItem="ck8-03-pKF" firstAttribute="top" secondItem="qdm-9V-DkH" secondAttribute="top" constant="10" id="xBJ-GD-ynz"/>
-                        <constraint firstItem="ck8-03-pKF" firstAttribute="leading" secondItem="Swx-Ae-KYZ" secondAttribute="leading" id="yyJ-s9-VHk"/>
                     </constraints>
                 </scrollView>
             </subviews>
@@ -219,16 +240,20 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="M8B-XI-pzd" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="1Lj-KF-am8"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4ks-OK-Qhy" secondAttribute="bottom" constant="20" id="4jB-hw-rgb"/>
                 <constraint firstItem="qdm-9V-DkH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="HIV-8a-68E"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qdm-9V-DkH" secondAttribute="trailing" id="Mla-st-v11"/>
                 <constraint firstItem="M8B-XI-pzd" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.912946" id="juO-F0-CSr"/>
                 <constraint firstItem="qdm-9V-DkH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="vOw-7E-Hxt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qdm-9V-DkH" secondAttribute="bottom" id="ycX-R5-f5M"/>
             </constraints>
-            <point key="canvasLocation" x="44.927536231884062" y="107.8125"/>
+            <point key="canvasLocation" x="44.927536231884062" y="200.55803571428569"/>
         </view>
     </objects>
+    <designables>
+        <designable name="e7R-BZ-hKG">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="mainStrikeColor">
             <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
