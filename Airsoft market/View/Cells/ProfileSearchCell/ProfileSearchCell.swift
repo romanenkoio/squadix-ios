@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProfileSearchCell: BaseTableViewCell {
     @IBOutlet weak var profileAvatar: UIImageView!
@@ -18,10 +19,32 @@ class ProfileSearchCell: BaseTableViewCell {
         super.awakeFromNib()
         profileAvatar.makeRound()
     }
+    
+    func setupCell(profile: Profile) {
+        if let pic = profile.profilePictureUrl {
+            profileAvatar.sd_setImage(with: URL(string: pic), placeholderImage: UIImage(named: "avatar_placeholder"))
+        } else {
+            profileAvatar.image = UIImage(named: "avatar_placeholder")
+        }
+        
+        adminLabel.isHidden = !profile.roles.contains(.admin)
+        adminLabel.text = profile.roles.contains(.admin) ? Common.Roles.admin.displayRoleName : ""
+        profileNameLabel.text = profile.profileName
+        
+        var reg = ""
+        
+        if let region = profile.country {
+            reg = region
+        }
+        if let city = profile.city, !city.isEmpty {
+            reg += ", \(city)"
+        }
+        profileRegionLabel.text = reg
+    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        profileAvatar.image = UIImage(named: "avatar_placeholder")
+        profileAvatar.image = nil
     }
     
 }

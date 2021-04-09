@@ -92,9 +92,8 @@ class SearchPage: BaseViewController {
                     indexPathes.append(IndexPath(item: sSelf.usersData.count - 1, section: 0))
                 }
                 
-                sSelf.tableView.insertRows(at: indexPathes, with: .automatic)
+                sSelf.tableView.insertRows(at: indexPathes, with: .none)
                 sSelf.tableView.endUpdates()
-                sSelf.tableView.reloadData()
                 sSelf.userRequest = nil
                 sSelf.page += 1
             } else {
@@ -168,25 +167,8 @@ extension SearchPage: UITableViewDataSource {
         
         if let profileCell = cell as? ProfileSearchCell {
             let item = usersData[indexPath.row]
-            if let pic = item.profilePictureUrl {
-                 profileCell.profileAvatar.loadImageWith(pic)
-            } else {
-                profileCell.profileAvatar.image = UIImage(named: "avatar_placeholder")
-            }
-            profileCell.adminLabel.isHidden = !item.roles.contains(.admin)
-            profileCell.adminLabel.text = item.roles.contains(.admin) ? Common.Roles.admin.displayRoleName : ""
-            profileCell.profileNameLabel.text = item.profileName
-            var reg = ""
-            
-            if let region = item.country {
-                reg = region
-            }
-            
-            if let city = item.city, !city.isEmpty {
-                reg += ", \(city)"
-            }
-            
-            profileCell.profileRegionLabel.text = reg
+            profileCell.setupCell(profile: item)
+
             return profileCell
         }
         return cell

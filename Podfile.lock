@@ -113,6 +113,9 @@ PODS:
   - Realm/Headers (5.0.3)
   - RealmSwift (5.0.3):
     - Realm (= 5.0.3)
+  - SDWebImage (5.11.0):
+    - SDWebImage/Core (= 5.11.0)
+  - SDWebImage/Core (5.11.0)
   - Sentry (6.0.10):
     - Sentry/Core (= 6.0.10)
   - Sentry/Core (6.0.10)
@@ -133,6 +136,7 @@ DEPENDENCIES:
   - Moya
   - Moya-ObjectMapper
   - RealmSwift (~> 5.0.1)
+  - SDWebImage
   - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `6.0.10`)
   - YoutubePlayer-in-WKWebView
 
@@ -163,6 +167,7 @@ SPEC REPOS:
     - PromisesObjC
     - Realm
     - RealmSwift
+    - SDWebImage
     - YoutubePlayer-in-WKWebView
 
 EXTERNAL SOURCES:
@@ -201,9 +206,10 @@ SPEC CHECKSUMS:
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   Realm: bfca1699b61b0b17c3a69ae0e648314eae91fbdb
   RealmSwift: 493c9f089cd3893b3959007973c0e4f640906ba0
+  SDWebImage: 7acbb57630ac7db4a495547fb73916ff3e432f6b
   Sentry: 0a48d832ce921578a0c31c68272382fbef9a1726
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 97b1937e29b4f56df8ef18f92bc8523e757f3328
+PODFILE CHECKSUM: dcf01a755a33502de36a2ef2b7ef6531e5a3adc7
 
 COCOAPODS: 1.10.0

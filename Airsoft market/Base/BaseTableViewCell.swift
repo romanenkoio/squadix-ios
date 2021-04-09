@@ -19,6 +19,7 @@ class BaseTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         action = nil
         _ = getSubviewsOfView(view: self).map({ $0.interactions = [] }) 
     }

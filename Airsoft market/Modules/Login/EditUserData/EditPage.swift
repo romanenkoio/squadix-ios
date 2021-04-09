@@ -123,8 +123,8 @@ class EditPage: BaseViewController {
                 profile?.birthday = date
             }
             
-            profile?.vk = vkField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            profile?.tg = tgField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            profile?.vk = vkField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            profile?.tg = tgField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
             profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -149,8 +149,8 @@ class EditPage: BaseViewController {
             if let date = selectedDate {
                 profile?.birthday = date
             }
-            profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.vk = vkField.text?.trimmingCharacters(in: .whitespacesAndNewlines)

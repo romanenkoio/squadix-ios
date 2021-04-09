@@ -231,14 +231,14 @@ extension NewsPage {
                 
                 for item in newsPosts {
                     sSelf.newsData.append(item)
-                    sSelf.tableView.insertRows(at: [IndexPath(item: sSelf.newsData.count - 1, section: 0)], with: .bottom)
+                    sSelf.tableView.insertRows(at: [IndexPath(item: sSelf.newsData.count - 1, section: 0)], with: .none)
                 }
                 
                 
                 sSelf.tableView.endUpdates()
                 sSelf.isLoadinInProgress = false
                 sSelf.page += 1
-                sSelf.tableView.reloadData()
+//                sSelf.tableView.reloadData()
             } else {
                 sSelf.isLoadinInProgress = false
                 print("[NETWORK] Загружены все посты")
@@ -274,7 +274,7 @@ extension NewsPage {
                 }
                 
                 sSelf.tableView.endUpdates()
-                sSelf.tableView.reloadData()
+//                sSelf.tableView.reloadData()
                 sSelf.isLoadinInProgress = false
                 self?.page += 1
             } else {
@@ -314,7 +314,7 @@ extension NewsPage {
                 
                 sSelf.tableView.insertRows(at: indexPathes, with: .automatic)
                 sSelf.tableView.endUpdates()
-                sSelf.tableView.reloadData()
+//                sSelf.tableView.reloadData()
                 sSelf.isLoadinInProgress = false
                 sSelf.page += 1
             } else {
