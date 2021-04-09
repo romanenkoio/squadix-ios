@@ -244,6 +244,8 @@ extension ProfilePage: UITableViewDataSource {
                     myProfileCell.isUserInteractionEnabled = true
                     guard let profile = currentProfile else { return cell }
                     
+                    myProfileCell.setupCell(profile: profile)
+                    
                     if let picture = profile.profilePictureUrl {
                          myProfileCell.avatarSlider.setupImagesWithUrls([picture])
                     } else if let image = UIImage(named: "avatar_placeholder") {
@@ -272,9 +274,27 @@ extension ProfilePage: UITableViewDataSource {
                     myProfileCell.avatarAction = { [weak self] in
                          self?.didSelectAvatarChange()
                     }
+                    
                     myProfileCell.showAvatarAction = { [weak self] in
                          if profile.profilePictureUrl != nil, let sSelf = self {
                               myProfileCell.avatarSlider.presentFullScreenController(from: sSelf)
+                         }
+                    }
+                    
+                    myProfileCell.tgAction = {
+                         if let tg = profile.tg {
+                             let url = "tg://resolve?domain=\(tg)"
+                             guard let contactUrl = URL.init(string: url) else { return }
+                              UIApplication.shared.open(contactUrl, options: [:])
+                         }
+                    }
+                    
+                    myProfileCell.vkAction = {
+                         if let vk = profile.vk {
+                             guard let url = URL(string: "vk://vk.com/\(vk)") else { return }
+                             if UIApplication.shared.canOpenURL(url) {
+                              UIApplication.shared.open(url, options: [:])
+                             }
                          }
                     }
                     myProfileCell.selectionStyle = .none
