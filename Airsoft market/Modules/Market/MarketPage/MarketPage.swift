@@ -22,12 +22,12 @@ class MarketPage: BaseViewController {
     
     var marketData: [MarketProduct] = [] {
         didSet {
-            tableView.reloadData()
+//            tableView.reloadData()
         }
     }
     var searchMarketData: [MarketProduct] = [] {
         didSet {
-            tableView.reloadData()
+//            tableView.reloadData()
         }
     }
     
@@ -178,7 +178,6 @@ class MarketPage: BaseViewController {
         } else {
             if RealmService.readFilters().filter({$0.status == true}).count == 0 {
                 manager.getCategories { categories in
-                    let filteredCategories = categories.map({$0.name}).sorted(by: {$0 > $1})
                     RealmService.writeFilters(categories.map({Filter(category: $0.name)}))
                     _ = manager.getActiveProductsWithFilters(page: self.page, completion: { [weak self] products in
                         
