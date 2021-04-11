@@ -102,6 +102,25 @@ class Common {
         }
     }
     
-    
+    enum Sorting: String {
+        case upDate = "По дате апа"
+        case low = "Начать с дешевых"
+        case height = "Начать с дорогих"
+        
+        static func getSorting() -> [Sorting] {
+            return [.upDate, .low, .height]
+        }
+        
+        static func reverse(raw: String) -> Sorting {
+            if raw == "По дате апа" {
+                return .upDate
+            } else if raw == "Начать с дешевых" {
+                return .low
+            } else if raw == "Начать с дорогих" {
+                return .height
+            }
+            return .upDate
+        }
+    }
 }
 

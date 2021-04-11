@@ -22,12 +22,12 @@ class MarketPage: BaseViewController {
     
     var marketData: [MarketProduct] = [] {
         didSet {
-//            tableView.reloadData()
+            tableView.reloadData()
         }
     }
     var searchMarketData: [MarketProduct] = [] {
         didSet {
-//            tableView.reloadData()
+            tableView.reloadData()
         }
     }
     
@@ -386,6 +386,8 @@ extension MarketPage: Updatable {
 extension MarketPage: UpdateWithFiltersDelegate {
     func updateWithFilters() {
         page = 0
+        marketData = []
+        searchMarketData = []
         loadData()
         print("[NETWORK] reload products with filters")
     }

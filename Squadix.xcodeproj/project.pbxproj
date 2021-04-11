@@ -58,6 +58,8 @@
 		7F4BF2692581844D00B82D20 /* ConservationPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4BF2672581844D00B82D20 /* ConservationPage.xib */; };
 		7F4BF26D2581890B00B82D20 /* InMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4BF26B2581890B00B82D20 /* InMessageCell.swift */; };
 		7F4BF26E2581890B00B82D20 /* InMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4BF26C2581890B00B82D20 /* InMessageCell.xib */; };
+		7F4F0AAB26237A9B008E3006 /* RadioSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F0AA926237A9B008E3006 /* RadioSelectionCell.swift */; };
+		7F4F0AAC26237A9B008E3006 /* RadioSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4F0AAA26237A9B008E3006 /* RadioSelectionCell.xib */; };
 		7F50F65E247889DD003E3FB4 /* NewsPage+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50F65D247889DD003E3FB4 /* NewsPage+TableView.swift */; };
 		7F510A9725E93ED1009DCB17 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F510A9625E93ED1009DCB17 /* CacheManager.swift */; };
 		7F521FFC24AFBE1300140156 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F521FFB24AFBE1300140156 /* KeychainManager.swift */; };
@@ -320,6 +322,13 @@
 			remoteGlobalIDString = EE6DD8FC166ED967B4261137B1A50A96;
 			remoteInfo = GrowingTextView;
 		};
+		7F4F0AA626237A6D008E3006 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B0B214D775196BA7CA8E17E53048A493;
+			remoteInfo = SDWebImage;
+		};
 		7F6F0C0C25E5324B00CF4F53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
@@ -433,6 +442,8 @@
 		7F4BF2672581844D00B82D20 /* ConservationPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConservationPage.xib; sourceTree = "<group>"; };
 		7F4BF26B2581890B00B82D20 /* InMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMessageCell.swift; sourceTree = "<group>"; };
 		7F4BF26C2581890B00B82D20 /* InMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InMessageCell.xib; sourceTree = "<group>"; };
+		7F4F0AA926237A9B008E3006 /* RadioSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioSelectionCell.swift; sourceTree = "<group>"; };
+		7F4F0AAA26237A9B008E3006 /* RadioSelectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioSelectionCell.xib; sourceTree = "<group>"; };
 		7F50F65D247889DD003E3FB4 /* NewsPage+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsPage+TableView.swift"; sourceTree = "<group>"; };
 		7F510A9625E93ED1009DCB17 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		7F521FFB24AFBE1300140156 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -608,6 +619,7 @@
 		7F14047724885EA60028C907 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7F4F0AA826237A7D008E3006 /* RadioSelectionCell */,
 				7FD70CBD261710DA008C784C /* TeamMemberCell */,
 				7F3D7D472617099E00F020B3 /* TeamAvatarCell */,
 				7F4A6FF225FC238700F77458 /* InputCommentCell */,
@@ -627,8 +639,7 @@
 				7F84BFA025779F4800322CD3 /* LikeCell */,
 				7FBC5A2F257B06D9000B037A /* NotificationCell */,
 				7F4A701625FC23AD00F77458 /* CommentCell */,
-				7FD70CDF26171B31008C784C /* PeopleCollectionCell.swift */,
-				7FD70CE026171B31008C784C /* PeopleCollectionCell.xib */,
+				7F4F0A8826237A6C008E3006 /* PeopleCollectionCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -730,6 +741,7 @@
 				7F6F0C1925E5324B00CF4F53 /* FBLPromises.framework */,
 				7F2D36CE2568644D0087615B /* Realm.framework */,
 				7F2D36D02568644D0087615B /* RealmSwift.framework */,
+				7F4F0AA726237A6D008E3006 /* SDWebImage.framework */,
 				7F84BFB325779F4800322CD3 /* Sentry.framework */,
 				7F2D36D22568644D0087615B /* YoutubePlayer_in_WKWebView.framework */,
 			);
@@ -834,6 +846,24 @@
 				7F4BF2672581844D00B82D20 /* ConservationPage.xib */,
 			);
 			path = ConservationPage;
+			sourceTree = "<group>";
+		};
+		7F4F0A8826237A6C008E3006 /* PeopleCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				7FD70CDF26171B31008C784C /* PeopleCollectionCell.swift */,
+				7FD70CE026171B31008C784C /* PeopleCollectionCell.xib */,
+			);
+			path = PeopleCollectionCell;
+			sourceTree = "<group>";
+		};
+		7F4F0AA826237A7D008E3006 /* RadioSelectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F4F0AA926237A9B008E3006 /* RadioSelectionCell.swift */,
+				7F4F0AAA26237A9B008E3006 /* RadioSelectionCell.xib */,
+			);
+			path = RadioSelectionCell;
 			sourceTree = "<group>";
 		};
 		7F521FFA24AFBA9D00140156 /* Managers */ = {
@@ -1677,6 +1707,13 @@
 			remoteRef = 7F4A700F25FC238700F77458 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7F4F0AA726237A6D008E3006 /* SDWebImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDWebImage.framework;
+			remoteRef = 7F4F0AA626237A6D008E3006 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7F6F0C0D25E5324B00CF4F53 /* FirebaseCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1771,6 +1808,7 @@
 				7F595B3C2480686800D56E74 /* SettingsPage.xib in Resources */,
 				7F96AE3A2617021C00C064BE /* CreateTeamPage.xib in Resources */,
 				7F595B2D248037B700D56E74 /* CategoryCheckboxCell.xib in Resources */,
+				7F4F0AAC26237A9B008E3006 /* RadioSelectionCell.xib in Resources */,
 				7F40280E24C62DB50018E49F /* AddPostPage.xib in Resources */,
 				7F904E462485ADCC00DF8AC5 /* SimpleTextCell.xib in Resources */,
 				7F38F1BD25C5D12600FBD108 /* TermsOfUse.html in Resources */,
@@ -1929,6 +1967,7 @@
 				7F5FD058247DC93900AF7D47 /* NewsShowPage.swift in Sources */,
 				7F54C50624E8E15F005E46D0 /* AddEventPage.swift in Sources */,
 				7F22CA1F255895E400F9DF27 /* MapUpdatable.swift in Sources */,
+				7F4F0AAB26237A9B008E3006 /* RadioSelectionCell.swift in Sources */,
 				7F96AE162616FF4400C064BE /* Team.swift in Sources */,
 				7F7DC40B247C747B00A53E7C /* WhiteButton.swift in Sources */,
 				7FC9049125BF322700CF911E /* TextPage.swift in Sources */,
