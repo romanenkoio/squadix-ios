@@ -23,7 +23,8 @@ class NotificationCell: BaseTableViewCell {
     }
     
     func setupView(notification: DasboardNotification) {
-        mainView.backgroundColor = notification.isReaded ? .white : .promoColor 
+        mainView.backgroundColor = notification.isReaded ? .white : .promoColor
+        notification.type = .invite
         switch notification.type {
         case .decline:
             notificationImageView.image =  UIImage(named: "decline")
@@ -35,11 +36,33 @@ class NotificationCell: BaseTableViewCell {
             notificationImageView.image = UIImage(named: "report")
         case .comment:
             notificationImageView.image = UIImage(named: "comment_notification")
+        case .invite:
+            notificationImageView.image = UIImage(named: "team_placeholder")
+            action = {
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, let topVC = appDelegate.currentViewController else { return }
+                let vc = InvitePage.loadFromNib()
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .overCurrentContext
+                
+                vc.showTeamAction = {
+                    topVC.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
+                }
+                
+                vc.acceptAction = {
+                    
+                }
+                
+                vc.declineAction = {
+                    
+                }
+                
+                topVC.navigationController?.present(vc, animated: true)
+            }
         default:
             print("Error")
         }
         
-        if notification.type != .decline {
+        if notification.type != .decline && notification.type != .invite {
             action = {
                 if let url = notification.url, !url.isEmpty {
                     Deeplink.Handler.shared.handle(deeplink:  Deeplink(url: URL(string: url)!))

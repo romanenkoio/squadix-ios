@@ -15,6 +15,7 @@ class DasboardNotification: Mappable {
     var time: String!
     var url: String?
     var type: Common.NotificationType!
+    var teamId: Int?
     var isReaded: Bool = false
     
     init() { }
@@ -29,6 +30,7 @@ class DasboardNotification: Mappable {
         time           <- map["createdAt"]
         url            <- map["url"]
         isReaded       <- map["readed"]
+        teamId         <- map["teamId"]
         
         if let type =  map["type"].currentValue as? String {
             self.type = Common.shared.notificationType(type: type)

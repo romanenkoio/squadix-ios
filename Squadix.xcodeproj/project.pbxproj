@@ -197,6 +197,8 @@
 		7FE45A782502374C00574B47 /* ObjectInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE45A772502374C00574B47 /* ObjectInteraction.swift */; };
 		7FEB765D24F7886A00B695D3 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB765C24F7886A00B695D3 /* UIButton+Extensions.swift */; };
 		7FEE9C20257D91F900031D43 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEE9C1F257D91F900031D43 /* UserNotifications.swift */; };
+		7FF2939226276D2100275FEE /* InvitePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2939026276D2100275FEE /* InvitePage.swift */; };
+		7FF2939326276D2100275FEE /* InvitePage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF2939126276D2100275FEE /* InvitePage.xib */; };
 		7FFD7E48248D5DFD00825AEF /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD7E47248D5DFD00825AEF /* UIDevice+Extensions.swift */; };
 		7FFE4C5A24771CD800212BAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFE4C5924771CD800212BAB /* AppDelegate.swift */; };
 		7FFE4C6124771CD800212BAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FFE4C5F24771CD800212BAB /* Main.storyboard */; };
@@ -581,6 +583,8 @@
 		7FE45A772502374C00574B47 /* ObjectInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectInteraction.swift; sourceTree = "<group>"; };
 		7FEB765C24F7886A00B695D3 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		7FEE9C1F257D91F900031D43 /* UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
+		7FF2939026276D2100275FEE /* InvitePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitePage.swift; sourceTree = "<group>"; };
+		7FF2939126276D2100275FEE /* InvitePage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitePage.xib; sourceTree = "<group>"; };
 		7FFD7E47248D5DFD00825AEF /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		7FFE4C5624771CD800212BAB /* Squadix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Squadix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FFE4C5924771CD800212BAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -779,8 +783,8 @@
 		7F3D7D24261706E400F020B3 /* TeamPage */ = {
 			isa = PBXGroup;
 			children = (
-				7F3D7D41261706F900F020B3 /* TeamPage.swift */,
-				7F3D7D42261706F900F020B3 /* TeamPage.xib */,
+				7FF2938F26276C8400275FEE /* InvitePage */,
+				7FF2938E26276C7A00275FEE /* TeamPage */,
 			);
 			path = TeamPage;
 			sourceTree = "<group>";
@@ -1073,11 +1077,7 @@
 			isa = PBXGroup;
 			children = (
 				7F14047724885EA60028C907 /* Cells */,
-				7F7DC408247C740200A53E7C /* OliveButton.swift */,
-				7F7DC40A247C747B00A53E7C /* WhiteButton.swift */,
-				7F2F005C247D145D00CA886F /* StrikeInputField.swift */,
-				7F9B1463247EAB34007D4819 /* CustomTableHeaderView.swift */,
-				7F595B36248052E900D56E74 /* PopupView.swift */,
+				7FF2938D26276C6100275FEE /* CustomViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1436,6 +1436,36 @@
 				7FE45A722501848A00574B47 /* ImagePreviewPage.xib */,
 			);
 			path = ImagePreviewPage;
+			sourceTree = "<group>";
+		};
+		7FF2938D26276C6100275FEE /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				7F7DC408247C740200A53E7C /* OliveButton.swift */,
+				7F7DC40A247C747B00A53E7C /* WhiteButton.swift */,
+				7F2F005C247D145D00CA886F /* StrikeInputField.swift */,
+				7F9B1463247EAB34007D4819 /* CustomTableHeaderView.swift */,
+				7F595B36248052E900D56E74 /* PopupView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		7FF2938E26276C7A00275FEE /* TeamPage */ = {
+			isa = PBXGroup;
+			children = (
+				7F3D7D41261706F900F020B3 /* TeamPage.swift */,
+				7F3D7D42261706F900F020B3 /* TeamPage.xib */,
+			);
+			path = TeamPage;
+			sourceTree = "<group>";
+		};
+		7FF2938F26276C8400275FEE /* InvitePage */ = {
+			isa = PBXGroup;
+			children = (
+				7FF2939026276D2100275FEE /* InvitePage.swift */,
+				7FF2939126276D2100275FEE /* InvitePage.xib */,
+			);
+			path = InvitePage;
 			sourceTree = "<group>";
 		};
 		7FFE4C4D24771CD800212BAB = {
@@ -1836,6 +1866,7 @@
 				7F3D7D44261706F900F020B3 /* TeamPage.xib in Resources */,
 				7FBE31DE25B5DBD00046898E /* IncomePreviewMessageCell.xib in Resources */,
 				7F4BF26E2581890B00B82D20 /* InMessageCell.xib in Resources */,
+				7FF2939326276D2100275FEE /* InvitePage.xib in Resources */,
 				7FE45A742501848A00574B47 /* ImagePreviewPage.xib in Resources */,
 				7F9B147A247F0530007D4819 /* ProfileSearchCell.xib in Resources */,
 				7F9B1462247EA4F8007D4819 /* AuthorCell.xib in Resources */,
@@ -1966,6 +1997,7 @@
 				7F31B1EF2600C6A600454180 /* URL+Extensions.swift in Sources */,
 				7F5FD058247DC93900AF7D47 /* NewsShowPage.swift in Sources */,
 				7F54C50624E8E15F005E46D0 /* AddEventPage.swift in Sources */,
+				7FF2939226276D2100275FEE /* InvitePage.swift in Sources */,
 				7F22CA1F255895E400F9DF27 /* MapUpdatable.swift in Sources */,
 				7F4F0AAB26237A9B008E3006 /* RadioSelectionCell.swift in Sources */,
 				7F96AE162616FF4400C064BE /* Team.swift in Sources */,

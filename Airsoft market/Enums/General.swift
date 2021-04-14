@@ -66,6 +66,7 @@ class Common {
         case report
         case none
         case comment
+        case invite
     }
     
     func notificationType(type: String) -> Common.NotificationType {
@@ -82,6 +83,8 @@ class Common {
             return .report
         case "COMMENT":
             return .comment
+        case "INVITE":
+            return .invite
         default:
             return .none
         }

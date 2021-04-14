@@ -49,6 +49,10 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZi-sw-WVC">
                         <rect key="frame" x="5" y="5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="3J6-hn-CBe"/>
+                            <constraint firstAttribute="height" constant="50" id="5le-Fl-0qE"/>
+                        </constraints>
                         <connections>
                             <action selector="tapAvatarAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="AXE-Ql-Ioe"/>
                         </connections>
