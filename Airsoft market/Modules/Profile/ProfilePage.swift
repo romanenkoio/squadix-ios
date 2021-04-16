@@ -285,7 +285,13 @@ extension ProfilePage: UITableViewDataSource {
                          if let tg = profile.tg {
                              let url = "tg://resolve?domain=\(tg)"
                              guard let contactUrl = URL.init(string: url) else { return }
-                              UIApplication.shared.open(contactUrl, options: [:])
+                              if UIApplication.shared.canOpenURL(contactUrl) {
+                                   UIApplication.shared.open(contactUrl, options: [:])
+                              } else {
+                                   guard let webUrl = URL(string: "https://t.me/\(tg)") else { return }
+                                   UIApplication.shared.open(webUrl, options: [:])
+                              }
+                              
                          }
                     }
                     
@@ -294,6 +300,9 @@ extension ProfilePage: UITableViewDataSource {
                              guard let url = URL(string: "vk://vk.com/\(vk)") else { return }
                              if UIApplication.shared.canOpenURL(url) {
                               UIApplication.shared.open(url, options: [:])
+                             } else {
+                              guard let webUrl = URL(string: "https://vk.com/\(vk)") else { return }
+                              UIApplication.shared.open(webUrl, options: [:])
                              }
                          }
                     }

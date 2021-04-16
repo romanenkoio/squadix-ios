@@ -24,7 +24,7 @@ class NotificationCell: BaseTableViewCell {
     
     func setupView(notification: DasboardNotification) {
         mainView.backgroundColor = notification.isReaded ? .white : .promoColor
-        notification.type = .invite
+
         switch notification.type {
         case .decline:
             notificationImageView.image =  UIImage(named: "decline")
