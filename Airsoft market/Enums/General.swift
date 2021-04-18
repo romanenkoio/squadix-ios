@@ -110,6 +110,17 @@ class Common {
         case low = "Начать с дешевых"
         case height = "Начать с дорогих"
         
+        var sortingKey: String {
+            switch self {
+            case .upDate:
+                return "upDate"
+            case .low:
+                return "lowPrice"
+            case .height:
+                return "heightPrice"
+            }
+        }
+        
         static func getSorting() -> [Sorting] {
             return [.upDate, .low, .height]
         }
