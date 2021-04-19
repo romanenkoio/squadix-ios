@@ -106,34 +106,34 @@ class Common {
     }
     
     enum Sorting: String {
-        case upDate = "По дате апа"
-        case low = "Начать с дешевых"
-        case height = "Начать с дорогих"
+        case standart = "По дате апа"
+        case priceASC = "Начать с дешевых"
+        case priceDESC = "Начать с дорогих"
         
         var sortingKey: String {
             switch self {
-            case .upDate:
-                return "upDate"
-            case .low:
-                return "lowPrice"
-            case .height:
-                return "heightPrice"
+            case .standart:
+                return "DEFAULT"
+            case .priceASC:
+                return "PRICE_ASC"
+            case .priceDESC:
+                return "PRICE_DESC"
             }
         }
         
         static func getSorting() -> [Sorting] {
-            return [.upDate, .low, .height]
+            return [.standart, .priceASC, .priceDESC]
         }
         
         static func reverse(raw: String) -> Sorting {
             if raw == "По дате апа" {
-                return .upDate
+                return .standart
             } else if raw == "Начать с дешевых" {
-                return .low
+                return .priceASC
             } else if raw == "Начать с дорогих" {
-                return .height
+                return .priceDESC
             }
-            return .upDate
+            return .standart
         }
     }
 }

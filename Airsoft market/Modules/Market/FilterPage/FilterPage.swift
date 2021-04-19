@@ -33,7 +33,7 @@ class FilterPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var menu = FiltersMenuPoint.getPoints()
     var sorting = Common.Sorting.getSorting()
-    var selectedSorting = Common.Sorting.upDate
+    var selectedSorting = Common.Sorting.standart
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +53,8 @@ class FilterPage: BaseViewController {
     @IBAction func saveFiltersAction(_ sender: Any) {
         RealmService.writeFilters(categoryFilters)
         saveButton.isEnabled = false
-        delegate?.updateWithFilters()
         UsersData.shared.savedSorting = selectedSorting.rawValue
+        delegate?.updateWithFilters()
         showPopup(title: "Фильтры установлены!")
     }
 }

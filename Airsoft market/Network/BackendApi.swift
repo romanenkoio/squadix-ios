@@ -240,7 +240,7 @@ extension StrikeServise: TargetType {
             if filters.count > 0 {
                 params["categories"] = filters.asParams()
             }
-            params["sorting"] = Common.Sorting.reverse(raw: UsersData.shared.savedSorting).sortingKey
+            params["productSort"] = Common.Sorting.reverse(raw: UsersData.shared.savedSorting).sortingKey
         case  .moderatingProducts(let page):
             params["page"] = page
         case .events(let page), .posts(let page):

@@ -83,7 +83,7 @@ final class UsersData {
     var savedSorting: String {
         get {
             let savedSorting = UserDefaults.standard.value(forKey: #function) as? String
-            return savedSorting ?? Common.Sorting.upDate.rawValue
+            return savedSorting ?? Common.Sorting.standart.rawValue
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: #function)
