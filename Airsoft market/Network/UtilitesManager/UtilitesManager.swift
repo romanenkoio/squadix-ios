@@ -41,4 +41,19 @@ final class UtilitesManager {
             }
         }
     }
+    
+    func getWeather(lat: Double, long: Double, completion: @escaping (WeatherData) -> Void, failure: ((String?) -> Void)? = nil) {
+        provider.request(.getWeather(lat: lat, long: long)) { result in
+            switch result {
+            case let .success(response):
+                guard let weather = try? response.mapObject(WeatherData.self) else {
+                    failure?("Cannot parse address responce")
+                    return
+                }
+                completion(weather)
+            case .failure(let error):
+                failure?(error.errorDescription)
+            }
+        }
+    }
 }

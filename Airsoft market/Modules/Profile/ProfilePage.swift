@@ -145,9 +145,9 @@ class ProfilePage: BaseViewController {
                }
           }
           
-          actionButton.addItem(title: "Создать команду", image: UIImage(named: "createTeam")) { [weak self] item in
-               self?.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
-          }
+//          actionButton.addItem(title: "Создать команду", image: UIImage(named: "createTeam")) { [weak self] item in
+//               self?.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
+//          }
           
           actionButton.configureDefaultItem { item in
                item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)

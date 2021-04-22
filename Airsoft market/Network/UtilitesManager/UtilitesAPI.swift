@@ -12,6 +12,7 @@ import Moya
 enum UtilitesService {
     case getAdress(lat: Double, long: Double)
     case createNotification(message: String, url: String)
+    case getWeather(lat: Double, long: Double)
 }
 
 extension UtilitesService: TargetType {
@@ -19,11 +20,13 @@ extension UtilitesService: TargetType {
         switch self {
         case .getAdress:
             return URL(string: "https://locationiq.com")!
+        case .getWeather:
+            return URL(string: "https://api.openweathermap.org")!
         default:
             #if DEBUG
-            return URL(string: "http://18.158.147.66")!
+            return URL(string: "https://18.158.147.66")!
             #else
-            return URL(string: "http://18.158.147.66")!
+            return URL(string: "https://18.158.147.66")!
             #endif
         }
     }
@@ -34,12 +37,14 @@ extension UtilitesService: TargetType {
             return "/v1/reverse.php"
         case .createNotification:
             return "/notifications/"
+        case .getWeather:
+            return "/data/2.5/onecall"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getAdress:
+        case .getAdress, .getWeather:
             return .get
         case .createNotification:
             return .post
@@ -73,8 +78,13 @@ extension UtilitesService: TargetType {
         case .createNotification(let message, let url):
             params["message"] = message
             params["url"] = url
-        default:
-            return nil
+        case .getWeather(let lat, let long):
+            params["appid"] = AppConstatns.weatherKey
+            params["lat"] = lat
+            params["lon"] = long
+            params["exclude"] = "minutely,hourly,alerts,current"
+            params["lang"] = "ru"
+            params["units"] = "metric"
         }
         print(params)
         
@@ -83,7 +93,7 @@ extension UtilitesService: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .getAdress:
+        case .getAdress, .getWeather:
             return nil
         default:
             return ["Authorization" : "Bearer " + (KeychainManager.accessToken ?? "")]
@@ -92,10 +102,8 @@ extension UtilitesService: TargetType {
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .getAdress, .createNotification:
+        case .getAdress, .createNotification, .getWeather:
             return URLEncoding.queryString
-        default:
-            return JSONEncoding.prettyPrinted
         }
     }
 }

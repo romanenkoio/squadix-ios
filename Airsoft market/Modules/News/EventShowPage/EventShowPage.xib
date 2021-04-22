@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,6 +33,7 @@
                 </tableView>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="GsM-74-a01">
                     <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="color" name="mainStrikeColor"/>
                 </activityIndicatorView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FTF-jW-K6J" customClass="GrowingTextView" customModule="GrowingTextView">
                     <rect key="frame" x="5" y="812" width="349" height="40"/>
@@ -138,6 +140,9 @@
         <image name="message" width="170.66667175292969" height="170.66667175292969"/>
         <image name="more" width="48" height="48"/>
         <image name="send" width="48" height="48"/>
+        <namedColor name="mainStrikeColor">
+            <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

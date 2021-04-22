@@ -25,10 +25,18 @@ enum EventMenuPoint {
     case eventTime
     case like
     case comments
+    case weather
     
     static func getManuForEvent(event: Event) -> (menu: [[EventMenuPoint]], headers: [String]) {
         let authorSection: [EventMenuPoint] = [ .authorInfo, .images]
-        let firstSection: [EventMenuPoint] = [.eventTime, .starteEventTime, .eventCoordinates, .startCoordinates]
+        var firstSection: [EventMenuPoint] = []
+        
+        if event.startTime.timeIntervalSince1970 - Date().timeIntervalSince1970 < 604800 {
+            firstSection = [.eventTime, .starteEventTime, .eventCoordinates, .startCoordinates, .weather]
+        } else {
+            firstSection = [.eventTime, .starteEventTime, .eventCoordinates, .startCoordinates]
+        }
+        
         let secondSection: [EventMenuPoint] =  [.decription]
         let likeSection: [EventMenuPoint] = [.like]
         let commentSection: [EventMenuPoint] = [.comments]
@@ -103,6 +111,7 @@ class EventShowPage: BaseViewController {
         commentTextView.isHidden = event.isPreview
         commentSendButton.isHidden = event.isPreview
         commentSendButton.isEnabled = false
+        
     }
     
     @IBAction func sendCommentAction(_ sender: Any) {
@@ -344,6 +353,39 @@ extension EventShowPage: UITableViewDataSource {
                     
                 }
                 return profileCell
+            }
+        case .weather:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ActionCell.self), for: indexPath)
+            if let weatherCell = cell as? ActionCell {
+
+                weatherCell.actionDescription.text = "Проверить погоду"
+                weatherCell.action = { [weak self] in
+                    self?.spinner.startAnimating()
+                    if event.startTime.timeIntervalSince1970 - Date().timeIntervalSince1970 < 432000 {
+                        let utilites = UtilitesManager()
+                        guard let lat = event.eventStartLatitude, let long = event.eventStartLongitude else { return }
+                        utilites.getWeather(lat: lat, long: long) { weatherData in
+                            self?.spinner.stopAnimating()
+                            var eventWeathert: DailyWeather? = nil
+                            
+                            for item in weatherData.data {
+                                guard let date = item.date else { return }
+                                if event.startTime.hasSame(.day, as: date) {
+                                    eventWeathert = item
+                                    break
+                                }
+                            }
+                            
+                            guard let finalWeather = eventWeathert else { return }
+                            let vc = WeaterPopup.loadFromNib()
+                            vc.weather = finalWeather
+                            vc.modalTransitionStyle = .crossDissolve
+                            vc.modalPresentationStyle = .overCurrentContext
+                            self?.navigationController?.present(vc, animated: true)
+                        }
+                    }
+                }
+                return weatherCell
             }
         case .startCoordinates:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ActionCell.self), for: indexPath)

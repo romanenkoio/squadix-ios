@@ -95,6 +95,9 @@
 		7F615E162491446300006C8D /* SelectPickPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F615E142491446300006C8D /* SelectPickPage.xib */; };
 		7F67540E24D22A1E004981CC /* GameMapPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F67540C24D22A1E004981CC /* GameMapPage.swift */; };
 		7F67540F24D22A1E004981CC /* GameMapPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F67540D24D22A1E004981CC /* GameMapPage.xib */; };
+		7F68F435262E22EF008FC0D5 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68F434262E22EF008FC0D5 /* WeatherData.swift */; };
+		7F68F476262E326E008FC0D5 /* WeaterPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68F474262E326E008FC0D5 /* WeaterPopup.swift */; };
+		7F68F477262E326E008FC0D5 /* WeaterPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F68F475262E326E008FC0D5 /* WeaterPopup.xib */; };
 		7F78717424D9E43700E501C2 /* EditPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F78717224D9E43600E501C2 /* EditPage.xib */; };
 		7F78717524D9E43700E501C2 /* EditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F78717324D9E43700E501C2 /* EditPage.swift */; };
 		7F7DC3FB247C010E00A53E7C /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DC3F9247C010E00A53E7C /* ProfilePage.swift */; };
@@ -481,6 +484,9 @@
 		7F615E142491446300006C8D /* SelectPickPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPickPage.xib; sourceTree = "<group>"; };
 		7F67540C24D22A1E004981CC /* GameMapPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMapPage.swift; sourceTree = "<group>"; };
 		7F67540D24D22A1E004981CC /* GameMapPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameMapPage.xib; sourceTree = "<group>"; };
+		7F68F434262E22EF008FC0D5 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		7F68F474262E326E008FC0D5 /* WeaterPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaterPopup.swift; sourceTree = "<group>"; };
+		7F68F475262E326E008FC0D5 /* WeaterPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeaterPopup.xib; sourceTree = "<group>"; };
 		7F78717224D9E43600E501C2 /* EditPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditPage.xib; path = "Airsoft market/Modules/Login/EditUserData/EditPage.xib"; sourceTree = SOURCE_ROOT; };
 		7F78717324D9E43700E501C2 /* EditPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPage.swift; path = "Airsoft market/Modules/Login/EditUserData/EditPage.swift"; sourceTree = SOURCE_ROOT; };
 		7F7DC3F9247C010E00A53E7C /* ProfilePage.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
@@ -697,6 +703,7 @@
 				7F31B1CF2600BF2800454180 /* Reports.swift */,
 				7FB0BD50261283D50069775C /* Version.swift */,
 				7F96AE152616FF4400C064BE /* Team.swift */,
+				7F68F434262E22EF008FC0D5 /* WeatherData.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1031,6 +1038,24 @@
 			path = GameMap;
 			sourceTree = "<group>";
 		};
+		7F68F472262E31A4008FC0D5 /* FullPicturePage */ = {
+			isa = PBXGroup;
+			children = (
+				7F93DE3724D0237100039378 /* FullPicturePage.swift */,
+				7F93DE3824D0237100039378 /* FullPicturePage.xib */,
+			);
+			path = FullPicturePage;
+			sourceTree = "<group>";
+		};
+		7F68F473262E3250008FC0D5 /* WeatherPopup */ = {
+			isa = PBXGroup;
+			children = (
+				7F68F474262E326E008FC0D5 /* WeaterPopup.swift */,
+				7F68F475262E326E008FC0D5 /* WeaterPopup.xib */,
+			);
+			path = WeatherPopup;
+			sourceTree = "<group>";
+		};
 		7F78717124D9E41600E501C2 /* UserDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1130,8 +1155,8 @@
 		7F93DE3624D0230500039378 /* Popups */ = {
 			isa = PBXGroup;
 			children = (
-				7F93DE3724D0237100039378 /* FullPicturePage.swift */,
-				7F93DE3824D0237100039378 /* FullPicturePage.xib */,
+				7F68F473262E3250008FC0D5 /* WeatherPopup */,
+				7F68F472262E31A4008FC0D5 /* FullPicturePage */,
 			);
 			path = Popups;
 			sourceTree = "<group>";
@@ -1877,6 +1902,7 @@
 				7F93DE3A24D0237100039378 /* FullPicturePage.xib in Resources */,
 				7F2FD85325586EC6007EA305 /* BookmarkPage.xib in Resources */,
 				7FE17316247884D000CBAFB3 /* NewsPage.xib in Resources */,
+				7F68F477262E326E008FC0D5 /* WeaterPopup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1956,6 +1982,7 @@
 				7F510A9725E93ED1009DCB17 /* CacheManager.swift in Sources */,
 				7F96AE392617021C00C064BE /* CreateTeamPage.swift in Sources */,
 				7F2A127F25437C050041162A /* QRGenerator.swift in Sources */,
+				7F68F476262E326E008FC0D5 /* WeaterPopup.swift in Sources */,
 				7F96AE352617004600C064BE /* Creatable.swift in Sources */,
 				7FC4D55425F2502B00CCBACF /* EventDescriptionPage.swift in Sources */,
 				7FC4D6712554549300F1E508 /* NetworkMonitor.swift in Sources */,
@@ -2028,6 +2055,7 @@
 				7FB34601254E27BE00851FF6 /* Filters.swift in Sources */,
 				7FCFDD4924BA7A7B00D8660F /* DebugCell.swift in Sources */,
 				7FD70CDC261710EF008C784C /* TeamMemberCell.swift in Sources */,
+				7F68F435262E22EF008FC0D5 /* WeatherData.swift in Sources */,
 				7FCFDD4424BA781F00D8660F /* DebugPage.swift in Sources */,
 				7F295CBE247AC93A00B47F1F /* ProductItem.swift in Sources */,
 				7F96166325C4705D00C6C8F7 /* Path.swift in Sources */,
@@ -2230,7 +2258,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2238,7 +2266,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
 				PROVISIONING_PROFILE_SPECIFIER = SquadixDev;
@@ -2257,7 +2285,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2265,7 +2293,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
 				PROVISIONING_PROFILE_SPECIFIER = SquadixDev;
