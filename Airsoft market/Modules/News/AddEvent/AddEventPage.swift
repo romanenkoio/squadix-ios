@@ -124,12 +124,12 @@ class AddEventPage: BaseViewController {
             return
         }
         
-        guard let startCoordText = startPointCoordinate.text, !startCoordText.isEmpty, Validator.shared.validate(string: startCoordText, pattern: Validator.Regexp.coordinates.rawValue), let startCoord = startCoordText.getCoordinates() else {
+        guard let startCoordText = startPointCoordinate.text?.trimmingCharacters(in: .whitespacesAndNewlines), !startCoordText.isEmpty, Validator.shared.validate(string: startCoordText, pattern: Validator.Regexp.coordinates.rawValue), let startCoord = startCoordText.getCoordinates() else {
             showAlert(title: AlertErrors.coordinatesError.rawValue)
             self.spinner.stopAnimating()
             return
         }
-        guard let сoordText = eventCoordinate.text, !сoordText.isEmpty, Validator.shared.validate(string: сoordText, pattern: Validator.Regexp.coordinates.rawValue), let coord = сoordText.getCoordinates() else {
+        guard let сoordText = eventCoordinate.text?.trimmingCharacters(in: .whitespacesAndNewlines), !сoordText.isEmpty, Validator.shared.validate(string: сoordText, pattern: Validator.Regexp.coordinates.rawValue), let coord = сoordText.getCoordinates() else {
             showAlert(title: AlertErrors.coordinatesError.rawValue)
             self.spinner.stopAnimating()
             return
