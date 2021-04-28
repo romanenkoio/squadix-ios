@@ -549,9 +549,11 @@ extension EventShowPage: Commentable {
     }
     
     func sendComment() {
+        commentSendButton.isEnabled = false
         spinner.startAnimating()
         guard let id = event?.id, let text = commentTextView.text else { return }
         networkManager.postComment(postType: NewsType.event, postID: id, text: text) { [weak self] in
+            self?.commentSendButton.isEnabled = true
             self?.spinner.stopAnimating()
             self?.getComment()
             self?.commentTextView.text = ""
@@ -559,6 +561,7 @@ extension EventShowPage: Commentable {
         } failure: { [weak self] in
             self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
             self?.spinner.stopAnimating()
+            self?.commentSendButton.isEnabled = true
         }
 
     }

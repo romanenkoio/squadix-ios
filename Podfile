@@ -10,13 +10,10 @@ target 'Squadix' do
 	pod "ImageSlideshow/Kingfisher"
 	pod "YoutubePlayer-in-WKWebView"
 	pod 'KeychainAccess'
-
 	pod 'GoogleMaps', '~> 3.9.0'
 	pod 'Google-Maps-iOS-Utils', '~> 3.1.4'
 	pod 'Firebase/Analytics'
-
     	pod 'RealmSwift', '~> 5.0.1', :modular_headers => true
-
 	pod 'IQKeyboardManagerSwift'
   	pod 'Moya'
     	pod 'Moya-ObjectMapper'

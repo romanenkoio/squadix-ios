@@ -368,16 +368,19 @@ extension NewsShowPage: Commentable {
     }
     
     func sendComment() {
+        commentSendButton.isEnabled = false
         spinner.startAnimating()
         guard let id = post?.id, let text = growingTextView.text else { return }
         networkManager.postComment(postType: NewsType.feed, postID: id, text: text) { [weak self] in
             self?.spinner.stopAnimating()
+            self?.commentSendButton.isEnabled = true
             self?.getComment()
             self?.growingTextView.text = ""
             self?.shouldScroll = true
         } failure: { [weak self] in
             self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
             self?.spinner.stopAnimating()
+            self?.commentSendButton.isEnabled = true
         }
 
     }
