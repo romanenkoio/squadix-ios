@@ -21,4 +21,42 @@ class MarketCell: UITableViewCell {
         productImage.roundedBottomCornerImage()
         cellView.dropShadow()
     }
+    
+    func setupProduct(_ item: MarketProduct) {
+        productNameLabel.text = item.productName
+        let reg = item.productRegion == nil ? "Город не указан" : item.productRegion
+        regionLabel.text = reg
+        
+        productImage.loadImageWith(item.picturesUrl[0])
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        if let date = formatter.date(from: item.createdAt) {
+            productDateLabel.text = date.dateToHumanString()
+        }
+        
+        if let price = item.price {
+            productPriceLabel.text = "\(price) руб"
+        }
+        selectionStyle = .none
+    }
+    
+    func setupPromo(_ item: MarketProduct) {
+        productNameLabel.text = item.productName
+        productImage.loadImageWith(item.picturesUrl[0])
+        if let price = item.price {
+            productPriceLabel.text = "\(price) руб"
+        }
+        selectionStyle = .none
+        cellView.backgroundColor = .promoColor
+        productDateLabel.text = "Товар партнёра"
+        regionLabel.isHidden = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        regionLabel.isHidden = false
+        productDateLabel.isHidden = false
+        cellView.backgroundColor = UIColor.white
+    }
 }

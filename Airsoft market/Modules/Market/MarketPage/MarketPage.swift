@@ -255,23 +255,10 @@ extension MarketPage: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MarketCell.self), for: indexPath)
         if let marketCell = cell as? MarketCell {
-            marketCell.productNameLabel.text = marketData[indexPath.row].productName
-            let reg = marketData[indexPath.row].productRegion == nil ? "Город не указан" : marketData[indexPath.row].productRegion
-            marketCell.regionLabel.text = reg
-            
-            marketCell.productImage.loadImageWith(marketData[indexPath.row].picturesUrl[0])
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-            if let date = formatter.date(from: marketData[indexPath.row].createdAt) {
-                marketCell.productDateLabel.text = date.dateToHumanString()
-            }
-            
-            if let price = marketData[indexPath.row].price {
-                marketCell.productPriceLabel.text = "\(price) руб"
-            }
-            marketCell.selectionStyle = .none
-            
+            let item = marketData[indexPath.row]
+
+            item.promoUrl != nil ? marketCell.setupPromo(item) : marketCell.setupProduct(item)
+    
             return marketCell
         }
         return cell
@@ -281,9 +268,16 @@ extension MarketPage: UITableViewDataSource {
 extension MarketPage: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let vc = VCFabric.getProductPage(product: marketData[indexPath.row])
-        vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        let item = marketData[indexPath.row]
+        if let promoUrl = item.promoUrl {
+            if let url = URL(string: promoUrl) {
+                UIApplication.shared.open(url)
+            }
+        } else {
+            let vc = VCFabric.getProductPage(product: marketData[indexPath.row])
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
