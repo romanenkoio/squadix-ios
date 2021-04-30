@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,6 +16,7 @@
                 <outlet property="collectionView" destination="ALp-63-QW9" id="anE-6j-gel"/>
                 <outlet property="descriptionTextView" destination="Hxv-no-woV" id="6YE-eh-uBZ"/>
                 <outlet property="postButton" destination="TZJ-CG-due" id="hlQ-sO-Q0t"/>
+                <outlet property="postLabel" destination="HtK-O8-btw" id="eTh-8R-IHL"/>
                 <outlet property="postSwitcher" destination="tZx-Pb-DPx" id="J3J-Lc-jnE"/>
                 <outlet property="priceTextField" destination="qNk-lf-DHO" id="4jC-yZ-WvP"/>
                 <outlet property="productTextField" destination="Y9a-4m-Xxg" id="2yZ-W0-4xc"/>
@@ -49,44 +50,49 @@
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
-                                <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Y9a-4m-Xxg" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="170" width="335" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                            <integer key="value" value="30"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Категория" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qX7-gg-mCJ" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="224" width="335" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Цена" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="qNk-lf-DHO" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="278" width="335" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" keyboardType="numberPad"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                            <integer key="value" value="7"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </textField>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mCL-9J-tEP">
+                                    <rect key="frame" x="20" y="170" width="335" height="196"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Y9a-4m-Xxg" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                    <integer key="value" value="30"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Категория" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qX7-gg-mCJ" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="54" width="335" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Цена" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="qNk-lf-DHO" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="108" width="335" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" keyboardType="numberPad"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                    <integer key="value" value="7"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Регион" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="FnT-XC-63E" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="162" width="335" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
+                                        </textField>
+                                    </subviews>
+                                </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSc-hJ-gMr">
-                                    <rect key="frame" x="20" y="386" width="335" height="21"/>
+                                    <rect key="frame" x="20" y="386" width="335" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Регион" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="FnT-XC-63E" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="332" width="335" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
-                                </textField>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Hxv-no-woV">
-                                    <rect key="frame" x="20" y="412" width="335" height="114"/>
+                                    <rect key="frame" x="20" y="411.5" width="335" height="115"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="w1N-VL-fvq"/>
@@ -116,56 +122,47 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отправка почтой" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtK-O8-btw">
-                                    <rect key="frame" x="20" y="556" width="276" height="21"/>
+                                    <rect key="frame" x="20" y="556.5" width="276" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tZx-Pb-DPx">
-                                    <rect key="frame" x="306" y="551" width="51" height="31"/>
+                                    <rect key="frame" x="306" y="551.5" width="51" height="31"/>
                                 </switch>
-                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="L2f-RI-FG2">
-                                    <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="L2f-RI-FG2">
+                                    <rect key="frame" x="169" y="1000" width="37" height="37"/>
                                     <color key="color" name="mainStrikeColor"/>
                                 </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="qNk-lf-DHO" firstAttribute="trailing" secondItem="Y9a-4m-Xxg" secondAttribute="trailing" id="13D-CU-Qda"/>
                                 <constraint firstAttribute="trailing" secondItem="ALp-63-QW9" secondAttribute="trailing" constant="10" id="1DS-41-su5"/>
-                                <constraint firstAttribute="trailing" secondItem="Y9a-4m-Xxg" secondAttribute="trailing" constant="20" id="1aA-q7-Yez"/>
-                                <constraint firstItem="hSc-hJ-gMr" firstAttribute="trailing" secondItem="Y9a-4m-Xxg" secondAttribute="trailing" id="22Y-XJ-ZsY"/>
-                                <constraint firstItem="Y9a-4m-Xxg" firstAttribute="top" secondItem="ALp-63-QW9" secondAttribute="bottom" constant="20" id="4Bu-cX-dmk"/>
+                                <constraint firstItem="mCL-9J-tEP" firstAttribute="top" secondItem="ALp-63-QW9" secondAttribute="bottom" constant="20" id="4Cn-vq-LR0"/>
                                 <constraint firstItem="L2f-RI-FG2" firstAttribute="centerX" secondItem="Bx5-bX-1bm" secondAttribute="centerX" id="5d9-3p-3Ad"/>
                                 <constraint firstItem="tZx-Pb-DPx" firstAttribute="centerY" secondItem="HtK-O8-btw" secondAttribute="centerY" id="6mB-Xs-rcb"/>
-                                <constraint firstItem="FnT-XC-63E" firstAttribute="top" secondItem="qNk-lf-DHO" secondAttribute="bottom" constant="20" id="7V7-AM-HcU"/>
                                 <constraint firstItem="TZJ-CG-due" firstAttribute="leading" secondItem="QQK-TQ-HlK" secondAttribute="trailing" constant="20" id="8ot-Qc-B8r"/>
-                                <constraint firstItem="hSc-hJ-gMr" firstAttribute="leading" secondItem="Y9a-4m-Xxg" secondAttribute="leading" id="9Ng-xi-UdQ"/>
                                 <constraint firstItem="L2f-RI-FG2" firstAttribute="centerY" secondItem="Bx5-bX-1bm" secondAttribute="centerY" id="APR-0d-lgd"/>
+                                <constraint firstItem="HtK-O8-btw" firstAttribute="leading" secondItem="mCL-9J-tEP" secondAttribute="leading" id="CLn-jk-x3F"/>
+                                <constraint firstItem="tZx-Pb-DPx" firstAttribute="trailing" secondItem="mCL-9J-tEP" secondAttribute="trailing" id="EGp-gW-Veq"/>
                                 <constraint firstAttribute="trailing" secondItem="TZJ-CG-due" secondAttribute="trailing" constant="17" id="GMP-Ba-iCN"/>
+                                <constraint firstAttribute="trailing" secondItem="mCL-9J-tEP" secondAttribute="trailing" constant="20" id="HnW-CT-ngp"/>
                                 <constraint firstItem="HtK-O8-btw" firstAttribute="top" secondItem="Hxv-no-woV" secondAttribute="bottom" constant="30" id="IQ8-Ps-mmy"/>
-                                <constraint firstItem="hSc-hJ-gMr" firstAttribute="top" secondItem="FnT-XC-63E" secondAttribute="bottom" constant="20" id="JiO-Lj-Wfz"/>
+                                <constraint firstItem="hSc-hJ-gMr" firstAttribute="top" secondItem="mCL-9J-tEP" secondAttribute="bottom" constant="20" id="Kmj-CX-hIS"/>
                                 <constraint firstItem="TZJ-CG-due" firstAttribute="centerY" secondItem="QQK-TQ-HlK" secondAttribute="centerY" id="Nyx-Sa-GsU"/>
-                                <constraint firstItem="FnT-XC-63E" firstAttribute="leading" secondItem="Y9a-4m-Xxg" secondAttribute="leading" id="OTf-4p-8ke"/>
                                 <constraint firstItem="tZx-Pb-DPx" firstAttribute="leading" secondItem="HtK-O8-btw" secondAttribute="trailing" constant="10" id="OzD-di-iaR"/>
-                                <constraint firstItem="tZx-Pb-DPx" firstAttribute="trailing" secondItem="Y9a-4m-Xxg" secondAttribute="trailing" id="Qli-Fk-Swv"/>
-                                <constraint firstItem="HtK-O8-btw" firstAttribute="leading" secondItem="Y9a-4m-Xxg" secondAttribute="leading" id="VRA-Kq-TCz"/>
+                                <constraint firstItem="hSc-hJ-gMr" firstAttribute="leading" secondItem="mCL-9J-tEP" secondAttribute="leading" id="PEr-ln-h5V"/>
                                 <constraint firstItem="Hxv-no-woV" firstAttribute="top" secondItem="hSc-hJ-gMr" secondAttribute="bottom" constant="5" id="YtG-zz-jUb"/>
-                                <constraint firstItem="qX7-gg-mCJ" firstAttribute="top" secondItem="Y9a-4m-Xxg" secondAttribute="bottom" constant="20" id="Yvm-gj-A8a"/>
-                                <constraint firstItem="Hxv-no-woV" firstAttribute="leading" secondItem="Y9a-4m-Xxg" secondAttribute="leading" id="acQ-oT-TV2"/>
+                                <constraint firstItem="mCL-9J-tEP" firstAttribute="leading" secondItem="Bx5-bX-1bm" secondAttribute="leading" constant="20" id="ceO-lr-5x2"/>
+                                <constraint firstItem="Hxv-no-woV" firstAttribute="leading" secondItem="mCL-9J-tEP" secondAttribute="leading" id="cj1-6x-5bm"/>
                                 <constraint firstItem="QQK-TQ-HlK" firstAttribute="width" secondItem="TZJ-CG-due" secondAttribute="width" id="eIP-RV-saK"/>
-                                <constraint firstItem="qX7-gg-mCJ" firstAttribute="trailing" secondItem="Y9a-4m-Xxg" secondAttribute="trailing" id="eS1-BU-rgq"/>
-                                <constraint firstItem="Hxv-no-woV" firstAttribute="trailing" secondItem="Y9a-4m-Xxg" secondAttribute="trailing" id="fu3-kf-Ck7"/>
                                 <constraint firstItem="QQK-TQ-HlK" firstAttribute="leading" secondItem="Bx5-bX-1bm" secondAttribute="leading" constant="17" id="iLI-Bq-z8w"/>
-                                <constraint firstItem="qNk-lf-DHO" firstAttribute="top" secondItem="qX7-gg-mCJ" secondAttribute="bottom" constant="20" id="khY-FF-wRe"/>
-                                <constraint firstItem="FnT-XC-63E" firstAttribute="trailing" secondItem="Y9a-4m-Xxg" secondAttribute="trailing" id="nCJ-4R-3ax"/>
-                                <constraint firstItem="Y9a-4m-Xxg" firstAttribute="leading" secondItem="Bx5-bX-1bm" secondAttribute="leading" constant="20" id="okB-ny-FNB"/>
+                                <constraint firstItem="Hxv-no-woV" firstAttribute="trailing" secondItem="mCL-9J-tEP" secondAttribute="trailing" id="nWm-xr-AJ7"/>
+                                <constraint firstItem="hSc-hJ-gMr" firstAttribute="trailing" secondItem="mCL-9J-tEP" secondAttribute="trailing" id="pDu-8k-pbx"/>
                                 <constraint firstItem="ALp-63-QW9" firstAttribute="top" secondItem="Bx5-bX-1bm" secondAttribute="top" id="pmc-Jd-Ygc"/>
                                 <constraint firstAttribute="bottom" secondItem="QQK-TQ-HlK" secondAttribute="bottom" constant="20" id="qpx-Cm-xxh"/>
                                 <constraint firstItem="QQK-TQ-HlK" firstAttribute="top" secondItem="HtK-O8-btw" secondAttribute="bottom" constant="30" id="qwr-h8-b6r"/>
-                                <constraint firstItem="qNk-lf-DHO" firstAttribute="leading" secondItem="Y9a-4m-Xxg" secondAttribute="leading" id="s4z-Nn-Yhe"/>
                                 <constraint firstItem="ALp-63-QW9" firstAttribute="leading" secondItem="Bx5-bX-1bm" secondAttribute="leading" constant="10" id="uUP-Db-hYa"/>
-                                <constraint firstItem="qX7-gg-mCJ" firstAttribute="leading" secondItem="Y9a-4m-Xxg" secondAttribute="leading" id="zLa-lt-9by"/>
                             </constraints>
                         </view>
                     </subviews>

@@ -139,9 +139,16 @@ class ProfilePage: BaseViewController {
                }
           }
           
-          if KeychainManager.isOrganizer || KeychainManager.isAdmin {
+          if KeychainManager.isAdmin {
                actionButton.addItem(title: "Сохранённые места", image: UIImage(named: "bookmarks")) { [weak self] item in
                     self?.navigationController?.pushViewController(VCFabric.getBookmarkPage(), animated: true)
+               }
+          }
+          
+     
+          if KeychainManager.isOrganizer || KeychainManager.isAdmin {
+               actionButton.addItem(title: "Промотовары", image: UIImage(named: "bookmarks")) { [weak self] item in
+                    self?.navigationController?.pushViewController(VCFabric.getAddProductPage( isPromo: true), animated: true)
                }
           }
           

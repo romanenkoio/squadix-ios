@@ -59,10 +59,11 @@ class VCFabric {
         return vc
     }
     
-    static func getAddProductPage(categories: [String], delegate: Updatable) -> AddProductPage {
+    static func getAddProductPage(categories: [String] = [], delegate: Updatable? = nil, isPromo: Bool = false) -> AddProductPage {
         let vc = AddProductPage.loadFromNib()
         vc.delegate = delegate
         vc.categories = categories
+        vc.isPromo = isPromo
         return vc
     }
     

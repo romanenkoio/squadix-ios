@@ -20,14 +20,16 @@ class AddProductPage: BaseViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var regionTextField: StrikeInputField!
     @IBOutlet weak var postButton: OliveButton!
+    @IBOutlet weak var postLabel: UILabel!
     var profile: Profile?
-   
+    
     var categoryPicker = UIPickerView()
     var imagePicker = UIImagePickerController()
     var imageData: [UIImage] = []
     var selectedIndex = 0
     var categories: [String] = []
     weak var delegate: Updatable?
+    var isPromo = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,29 +39,40 @@ class AddProductPage: BaseViewController {
         collectionView.setupDelegateData(self)
         priceTextField.delegate = self
         
-        networkManager.getCurrentUser { (profile, error, _) in
-            guard let profile = profile else {
-                print(error ?? "error")
-                return
-            }
-            
-            self.profile = profile
-            var reg = ""
-            
-            if let region = profile.country {
-                reg = region
-            }
-            
-            if let city = profile.city {
-                reg += ", \(city)"
-            }
-            self.regionTextField.text = reg
-        }
+        prepareUI()
         
+    }
+    
+    func prepareUI() {
         categoryTextField.inputView = categoryPicker
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
         categoryTextField.enableLongPressActions = false
+        categoryTextField.isHidden = isPromo
+        regionTextField.isHidden = isPromo
+        postLabel.isHidden = isPromo
+        postSwitcher.isHidden = isPromo
+        
+        if !isPromo {
+            networkManager.getCurrentUser { (profile, error, _) in
+                guard let profile = profile else {
+                    print(error ?? "error")
+                    return
+                }
+                
+                self.profile = profile
+                var reg = ""
+                
+                if let region = profile.country {
+                    reg = region
+                }
+                
+                if let city = profile.city {
+                    reg += ", \(city)"
+                }
+                self.regionTextField.text = reg
+            }
+        }
     }
     
     @IBAction func showPreviewAction(_ sender: Any) {
@@ -85,12 +98,14 @@ class AddProductPage: BaseViewController {
         
         navigationController?.pushViewController(VCFabric.getProductPage(product: product), animated: true)
     }
-
+    
     @IBAction func postAction(_ sender: Any) {
         postButton.isEnabled = false
-        guard imageData.count != 0, !productTextField.text!.isEmpty, !categoryTextField.text!.isEmpty, !priceTextField.text!.isEmpty, !descriptionTextView.text.isEmpty else  {
-            postButton.isEnabled = true
-            return
+        if !isPromo {
+            guard imageData.count != 0, !productTextField.text!.isEmpty, !categoryTextField.text!.isEmpty, !priceTextField.text!.isEmpty, !descriptionTextView.text.isEmpty else  {
+                postButton.isEnabled = true
+                return
+            }
         }
         spinner.startAnimating()
         
@@ -101,13 +116,19 @@ class AddProductPage: BaseViewController {
             return
         }
         
-        product.productCategory = categoryTextField.text
-        product.description = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
-        product.productName = productTextField.text
-        product.price = prodPrice
-        product.productRegion = regionTextField.text
-        product.postAvalible = postSwitcher.isOn
-      
+        if !isPromo {
+            product.productCategory = categoryTextField.text
+            product.description = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            product.productName = productTextField.text
+            product.price = prodPrice
+            product.productRegion = regionTextField.text
+            product.postAvalible = postSwitcher.isOn
+        } else {
+            product.productName = productTextField.text
+            product.price = prodPrice
+            product.promoUrl = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        
         networkManager.createProduct(product: product, images: imageData, completion: { [weak self] in
             self?.showPopup(title: "Объявление на модерации")
             self?.spinner.stopAnimating()
@@ -121,12 +142,13 @@ class AddProductPage: BaseViewController {
             self?.spinner.stopAnimating()
             print(error ?? "Error")
         }
+        
     }
 }
 
 extension AddProductPage: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return isPromo ? 1 : 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -175,22 +197,22 @@ extension AddProductPage: UICollectionViewDelegate {
             let status = PHPhotoLibrary.authorizationStatus()
             
             PHPhotoLibrary.requestAuthorization({ (newStatus) in
-                 if (newStatus == PHAuthorizationStatus.authorized) {
+                if (newStatus == PHAuthorizationStatus.authorized) {
                     if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
                         DispatchQueue.main.async {
-                        self?.imagePicker.sourceType = .savedPhotosAlbum
-                        self?.selectedIndex = indexPath.row
-                        self?.present(self!.imagePicker, animated: true, completion: nil)
+                            self?.imagePicker.sourceType = .savedPhotosAlbum
+                            self?.selectedIndex = indexPath.row
+                            self?.present(self!.imagePicker, animated: true, completion: nil)
                         }
                     }
-                 } else if (status == PHAuthorizationStatus.denied) {
-                      DispatchQueue.main.async {
-                           self?.showPermissionAlert(for: .galery)
-                      }
-                 }
+                } else if (status == PHAuthorizationStatus.denied) {
+                    DispatchQueue.main.async {
+                        self?.showPermissionAlert(for: .galery)
+                    }
+                }
             })
             
-        
+            
         })
         
         if imageData.indices.contains(indexPath.row) {
@@ -201,7 +223,7 @@ extension AddProductPage: UICollectionViewDelegate {
         }
         
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel) { _ in
-        
+            
         })
         
         present(alert, animated: true)
@@ -250,8 +272,8 @@ extension AddProductPage: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-          categoryTextField.text = categories[row]
-      }
+        categoryTextField.text = categories[row]
+    }
 }
 
 

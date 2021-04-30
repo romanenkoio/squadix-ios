@@ -301,7 +301,6 @@ final class NetworkManager {
                 guard let products = try? response.mapObject(Products.self) else { return }
                 completion(products.content)
             case .failure( _):
-//                ResponceHandler.handleError(error: error)
                 failure("Cannot load products feed")
             }
         }

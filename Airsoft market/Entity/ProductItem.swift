@@ -104,6 +104,7 @@ class MarketProduct: Mappable {
         params["region"] = productRegion
         params["reserved"] = reserved
         params["postalDeliveryAvailable"] = postAvalible
+        params["promoUrl"] = promoUrl
         return params
     }
 }

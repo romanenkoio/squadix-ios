@@ -121,8 +121,8 @@ extension StrikeServise: TargetType {
             return Path.Products.filters
         case .deleteProduct(let id):
             return Path.Products.path + "/\(id)"
-        case .saveProduct:
-            return Path.Products.path
+        case .saveProduct(let product, _):
+            return product.promoUrl == nil ? Path.Products.path : Path.Products.promoPath
         case .getProductByUser:
             return Path.Products.path + "/"
         case .getAllUsers:

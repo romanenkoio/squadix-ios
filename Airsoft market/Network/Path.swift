@@ -43,6 +43,7 @@ struct Path {
     }
     
     struct Products {
+        static let promoPath = "promo-products"
         static let path = "products"
         static let filters = path + "/filter"
         static let moderating = path + "/moderating"
