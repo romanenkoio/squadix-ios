@@ -391,7 +391,7 @@ extension NewsShowPage: Commentable {
         networkManager.getComment(postType: NewsType.feed, postID: id) { [weak self] comments in
             guard let section = self?.menu.count else { return }
             self?.comments = comments
-            self?.tableView.reloadSections(IndexSet(integer: section - 1), with: .bottom)
+            self?.tableView.reloadSections(IndexSet(integer: section - 1), with: .none)
             guard let sSelf = self else { return }
             if sSelf.shouldScroll {
                 guard let row = self?.comments.count, let section = self?.menu.count else { return }
