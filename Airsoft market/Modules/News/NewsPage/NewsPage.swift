@@ -28,12 +28,12 @@ class NewsPage: BaseViewController {
     
     var newsData: [Post] = [] {
         didSet {
-//            tableView.reloadData()
+            //            tableView.reloadData()
         }
     }
     var eventData: [Event] = [] {
         didSet {
-//            tableView.reloadData()
+            //            tableView.reloadData()
         }
     }
     
@@ -66,132 +66,132 @@ class NewsPage: BaseViewController {
             }
         }
     }
-
-override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(true)
-    if feedProfileID != nil {
-        segmentController.selectedSegmentIndex = 0
-        title = "Новости пользователя"
-    }
-    if feedProfileID != nil {
-        segmentController.selectedSegmentIndex = 0
-        title = "Новости пользователя"
-    }
     
-    Analytics.trackEvent(segmentController.selectedSegmentIndex == 0 ? "News_screen" : "Event_screen")
-    segmentController.isHidden = feedProfileID != nil
-    dashboardButton.isHidden = feedProfileID != nil
-    
-    actionButton.isHidden = feedProfileID != nil
-    
-    networkManager.getCurrentUser { [weak self] (profile, error, id) in
-        if let user = profile {
-            KeychainManager.store(value: user.roles.contains(.admin) , for: .isAdmin)
-            KeychainManager.store(value: user.roles.contains(.organizer) , for: .isOrganizer)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if feedProfileID != nil {
+            segmentController.selectedSegmentIndex = 0
+            title = "Новости пользователя"
         }
-        self?.configureFloatingMenu(with: profile)
-        guard KeychainManager.isAdmin else { return }
-        self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
-            guard let moderatingCount = moderatingProducts.totalElements else { return }
-            UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.totalElements
-            if let tabItems = self?.tabBarController?.tabBar.items {
-                let tabItem = tabItems[1]
-                tabItem.badgeValue = moderatingCount == 0 ? nil : "\(moderatingCount)"
+        if feedProfileID != nil {
+            segmentController.selectedSegmentIndex = 0
+            title = "Новости пользователя"
+        }
+        
+        Analytics.trackEvent(segmentController.selectedSegmentIndex == 0 ? "News_screen" : "Event_screen")
+        segmentController.isHidden = feedProfileID != nil
+        dashboardButton.isHidden = feedProfileID != nil
+        
+        actionButton.isHidden = feedProfileID != nil
+        
+        networkManager.getCurrentUser { [weak self] (profile, error, id) in
+            if let user = profile {
+                KeychainManager.store(value: user.roles.contains(.admin) , for: .isAdmin)
+                KeychainManager.store(value: user.roles.contains(.organizer) , for: .isOrganizer)
             }
-        } failure: { error in
-            print("[NETWORK] Moderating products \(error)")
+            self?.configureFloatingMenu(with: profile)
+            guard KeychainManager.isAdmin else { return }
+            self?.networkManager.getModeratingProducts() { [weak self] moderatingProducts in
+                guard let moderatingCount = moderatingProducts.totalElements else { return }
+                UIApplication.shared.applicationIconBadgeNumber = moderatingProducts.totalElements
+                if let tabItems = self?.tabBarController?.tabBar.items {
+                    let tabItem = tabItems[1]
+                    tabItem.badgeValue = moderatingCount == 0 ? nil : "\(moderatingCount)"
+                }
+            } failure: { error in
+                print("[NETWORK] Moderating products \(error)")
+            }
         }
     }
-}
-
-func configureFloatingMenu(with user: Profile? = nil) {
-    actionButton.items = []
-    actionButton.display(inViewController: self)
-    actionButton.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-    actionButton.buttonColor = .mainStrikeColor
-    actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
     
-    if KeychainManager.isAdmin || KeychainManager.isOrganizer {
-        actionButton.addItem(title: "Событие", image: UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
-            let vc = AddEventPage.loadFromNib()
+    func configureFloatingMenu(with user: Profile? = nil) {
+        actionButton.items = []
+        actionButton.display(inViewController: self)
+        actionButton.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        actionButton.buttonColor = .mainStrikeColor
+        actionButton.itemAnimationConfiguration = .popUp(withInterItemSpacing: 20, firstItemSpacing: 20)
+        
+        if KeychainManager.isAdmin || KeychainManager.isOrganizer {
+            actionButton.addItem(title: "Событие", image: UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
+                let vc = AddEventPage.loadFromNib()
+                vc.delegate = self
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        
+        actionButton.addItem(title: "Пост", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
+            let vc = AddTextPostPage.loadFromNib()
+            vc.updatableDelegate = self
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        actionButton.addItem(title: "Видео", image: UIImage(named: "video_plus")) { [weak self] item in
+            let vc = AddPostPage.loadFromNib()
             vc.delegate = self
             self?.navigationController?.pushViewController(vc, animated: true)
         }
+        
+        actionButton.configureDefaultItem { item in
+            item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+            item.titleLabel.textColor = .white
+            item.buttonColor = .white
+            item.buttonImageColor = .black
+        }
     }
     
-    actionButton.addItem(title: "Пост", image: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)) { [weak self] item in
-        let vc = AddTextPostPage.loadFromNib()
-        vc.updatableDelegate = self
-        self?.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    actionButton.addItem(title: "Видео", image: UIImage(named: "video_plus")) { [weak self] item in
-        let vc = AddPostPage.loadFromNib()
-        vc.delegate = self
-        self?.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    actionButton.configureDefaultItem { item in
-        item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
-        item.titleLabel.textColor = .white
-        item.buttonColor = .white
-        item.buttonImageColor = .black
-    }
-}
-
-private func configureUI() {
-    navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: dashboardButton)],
-                                          animated: true)
-    refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
-    refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-    tableView.addSubview(refreshControl)
-    tableView.setupDelegateData(self)
-    tableView.registerCell(NewsCell.self)
-    
-    self.navigationItem.titleView = segmentController
-    segmentController.selectedSegmentIndex = 0
-    segmentController.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
-    
-    segmentController.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 30.0)
-    segmentController.addTarget(self, action: #selector(segmentWasChanged), for: .valueChanged)
-    
-    if let tabBar = self.tabBarController?.tabBar {
-        tabBar.isHidden = false
-    }
-    
-    if feedProfileID != nil {
+    private func configureUI() {
+        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: dashboardButton)],
+                                              animated: true)
+        refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        tableView.setupDelegateData(self)
+        tableView.registerCell(NewsCell.self)
+        
+        self.navigationItem.titleView = segmentController
         segmentController.selectedSegmentIndex = 0
-        title = "Новости пользователя"
+        segmentController.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
+        
+        segmentController.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 30.0)
+        segmentController.addTarget(self, action: #selector(segmentWasChanged), for: .valueChanged)
+        
+        if let tabBar = self.tabBarController?.tabBar {
+            tabBar.isHidden = false
+        }
+        
+        if feedProfileID != nil {
+            segmentController.selectedSegmentIndex = 0
+            title = "Новости пользователя"
+        }
+        
+        segmentController.isHidden = feedProfileID != nil
+        dashboardButton.isHidden = feedProfileID != nil
+        
+        actionButton.isHidden = feedProfileID != nil
+        
+        networkManager.getNotifications { [weak self] notifications in
+            let count = notifications.content.filter({$0.isReaded == false}).count
+            self?.dashboardButton.badgeValue = count == 0 ? "" : "\(count)"
+            UIApplication.shared.applicationIconBadgeNumber = count
+        }
     }
     
-    segmentController.isHidden = feedProfileID != nil
-    dashboardButton.isHidden = feedProfileID != nil
-    
-    actionButton.isHidden = feedProfileID != nil
-    
-    networkManager.getNotifications { [weak self] notifications in
-        let count = notifications.content.filter({$0.isReaded == false}).count
-        self?.dashboardButton.badgeValue = count == 0 ? "" : "\(count)"
-        UIApplication.shared.applicationIconBadgeNumber = count
+    @objc func refresh() {
+        page = 0
+        isLoadinInProgress = false
+        totalEventPages = 0
+        totalNewsPages = 0
+        newsData = []
+        eventData = []
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+        loadData(content: contentType)
     }
-}
-
-@objc func refresh() {
-    page = 0
-    isLoadinInProgress = false
-    totalEventPages = 0
-    totalNewsPages = 0
-    newsData = []
-    eventData = []
-    tableView.reloadData()
-    refreshControl.endRefreshing()
-    loadData(content: contentType)
-}
-
-@IBAction func actionDasboardOpen(_ sender: Any) {
-    navigationController?.pushViewController(DashboardViewController.loadFromNib(), animated: true)
-    dashboardButton.badgeValue = ""
-}
+    
+    @IBAction func actionDasboardOpen(_ sender: Any) {
+        navigationController?.pushViewController(DashboardViewController.loadFromNib(), animated: true)
+        dashboardButton.badgeValue = ""
+    }
 }
 
 //MARK: Feed service
@@ -239,7 +239,7 @@ extension NewsPage {
                 sSelf.tableView.endUpdates()
                 sSelf.isLoadinInProgress = false
                 sSelf.page += 1
-//                sSelf.tableView.reloadData()
+                //                sSelf.tableView.reloadData()
             } else {
                 sSelf.isLoadinInProgress = false
                 print("[NETWORK] Загружены все посты")
@@ -275,7 +275,7 @@ extension NewsPage {
                 }
                 
                 sSelf.tableView.endUpdates()
-//                sSelf.tableView.reloadData()
+                //                sSelf.tableView.reloadData()
                 sSelf.isLoadinInProgress = false
                 self?.page += 1
             } else {
@@ -315,7 +315,7 @@ extension NewsPage {
                 
                 sSelf.tableView.insertRows(at: indexPathes, with: .automatic)
                 sSelf.tableView.endUpdates()
-//                sSelf.tableView.reloadData()
+                //                sSelf.tableView.reloadData()
                 sSelf.isLoadinInProgress = false
                 sSelf.page += 1
             } else {
