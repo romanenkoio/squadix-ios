@@ -28,12 +28,12 @@ class NewsPage: BaseViewController {
     
     var newsData: [Post] = [] {
         didSet {
-            tableView.reloadData()
+//            tableView.reloadData()
         }
     }
     var eventData: [Event] = [] {
         didSet {
-            tableView.reloadData()
+//            tableView.reloadData()
         }
     }
     
@@ -183,6 +183,7 @@ private func configureUI() {
     totalNewsPages = 0
     newsData = []
     eventData = []
+    tableView.reloadData()
     refreshControl.endRefreshing()
     loadData(content: contentType)
 }
