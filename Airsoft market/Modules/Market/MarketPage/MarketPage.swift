@@ -22,12 +22,12 @@ class MarketPage: BaseViewController {
     
     var marketData: [MarketProduct] = [] {
         didSet {
-            tableView.reloadData()
+//            tableView.reloadData()
         }
     }
     var searchMarketData: [MarketProduct] = [] {
         didSet {
-            tableView.reloadData()
+//            tableView.reloadData()
         }
     }
     
@@ -82,6 +82,7 @@ class MarketPage: BaseViewController {
     @objc func refresh() {
         page = 0
         marketData = []
+        tableView.reloadData()
         loadData()
         refreshControl.endRefreshing()
     }

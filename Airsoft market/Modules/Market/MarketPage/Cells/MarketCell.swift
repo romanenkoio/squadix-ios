@@ -39,6 +39,7 @@ class MarketCell: UITableViewCell {
             productPriceLabel.text = "\(price) руб"
         }
         selectionStyle = .none
+        cellView.backgroundColor = .white
     }
     
     func setupPromo(_ item: MarketProduct) {
