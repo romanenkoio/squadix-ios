@@ -20,6 +20,7 @@ class KeychainManager {
         case pushToken
         case isAdmin
         case isOrganizer
+        case isParnter
     }
     
     
@@ -61,6 +62,12 @@ class KeychainManager {
     static var isAdmin: Bool {
         get {
             return value(for: .isAdmin) as? Bool ?? false
+        }
+    }
+    
+    static var isPartner: Bool {
+        get {
+            return value(for: .isParnter) as? Bool ?? false
         }
     }
     

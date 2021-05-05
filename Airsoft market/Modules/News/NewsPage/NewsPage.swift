@@ -88,6 +88,7 @@ class NewsPage: BaseViewController {
             if let user = profile {
                 KeychainManager.store(value: user.roles.contains(.admin) , for: .isAdmin)
                 KeychainManager.store(value: user.roles.contains(.organizer) , for: .isOrganizer)
+                KeychainManager.store(value: user.roles.contains(.partner) , for: .isParnter)
             }
             self?.configureFloatingMenu(with: profile)
             guard KeychainManager.isAdmin else { return }
@@ -347,6 +348,8 @@ extension NewsPage {
 extension NewsPage: UpdateFeedDelegate {
     func updateFeed(type: NewsType) {
         page = 0
+        newsData = []
+        tableView.reloadData()
         switch type {
         case .feed:
             contentType = .feed

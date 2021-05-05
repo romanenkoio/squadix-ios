@@ -374,6 +374,9 @@ extension MarketPage: UpdateProductFeed {
 extension MarketPage: Updatable {
     func update() {
         page = 0
+        marketData = []
+        searchMarketData = []
+        tableView.reloadData()
         loadData()
     }
 }
@@ -383,6 +386,7 @@ extension MarketPage: UpdateWithFiltersDelegate {
         page = 0
         marketData = []
         searchMarketData = []
+        tableView.reloadData()
         loadData()
         print("[NETWORK] reload products with filters")
     }

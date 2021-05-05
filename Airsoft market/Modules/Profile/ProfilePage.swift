@@ -146,15 +146,18 @@ class ProfilePage: BaseViewController {
           }
           
      
-          if KeychainManager.isOrganizer || KeychainManager.isAdmin {
+          if KeychainManager.isPartner || KeychainManager.isAdmin {
                actionButton.addItem(title: "Промотовары", image: UIImage(named: "bookmarks")) { [weak self] item in
                     self?.navigationController?.pushViewController(VCFabric.getAddProductPage( isPromo: true), animated: true)
                }
           }
           
-//          actionButton.addItem(title: "Создать команду", image: UIImage(named: "createTeam")) { [weak self] item in
-//               self?.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
+//          if KeychainManager.isPartner || KeychainManager.isAdmin{
+//               actionButton.addItem(title: "Создать команду", image: UIImage(named: "createTeam")) { [weak self] item in
+//                    self?.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
+//               }
 //          }
+
           
           actionButton.configureDefaultItem { item in
                item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
