@@ -60,6 +60,9 @@ class ProductPage: BaseViewController {
         tableView.registerCell(AuthorCell.self)
         tableView.registerCell(PostSwitcherCell.self)
         Analytics.trackEvent("Product_screen")
+        networkManager.getProductByID(postID: product.postID, completion: { _ in
+            
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {

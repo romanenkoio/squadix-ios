@@ -41,6 +41,7 @@ class MarketProduct: Mappable {
     var authorInst: String?
     var authorTg: String?
     var promoUrl: String?
+    var views = 0
     
     required init?(map: Map) {
         mapping(map: map)
@@ -69,6 +70,7 @@ class MarketProduct: Mappable {
         authorInst       <- map["authorInst"]
         authorTg         <- map["authorTg"]
         promoUrl         <- map["promoUrl"]
+        views            <- map["views"]
         
         if let tempStatus = map["status"].currentValue as? String {
             switch tempStatus {

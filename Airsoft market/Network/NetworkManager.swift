@@ -478,7 +478,7 @@ final class NetworkManager {
         }
     }
     
-    func createCategory(with name: String, completion: ((String) -> Void)?, failure: ((String) -> Void)? = nil) {
+    func createCategory(with name: String, completion: ((String) -> Void)? = nil, failure: ((String) -> Void)? = nil) {
         provider.request(.createCategory(name: name)) { result in
             switch result {
             case let .success(response):

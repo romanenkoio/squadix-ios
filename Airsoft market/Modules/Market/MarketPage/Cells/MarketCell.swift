@@ -15,6 +15,8 @@ class MarketCell: UITableViewCell {
     @IBOutlet weak var regionLabel: UILabel!
     @IBOutlet weak var productDateLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
+    @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet weak var viewsCountView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,13 +28,20 @@ class MarketCell: UITableViewCell {
         productNameLabel.text = item.productName
         let reg = item.productRegion == nil ? "Город не указан" : item.productRegion
         regionLabel.text = reg
-        
+        viewsLabel.text = "\(item.views)"
+        viewsCountView.isHidden = false
         productImage.loadImageWith(item.picturesUrl[0])
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
         if let date = formatter.date(from: item.createdAt) {
             productDateLabel.text = date.dateToHumanString()
+        }
+        
+        if KeychainManager.isAdmin {
+            viewsCountView.isHidden = false
+        } else {
+            viewsCountView.isHidden = item.authorID == KeychainManager.profileID
         }
         
         if let price = item.price {
@@ -52,6 +61,8 @@ class MarketCell: UITableViewCell {
         cellView.backgroundColor = .promoColor
         productDateLabel.text = "Товар партнёра"
         regionLabel.isHidden = true
+        viewsLabel.isHidden = true
+        viewsCountView.isHidden = true
     }
     
     override func prepareForReuse() {
@@ -59,5 +70,8 @@ class MarketCell: UITableViewCell {
         regionLabel.isHidden = false
         productDateLabel.isHidden = false
         cellView.backgroundColor = UIColor.white
+        viewsLabel.isHidden = false
+        viewsCountView.isHidden = false
+        
     }
 }

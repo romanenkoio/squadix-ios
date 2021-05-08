@@ -222,7 +222,7 @@ extension StrikeServise: TargetType {
     var multipartBody: [Moya.MultipartFormData] {
         switch self {
         case .uploadAvatar(let image):
-            guard let compImage = image.jpegData(compressionQuality: 0.5) else { return [] }
+            guard let compImage = image.jpegData(compressionQuality: 1) else { return [] }
             let image = Moya.MultipartFormData(provider: MultipartFormData.FormDataProvider.data(compImage), name: "file", fileName: "photo.jpg", mimeType: "image/jpeg")
             return [image]
         default:

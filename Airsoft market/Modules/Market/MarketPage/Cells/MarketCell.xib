@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -52,9 +53,43 @@
                                 <color key="textColor" name="priceColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3KQ-Nr-dNf">
+                                <rect key="frame" x="5" y="125" width="71.5" height="20"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="views" translatesAutoresizingMaskIntoConstraints="NO" id="0rv-Ni-2Eb">
+                                        <rect key="frame" x="3" y="3" width="30" height="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="JZN-yl-NNR"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hff-Id-9P2">
+                                        <rect key="frame" x="38" y="1" width="28.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hff-Id-9P2" secondAttribute="trailing" constant="5" id="3ak-jU-Y1g"/>
+                                    <constraint firstItem="0rv-Ni-2Eb" firstAttribute="leading" secondItem="3KQ-Nr-dNf" secondAttribute="leading" constant="3" id="4Bz-LT-2vn"/>
+                                    <constraint firstAttribute="bottom" secondItem="0rv-Ni-2Eb" secondAttribute="bottom" constant="3" id="4CD-2v-sLB"/>
+                                    <constraint firstItem="hff-Id-9P2" firstAttribute="top" secondItem="3KQ-Nr-dNf" secondAttribute="top" constant="1" id="8gR-aY-2qD"/>
+                                    <constraint firstItem="hff-Id-9P2" firstAttribute="leading" secondItem="0rv-Ni-2Eb" secondAttribute="trailing" constant="5" id="CpL-6k-IjZ"/>
+                                    <constraint firstItem="0rv-Ni-2Eb" firstAttribute="top" secondItem="3KQ-Nr-dNf" secondAttribute="top" constant="3" id="Evr-KV-4VZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="hff-Id-9P2" secondAttribute="bottom" constant="1" id="HGc-T2-kOG"/>
+                                    <constraint firstAttribute="height" constant="20" id="bk6-zx-QMb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="selectedProductColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="3KQ-Nr-dNf" secondAttribute="bottom" constant="5" id="6vf-8y-IbY"/>
                             <constraint firstAttribute="trailing" secondItem="K66-zw-x5X" secondAttribute="trailing" constant="10" id="AGg-Ij-IUj"/>
                             <constraint firstAttribute="height" constant="150" id="Dck-jt-3nf"/>
                             <constraint firstItem="K66-zw-x5X" firstAttribute="leading" secondItem="E6a-vv-rD3" secondAttribute="trailing" constant="10" id="Mc0-P7-7hl"/>
@@ -69,6 +104,7 @@
                             <constraint firstAttribute="trailing" secondItem="duq-wd-Hbc" secondAttribute="trailing" constant="10" id="nIe-Zh-h9h"/>
                             <constraint firstAttribute="bottom" secondItem="E6a-vv-rD3" secondAttribute="bottom" id="ngF-W3-q98"/>
                             <constraint firstItem="duq-wd-Hbc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sfI-8h-cUS" secondAttribute="trailing" constant="3" id="nyA-gz-I4h"/>
+                            <constraint firstItem="3KQ-Nr-dNf" firstAttribute="leading" secondItem="p5w-8f-3Hd" secondAttribute="leading" constant="5" id="sb4-cp-lat"/>
                             <constraint firstItem="ems-NN-Ymi" firstAttribute="leading" secondItem="K66-zw-x5X" secondAttribute="leading" id="xDh-Cr-cvj"/>
                         </constraints>
                     </view>
@@ -90,16 +126,22 @@
                 <outlet property="productNameLabel" destination="K66-zw-x5X" id="r3A-tS-2vb"/>
                 <outlet property="productPriceLabel" destination="duq-wd-Hbc" id="nI7-q0-nfC"/>
                 <outlet property="regionLabel" destination="ems-NN-Ymi" id="BcW-nL-SuB"/>
+                <outlet property="viewsCountView" destination="3KQ-Nr-dNf" id="NX8-zD-w2z"/>
+                <outlet property="viewsLabel" destination="hff-Id-9P2" id="5VH-mk-Hhz"/>
             </connections>
             <point key="canvasLocation" x="181.8840579710145" y="7.7008928571428568"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="views" width="26.5" height="14"/>
         <namedColor name="priceColor">
             <color red="0.050980392156862744" green="0.62352941176470589" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="selectedProductColor">
             <color red="1" green="1" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
