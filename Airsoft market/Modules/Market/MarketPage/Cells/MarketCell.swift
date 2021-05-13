@@ -41,7 +41,7 @@ class MarketCell: UITableViewCell {
         if KeychainManager.isAdmin {
             viewsCountView.isHidden = false
         } else {
-            viewsCountView.isHidden = item.authorID == KeychainManager.profileID
+            viewsCountView.isHidden = item.authorID != KeychainManager.profileID
         }
         
         if let price = item.price {
