@@ -34,6 +34,14 @@ class BaseViewController: UIViewController {
         page = 0
     }
     
+    func pushController(_ vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func popController() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     func configureBackSwipe() {
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
         self.view.addGestureRecognizer(swipe)

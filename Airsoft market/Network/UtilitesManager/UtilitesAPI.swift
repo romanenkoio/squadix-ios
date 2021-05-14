@@ -13,6 +13,7 @@ enum UtilitesService {
     case getAdress(lat: Double, long: Double)
     case createNotification(message: String, url: String)
     case getWeather(lat: Double, long: Double)
+    case getCityList(prefix: String?)
 }
 
 extension UtilitesService: TargetType {
@@ -22,6 +23,9 @@ extension UtilitesService: TargetType {
             return URL(string: "https://locationiq.com")!
         case .getWeather:
             return URL(string: "https://api.openweathermap.org")!
+        case .getCityList:
+//            https://rapidapi.com/wirefreethought/api/geodb-cities/pricing
+            return URL(string: "https://wft-geo-db.p.rapidapi.com")!
         default:
             #if DEBUG
             return URL(string: "https://18.158.147.66")!
@@ -39,12 +43,14 @@ extension UtilitesService: TargetType {
             return "/notifications/"
         case .getWeather:
             return "/data/2.5/onecall"
+        case .getCityList:
+            return "/v1/geo/cities"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getAdress, .getWeather:
+        case .getAdress, .getWeather, .getCityList:
             return .get
         case .createNotification:
             return .post
@@ -85,6 +91,16 @@ extension UtilitesService: TargetType {
             params["exclude"] = "minutely,hourly,alerts,current"
             params["lang"] = "ru"
             params["units"] = "metric"
+        case .getCityList(let prefix):
+            params["countryIds"] = "BY"
+            params["languageCode"] = "RU"
+            if prefix != nil && !(prefix?.isEmpty ?? false) {
+                params["namePrefix"] = prefix
+            }
+            params["limit"] = 10
+            params["types"] = "CITY"
+            params["sort"] = "name"
+            params["minPopulation"] = 100
         }
         print(params)
         
@@ -95,6 +111,11 @@ extension UtilitesService: TargetType {
         switch self {
         case .getAdress, .getWeather:
             return nil
+        case .getCityList:
+            var headers: [String: String] = [:]
+            headers["x-rapidapi-key"] = "ac1d352f36mshf8f3c5ada27e7c4p1ab2c5jsn402ce21901b1"
+            headers["x-rapidapi-host"] = "wft-geo-db.p.rapidapi.com"
+            return headers
         default:
             return ["Authorization" : "Bearer " + (KeychainManager.accessToken ?? "")]
         }
@@ -102,7 +123,7 @@ extension UtilitesService: TargetType {
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .getAdress, .createNotification, .getWeather:
+        default:
             return URLEncoding.queryString
         }
     }

@@ -148,14 +148,11 @@ class AddEventPage: BaseViewController {
         event.startTime = startDate
         event.authorID = KeychainManager.profileID
         
-        let utilitesService = UtilitesManager()
-    
-        
         self.spinner.startAnimating()
-        utilitesService.getAdress(lat: coord.latitude, long: coord.longitude, completion: { address in
+        UtilitesManager.shared.getAdress(lat: coord.latitude, long: coord.longitude, completion: { address in
             event.eventAdress = address.getAddressString()
             self.spinner.startAnimating()
-            utilitesService.getAdress(lat: startCoord.latitude, long: startCoord.longitude, completion: { address in
+            UtilitesManager.shared.getAdress(lat: startCoord.latitude, long: startCoord.longitude, completion: { address in
                 event.eventStartAdress = address.getAddressString()
                 completion(event)
             }, failure: { error in

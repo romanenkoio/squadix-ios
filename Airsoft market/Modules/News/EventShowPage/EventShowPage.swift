@@ -362,9 +362,9 @@ extension EventShowPage: UITableViewDataSource {
                 weatherCell.action = { [weak self] in
                     self?.spinner.startAnimating()
                     if event.startTime.timeIntervalSince1970 - Date().timeIntervalSince1970 < 432000 {
-                        let utilites = UtilitesManager()
+            
                         guard let lat = event.eventStartLatitude, let long = event.eventStartLongitude else { return }
-                        utilites.getWeather(lat: lat, long: long) { weatherData in
+                        UtilitesManager.shared.getWeather(lat: lat, long: long) { weatherData in
                             self?.spinner.stopAnimating()
                             var eventWeathert: DailyWeather? = nil
                             

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -70,6 +70,9 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="startSelectCity:" destination="-1" eventType="editingDidBegin" id="Azx-fm-QPL"/>
+                                    </connections>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Беларусь" borderStyle="roundedRect" placeholder="Страна" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-Ae-KYZ" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
                                     <rect key="frame" x="20" y="118" width="374" height="34"/>
@@ -116,7 +119,7 @@
                                     <rect key="frame" x="20" y="461" width="374" height="200"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="LYk-3H-k9p"/>
+                                        <constraint firstAttribute="height" constant="200" id="LYk-3H-k9p"/>
                                     </constraints>
                                     <color key="textColor" systemColor="labelColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -132,7 +135,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textView>
                                 <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ks-OK-Qhy">
-                                    <rect key="frame" x="20" y="681" width="374" height="40"/>
+                                    <rect key="frame" x="20" y="758" width="374" height="40"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be8-Tl-pQF" customClass="WhiteButton" customModule="Squadix" customModuleProvider="target">
                                             <rect key="frame" x="20" y="0.0" width="157" height="40"/>
@@ -201,7 +204,7 @@
                                 <constraint firstItem="e7R-BZ-hKG" firstAttribute="top" secondItem="8Fc-eg-AIw" secondAttribute="bottom" constant="3" id="UOf-0a-fL0"/>
                                 <constraint firstItem="HHw-kl-CJB" firstAttribute="leading" secondItem="M8B-XI-pzd" secondAttribute="leading" constant="20" symbolic="YES" id="VVq-cV-9uk"/>
                                 <constraint firstItem="Swx-Ae-KYZ" firstAttribute="top" secondItem="HHw-kl-CJB" secondAttribute="bottom" constant="20" id="WLi-eX-vch"/>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4ks-OK-Qhy" secondAttribute="bottom" constant="20" id="aTY-uj-ORF"/>
+                                <constraint firstAttribute="bottom" secondItem="4ks-OK-Qhy" secondAttribute="bottom" constant="20" id="aTY-uj-ORF"/>
                                 <constraint firstItem="ck8-03-pKF" firstAttribute="top" secondItem="M8B-XI-pzd" secondAttribute="top" constant="10" id="aVP-Fp-LxJ"/>
                                 <constraint firstAttribute="trailing" secondItem="4ks-OK-Qhy" secondAttribute="trailing" constant="20" id="bAP-nw-EiO"/>
                                 <constraint firstItem="6Oj-0v-mgb" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="cxb-1H-9TJ"/>
@@ -212,7 +215,7 @@
                                 <constraint firstItem="Swx-Ae-KYZ" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="nMS-TU-WY5"/>
                                 <constraint firstItem="HHw-kl-CJB" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="pLT-yf-g96"/>
                                 <constraint firstItem="HHw-kl-CJB" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="qn4-F1-gyd"/>
-                                <constraint firstItem="4ks-OK-Qhy" firstAttribute="top" secondItem="e7R-BZ-hKG" secondAttribute="bottom" constant="20" id="rb9-ro-yqb"/>
+                                <constraint firstItem="4ks-OK-Qhy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e7R-BZ-hKG" secondAttribute="bottom" constant="20" id="rb9-ro-yqb"/>
                                 <constraint firstItem="aTR-FP-2HQ" firstAttribute="top" secondItem="pQS-VN-8MR" secondAttribute="bottom" constant="20" id="tn4-na-DaU"/>
                                 <constraint firstItem="Swx-Ae-KYZ" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="ur7-Bt-mWg"/>
                                 <constraint firstItem="8Fc-eg-AIw" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="usT-Vf-8sh"/>
@@ -249,11 +252,6 @@
             <point key="canvasLocation" x="44.927536231884062" y="200.55803571428569"/>
         </view>
     </objects>
-    <designables>
-        <designable name="e7R-BZ-hKG">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
-        </designable>
-    </designables>
     <resources>
         <namedColor name="mainStrikeColor">
             <color red="0.63137254901960782" green="0.68627450980392157" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

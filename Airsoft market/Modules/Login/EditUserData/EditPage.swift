@@ -71,6 +71,15 @@ class EditPage: BaseViewController {
         }
     }
     
+    @IBAction func startSelectCity(_ sender: Any) {
+        let vc = SelectCityPage.loadFromNib()
+        vc.selectAction = { [weak self] selectedCity in
+            self?.cityTextField.text = selectedCity.city
+            self?.navigationController?.popViewController(animated: true)
+        }
+        pushController(vc)
+    }
+    
     func preloadData() {
         countryTextField.text = "Беларусь"
         cityTextField.text = profile?.city

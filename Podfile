@@ -1,13 +1,16 @@
 target 'Squadix' do
+
+use_modular_headers!
+
   	pod 'Kingfisher'
 	pod 'ImageSlideshow'
 	pod "ImageSlideshow/Kingfisher"
 	pod "YoutubePlayer-in-WKWebView"
 	pod 'KeychainAccess'
-	pod 'GoogleMaps', '~> 3.9.0'
-	pod 'Google-Maps-iOS-Utils', '~> 3.1.4'
+	pod 'GoogleMaps'
+	pod 'Google-Maps-iOS-Utils'
 	pod 'Firebase/Analytics'
-    	pod 'RealmSwift', '~> 5.0.1', :modular_headers => true
+    	pod 'RealmSwift'
 	pod 'IQKeyboardManagerSwift'
   	pod 'Moya'
     	pod 'Moya-ObjectMapper'

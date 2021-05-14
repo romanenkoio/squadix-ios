@@ -313,8 +313,8 @@ extension SettingsPage: UITableViewDataSource {
                     
                     alert.addAction(UIAlertAction(title: "Отправить", style: .default, handler: { [weak alert] (_) in
                         guard let message = alert?.textFields![0].text, !message.isEmpty, let url = alert?.textFields![1].text else { return }
-                        let utilites = UtilitesManager()
-                        utilites.sendNotifications(message: message, url: url) {
+       
+                        UtilitesManager.shared.sendNotifications(message: message, url: url) {
                             self.showPopup(title: "Отправлено")
                         } failure: { error in
                             self.showPopup(isError: true, title: "Ошибка отправки")

@@ -134,5 +134,4 @@ class VCFabric {
         vc.usersData = people
         return vc
     }
-    
 }
