@@ -25,11 +25,6 @@ class MarketPage: BaseViewController {
 //            tableView.reloadData()
         }
     }
-    var searchMarketData: [MarketProduct] = [] {
-        didSet {
-//            tableView.reloadData()
-        }
-    }
     
     var isSearchInProcess = false
     
@@ -37,14 +32,14 @@ class MarketPage: BaseViewController {
         super.viewDidLoad()
         setup()
         
-        searchController.searchResultsUpdater = self
+//        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск по названию"
         if #available(iOS 13, *) {
             searchController.searchBar.searchTextField.backgroundColor = .white
         }
         navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = searchController
+//        navigationItem.searchController = searchController
         definesPresentationContext = true
       
         refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
@@ -332,36 +327,6 @@ extension MarketPage {
     }
 }
 
-extension MarketPage: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-            if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-                if searchRequest != nil {
-                    searchRequest?.cancel()
-                    searchRequest = nil
-                }
-              
-                searchMarketData.removeAll()
-                spinner.startAnimating()
-                
-                searchRequest = networkManager.getActiveProductsWithFilters(page: nil, completion: { [weak self] products in
-                    guard let sSelf = self else { return }
-                    sSelf.spinner.stopAnimating()
-                    sSelf.marketData = products.filter({ $0.productName.lowercased().contains(find: searchText.lowercased())})
-                    sSelf.tableView.reloadData()
-                    sSelf.title = "Барахолка"
-                }) {  [weak self] error in
-                    print(error)
-                    self?.spinner.stopAnimating()
-                }
-            } else {
-                page = 0
-                searchRequest?.cancel()
-                searchRequest = nil
-                loadData()
-            }
-    }
-}
-
 extension MarketPage: UpdateProductFeed {
     func updateProductFeed(productID: Int) {
         if let index = marketData.firstIndex(where: { $0.postID == productID }) {
@@ -375,7 +340,6 @@ extension MarketPage: Updatable {
     func update() {
         page = 0
         marketData = []
-        searchMarketData = []
         tableView.reloadData()
         loadData()
     }
@@ -385,7 +349,6 @@ extension MarketPage: UpdateWithFiltersDelegate {
     func updateWithFilters() {
         page = 0
         marketData = []
-        searchMarketData = []
         tableView.reloadData()
         loadData()
         print("[NETWORK] reload products with filters")
