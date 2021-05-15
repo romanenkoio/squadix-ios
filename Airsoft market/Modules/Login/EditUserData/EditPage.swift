@@ -75,6 +75,7 @@ class EditPage: BaseViewController {
         let vc = SelectCityPage.loadFromNib()
         vc.selectAction = { [weak self] selectedCity in
             self?.cityTextField.text = selectedCity.city
+            self?.cityTextField.resignFirstResponder()
             self?.navigationController?.popViewController(animated: true)
         }
         pushController(vc)
