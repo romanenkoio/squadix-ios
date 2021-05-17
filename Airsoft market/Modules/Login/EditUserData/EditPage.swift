@@ -78,7 +78,7 @@ class EditPage: BaseViewController {
             vc.selectAction = { [weak self] selectedCity in
                 self?.cityTextField.text = selectedCity.city
                 self?.navigationController?.popViewController(animated: true)
-                self?.cityTextField = true
+                self?.cityWasSelected = true
             }
             pushController(vc)
         }
