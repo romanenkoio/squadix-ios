@@ -29,6 +29,7 @@ class EditPage: BaseViewController {
     var isEdit: Bool = false
     var userPostCount = 0
     let manager = NetworkManager()
+    var cityWasSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,13 +73,15 @@ class EditPage: BaseViewController {
     }
     
     @IBAction func startSelectCity(_ sender: Any) {
-        let vc = SelectCityPage.loadFromNib()
-        vc.selectAction = { [weak self] selectedCity in
-            self?.cityTextField.text = selectedCity.city
-            self?.cityTextField.resignFirstResponder()
-            self?.navigationController?.popViewController(animated: true)
+        if !cityWasSelected {
+            let vc = SelectCityPage.loadFromNib()
+            vc.selectAction = { [weak self] selectedCity in
+                self?.cityTextField.text = selectedCity.city
+                self?.navigationController?.popViewController(animated: true)
+                self?.cityTextField = true
+            }
+            pushController(vc)
         }
-        pushController(vc)
     }
     
     func preloadData() {
