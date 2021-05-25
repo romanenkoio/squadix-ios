@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentView" customModule="Squadix" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="XCZ-Ok-SNi" id="4Zj-3X-thW"/>
+                <outlet property="growingTextView" destination="XQr-2h-svd" id="hXq-co-jCv"/>
+                <outlet property="sendCommentButton" destination="aUh-j6-VfE" id="F8w-yu-OfM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="298"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUh-j6-VfE">
+                    <rect key="frame" x="364" y="253" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="HMD-KE-Jco"/>
+                        <constraint firstAttribute="width" constant="40" id="xjW-Px-7LE"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <state key="normal" image="send"/>
+                    <connections>
+                        <action selector="sendCommentAction:" destination="-1" eventType="touchUpInside" id="izz-ly-xrd"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XQr-2h-svd" customClass="GrowingTextView" customModule="GrowingTextView">
+                    <rect key="frame" x="10" y="115" width="344" height="178"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="trimWhiteSpaceWhenEndEditing" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="minHeight">
+                            <real key="value" value="40"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
+                            <real key="value" value="150"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RyD-oN-6qA">
+                    <rect key="frame" x="10" y="10" width="394" height="100"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XCZ-Ok-SNi">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7B3-ZV-jjZ">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="rDh-VK-c7I"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RyD-oN-6qA" secondAttribute="trailing" constant="10" id="0aE-QQ-EP9"/>
+                <constraint firstItem="RyD-oN-6qA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="3cP-TV-Opg"/>
+                <constraint firstItem="aUh-j6-VfE" firstAttribute="bottom" secondItem="XQr-2h-svd" secondAttribute="bottom" id="7eq-Ne-gwN"/>
+                <constraint firstItem="XQr-2h-svd" firstAttribute="top" secondItem="RyD-oN-6qA" secondAttribute="bottom" constant="5" id="GlB-YA-tEx"/>
+                <constraint firstItem="aUh-j6-VfE" firstAttribute="leading" secondItem="XQr-2h-svd" secondAttribute="trailing" constant="10" id="Ots-cP-xde"/>
+                <constraint firstItem="RyD-oN-6qA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Zkk-LU-18g"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aUh-j6-VfE" secondAttribute="trailing" constant="10" id="ceT-Bt-YoP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="XQr-2h-svd" secondAttribute="bottom" constant="5" id="lUF-wO-QHu"/>
+                <constraint firstItem="XQr-2h-svd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="qd4-a8-R8D"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="221.73913043478262" y="-81.696428571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="send" width="48" height="48"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

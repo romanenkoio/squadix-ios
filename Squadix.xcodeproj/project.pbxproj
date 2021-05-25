@@ -15,6 +15,8 @@
 		7F064FB6264E641A0068250A /* CitySelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F064FB4264E641A0068250A /* CitySelectCell.xib */; };
 		7F14047624885D640028C907 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F14047524885D640028C907 /* BaseTableViewCell.swift */; };
 		7F15DCBA25C4AAC700FF277A /* BasePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F15DCB925C4AAC700FF277A /* BasePost.swift */; };
+		7F15DE2F265D085400927856 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F15DE2E265D085400927856 /* CommentView.swift */; };
+		7F15DE50265D086900927856 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F15DE4F265D086900927856 /* CommentView.xib */; };
 		7F1DF26D25584ECF00D4E7CF /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1DF26C25584ECF00D4E7CF /* Validator.swift */; };
 		7F22CA1F255895E400F9DF27 /* MapUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */; };
 		7F22CA33255897D500F9DF27 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F22CA32255897D500F9DF27 /* General.swift */; };
@@ -407,6 +409,8 @@
 		7F064FB4264E641A0068250A /* CitySelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CitySelectCell.xib; sourceTree = "<group>"; };
 		7F14047524885D640028C907 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		7F15DCB925C4AAC700FF277A /* BasePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePost.swift; sourceTree = "<group>"; };
+		7F15DE2E265D085400927856 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		7F15DE4F265D086900927856 /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		7F1DF26C25584ECF00D4E7CF /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUpdatable.swift; sourceTree = "<group>"; };
 		7F22CA32255897D500F9DF27 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
@@ -680,6 +684,15 @@
 				7F4F0A8826237A6C008E3006 /* PeopleCollectionCell */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7F15DE4E265D085C00927856 /* CommentView */ = {
+			isa = PBXGroup;
+			children = (
+				7F15DE2E265D085400927856 /* CommentView.swift */,
+				7F15DE4F265D086900927856 /* CommentView.xib */,
+			);
+			path = CommentView;
 			sourceTree = "<group>";
 		};
 		7F22CA31255897B900F9DF27 /* Enums */ = {
@@ -1510,6 +1523,7 @@
 				7F2F005C247D145D00CA886F /* StrikeInputField.swift */,
 				7F9B1463247EAB34007D4819 /* CustomTableHeaderView.swift */,
 				7F595B36248052E900D56E74 /* PopupView.swift */,
+				7F15DE4E265D085C00927856 /* CommentView */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1942,6 +1956,7 @@
 				7F93DE3A24D0237100039378 /* FullPicturePage.xib in Resources */,
 				7F2FD85325586EC6007EA305 /* BookmarkPage.xib in Resources */,
 				7FE17316247884D000CBAFB3 /* NewsPage.xib in Resources */,
+				7F15DE50265D086900927856 /* CommentView.xib in Resources */,
 				7F68F477262E326E008FC0D5 /* WeaterPopup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2022,6 +2037,7 @@
 				7F7DC400247C1C5900A53E7C /* ProfileCell.swift in Sources */,
 				7FEB765D24F7886A00B695D3 /* UIButton+Extensions.swift in Sources */,
 				7F7DC403247C485000A53E7C /* String+Extensions.swift in Sources */,
+				7F15DE2F265D085400927856 /* CommentView.swift in Sources */,
 				7F31B1D02600BF2800454180 /* Reports.swift in Sources */,
 				7F9D375D25549C1F00BDAC1E /* DeepLinkRoutable.swift in Sources */,
 				7F019126250AB84F0049C8F0 /* BaseViewController.swift in Sources */,
