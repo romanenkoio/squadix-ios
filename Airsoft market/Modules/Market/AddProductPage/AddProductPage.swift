@@ -175,7 +175,7 @@ extension AddProductPage: UICollectionViewDelegate {
         
         var buttonTitile = imageData.indices.contains(indexPath.row) ? "Сделать новое фото" : "Сделать фото"
         alert.addAction(UIAlertAction(title: buttonTitile, style: .default) { [weak self] _ in
-            AVCaptureDevice.requestAccess(for: .video, completionHandler: {accessGranted in
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { accessGranted in
                 if  accessGranted {
                     if UIImagePickerController.isSourceTypeAvailable(.camera) {
                         DispatchQueue.main.async {

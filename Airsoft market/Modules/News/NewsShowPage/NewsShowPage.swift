@@ -54,8 +54,7 @@ class NewsShowPage: BaseViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var moreButton: UIButton!
-    @IBOutlet weak var growingTextView: GrowingTextView!
-    @IBOutlet weak var sendCommentButton: UIButton!
+    @IBOutlet weak var commentView: CommentView!
     
     weak var delegate: UpdateFeedDelegate?
     weak var likeDelegate: LikeDelegate?
@@ -80,6 +79,7 @@ class NewsShowPage: BaseViewController {
     }
     
     func configureUI() {
+        commentView.delegate = self
         tableView.registerCell(SimpleTextCell.self)
         tableView.registerCell(SlideShowCell.self)
         tableView.registerCell(AuthorCell.self)
@@ -92,15 +92,13 @@ class NewsShowPage: BaseViewController {
         }
         Analytics.trackEvent("Post_view_screen")
         
-        growingTextView.layer.borderWidth = 1
-        growingTextView.layer.borderColor = UIColor.lightGray.cgColor
-        growingTextView.delegate = self
+      
         
-        if let isPrev = post?.isPreview {
-            growingTextView.isHidden = isPrev
-            sendCommentButton.isHidden = isPrev
-        }
-        sendCommentButton.isEnabled = false
+//        if let isPrev = post?.isPreview {
+//            growingTextView.isHidden = isPrev
+//            sendCommentButton.isHidden = isPrev
+//        }
+    
         
     }
     
@@ -121,9 +119,6 @@ class NewsShowPage: BaseViewController {
         }
     }
     
-    @IBAction func sendCommentAction(_ sender: Any) {
-        sendComment()
-    }
     
     @IBAction func moreAction(_ sender: Any) {
         guard let id = post?.id else { return }
@@ -355,7 +350,7 @@ extension NewsShowPage: UITableViewDataSource {
 
 extension NewsShowPage: GrowingTextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        sendCommentButton.isEnabled = !textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+//        sendCommentButton.isEnabled = !textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
 
@@ -365,24 +360,6 @@ extension NewsShowPage: Commentable {
             guard let section = self?.menu.count else { return }
             self?.tableView.reloadSections(IndexSet(integer: section - 1), with: .bottom)
         }
-    }
-    
-    func sendComment() {
-        sendCommentButton.isEnabled = false
-        spinner.startAnimating()
-        guard let id = post?.id, let text = growingTextView.text else { return }
-        networkManager.postComment(postType: NewsType.feed, postID: id, text: text) { [weak self] in
-            self?.spinner.stopAnimating()
-            self?.sendCommentButton.isEnabled = true
-            self?.getComment()
-            self?.growingTextView.text = ""
-            self?.shouldScroll = true
-        } failure: { [weak self] in
-            self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
-            self?.spinner.stopAnimating()
-            self?.sendCommentButton.isEnabled = true
-        }
-
     }
     
     func getComment() {
@@ -411,5 +388,25 @@ extension NewsShowPage: Commentable {
         }, failure: { [weak self] in
             self?.showPopup(isError: true, title: "Ошибка. Попробуйте позже.")
         })
+    }
+}
+
+
+extension NewsShowPage: CommentViewDelegate {
+    func sendComment(commentText: String) {
+        spinner.startAnimating()
+        guard let id = post?.id else { return }
+        networkManager.postComment(postType: NewsType.feed, postID: id, text: commentText) { [weak self] in
+            self?.spinner.stopAnimating()
+            self?.getComment()
+            self?.shouldScroll = true
+        } failure: { [weak self] in
+            self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
+            self?.spinner.stopAnimating()
+        }
+    }
+    
+    func attachFile() {
+
     }
 }

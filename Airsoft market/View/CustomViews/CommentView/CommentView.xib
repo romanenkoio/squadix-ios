@@ -12,8 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentView" customModule="Squadix" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="XCZ-Ok-SNi" id="4Zj-3X-thW"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="n3W-b8-uiE"/>
                 <outlet property="growingTextView" destination="XQr-2h-svd" id="hXq-co-jCv"/>
                 <outlet property="sendCommentButton" destination="aUh-j6-VfE" id="F8w-yu-OfM"/>
+                <outlet property="stackView" destination="RyD-oN-6qA" id="PaD-PF-Ent"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUh-j6-VfE">
-                    <rect key="frame" x="364" y="253" width="40" height="40"/>
+                    <rect key="frame" x="364" y="248" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="HMD-KE-Jco"/>
                         <constraint firstAttribute="width" constant="40" id="xjW-Px-7LE"/>
@@ -34,9 +36,8 @@
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XQr-2h-svd" customClass="GrowingTextView" customModule="GrowingTextView">
-                    <rect key="frame" x="10" y="115" width="344" height="178"/>
+                    <rect key="frame" x="60" y="110" width="294" height="178"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <color key="textColor" systemColor="labelColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -48,14 +49,18 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
                             <real key="value" value="150"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Оставьте ваше слово в истории..."/>
                     </userDefinedRuntimeAttributes>
                 </textView>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RyD-oN-6qA">
-                    <rect key="frame" x="10" y="10" width="394" height="100"/>
+                    <rect key="frame" x="10" y="5" width="394" height="100"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XCZ-Ok-SNi">
                             <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="VAQ-Mf-U17"/>
+                            </constraints>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7B3-ZV-jjZ">
                                 <size key="itemSize" width="128" height="128"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -64,10 +69,19 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="100" id="rDh-VK-c7I"/>
-                    </constraints>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRu-mI-MBA">
+                    <rect key="frame" x="10" y="248" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="OgC-Ly-jEm"/>
+                        <constraint firstAttribute="height" constant="40" id="lES-bI-eZe"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <state key="normal" image="attach"/>
+                    <connections>
+                        <action selector="attachFileAction:" destination="-1" eventType="touchUpInside" id="Yys-09-6op"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -77,18 +91,19 @@
                 <constraint firstItem="aUh-j6-VfE" firstAttribute="bottom" secondItem="XQr-2h-svd" secondAttribute="bottom" id="7eq-Ne-gwN"/>
                 <constraint firstItem="XQr-2h-svd" firstAttribute="top" secondItem="RyD-oN-6qA" secondAttribute="bottom" constant="5" id="GlB-YA-tEx"/>
                 <constraint firstItem="aUh-j6-VfE" firstAttribute="leading" secondItem="XQr-2h-svd" secondAttribute="trailing" constant="10" id="Ots-cP-xde"/>
-                <constraint firstItem="RyD-oN-6qA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Zkk-LU-18g"/>
+                <constraint firstItem="DRu-mI-MBA" firstAttribute="bottom" secondItem="aUh-j6-VfE" secondAttribute="bottom" id="Up2-H2-GZB"/>
+                <constraint firstItem="RyD-oN-6qA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Zkk-LU-18g"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aUh-j6-VfE" secondAttribute="trailing" constant="10" id="ceT-Bt-YoP"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="XQr-2h-svd" secondAttribute="bottom" constant="5" id="lUF-wO-QHu"/>
-                <constraint firstItem="XQr-2h-svd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="qd4-a8-R8D"/>
+                <constraint firstItem="XQr-2h-svd" firstAttribute="leading" secondItem="DRu-mI-MBA" secondAttribute="trailing" constant="10" id="hTS-DC-sXL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="XQr-2h-svd" secondAttribute="bottom" constant="10" id="lUF-wO-QHu"/>
+                <constraint firstItem="DRu-mI-MBA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="vBq-hi-Hzh"/>
             </constraints>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="221.73913043478262" y="-81.696428571428569"/>
         </view>
     </objects>
     <resources>
+        <image name="attach" width="48" height="48"/>
         <image name="send" width="48" height="48"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -54,8 +54,7 @@ class EventShowPage: BaseViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var contactButton: UIButton!
     @IBOutlet var calendarButton: UIButton!
-    @IBOutlet weak var commentTextView: GrowingTextView!
-    @IBOutlet weak var commentSendButton: UIButton!
+    @IBOutlet weak var commentView: CommentView!
     
     var shouldScroll = false
     var likeAction: Cancellable? = nil
@@ -73,6 +72,7 @@ class EventShowPage: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let event = event else { return }
+        commentView.delegate = self
         let menuInfo = EventMenuPoint.getManuForEvent(event: event)
         menu = menuInfo.menu
         title = event.shortDescription
@@ -92,9 +92,7 @@ class EventShowPage: BaseViewController {
         
         contactButton.isHidden = event.authorID == KeychainManager.profileID
         Analytics.trackEvent("Event_view_screen")
-        commentTextView.layer.borderWidth = 1
-        commentTextView.layer.borderColor = UIColor.lightGray.cgColor
-        commentTextView.delegate = self
+  
         getComment()
         if commetnForScroll != 0 {
             reportScroll = { [weak self] in
@@ -108,15 +106,9 @@ class EventShowPage: BaseViewController {
                 self?.commetnForScroll = 0
             }
         }
-        commentTextView.isHidden = event.isPreview
-        commentSendButton.isHidden = event.isPreview
-        commentSendButton.isEnabled = false
-        
     }
     
-    @IBAction func sendCommentAction(_ sender: Any) {
-        sendComment()
-    }
+ 
     
     
     @IBAction func contactAction(_ sender: Any) {
@@ -548,23 +540,7 @@ extension EventShowPage: Commentable {
         }
     }
     
-    func sendComment() {
-        commentSendButton.isEnabled = false
-        spinner.startAnimating()
-        guard let id = event?.id, let text = commentTextView.text else { return }
-        networkManager.postComment(postType: NewsType.event, postID: id, text: text) { [weak self] in
-            self?.commentSendButton.isEnabled = true
-            self?.spinner.stopAnimating()
-            self?.getComment()
-            self?.commentTextView.text = ""
-            self?.shouldScroll = true
-        } failure: { [weak self] in
-            self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
-            self?.spinner.stopAnimating()
-            self?.commentSendButton.isEnabled = true
-        }
-
-    }
+  
     
     func getComment() {
         guard let id = event?.id else { return }
@@ -595,8 +571,28 @@ extension EventShowPage: Commentable {
     }
 }
 
-extension EventShowPage: GrowingTextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        commentSendButton.isEnabled = !textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+extension EventShowPage: CommentViewDelegate {
+    func sendComment(commentText: String) {
+        commentView.sendCommentButton.isEnabled = false
+        spinner.startAnimating()
+        guard let id = event?.id else { return }
+        networkManager.postComment(postType: NewsType.event, postID: id, text: commentText) { [weak self] in
+            self?.commentView.sendCommentButton.isEnabled = true
+            self?.spinner.stopAnimating()
+            self?.getComment()
+            
+            self?.shouldScroll = true
+        } failure: { [weak self] in
+            self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
+            self?.spinner.stopAnimating()
+            self?.commentView.sendCommentButton.isEnabled = true
+        }
     }
+    
+    func attachFile() {
+        
+    }
+    
+    
 }
+

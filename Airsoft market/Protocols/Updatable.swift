@@ -13,7 +13,7 @@ protocol Updatable: class {
 }
 
 protocol Commentable {
-    func sendComment()
+//    func sendComment()
     func getComment()
     func likeComment(commentID: Int)
     func deleteComment(commentID: Int)

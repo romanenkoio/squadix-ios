@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,9 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsShowPage" customModule="Squadix" customModuleProvider="target">
             <connections>
-                <outlet property="growingTextView" destination="Y3u-Hp-kct" id="1H2-jV-dif"/>
+                <outlet property="commentView" destination="U2C-Qg-Sbc" id="FR7-CX-FSf"/>
                 <outlet property="moreButton" destination="BgI-Ux-La7" id="nfI-At-xwp"/>
-                <outlet property="sendCommentButton" destination="3mJ-zo-cn8" id="6ko-g3-glx"/>
                 <outlet property="spinner" destination="s8n-G6-Sub" id="IWW-Xx-qsy"/>
                 <outlet property="tableView" destination="b6o-TT-VSP" id="n2X-Ty-F2l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -27,58 +26,31 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="s8n-G6-Sub">
                     <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                 </activityIndicatorView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y3u-Hp-kct" customClass="GrowingTextView" customModule="GrowingTextView">
-                    <rect key="frame" x="10" y="812" width="344" height="40"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <color key="textColor" systemColor="labelColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="minHeight">
-                            <integer key="value" value="40"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
-                            <real key="value" value="150"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="trimWhiteSpaceWhenEndEditing" value="YES"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Оставьте своё слово в истории..."/>
-                    </userDefinedRuntimeAttributes>
-                </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mJ-zo-cn8">
-                    <rect key="frame" x="364" y="812" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="b9i-yf-Q3y"/>
-                        <constraint firstAttribute="height" constant="40" id="cI8-Xq-hns"/>
-                    </constraints>
-                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                    <state key="normal" image="send"/>
-                    <connections>
-                        <action selector="sendCommentAction:" destination="-1" eventType="touchUpInside" id="hZ6-1G-SCC"/>
-                    </connections>
-                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b6o-TT-VSP">
-                    <rect key="frame" x="0.0" y="44" width="414" height="758"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="778"/>
                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2C-Qg-Sbc" customClass="CommentView" customModule="Squadix" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="822" width="414" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="f78-qt-UVp"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="s8n-G6-Sub" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="0k3-SS-hyB"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Y3u-Hp-kct" secondAttribute="bottom" constant="10" id="4XZ-f9-u7b"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3mJ-zo-cn8" secondAttribute="bottom" constant="10" id="64e-qG-b2F"/>
-                <constraint firstItem="Y3u-Hp-kct" firstAttribute="top" secondItem="b6o-TT-VSP" secondAttribute="bottom" constant="10" id="9iF-ri-Zas"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="U2C-Qg-Sbc" secondAttribute="trailing" id="8Fv-xl-DiN"/>
                 <constraint firstItem="s8n-G6-Sub" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EnT-EP-o01"/>
-                <constraint firstItem="Y3u-Hp-kct" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Fgb-9S-jCU"/>
-                <constraint firstItem="3mJ-zo-cn8" firstAttribute="leading" secondItem="Y3u-Hp-kct" secondAttribute="trailing" constant="10" id="TLl-0t-gWh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="U2C-Qg-Sbc" secondAttribute="bottom" id="HWn-QK-eXi"/>
+                <constraint firstItem="U2C-Qg-Sbc" firstAttribute="top" secondItem="b6o-TT-VSP" secondAttribute="bottom" id="TmK-rN-6Xv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b6o-TT-VSP" secondAttribute="trailing" id="gN3-E7-eF4"/>
                 <constraint firstItem="b6o-TT-VSP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pWM-xK-ahp"/>
                 <constraint firstItem="b6o-TT-VSP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="uc3-3Y-lpe"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3mJ-zo-cn8" secondAttribute="trailing" constant="10" id="zF1-Ji-VEf"/>
+                <constraint firstItem="U2C-Qg-Sbc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yNg-2e-tba"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="20.089285714285712"/>
         </view>
@@ -98,17 +70,8 @@
             <point key="canvasLocation" x="353.62318840579712" y="-373.66071428571428"/>
         </button>
     </objects>
-    <designables>
-        <designable name="Y3u-Hp-kct">
-            <size key="intrinsicContentSize" width="-1" height="30"/>
-        </designable>
-    </designables>
     <resources>
         <image name="more" width="48" height="48"/>
-        <image name="send" width="48" height="48"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
