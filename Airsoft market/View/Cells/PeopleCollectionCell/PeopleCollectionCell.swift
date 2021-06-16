@@ -25,7 +25,7 @@ class PeopleCollectionCell: UICollectionViewCell {
         }
         usernameLabel.text = people.profileName
         avatarImage.makeRound()
-        profileID = people.id
+//        profileID = people.id
     }
     
     @IBAction func showProfileAction(_ sender: Any) {

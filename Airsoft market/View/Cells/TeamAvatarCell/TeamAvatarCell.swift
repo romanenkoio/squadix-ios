@@ -31,6 +31,7 @@ class TeamAvatarCell: BaseTableViewCell {
         }
        
         avatarSlider.makeRound()
-        regionLabel.text = "\(team.country), \(team.city)"
+        guard let country = team.country, let city = team.city else { return }
+        regionLabel.text = "\(country), \(city)"
     }
 }

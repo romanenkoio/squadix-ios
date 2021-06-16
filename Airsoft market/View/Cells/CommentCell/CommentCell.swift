@@ -16,9 +16,11 @@ class CommentCell: BaseTableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var tapAvatarAction: VoidBlock?
     var reportAction: VoidBlock?
+    var images: [String] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +32,7 @@ class CommentCell: BaseTableViewCell {
         } else {
             authorAvatar.image = UIImage(named: "avatar_placeholder")
         }
+        images = comment.images
         authorName.text = comment.authorName
         likeCountLabel.text = "\(comment.likeCount)"
         likeCountLabel.isHidden = comment.likeCount == 0
@@ -43,6 +46,11 @@ class CommentCell: BaseTableViewCell {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
+        
+        commentTextLabel.isHidden = comment.text.isEmpty
+        collectionView.isHidden = true
+        collectionView.dataSource = self
+        collectionView.registerCell(ProductImageCell.self)
     }
 
     @IBAction func likeAction(_ sender: Any) {
@@ -60,5 +68,28 @@ class CommentCell: BaseTableViewCell {
     
     @IBAction func reportAction(_ sender: Any) {
         reportAction?()
+    }
+}
+
+
+extension CommentCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        collectionView.isHidden = images.count == 0
+        return images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProductImageCell.self), for: indexPath)
+        if let imageCell = cell as? ProductImageCell {
+            imageCell.setupImage(with: images[indexPath.row])
+            return imageCell
+        }
+        return cell
+    }
+}
+
+extension CommentCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
     }
 }

@@ -22,7 +22,7 @@ struct Profile: Mappable {
     var birthday: Date?
     var roles: [Common.Roles]!
     var isBlocked: Bool = false
-    var team: String?
+    var team: [Team] = []
     var rating = 0
     var vk: String?
     var tg: String?
@@ -75,10 +75,6 @@ struct Profile: Mappable {
         
         if city != "" {
             params["city"] = city
-        }
-        
-        if team != "" {
-            params["team"] = team
         }
         
         if country != "" {

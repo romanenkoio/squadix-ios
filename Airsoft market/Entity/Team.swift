@@ -9,38 +9,56 @@
 import Foundation
 import ObjectMapper
 
+class TeamObject: Mappable, PaginableObject {
+    var totalElements: Int = 0
+    var totalPages: Int = 0
+    var content: [Team] = []
+    
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        content                   <- map["content"]
+        totalPages                <- map["totalPages"]
+        totalElements             <- map["totalElements"]
+    }
+}
+
 class Team: Mappable {
-    var name = "Ромашки"
-    var city = "Минск"
-    var country = "Буларусь"
+    var name: String!
+    var city: String!
+    var country: String!
     var people: [Profile] = []
-    var description = "Наша команда состоит преимущественно из снайперов (марксменов). Соответственно основные задачи нашей команды на играх это разведка, охрана объектов, засадные действия. На крупных играх нашей команде дают отмашку на свободную охоту"
+    var description: String!
     var id = 0
     var teamAvatar = ""
-    var smallTeamAvatar = ""
     var ownerID = 0
     
     required init?(map: Map) {
         mapping(map: map)
     }
     
-    init() {
+    init(name: String, city: String, description: String) {
+        self.name = name
+        self.city = city
+        self.description = description
+        self.country = "Беларусь"
     }
     
     func mapping(map: Map) {
         name                <- map["name"]
         city                <- map["city"]
         country             <- map["country"]
-        people              <- map["people"]
+        people              <- map["members"]
         description         <- map["description"]
         id                  <- map["id"]
-        teamAvatar          <- map["teamAvatar"]
-        smallTeamAvatar     <- map["smallTeamAvatar"]
+        teamAvatar          <- map["logoUrl"]
         ownerID             <- map["ownerID"]
     }
 }
 
-extension Team: Creatable {
+extension Team: Convertable {
     func asParams() -> [String : Any] {
         var params = [String: Any]()
         params["name"] = name

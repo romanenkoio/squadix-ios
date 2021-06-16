@@ -53,12 +53,15 @@ enum StrikeServise{
     case blockUser(id: Int)
     case unblockUser(id: Int)
     case getComments(postType: NewsType, postID: Int)
-    case postComment(postType: NewsType, postID: Int, text: String)
+    case postComment(postType: NewsType, postID: Int, text: String, images: [UIImage])
     case likeComment(postType: NewsType, commentID: Int)
     case deleteComment(postType: NewsType, commentID: Int)
     case report(link: String)
     case editProduct(product: MarketProduct)
     case version
+    case createTeam(team: Team)
+    case getMyTeams
+    case getTeamById(teamID: Int)
 }
 
 extension StrikeServise: TargetType {
@@ -168,7 +171,7 @@ extension StrikeServise: TargetType {
             return Path.Users.resetPasswordConfirmation
         case .deleteAvatar:
             return Path.Users.deleteAvatar
-        case .getComments(let postType, let postID), .postComment(let postType, let postID, _):
+        case .getComments(let postType, let postID), .postComment(let postType, let postID, _, _):
             return Path.Comments.comments(postType: postType, postID: postID)
         case .likeComment(let postType, let commentID):
             return Path.Comments.likeComment(postType: postType, commentID: commentID)
@@ -180,12 +183,18 @@ extension StrikeServise: TargetType {
             return Path.Products.path + "/\(product.postID)"
         case .version:
             return Path.Version.actual
+        case .createTeam:
+            return Path.Team.path
+        case .getMyTeams:
+            return Path.Team.myTeams
+        case .getTeamById(let teamID):
+            return Path.Team.findByID(teamID)
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report, .createTeam:
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment:
             return .delete
@@ -233,6 +242,8 @@ extension StrikeServise: TargetType {
     var parameters: [String: Any]? {
         var params = [String: Any]()
         switch self {
+        case .createTeam(let team):
+            params = team.asParams()
         case  .activeProductsWithFilters(let page, let filters):
             if page != nil {
                 params["page"] = page
@@ -311,8 +322,17 @@ extension StrikeServise: TargetType {
             params["resetPasswordToken"] = resetToken
         case .blockUser(let id), .unblockUser(let id):
             params["id"] = id
-        case .postComment(_, _, let text):
+        case .postComment(_, _, let text, let images):
             params["text"] = text
+            if images.count > 0 {
+                var sendData: [String] = []
+                for image in images {
+                    if let codedImage = image.toBase64() {
+                        sendData.append(codedImage)
+                    }
+                }
+                params["imageUrls"] = sendData
+            }
         case .report(let link):
             params["url"] = link
         case .editProduct(let product):
@@ -335,7 +355,7 @@ extension StrikeServise: TargetType {
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .youtubeInfo, .getUserPosts, .getProductByUser, .posts, .events, .activeProductsWithFilters, .moderatingProducts, .getAllUsers:
+        case .youtubeInfo, .getUserPosts, .getProductByUser, .posts, .events, .activeProductsWithFilters, .moderatingProducts, .getAllUsers, .getTeamById:
             return URLEncoding.queryString
         default:
             return JSONEncoding.prettyPrinted

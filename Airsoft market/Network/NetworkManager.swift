@@ -665,8 +665,8 @@ final class NetworkManager {
         }
     }
     
-    func postComment(postType: NewsType, postID: Int, text: String, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
-        provider.request(.postComment(postType: postType, postID: postID, text: text)) { result in
+    func postComment(postType: NewsType, postID: Int, text: String, images: [UIImage], completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.postComment(postType: postType, postID: postID, text: text, images: images)) { result in
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
@@ -746,5 +746,46 @@ final class NetworkManager {
             }
         }
     }
+    
+    func createTeam(team: Team, completion: ((Team) -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.createTeam(team: team)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                guard let team = try? response.mapObject(Team.self) else { return }
+                completion?(team)
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
+    
+    func getMyTeam(completion: (([Team]) -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.getMyTeams) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                guard let teams = try? response.mapObject(TeamObject.self) else { return }
+                completion?(teams.content)
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
 
+    func getTeamById(teamID: Int, completion: ((Team) -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.getTeamById(teamID: teamID)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                guard let teams = try? response.mapObject(Team.self) else { return }
+                completion?(teams)
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
 }

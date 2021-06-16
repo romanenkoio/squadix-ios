@@ -100,6 +100,14 @@ class ProfilePage: BaseViewController {
           present(alert, animated: true)
      }
      
+     func loadTeams() {
+          networkManager.getMyTeam { [weak self] teams in
+               self?.currentProfile?.team = teams
+               self?.tableView.reloadData()
+               self?.configureFloatingMenu()
+          }
+     }
+     
      func configureFloatingMenu() {
           actionButton.items = []
           actionButton.buttonColor = .mainStrikeColor
@@ -152,12 +160,25 @@ class ProfilePage: BaseViewController {
                }
           }
           
-//          if KeychainManager.isPartner || KeychainManager.isAdmin{
-//               actionButton.addItem(title: "Создать команду", image: UIImage(named: "createTeam")) { [weak self] item in
-//                    self?.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
-//               }
-//          }
-
+          if let teamsCount = currentProfile?.team.count {
+               actionButton.addItem(title: teamsCount > 0 ? "Моя команда" : "Создать команду", image: UIImage(named: "createTeam")) { [weak self] item in
+                    if teamsCount > 0 {
+                         guard let id = self?.currentProfile?.team.first?.id else { return }
+                         self?.networkManager.getTeamById(teamID: id, completion: { team in
+                              let vc = TeamPage.loadFromNib()
+                              vc.team = team
+                              self?.spinner.stopAnimating()
+                              self?.pushController(vc)
+                         }, failure: { [weak self] in
+                              self?.spinner.stopAnimating()
+                         })
+                    } else {
+                         self?.navigationController?.pushViewController(CreateTeamPage.loadFromNib(), animated: true)
+                    }
+                    
+               }
+          }
+        
           
           actionButton.configureDefaultItem { item in
                item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
@@ -323,19 +344,24 @@ extension ProfilePage: UITableViewDataSource {
                cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DescriptionPointCell.self), for: indexPath)
                if let profileCell = cell as? DescriptionPointCell {
                     profileCell.descriptionLabel.text = currentProfile?.profileDescription
-                    if let team = currentProfile?.team {
+                    if let team = currentProfile?.team, team.count > 0 {
                          profileCell.commandLabel.isHidden = false
-                         profileCell.commandLabel.setTitle("Команда: \(team)", for: .normal)
-                      
+                         if let team = team.first?.name {
+                              profileCell.commandLabel.setTitle("Команда: \(team)", for: .normal)
+                         } else {
+                              profileCell.commandLabel.isHidden = true
+                         }
                          profileCell.searchAction = { [weak self] in
                               self?.spinner.startAnimating()
-                              self?.networkManager.getAllUsers { profiles in
+                              guard let id = self?.currentProfile?.team.first?.id else { return }
+                              self?.networkManager.getTeamById(teamID: id, completion: { team in
+                                   let vc = TeamPage.loadFromNib()
+                                   vc.team = team
                                    self?.spinner.stopAnimating()
-                                   let teamPeoples = profiles.content.filter({ $0.team?.lowercased() == self?.currentProfile?.team?.lowercased()})
-                                   self?.navigationController?.pushViewController(VCFabric.getSearchWithTeam(people: teamPeoples), animated: true)
-                              } failure: { _ in
-                                   print("Search team error")
-                              }
+                                   self?.pushController(vc)
+                              }, failure: { [weak self] in
+                                   self?.spinner.stopAnimating()
+                              })
                          }
                     } else {
                          profileCell.commandLabel.isHidden = true
@@ -445,6 +471,7 @@ extension ProfilePage {
           }
           loadPostInfo()
           loadProductInfo()
+          loadTeams()
      }
      
      func loadPostInfo() {

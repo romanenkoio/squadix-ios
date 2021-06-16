@@ -15,6 +15,7 @@
                 <outlet property="contentView" destination="iN0-l3-epB" id="n3W-b8-uiE"/>
                 <outlet property="growingTextView" destination="XQr-2h-svd" id="hXq-co-jCv"/>
                 <outlet property="sendCommentButton" destination="aUh-j6-VfE" id="F8w-yu-OfM"/>
+                <outlet property="spinner" destination="tj9-5E-RzJ" id="cxF-Uc-tBL"/>
                 <outlet property="stackView" destination="RyD-oN-6qA" id="PaD-PF-Ent"/>
             </connections>
         </placeholder>
@@ -57,12 +58,12 @@
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XCZ-Ok-SNi">
                             <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="VAQ-Mf-U17"/>
                             </constraints>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7B3-ZV-jjZ">
-                                <size key="itemSize" width="128" height="128"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="6" minimumInteritemSpacing="5" id="7B3-ZV-jjZ">
+                                <size key="itemSize" width="90" height="90"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -82,20 +83,27 @@
                         <action selector="attachFileAction:" destination="-1" eventType="touchUpInside" id="Yys-09-6op"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="tj9-5E-RzJ">
+                    <rect key="frame" x="364" y="248" width="40" height="40"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RyD-oN-6qA" secondAttribute="trailing" constant="10" id="0aE-QQ-EP9"/>
                 <constraint firstItem="RyD-oN-6qA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="3cP-TV-Opg"/>
+                <constraint firstItem="tj9-5E-RzJ" firstAttribute="leading" secondItem="aUh-j6-VfE" secondAttribute="leading" id="7J2-JC-cwq"/>
                 <constraint firstItem="aUh-j6-VfE" firstAttribute="bottom" secondItem="XQr-2h-svd" secondAttribute="bottom" id="7eq-Ne-gwN"/>
                 <constraint firstItem="XQr-2h-svd" firstAttribute="top" secondItem="RyD-oN-6qA" secondAttribute="bottom" constant="5" id="GlB-YA-tEx"/>
+                <constraint firstItem="tj9-5E-RzJ" firstAttribute="bottom" secondItem="aUh-j6-VfE" secondAttribute="bottom" id="Kg2-cz-jcP"/>
                 <constraint firstItem="aUh-j6-VfE" firstAttribute="leading" secondItem="XQr-2h-svd" secondAttribute="trailing" constant="10" id="Ots-cP-xde"/>
+                <constraint firstItem="tj9-5E-RzJ" firstAttribute="top" secondItem="aUh-j6-VfE" secondAttribute="top" id="Pjd-3z-lya"/>
                 <constraint firstItem="DRu-mI-MBA" firstAttribute="bottom" secondItem="aUh-j6-VfE" secondAttribute="bottom" id="Up2-H2-GZB"/>
                 <constraint firstItem="RyD-oN-6qA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Zkk-LU-18g"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aUh-j6-VfE" secondAttribute="trailing" constant="10" id="ceT-Bt-YoP"/>
                 <constraint firstItem="XQr-2h-svd" firstAttribute="leading" secondItem="DRu-mI-MBA" secondAttribute="trailing" constant="10" id="hTS-DC-sXL"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="XQr-2h-svd" secondAttribute="bottom" constant="10" id="lUF-wO-QHu"/>
+                <constraint firstItem="tj9-5E-RzJ" firstAttribute="trailing" secondItem="aUh-j6-VfE" secondAttribute="trailing" id="uzY-Vc-rBl"/>
                 <constraint firstItem="DRu-mI-MBA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="vBq-hi-Hzh"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

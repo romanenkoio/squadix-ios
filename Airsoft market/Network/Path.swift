@@ -124,4 +124,17 @@ struct Path {
         static let path = "notifications"
         static let notifications = path + "/me"
     }
+    
+    struct Team {
+        static let path = "teams"
+        static let myTeams = path + "/my"
+        
+        static func findByID(_ teamID: Int) -> String {
+            return path + "/\(teamID)/"
+        }
+        
+        static func uploadTeamAvatar(_ teamID: Int) -> String {
+            return path + "/\(teamID)/images"
+        }
+    }
 }

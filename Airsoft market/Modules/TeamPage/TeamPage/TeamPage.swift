@@ -26,7 +26,7 @@ class TeamPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var menuPoints: [[TeamMenu]] = TeamMenu.getMenuPoints()
-    var team: Team? = Team()
+    var team: Team!
     var sectionDescription = ["", "Члены команды", "Описание"]
     
     override func viewDidLoad() {

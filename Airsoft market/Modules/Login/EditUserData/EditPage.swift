@@ -87,7 +87,7 @@ class EditPage: BaseViewController {
     func preloadData() {
         countryTextField.text = "Беларусь"
         cityTextField.text = profile?.city
-        teamTextField.text = profile?.team
+//        teamTextField.text = profile?.team
         vkField.text = profile?.vk
         tgField.text = profile?.tg
         
@@ -140,7 +140,7 @@ class EditPage: BaseViewController {
             profile?.tg = tgField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
             profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
-            profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+//            profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if userNameTextField.text != "" {
                 profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -162,7 +162,7 @@ class EditPage: BaseViewController {
             if let date = selectedDate {
                 profile?.birthday = date
             }
-            profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+//            profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
             profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)

@@ -129,7 +129,7 @@
 		7F95B732264E5B5D00057145 /* SelectCityPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F95B730264E5B5D00057145 /* SelectCityPage.xib */; };
 		7F96166325C4705D00C6C8F7 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96166225C4705D00C6C8F7 /* Path.swift */; };
 		7F96AE162616FF4400C064BE /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96AE152616FF4400C064BE /* Team.swift */; };
-		7F96AE352617004600C064BE /* Creatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96AE342617004600C064BE /* Creatable.swift */; };
+		7F96AE352617004600C064BE /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96AE342617004600C064BE /* Convertable.swift */; };
 		7F96AE392617021C00C064BE /* CreateTeamPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96AE372617021C00C064BE /* CreateTeamPage.swift */; };
 		7F96AE3A2617021C00C064BE /* CreateTeamPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F96AE382617021C00C064BE /* CreateTeamPage.xib */; };
 		7F9835212484505B000DE3AA /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9835202484505B000DE3AA /* UsersData.swift */; };
@@ -525,7 +525,7 @@
 		7F95B730264E5B5D00057145 /* SelectCityPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCityPage.xib; sourceTree = "<group>"; };
 		7F96166225C4705D00C6C8F7 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		7F96AE152616FF4400C064BE /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
-		7F96AE342617004600C064BE /* Creatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creatable.swift; sourceTree = "<group>"; };
+		7F96AE342617004600C064BE /* Convertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
 		7F96AE372617021C00C064BE /* CreateTeamPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamPage.swift; sourceTree = "<group>"; };
 		7F96AE382617021C00C064BE /* CreateTeamPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTeamPage.xib; sourceTree = "<group>"; };
 		7F9835202484505B000DE3AA /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
@@ -1282,7 +1282,7 @@
 				7F9D375C25549C1F00BDAC1E /* DeepLinkRoutable.swift */,
 				7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */,
 				7F44868125CC79520055C511 /* Updatable.swift */,
-				7F96AE342617004600C064BE /* Creatable.swift */,
+				7F96AE342617004600C064BE /* Convertable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -2021,7 +2021,7 @@
 				7F96AE392617021C00C064BE /* CreateTeamPage.swift in Sources */,
 				7F2A127F25437C050041162A /* QRGenerator.swift in Sources */,
 				7F68F476262E326E008FC0D5 /* WeaterPopup.swift in Sources */,
-				7F96AE352617004600C064BE /* Creatable.swift in Sources */,
+				7F96AE352617004600C064BE /* Convertable.swift in Sources */,
 				7FC4D55425F2502B00CCBACF /* EventDescriptionPage.swift in Sources */,
 				7FC4D6712554549300F1E508 /* NetworkMonitor.swift in Sources */,
 				7F595B2C248037B700D56E74 /* CategoryCheckboxCell.swift in Sources */,

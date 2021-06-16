@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol Creatable {
+protocol Convertable {
     func asParams() -> [String: Any] 
 }

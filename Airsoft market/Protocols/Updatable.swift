@@ -8,13 +8,17 @@
 
 import Foundation
 
-protocol Updatable: class {
+protocol Updatable: AnyObject {
     func update()
 }
 
 protocol Commentable {
-//    func sendComment()
     func getComment()
     func likeComment(commentID: Int)
     func deleteComment(commentID: Int)
+}
+
+protocol PaginableObject {
+    var totalElements: Int {get set}
+    var totalPages: Int {get set}
 }

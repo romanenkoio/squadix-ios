@@ -20,6 +20,7 @@ class Comment: Mappable {
     var authorName: String!
     var createdAt: Date?
     var updatedAt: String = ""
+    var images: [String] = []
     
     required init?(map: Map) {
         mapping(map: map)
@@ -48,6 +49,7 @@ class Comment: Mappable {
         text                    <- map["text"]
         likeCount               <- map["likesCount"]
         isLiked                 <- map["liked"]
+        images                 <- map["imageUrls"]
         
         if let created = map["createdAt"].currentValue as? String {
             let eventFormatter = DateFormatter()

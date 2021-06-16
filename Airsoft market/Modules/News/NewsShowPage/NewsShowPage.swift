@@ -10,8 +10,9 @@ import UIKit
 import ImageSlideshow
 import Moya
 import GrowingTextView
+import Photos
 
-protocol LikeDelegate: class {
+protocol LikeDelegate: AnyObject {
     func updateLike(inPost: Post?)
     func updateLike(inEvent: Event?)
 }
@@ -60,6 +61,7 @@ class NewsShowPage: BaseViewController {
     weak var likeDelegate: LikeDelegate?
     var offset: CGPoint = CGPoint(x: 0, y: 0)
         
+    var imagePicker = UIImagePickerController()
     var likeAction: Cancellable? = nil
     var menu: [[NewsMenuPoint]] = []
     var shouldScroll = false
@@ -393,20 +395,80 @@ extension NewsShowPage: Commentable {
 
 
 extension NewsShowPage: CommentViewDelegate {
-    func sendComment(commentText: String) {
+    func sendComment(commentText: String, images: [UIImage]) {
         spinner.startAnimating()
         guard let id = post?.id else { return }
-        networkManager.postComment(postType: NewsType.feed, postID: id, text: commentText) { [weak self] in
+        networkManager.postComment(postType: NewsType.feed, postID: id, text: commentText, images: commentView.imageData) { [weak self] in
             self?.spinner.stopAnimating()
             self?.getComment()
             self?.shouldScroll = true
+            self?.commentView.commentWilSend()
         } failure: { [weak self] in
             self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
             self?.spinner.stopAnimating()
+            self?.commentView.commentFailSend()
         }
     }
     
     func attachFile() {
-
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        
+        var buttonTitile = "Сделать фото"
+        alert.addAction(UIAlertAction(title: buttonTitile, style: .default) { [weak self] _ in
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { accessGranted in
+                if  accessGranted {
+                    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                        DispatchQueue.main.async {
+                            self?.imagePicker.sourceType = .camera
+                            self?.present(self!.imagePicker, animated: true, completion: nil)
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showPermissionAlert(for: .camera)
+                    }
+                }
+            })
+        })
+        
+        buttonTitile = "Выбрать из галереи"
+        alert.addAction(UIAlertAction(title: buttonTitile, style: .default) { [weak self]  _ in
+            let status = PHPhotoLibrary.authorizationStatus()
+            
+            PHPhotoLibrary.requestAuthorization({ (newStatus) in
+                if (newStatus == PHAuthorizationStatus.authorized) {
+                    if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+                        DispatchQueue.main.async {
+                            self?.imagePicker.sourceType = .savedPhotosAlbum
+                            self?.present(self!.imagePicker, animated: true, completion: nil)
+                        }
+                    }
+                } else if (status == PHAuthorizationStatus.denied) {
+                    DispatchQueue.main.async {
+                        self?.showPermissionAlert(for: .galery)
+                    }
+                }
+            })
+            
+            
+        })
+      
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel) { _ in
+            
+        })
+        
+        present(alert, animated: true)
     }
 }
+
+extension NewsShowPage: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            commentView.imageData.append(pickedImage)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+}
+

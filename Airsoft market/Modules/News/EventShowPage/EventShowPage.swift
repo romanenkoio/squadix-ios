@@ -572,15 +572,15 @@ extension EventShowPage: Commentable {
 }
 
 extension EventShowPage: CommentViewDelegate {
-    func sendComment(commentText: String) {
+    func sendComment(commentText: String, images: [UIImage]) {
         commentView.sendCommentButton.isEnabled = false
         spinner.startAnimating()
         guard let id = event?.id else { return }
-        networkManager.postComment(postType: NewsType.event, postID: id, text: commentText) { [weak self] in
+        networkManager.postComment(postType: NewsType.event, postID: id, text: commentText, images: commentView.imageData) { [weak self] in
             self?.commentView.sendCommentButton.isEnabled = true
             self?.spinner.stopAnimating()
             self?.getComment()
-            
+            self?.commentView.commentWilSend()
             self?.shouldScroll = true
         } failure: { [weak self] in
             self?.showPopup(isError: true, title: "Не удалось опубликовать комментарий. ")
