@@ -16,10 +16,12 @@ class CommentCell: BaseTableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeCountLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var imagesStackView: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var tapAvatarAction: VoidBlock?
     var reportAction: VoidBlock?
+    var openImageAction: VoidBlock?
     var images: [String] = []
     
     override func awakeFromNib() {
@@ -48,9 +50,8 @@ class CommentCell: BaseTableViewCell {
         }
         
         commentTextLabel.isHidden = comment.text.isEmpty
-        collectionView.isHidden = true
-        collectionView.dataSource = self
-        collectionView.registerCell(ProductImageCell.self)
+        scrollView.isHidden = images.count == 0
+        addImages()
     }
 
     @IBAction func likeAction(_ sender: Any) {
@@ -60,6 +61,9 @@ class CommentCell: BaseTableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         authorAvatar.image = UIImage(named: "avatar_placeholder")
+        for view in imagesStackView.subviews {
+            view.removeFromSuperview()
+        }
     }
     
     @IBAction func tapAvatarAction(_ sender: Any) {
@@ -69,27 +73,37 @@ class CommentCell: BaseTableViewCell {
     @IBAction func reportAction(_ sender: Any) {
         reportAction?()
     }
-}
-
-
-extension CommentCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionView.isHidden = images.count == 0
-        return images.count
+    
+    func addImages() {
+        for image in images {
+            let commentImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+            commentImageView.loadImageWith(image)
+            commentImageView.contentMode = .scaleAspectFill
+            commentImageView.translatesAutoresizingMaskIntoConstraints = true
+            commentImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+            commentImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+            let tap = ImageTap(target: self, action: #selector(openImage))
+            tap.imageUrl = image
+            commentImageView.isUserInteractionEnabled = true
+            commentImageView.addGestureRecognizer(tap)
+            commentImageView.layer.cornerRadius = 5
+            imagesStackView.addArrangedSubview(commentImageView)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProductImageCell.self), for: indexPath)
-        if let imageCell = cell as? ProductImageCell {
-            imageCell.setupImage(with: images[indexPath.row])
-            return imageCell
+    @objc func openImage(sender: ImageTap) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("The controller to presentation, to represent push in nil")
+            return
         }
-        return cell
+        let vc = FullPicturePage.loadFromNib()
+        vc.url = sender.imageUrl
+        appDelegate.currentViewController?.navigationController?.present(vc, animated: true)
     }
 }
 
-extension CommentCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
-    }
+class ImageTap: UITapGestureRecognizer {
+  var imageUrl: String = ""
 }
+
+

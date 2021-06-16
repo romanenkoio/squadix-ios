@@ -17,7 +17,7 @@ class FullPicturePage: UIViewController {
         super.viewDidLoad()
 
         imageView.loadImageWith(url)
-        
+        imageView.contentMode = .scaleAspectFit
         let tap = UIGestureRecognizer(target: self, action: #selector(didTap))
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(tap)

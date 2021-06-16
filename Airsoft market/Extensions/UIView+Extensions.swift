@@ -16,7 +16,7 @@ extension UIView {
         self.clipsToBounds = true
     }
     
-    func dropShadow(){
+    func dropShadow() {
         layer.cornerRadius = 10
         layer.borderColor = UIColor.black.cgColor
         layer.shadowColor = UIColor.black.cgColor
