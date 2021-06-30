@@ -34,6 +34,7 @@ class Team: Mappable {
     var id = 0
     var teamAvatar = ""
     var ownerID = 0
+    var photos: [TeamImage] = []
     
     required init?(map: Map) {
         mapping(map: map)
@@ -55,6 +56,7 @@ class Team: Mappable {
         id                  <- map["id"]
         teamAvatar          <- map["logoUrl"]
         ownerID             <- map["ownerId"]
+        photos              <- map["images"]
     }
 }
 
@@ -69,3 +71,26 @@ extension Team: Convertable {
         return params
     }
 }
+
+
+class TeamImage: Mappable {
+    var id = 0
+    var url = ""
+    
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+
+    func mapping(map: Map) {
+        id         <- map["id"]
+        url        <- map["url"]
+    }
+}
+
+//"id": 1,
+//      "url": "https://strike-nonprod.s3.eu-central-1.amazonaws.com/2021-06-30T21:41:41.455879Z_0bb5d280-bb73-4222-a89c-8a375873fabd.png",
+//      "createdByUserId": "1",
+//      "createdByUserName": "Илья Романенко",
+//      "createdByUserAvatar": "https://strike-nonprod.s3.eu-central-1.amazonaws.com/2021-04-02T15:50:31.234530Z_photo.jpg",
+//      "createdAt": "2021-06-30T21:41:43.583929Z"

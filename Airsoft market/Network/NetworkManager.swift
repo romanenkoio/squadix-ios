@@ -801,4 +801,17 @@ final class NetworkManager {
             }
         }
     }
+    
+    func uploadPhotoToTeam(teamID: Int, image: UIImage, completion: VoidBlock?, failure: VoidBlock? = nil) {
+        provider.request(.addPhotoToTeam(image: image, teamID: teamID)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
 }

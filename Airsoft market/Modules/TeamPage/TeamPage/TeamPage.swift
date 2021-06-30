@@ -12,12 +12,14 @@ enum TeamMenu {
     case teamAvatar
     case teamMember
     case teamInfo
+    case photo
     
     static func getMenuPoints() -> [[TeamMenu]] {
         let avatarSection: [TeamMenu] = [.teamAvatar]
         let memberSection: [TeamMenu] = [.teamMember]
+        let photoSection: [TeamMenu] = [.photo]
         let infoSection: [TeamMenu] = [.teamInfo]
-        return [avatarSection, memberSection, infoSection]
+        return [avatarSection, memberSection, photoSection, infoSection]
     }
 }
 
@@ -27,13 +29,14 @@ class TeamPage: BaseViewController {
     
     var menuPoints: [[TeamMenu]] = TeamMenu.getMenuPoints()
     var team: Team!
-    var sectionDescription = ["", "Члены команды", "Описание"]
+    var sectionDescription = ["", "Члены команды","Фото", "Описание"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.setupDelegateData(self)
         tableView.registerCell(TeamAvatarCell.self)
         tableView.registerCell(TeamMemberCell.self)
+        tableView.registerCell(TeamGalleryCell.self)
         tableView.registerCell(DescriptionPointCell.self)
         navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: addMemberButton)],
                                               animated: true)
@@ -101,6 +104,15 @@ extension TeamPage: UITableViewDataSource {
             descriptionCell.teamStack.isHidden = true
             descriptionCell.descriptionLabel.text = team.description
             return descriptionCell
+        case .photo:
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TeamGalleryCell.self), for: indexPath)
+            
+            guard let teamImagesCell = cell as? TeamGalleryCell else {
+                return cell
+            }
+            teamImagesCell.canAddPhoto = team.people.filter({$0.id == KeychainManager.profileID}).count > 0
+            teamImagesCell.images = team.photos
+            return teamImagesCell
         }
     }
     

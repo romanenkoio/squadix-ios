@@ -133,7 +133,7 @@ struct Path {
             return path + "/\(teamID)/"
         }
         
-        static func uploadTeamAvatar(_ teamID: Int) -> String {
+        static func uploadTeamGallery(_ teamID: Int) -> String {
             return path + "/\(teamID)/images"
         }
     }

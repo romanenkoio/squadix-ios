@@ -21,8 +21,8 @@ class AddProductPage: BaseViewController {
     @IBOutlet weak var regionTextField: StrikeInputField!
     @IBOutlet weak var postButton: OliveButton!
     @IBOutlet weak var postLabel: UILabel!
-    var profile: Profile?
     
+    var profile: Profile?
     var categoryPicker = UIPickerView()
     var imagePicker = UIImagePickerController()
     var imageData: [UIImage] = []

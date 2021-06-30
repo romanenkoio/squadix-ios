@@ -63,6 +63,7 @@ enum StrikeServise{
     case getMyTeams
     case getTeamById(teamID: Int)
     case inviteToTeam(userID: Int)
+    case addPhotoToTeam(image: UIImage, teamID: Int)
 }
 
 extension StrikeServise: TargetType {
@@ -192,12 +193,14 @@ extension StrikeServise: TargetType {
             return Path.Team.findByID(teamID)
         case .inviteToTeam:
             return Path.Invation.path
+        case .addPhotoToTeam( _, let teamID):
+            return Path.Team.uploadTeamGallery(teamID)
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report, .createTeam, .inviteToTeam:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report, .createTeam, .inviteToTeam, .addPhotoToTeam:
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment:
             return .delete
@@ -245,6 +248,12 @@ extension StrikeServise: TargetType {
     var parameters: [String: Any]? {
         var params = [String: Any]()
         switch self {
+        case .addPhotoToTeam(let image, _):
+            var imagedata: [String] = []
+            if let im = image.toBase64() {
+                imagedata.append(im)
+                params["images"] = imagedata
+            }
         case .inviteToTeam(let userID):
             params["userId"] = userID
         case .createTeam(let team):
