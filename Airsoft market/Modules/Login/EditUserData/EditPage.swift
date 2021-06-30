@@ -29,7 +29,6 @@ class EditPage: BaseViewController {
     var isEdit: Bool = false
     var userPostCount = 0
     let manager = NetworkManager()
-    var cityWasSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,21 +72,17 @@ class EditPage: BaseViewController {
     }
     
     @IBAction func startSelectCity(_ sender: Any) {
-        if !cityWasSelected {
             let vc = SelectCityPage.loadFromNib()
             vc.selectAction = { [weak self] selectedCity in
                 self?.cityTextField.text = selectedCity.city
                 self?.navigationController?.popViewController(animated: true)
-                self?.cityWasSelected = true
             }
             pushController(vc)
-        }
     }
     
     func preloadData() {
         countryTextField.text = "Беларусь"
         cityTextField.text = profile?.city
-//        teamTextField.text = profile?.team
         vkField.text = profile?.vk
         tgField.text = profile?.tg
         
@@ -162,7 +157,6 @@ class EditPage: BaseViewController {
             if let date = selectedDate {
                 profile?.birthday = date
             }
-//            profile?.team = teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
             profile?.city = cityTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
             profile?.profileDescription = descriptionTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
             profile?.profileName = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)

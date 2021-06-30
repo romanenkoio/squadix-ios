@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,15 +19,28 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lfm-rL-qUp">
                         <rect key="frame" x="26" y="11" width="268" height="191"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX1-3Q-d4e">
-                                <rect key="frame" x="0.0" y="0.0" width="268" height="100.5"/>
-                                <state key="normal" title="Команда"/>
-                                <connections>
-                                    <action selector="findTeamPersonsAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kWl-yw-k9B"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="srq-5x-Mgu">
+                                <rect key="frame" x="0.0" y="0.0" width="268" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="hbl-X3-SRO">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Qb0-5g-aLi"/>
+                                            <constraint firstAttribute="width" constant="40" id="iNg-Ae-fmj"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX1-3Q-d4e">
+                                        <rect key="frame" x="50" y="0.0" width="218" height="40"/>
+                                        <state key="normal" title="Команда"/>
+                                        <connections>
+                                            <action selector="findTeamPersonsAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kWl-yw-k9B"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4X-XU-4fN" customClass="ActiveLabel" customModule="ActiveLabel">
-                                <rect key="frame" x="0.0" y="110.5" width="268" height="80.5"/>
+                                <rect key="frame" x="0.0" y="50" width="268" height="141"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="vby-Zb-QmY"/>
                                 </constraints>
@@ -51,18 +63,22 @@
                     <constraint firstItem="Lfm-rL-qUp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="eI6-PM-gn3"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="commandLabel" destination="tX1-3Q-d4e" id="iLp-3c-upa"/>
                 <outlet property="descriptionLabel" destination="Q4X-XU-4fN" id="WDm-vQ-BQj"/>
+                <outlet property="teamImage" destination="hbl-X3-SRO" id="6UN-eY-yxs"/>
+                <outlet property="teamStack" destination="srq-5x-Mgu" id="cgr-bh-UtA"/>
             </connections>
             <point key="canvasLocation" x="134.78260869565219" y="189.84375"/>
         </tableViewCell>
     </objects>
     <designables>
         <designable name="Q4X-XU-4fN">
-            <size key="intrinsicContentSize" width="36" height="17"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
     </designables>
+    <resources>
+        <image name="team_placeholder" width="820" height="860"/>
+    </resources>
 </document>

@@ -1,6 +1,7 @@
 PODS:
   - ActiveLabel (1.1.0)
   - Alamofire (5.4.3)
+  - CollectionViewPagingLayout (1.0.2)
   - Firebase/Analytics (8.0.0):
     - Firebase/Core
   - Firebase/Core (8.0.0):
@@ -90,7 +91,6 @@ PODS:
   - GoogleMaps/Base (5.0.0)
   - GoogleMaps/Maps (5.0.0):
     - GoogleMaps/Base
-  - GooglePlaces (5.0.0)
   - GoogleUtilities/AppDelegateSwizzler (7.4.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -152,10 +152,10 @@ PODS:
 
 DEPENDENCIES:
   - ActiveLabel
+  - CollectionViewPagingLayout
   - Firebase/Analytics
   - Google-Maps-iOS-Utils
   - GoogleMaps
-  - GooglePlaces
   - GrowingTextView
   - ImageSlideshow
   - ImageSlideshow/Kingfisher
@@ -174,6 +174,7 @@ SPEC REPOS:
   trunk:
     - ActiveLabel
     - Alamofire
+    - CollectionViewPagingLayout
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -183,7 +184,6 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleMaps
-    - GooglePlaces
     - GoogleUtilities
     - GrowingTextView
     - ImageSlideshow
@@ -214,6 +214,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  CollectionViewPagingLayout: 418c8f5fc92cb35673f961196d5e0509ab853667
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
   FirebaseAnalytics: dcb92c7c9ef4fa7ffac276e8f87bd4fc8c97f1b8
   FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
@@ -223,7 +224,6 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: c6bbc9753d046b5456dd4f940057fbad2c28419e
   GoogleDataTransport: 11e3a5f2c190327df1a4a5d7e7ae3d4d5b9c9e4c
   GoogleMaps: 600e5e69bdf7f4ed7cac4d6aa96c7ec08a5aa254
-  GooglePlaces: 5d87ca13ed98b7a937e0d8bc7026f718c7263271
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
   ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
@@ -242,6 +242,6 @@ SPEC CHECKSUMS:
   Sentry: 0a48d832ce921578a0c31c68272382fbef9a1726
   YoutubePlayer-in-WKWebView: cfbf46da51d7370662a695a8f351e5fa1d3e1008
 
-PODFILE CHECKSUM: 6c4b31174d8ba62583169cb162d698a9d9c25026
+PODFILE CHECKSUM: 506fc254928bd5722cf000a6b320a8b6cbcab50c
 
 COCOAPODS: 1.10.0

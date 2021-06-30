@@ -20,6 +20,7 @@
 		7F1DF26D25584ECF00D4E7CF /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1DF26C25584ECF00D4E7CF /* Validator.swift */; };
 		7F22CA1F255895E400F9DF27 /* MapUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */; };
 		7F22CA33255897D500F9DF27 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F22CA32255897D500F9DF27 /* General.swift */; };
+		7F293A79268BD15800BDBE6C /* TeamMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F293A78268BD15800BDBE6C /* TeamMember.swift */; };
 		7F295CBA247AC8A900B47F1F /* ProductPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F295CB8247AC8A900B47F1F /* ProductPage.swift */; };
 		7F295CBB247AC8A900B47F1F /* ProductPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F295CB9247AC8A900B47F1F /* ProductPage.xib */; };
 		7F295CBE247AC93A00B47F1F /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F295CBD247AC93A00B47F1F /* ProductItem.swift */; };
@@ -222,6 +223,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7F293A76268BBBCA00BDBE6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4D8F964FEA10FF4ED7C669359A356BC9;
+			remoteInfo = CollectionViewPagingLayout;
+		};
 		7F2D36B52568644D0087615B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
@@ -414,6 +422,7 @@
 		7F1DF26C25584ECF00D4E7CF /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		7F22CA1E255895E400F9DF27 /* MapUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUpdatable.swift; sourceTree = "<group>"; };
 		7F22CA32255897D500F9DF27 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
+		7F293A78268BD15800BDBE6C /* TeamMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMember.swift; sourceTree = "<group>"; };
 		7F295CB8247AC8A900B47F1F /* ProductPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPage.swift; sourceTree = "<group>"; };
 		7F295CB9247AC8A900B47F1F /* ProductPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductPage.xib; sourceTree = "<group>"; };
 		7F295CBD247AC93A00B47F1F /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
@@ -746,6 +755,7 @@
 				7F96AE152616FF4400C064BE /* Team.swift */,
 				7F68F434262E22EF008FC0D5 /* WeatherData.swift */,
 				7FE3E504264DDA8800F7B301 /* Places.swift */,
+				7F293A78268BD15800BDBE6C /* TeamMember.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -774,6 +784,7 @@
 			children = (
 				7F2D36B62568644D0087615B /* libActiveLabel.a */,
 				7F2D36B82568644D0087615B /* libAlamofire.a */,
+				7F293A77268BBBCA00BDBE6C /* libCollectionViewPagingLayout.a */,
 				7F6F0C0D25E5324B00CF4F53 /* libFirebaseCore.a */,
 				7F6F0C0F25E5324B00CF4F53 /* libFirebaseCoreDiagnostics.a */,
 				7F6F0C1125E5324B00CF4F53 /* libFirebaseInstallations.a */,
@@ -1702,6 +1713,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		7F293A77268BBBCA00BDBE6C /* libCollectionViewPagingLayout.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCollectionViewPagingLayout.a;
+			remoteRef = 7F293A76268BBBCA00BDBE6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7F2D36B62568644D0087615B /* libActiveLabel.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2096,6 +2114,7 @@
 				7FB34601254E27BE00851FF6 /* Filters.swift in Sources */,
 				7FCFDD4924BA7A7B00D8660F /* DebugCell.swift in Sources */,
 				7FD70CDC261710EF008C784C /* TeamMemberCell.swift in Sources */,
+				7F293A79268BD15800BDBE6C /* TeamMember.swift in Sources */,
 				7F68F435262E22EF008FC0D5 /* WeatherData.swift in Sources */,
 				7FCFDD4424BA781F00D8660F /* DebugPage.swift in Sources */,
 				7F295CBE247AC93A00B47F1F /* ProductItem.swift in Sources */,
@@ -2298,8 +2317,8 @@
 				AdsIdentify = "";
 				BASE_URL = "http://18.158.147.66";
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
@@ -2311,7 +2330,7 @@
 				MARKETING_VERSION = 1.1.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
-				PROVISIONING_PROFILE_SPECIFIER = SquadixDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2325,8 +2344,8 @@
 				AdsIdentify = "";
 				BASE_URL = "http://18.158.147.66";
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
@@ -2338,7 +2357,7 @@
 				MARKETING_VERSION = 1.1.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
-				PROVISIONING_PROFILE_SPECIFIER = SquadixDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

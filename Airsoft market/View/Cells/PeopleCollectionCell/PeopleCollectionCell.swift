@@ -11,21 +11,26 @@ import UIKit
 class PeopleCollectionCell: UICollectionViewCell {
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
+    
     var profileID = 1
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    func setupCell(people: Profile) {
-        if let avatar = people.profilePictureUrl {
+    func setupCell(people: TeamMember) {
+        avatarImage.layer.masksToBounds = true
+        avatarImage.layer.borderWidth = 2
+        avatarImage.layer.borderColor = UIColor.white.cgColor
+        
+        if let avatar = people.avatar {
             avatarImage.loadImageWith(avatar)
         } else {
             avatarImage.image = UIImage(named: "avatar_placeholder")
         }
         usernameLabel.text = people.profileName
         avatarImage.makeRound()
-//        profileID = people.id
+        profileID = people.id
     }
     
     @IBAction func showProfileAction(_ sender: Any) {

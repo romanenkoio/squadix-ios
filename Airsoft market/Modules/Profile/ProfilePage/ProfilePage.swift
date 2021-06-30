@@ -33,6 +33,7 @@ class ProfilePage: BaseViewController {
      
      var currentProfile: Profile? {
           didSet {
+               configureFloatingMenu()
                tableView.reloadData()
           }
      }
@@ -100,14 +101,6 @@ class ProfilePage: BaseViewController {
           present(alert, animated: true)
      }
      
-     func loadTeams() {
-          networkManager.getMyTeam { [weak self] teams in
-               self?.currentProfile?.team = teams
-               self?.tableView.reloadData()
-               self?.configureFloatingMenu()
-          }
-     }
-     
      func configureFloatingMenu() {
           actionButton.items = []
           actionButton.buttonColor = .mainStrikeColor
@@ -160,24 +153,24 @@ class ProfilePage: BaseViewController {
                }
           }
           
-          if let teamsCount = currentProfile?.team.count {
-               actionButton.addItem(title: teamsCount > 0 ? "Моя команда" : "Создать команду", image: UIImage(named: "createTeam")) { [weak self] item in
-                    if teamsCount > 0 {
-                         guard let id = self?.currentProfile?.team.first?.id else { return }
-                         self?.networkManager.getTeamById(teamID: id, completion: { team in
-                              let vc = TeamPage.loadFromNib()
-                              vc.team = team
-                              self?.spinner.stopAnimating()
-                              self?.pushController(vc)
-                         }, failure: { [weak self] in
-                              self?.spinner.stopAnimating()
-                         })
-                    } else {
-                         self?.navigationController?.pushViewController(CreateTeamPage.loadFromNib(), animated: true)
-                    }
-                    
+         
+          actionButton.addItem(title: currentProfile?.teamID != nil ? "Моя команда" : "Создать команду", image: UIImage(named: "createTeam")) { [weak self] item in
+               if self?.currentProfile?.teamID != nil  {
+                    guard let id = self?.currentProfile?.teamID else { return }
+                    self?.networkManager.getTeamById(teamID: id, completion: { team in
+                         let vc = TeamPage.loadFromNib()
+                         vc.team = team
+                         self?.spinner.stopAnimating()
+                         self?.pushController(vc)
+                    }, failure: { [weak self] in
+                         self?.spinner.stopAnimating()
+                    })
+               } else {
+                    self?.navigationController?.pushViewController(CreateTeamPage.loadFromNib(), animated: true)
                }
+               
           }
+          
         
           
           actionButton.configureDefaultItem { item in
@@ -344,27 +337,20 @@ extension ProfilePage: UITableViewDataSource {
                cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DescriptionPointCell.self), for: indexPath)
                if let profileCell = cell as? DescriptionPointCell {
                     profileCell.descriptionLabel.text = currentProfile?.profileDescription
-                    if let team = currentProfile?.team, team.count > 0 {
-                         profileCell.commandLabel.isHidden = false
-                         if let team = team.first?.name {
-                              profileCell.commandLabel.setTitle("Команда: \(team)", for: .normal)
-                         } else {
-                              profileCell.commandLabel.isHidden = true
+                    if let teamID = currentProfile?.teamID, let teamName = currentProfile?.teamName  {
+                         profileCell.teamStack.isHidden = false
+                         profileCell.commandLabel.setTitle("\(teamName)", for: .normal)
+                         if let avatar = currentProfile?.teamLogo {
+                              profileCell.teamImage.loadImageWith(avatar)
                          }
+                         
                          profileCell.searchAction = { [weak self] in
-                              self?.spinner.startAnimating()
-                              guard let id = self?.currentProfile?.team.first?.id else { return }
-                              self?.networkManager.getTeamById(teamID: id, completion: { team in
+                              self?.networkManager.getTeamById(teamID: teamID, completion: { team in
                                    let vc = TeamPage.loadFromNib()
                                    vc.team = team
-                                   self?.spinner.stopAnimating()
-                                   self?.pushController(vc)
-                              }, failure: { [weak self] in
-                                   self?.spinner.stopAnimating()
+                                   self?.navigationController?.pushViewController(vc, animated: true)
                               })
                          }
-                    } else {
-                         profileCell.commandLabel.isHidden = true
                     }
                    
                     profileCell.descriptionLabel.enabledTypes = [.url]
@@ -469,9 +455,8 @@ extension ProfilePage {
                }
                
           }
-          loadPostInfo()
-          loadProductInfo()
-          loadTeams()
+//          loadPostInfo()
+//          loadProductInfo()
      }
      
      func loadPostInfo() {

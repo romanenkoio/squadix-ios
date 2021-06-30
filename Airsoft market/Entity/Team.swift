@@ -29,7 +29,7 @@ class Team: Mappable {
     var name: String!
     var city: String!
     var country: String!
-    var people: [Profile] = []
+    var people: [TeamMember] = []
     var description: String!
     var id = 0
     var teamAvatar = ""
@@ -54,7 +54,7 @@ class Team: Mappable {
         description         <- map["description"]
         id                  <- map["id"]
         teamAvatar          <- map["logoUrl"]
-        ownerID             <- map["ownerID"]
+        ownerID             <- map["ownerId"]
     }
 }
 

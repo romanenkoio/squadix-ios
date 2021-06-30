@@ -11,7 +11,7 @@ import UIKit
 class TeamMemberCell: BaseTableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var people: [Profile] = []
+    var people: [TeamMember] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -18,6 +18,7 @@ class SelectCityPage: UIViewController {
     var selectAction: ((City) -> Void)?
     var placesRequest: Cancellable?
     var places: [City] = []
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +40,7 @@ class SelectCityPage: UIViewController {
     }
     
     func setupSearchController() {
-//        searchController.isActive = true
         searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск по названию"
         if #available(iOS 13, *) {
@@ -87,13 +86,11 @@ extension SelectCityPage: UITableViewDataSource {
 
 extension SelectCityPage: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-
-    }
-}
-
-extension SelectCityPage: UISearchBarDelegate {
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         guard let prefix = searchController.searchBar.text else { return }
-        loadPlaces(with: prefix)
+        timer?.invalidate()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {  [weak self] _ in
+            self?.loadPlaces(with: prefix)
+        })
     }
 }

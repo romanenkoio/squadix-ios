@@ -21,4 +21,12 @@ extension UIColor {
     open class var promoColor: UIColor {
          return UIColor(named: "selectedProductColor")!
     }
+    
+    open class var backgroundScribe: UIColor {
+         return UIColor(named: "backgroundColor")!
+    }
+    
+    open class var mainScribe: UIColor {
+         return UIColor(named: "mainColor")!
+    }
 }

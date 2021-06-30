@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 extension UIView {
+    
+  
+    
     func makeRound() {
         self.layer.masksToBounds = false
         self.layer.cornerRadius = self.frame.height/2
@@ -27,12 +30,12 @@ extension UIView {
     
     func roundedBottomCornerImage() {
         layer.cornerRadius = 10
-        layer.maskedCorners = [  .layerMinXMaxYCorner, .layerMinXMinYCorner]
+        layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
     
     func roundedTopCornerImage() {
         layer.cornerRadius = 10
-        layer.maskedCorners = [  .layerMinXMinYCorner, .layerMaxXMinYCorner]
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     func roundedCorners() {

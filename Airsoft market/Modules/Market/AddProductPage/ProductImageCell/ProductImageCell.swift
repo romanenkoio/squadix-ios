@@ -13,6 +13,7 @@ import SDWebImage
 
 class ProductImageCell: UICollectionViewCell {
     @IBOutlet weak var productImageView: UIImageView!
+    var closeAction: VoidBlock?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +26,17 @@ class ProductImageCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         productImageView.image = UIImage(named: "placeholder")
+    }
+    
+    func addCloseSwipe() {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(closeImage))
+        swipe.direction = .down
+        productImageView.addGestureRecognizer(swipe)
+        productImageView.isUserInteractionEnabled = true
+    }
+    
+    @objc func closeImage() {
+        closeAction?()
     }
     
 }

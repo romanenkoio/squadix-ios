@@ -21,7 +21,6 @@
                 <outlet property="saveButton" destination="FHN-cb-cJ9" id="6sz-bw-CAt"/>
                 <outlet property="skipButton" destination="be8-Tl-pQF" id="qeI-hY-aRx"/>
                 <outlet property="spinner" destination="WOd-Yh-g3f" id="Ohh-A7-lVf"/>
-                <outlet property="teamTextField" destination="6Oj-0v-mgb" id="3Ai-fQ-QZj"/>
                 <outlet property="tgField" destination="pQS-VN-8MR" id="2GT-du-iWc"/>
                 <outlet property="userNameTextField" destination="ck8-03-pKF" id="XJV-Qy-qWo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -33,11 +32,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdm-9V-DkH">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdm-9V-DkH">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8B-XI-pzd">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="637"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="День рождения" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FQy-qZ-Q5P" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
                                     <rect key="frame" x="20" y="226" width="374" height="34"/>
@@ -46,14 +45,6 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Команда" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Oj-0v-mgb" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="280" width="374" height="34"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="34" id="4cK-45-1on"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Телефон" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HHw-kl-CJB" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
                                     <rect key="frame" x="20" y="64" width="374" height="34"/>
@@ -70,9 +61,6 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <action selector="startSelectCity:" destination="-1" eventType="editingDidBegin" id="Azx-fm-QPL"/>
-                                    </connections>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Беларусь" borderStyle="roundedRect" placeholder="Страна" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-Ae-KYZ" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
                                     <rect key="frame" x="20" y="118" width="374" height="34"/>
@@ -91,7 +79,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ник в Telegram, например username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pQS-VN-8MR" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="334" width="374" height="34"/>
+                                    <rect key="frame" x="20" y="280" width="374" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="yHM-9S-6G6"/>
                                     </constraints>
@@ -99,7 +87,7 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ник VK, например username или id124312414" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aTR-FP-2HQ" customClass="StrikeInputField" customModule="Squadix" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="388" width="374" height="34"/>
+                                    <rect key="frame" x="20" y="334" width="374" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="bz3-9d-e74"/>
                                     </constraints>
@@ -107,7 +95,7 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="О себе:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fc-eg-AIw">
-                                    <rect key="frame" x="20" y="442" width="374" height="16"/>
+                                    <rect key="frame" x="20" y="388" width="374" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="UOz-V7-DtB"/>
                                     </constraints>
@@ -116,10 +104,10 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="e7R-BZ-hKG" customClass="GrowingTextView" customModule="GrowingTextView">
-                                    <rect key="frame" x="20" y="461" width="374" height="200"/>
+                                    <rect key="frame" x="20" y="407" width="374" height="150"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="200" id="LYk-3H-k9p"/>
+                                        <constraint firstAttribute="height" constant="150" id="LYk-3H-k9p"/>
                                     </constraints>
                                     <color key="textColor" systemColor="labelColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -135,7 +123,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textView>
                                 <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ks-OK-Qhy">
-                                    <rect key="frame" x="20" y="758" width="374" height="40"/>
+                                    <rect key="frame" x="20" y="577" width="374" height="40"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be8-Tl-pQF" customClass="WhiteButton" customModule="Squadix" customModuleProvider="target">
                                             <rect key="frame" x="20" y="0.0" width="157" height="40"/>
@@ -184,21 +172,27 @@
                                         <constraint firstAttribute="trailing" secondItem="FHN-cb-cJ9" secondAttribute="trailing" constant="20" id="wDF-CH-MsQ"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AD1-5U-VqV">
+                                    <rect key="frame" x="20" y="172" width="374" height="34"/>
+                                    <connections>
+                                        <action selector="startSelectCity:" destination="-1" eventType="touchUpInside" id="55D-sd-PRA"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="FQy-qZ-Q5P" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="0ZU-4E-Vx6"/>
-                                <constraint firstItem="6Oj-0v-mgb" firstAttribute="top" secondItem="FQy-qZ-Q5P" secondAttribute="bottom" constant="20" id="3Uy-rL-DRD"/>
                                 <constraint firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" constant="20" id="BbK-Cw-4zZ"/>
                                 <constraint firstItem="9xq-bQ-taH" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="CaH-3R-V4Y"/>
                                 <constraint firstItem="aTR-FP-2HQ" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="Exl-LI-wib"/>
                                 <constraint firstItem="e7R-BZ-hKG" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="GEj-Gt-iUI"/>
                                 <constraint firstItem="4ks-OK-Qhy" firstAttribute="leading" secondItem="M8B-XI-pzd" secondAttribute="leading" constant="20" id="GiT-hO-vYw"/>
+                                <constraint firstItem="AD1-5U-VqV" firstAttribute="leading" secondItem="Swx-Ae-KYZ" secondAttribute="leading" id="Hwy-C4-jvY"/>
                                 <constraint firstItem="HHw-kl-CJB" firstAttribute="top" secondItem="ck8-03-pKF" secondAttribute="bottom" constant="20" id="I8Z-Qt-lQV"/>
+                                <constraint firstItem="AD1-5U-VqV" firstAttribute="bottom" secondItem="9xq-bQ-taH" secondAttribute="bottom" id="Ing-Z8-prL"/>
                                 <constraint firstItem="8Fc-eg-AIw" firstAttribute="top" secondItem="aTR-FP-2HQ" secondAttribute="bottom" constant="20" id="M3l-qI-ZTU"/>
                                 <constraint firstItem="8Fc-eg-AIw" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="Obj-fB-1Py"/>
                                 <constraint firstItem="aTR-FP-2HQ" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="P0G-IK-38k"/>
-                                <constraint firstItem="6Oj-0v-mgb" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="TWb-bi-LDd"/>
                                 <constraint firstItem="FQy-qZ-Q5P" firstAttribute="top" secondItem="9xq-bQ-taH" secondAttribute="bottom" constant="20" id="Tq8-kV-bk9"/>
                                 <constraint firstItem="9xq-bQ-taH" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="UIA-P9-DrO"/>
                                 <constraint firstItem="e7R-BZ-hKG" firstAttribute="top" secondItem="8Fc-eg-AIw" secondAttribute="bottom" constant="3" id="UOf-0a-fL0"/>
@@ -206,21 +200,22 @@
                                 <constraint firstItem="Swx-Ae-KYZ" firstAttribute="top" secondItem="HHw-kl-CJB" secondAttribute="bottom" constant="20" id="WLi-eX-vch"/>
                                 <constraint firstAttribute="bottom" secondItem="4ks-OK-Qhy" secondAttribute="bottom" constant="20" id="aTY-uj-ORF"/>
                                 <constraint firstItem="ck8-03-pKF" firstAttribute="top" secondItem="M8B-XI-pzd" secondAttribute="top" constant="10" id="aVP-Fp-LxJ"/>
+                                <constraint firstItem="AD1-5U-VqV" firstAttribute="top" secondItem="9xq-bQ-taH" secondAttribute="top" id="atY-P0-GqQ"/>
                                 <constraint firstAttribute="trailing" secondItem="4ks-OK-Qhy" secondAttribute="trailing" constant="20" id="bAP-nw-EiO"/>
-                                <constraint firstItem="6Oj-0v-mgb" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="cxb-1H-9TJ"/>
+                                <constraint firstItem="AD1-5U-VqV" firstAttribute="trailing" secondItem="Swx-Ae-KYZ" secondAttribute="trailing" id="cpL-dW-Bfq"/>
                                 <constraint firstItem="pQS-VN-8MR" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="dYM-Ul-who"/>
                                 <constraint firstItem="ck8-03-pKF" firstAttribute="leading" secondItem="M8B-XI-pzd" secondAttribute="leading" constant="20" id="drb-1v-0Cf"/>
                                 <constraint firstItem="FQy-qZ-Q5P" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="eM3-3D-6Ii"/>
+                                <constraint firstItem="pQS-VN-8MR" firstAttribute="top" secondItem="FQy-qZ-Q5P" secondAttribute="bottom" constant="20" id="f79-U5-dCY"/>
                                 <constraint firstItem="e7R-BZ-hKG" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="j19-s0-1sv"/>
                                 <constraint firstItem="Swx-Ae-KYZ" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="nMS-TU-WY5"/>
                                 <constraint firstItem="HHw-kl-CJB" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="pLT-yf-g96"/>
                                 <constraint firstItem="HHw-kl-CJB" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="qn4-F1-gyd"/>
-                                <constraint firstItem="4ks-OK-Qhy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e7R-BZ-hKG" secondAttribute="bottom" constant="20" id="rb9-ro-yqb"/>
+                                <constraint firstItem="4ks-OK-Qhy" firstAttribute="top" secondItem="e7R-BZ-hKG" secondAttribute="bottom" constant="20" id="rb9-ro-yqb"/>
                                 <constraint firstItem="aTR-FP-2HQ" firstAttribute="top" secondItem="pQS-VN-8MR" secondAttribute="bottom" constant="20" id="tn4-na-DaU"/>
                                 <constraint firstItem="Swx-Ae-KYZ" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="ur7-Bt-mWg"/>
                                 <constraint firstItem="8Fc-eg-AIw" firstAttribute="leading" secondItem="ck8-03-pKF" secondAttribute="leading" id="usT-Vf-8sh"/>
                                 <constraint firstItem="9xq-bQ-taH" firstAttribute="top" secondItem="Swx-Ae-KYZ" secondAttribute="bottom" constant="20" id="wUO-t5-CBt"/>
-                                <constraint firstItem="pQS-VN-8MR" firstAttribute="top" secondItem="6Oj-0v-mgb" secondAttribute="bottom" constant="20" id="xZh-Mv-vro"/>
                                 <constraint firstItem="pQS-VN-8MR" firstAttribute="trailing" secondItem="ck8-03-pKF" secondAttribute="trailing" id="yJd-8J-HRw"/>
                             </constraints>
                         </view>
@@ -245,7 +240,6 @@
                 <constraint firstItem="M8B-XI-pzd" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="1Lj-KF-am8"/>
                 <constraint firstItem="qdm-9V-DkH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="HIV-8a-68E"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qdm-9V-DkH" secondAttribute="trailing" id="Mla-st-v11"/>
-                <constraint firstItem="M8B-XI-pzd" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.912946" id="juO-F0-CSr"/>
                 <constraint firstItem="qdm-9V-DkH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="vOw-7E-Hxt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qdm-9V-DkH" secondAttribute="bottom" id="ycX-R5-f5M"/>
             </constraints>

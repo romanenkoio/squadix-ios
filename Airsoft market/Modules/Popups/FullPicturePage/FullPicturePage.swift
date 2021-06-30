@@ -9,22 +9,55 @@
 import UIKit
 
 class FullPicturePage: UIViewController {
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var mainView: UIView!
-    var url = ""
+    @IBOutlet weak var fullImage: UIImageView!
+    
+    var currentImageIndex = 0
+    var images: [String] = []
+    var currenImage = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fullImage.loadImageWith(currenImage)
+        let directions: [UISwipeGestureRecognizer.Direction] = [.left, .right, .up, .down]
+        fullImage.isUserInteractionEnabled = true
+        for direction in directions {
+            let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
+            swipe.direction = direction
+            fullImage.addGestureRecognizer(swipe)
+        }
+    }
 
-        imageView.loadImageWith(url)
-        imageView.contentMode = .scaleAspectFit
-        let tap = UIGestureRecognizer(target: self, action: #selector(didTap))
-        self.view.isUserInteractionEnabled = true
-        self.view.addGestureRecognizer(tap)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
-    @objc func didTap() {
-        self.dismiss(animated: true)
+    @objc func swipeAction(sender: UISwipeGestureRecognizer) {
+        guard let index = images.firstIndex(of: currenImage) else { return }
+        
+        switch sender.direction {
+        case .left:
+            guard index + 1 <= images.count - 1 else { return }
+            fullImage.loadImageWith(images[index + 1])
+            currenImage = images[index + 1]
+        case .right:
+            guard index - 1 >= 0 else { return }
+            fullImage.loadImageWith(images[index - 1])
+            currenImage = images[index - 1]
+        case .up, .down:
+            self.dismiss(animated: true, completion: nil)
+        default:
+            print("Undefined")
+        }
     }
+    
+    @IBAction func closeAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
+
+
+
+
 

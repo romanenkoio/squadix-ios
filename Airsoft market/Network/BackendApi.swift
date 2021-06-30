@@ -62,6 +62,7 @@ enum StrikeServise{
     case createTeam(team: Team)
     case getMyTeams
     case getTeamById(teamID: Int)
+    case inviteToTeam(userID: Int)
 }
 
 extension StrikeServise: TargetType {
@@ -189,12 +190,14 @@ extension StrikeServise: TargetType {
             return Path.Team.myTeams
         case .getTeamById(let teamID):
             return Path.Team.findByID(teamID)
+        case .inviteToTeam:
+            return Path.Invation.path
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report, .createTeam:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report, .createTeam, .inviteToTeam:
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment:
             return .delete
@@ -242,6 +245,8 @@ extension StrikeServise: TargetType {
     var parameters: [String: Any]? {
         var params = [String: Any]()
         switch self {
+        case .inviteToTeam(let userID):
+            params["userId"] = userID
         case .createTeam(let team):
             params = team.asParams()
         case  .activeProductsWithFilters(let page, let filters):

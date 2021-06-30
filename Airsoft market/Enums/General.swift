@@ -86,7 +86,7 @@ class Common {
             return .report
         case "COMMENT":
             return .comment
-        case "INVITE":
+        case "TEAM_INVITATION":
             return .invite
         default:
             return .none

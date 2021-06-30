@@ -12,6 +12,9 @@ import ActiveLabel
 class DescriptionPointCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: ActiveLabel!
     @IBOutlet weak var commandLabel: UIButton!
+    @IBOutlet weak var teamStack: UIStackView!
+    @IBOutlet weak var teamImage: UIImageView!
+    
     var searchAction: VoidBlock?
     
     override func awakeFromNib() {

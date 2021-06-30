@@ -62,8 +62,8 @@ class BaseViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showDestructiveAlert(handler: VoidBlock? = nil) {
-        let alert = UIAlertController(title: "", message: "Вы уверены?", preferredStyle: UIAlertController.Style.alert)
+    func showDestructiveAlert(title: String = "", handler: VoidBlock? = nil) {
+        let alert = UIAlertController(title: title, message: "Вы уверены?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Нет", style: UIAlertAction.Style.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Да", style: UIAlertAction.Style.destructive, handler: { _ in
             handler?()

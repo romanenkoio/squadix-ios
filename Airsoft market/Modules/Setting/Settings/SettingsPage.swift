@@ -38,7 +38,11 @@ enum SettingsMenu {
         let developerSection: [SettingsMenu] = [.debug]
         let systemSection: [SettingsMenu] = [.support, .version]
         
+        #if DEBUG
+        return [settingsSection, infoSection, actionSection, developerSection, systemSection]
+        #else
         return KeychainManager.isAdmin ? [settingsSection, infoSection, actionSection, developerSection, systemSection] : [settingsSection, infoSection, actionSection, systemSection]
+        #endif
     }
 }
 

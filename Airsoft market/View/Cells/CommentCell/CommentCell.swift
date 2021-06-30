@@ -9,6 +9,7 @@
 import UIKit
 import ActiveLabel
 
+
 class CommentCell: BaseTableViewCell {
     @IBOutlet weak var authorAvatar: UIImageView!
     @IBOutlet weak var authorName: UILabel!
@@ -83,7 +84,9 @@ class CommentCell: BaseTableViewCell {
             commentImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
             commentImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
             let tap = ImageTap(target: self, action: #selector(openImage))
-            tap.imageUrl = image
+            tap.imageUrls = images
+            tap.currentUrl = image
+
             commentImageView.isUserInteractionEnabled = true
             commentImageView.addGestureRecognizer(tap)
             commentImageView.layer.cornerRadius = 5
@@ -97,13 +100,17 @@ class CommentCell: BaseTableViewCell {
             return
         }
         let vc = FullPicturePage.loadFromNib()
-        vc.url = sender.imageUrl
+        vc.images = sender.imageUrls
+        vc.currenImage = sender.currentUrl
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
         appDelegate.currentViewController?.navigationController?.present(vc, animated: true)
     }
 }
 
 class ImageTap: UITapGestureRecognizer {
-  var imageUrl: String = ""
+    var imageUrls: [String] = []
+    var currentUrl: String = ""
 }
 
 

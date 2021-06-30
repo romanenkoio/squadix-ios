@@ -101,10 +101,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYV-6K-2aw">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYV-6K-2aw">
                                 <rect key="frame" x="0.0" y="36" width="300" height="150"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="66m-jh-PRx">
+                                    <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="66m-jh-PRx">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="YCm-rd-a3V"/>
@@ -113,6 +113,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="66m-jh-PRx" firstAttribute="top" secondItem="yYV-6K-2aw" secondAttribute="top" id="4Zx-qp-LQ9"/>
+                                    <constraint firstItem="66m-jh-PRx" firstAttribute="width" secondItem="yYV-6K-2aw" secondAttribute="width" placeholder="YES" id="ScR-0I-aqw"/>
                                     <constraint firstItem="66m-jh-PRx" firstAttribute="leading" secondItem="yYV-6K-2aw" secondAttribute="leading" id="TqV-PR-by5"/>
                                     <constraint firstAttribute="trailing" secondItem="66m-jh-PRx" secondAttribute="trailing" id="cFa-I8-nO8"/>
                                     <constraint firstItem="66m-jh-PRx" firstAttribute="height" secondItem="yYV-6K-2aw" secondAttribute="height" id="t5o-eG-7AC"/>

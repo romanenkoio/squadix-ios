@@ -137,4 +137,8 @@ struct Path {
             return path + "/\(teamID)/images"
         }
     }
+    
+    struct Invation {
+        static let path = "invitations"
+    }
 }

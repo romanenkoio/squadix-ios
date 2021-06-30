@@ -22,10 +22,19 @@ struct Profile: Mappable {
     var birthday: Date?
     var roles: [Common.Roles]!
     var isBlocked: Bool = false
-    var team: [Team] = []
+    var teamName: String = ""
+    var teamID: Int?
+    var teamLogo: String?
     var rating = 0
     var vk: String?
     var tg: String?
+    
+//    cruch, need update API
+    var stringTeamID: String = "" {
+        didSet {
+            teamID = Int(stringTeamID)
+        }
+    }
     
     init() {
     }
@@ -44,7 +53,9 @@ struct Profile: Mappable {
         profileDescription      <- map["description"]
         phone                   <- map["phone"]
         isBlocked               <- map["blocked"]
-        team                    <- map["team"]
+        teamName                <- map["teamName"]
+        stringTeamID            <- map["teamId"]
+        teamLogo                <- map["teamLogo"]
         rating                  <- map["rating"]
         vk                      <- map["vk"]
         tg                      <- map["tg"]

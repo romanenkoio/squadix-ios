@@ -788,4 +788,17 @@ final class NetworkManager {
             }
         }
     }
+    
+    func inviteToTeam(userID: Int, completion: VoidBlock?, failure: VoidBlock? = nil) {
+        provider.request(.inviteToTeam(userID: userID)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
 }

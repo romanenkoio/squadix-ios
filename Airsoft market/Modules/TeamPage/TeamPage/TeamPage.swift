@@ -37,16 +37,31 @@ class TeamPage: BaseViewController {
         tableView.registerCell(DescriptionPointCell.self)
         navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: addMemberButton)],
                                               animated: true)
+        setupOptionButton()
+        
     }
     
     @IBAction func addMemberAction(_ sender: Any) {
-        let vc = SearchPage.loadFromNib()
-        vc.selectUser = { user in
-//            отправка запроса на добавление юзера
+        if team.ownerID == KeychainManager.profileID {
+            let vc = SearchPage.loadFromNib()
+            vc.selectUser = { [weak self] user in
+                self?.networkManager.inviteToTeam(userID: user.id) {
+                    print("Успешно")
+                } failure: {
+                    print("Не успешно")
+                }
+            }
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            showDestructiveAlert(title: "Выйти из команды?", handler: {
+                
+            })
         }
-        navigationController?.pushViewController(vc, animated: true)
     }
     
+    func setupOptionButton() {
+        addMemberButton.setImage(team.ownerID == KeychainManager.profileID ? UIImage(named: "plus") : UIImage(named: "logout"), for: .normal)
+    }
 }
 
 extension TeamPage: UITableViewDataSource {
@@ -83,7 +98,7 @@ extension TeamPage: UITableViewDataSource {
                 return cell
             }
             
-            descriptionCell.commandLabel.isHidden = true
+            descriptionCell.teamStack.isHidden = true
             descriptionCell.descriptionLabel.text = team.description
             return descriptionCell
         }

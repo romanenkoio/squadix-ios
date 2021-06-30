@@ -93,9 +93,9 @@ class VCFabric {
         return vc
     }
     
-    static func fullPicture(with url: String) -> FullPicturePage {
+    static func fullPicture(with urls: [String]) -> FullPicturePage {
         let vc = FullPicturePage.loadFromNib()
-        vc.url = url
+        vc.images = urls
         return vc
     }
     

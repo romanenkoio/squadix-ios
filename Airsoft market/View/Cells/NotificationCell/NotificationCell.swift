@@ -44,8 +44,14 @@ class NotificationCell: BaseTableViewCell {
                 vc.modalTransitionStyle = .crossDissolve
                 vc.modalPresentationStyle = .overCurrentContext
                 
-                vc.showTeamAction = {
-                    topVC.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
+                vc.showTeamAction = { [weak self] in
+                    guard let stringUrl = notification.url, let url = URL(string: stringUrl), let teamID = url.path.matches(for: "[0-9]+").first, let id = Int(teamID) else { return }
+                    
+                    self?.networkManager.getTeamById(teamID: id) { team in
+                        let vc = TeamPage.loadFromNib()
+                        vc.team = team
+                        topVC.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
+                    }
                 }
                 
                 vc.acceptAction = {

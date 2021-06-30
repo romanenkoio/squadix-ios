@@ -10,7 +10,7 @@ import UIKit
 import ImageSlideshow
 
 class TeamAvatarCell: BaseTableViewCell {
-    @IBOutlet weak var avatarSlider: ImageSlideshow!
+    @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var regionLabel: UILabel!
     
@@ -20,17 +20,15 @@ class TeamAvatarCell: BaseTableViewCell {
     }
 
     func setupCell(team: Team) {
-        avatarSlider.setupView()
         teamNameLabel.text = team.name
+
         if !team.teamAvatar.isEmpty {
-            avatarSlider.setupImagesWithUrls([team.teamAvatar])
+            avatarImage.loadImageWith(team.teamAvatar)
         } else {
-            if let image = UIImage(named: "team_placeholder") {
-                avatarSlider.setupImagesWithImages([image])
-            }
+            avatarImage.image = UIImage(named: "team_placeholder")
         }
        
-        avatarSlider.makeRound()
+        avatarImage.makeRound()
         guard let country = team.country, let city = team.city else { return }
         regionLabel.text = "\(country), \(city)"
     }
