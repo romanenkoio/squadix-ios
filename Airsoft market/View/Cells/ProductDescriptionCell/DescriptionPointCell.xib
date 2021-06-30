@@ -17,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lfm-rL-qUp">
-                        <rect key="frame" x="26" y="11" width="268" height="191"/>
+                        <rect key="frame" x="21" y="11" width="278" height="191"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="srq-5x-Mgu">
-                                <rect key="frame" x="0.0" y="0.0" width="268" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="278" height="40"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="hbl-X3-SRO">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -31,7 +31,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX1-3Q-d4e">
-                                        <rect key="frame" x="50" y="0.0" width="218" height="40"/>
+                                        <rect key="frame" x="50" y="0.0" width="228" height="40"/>
                                         <state key="normal" title="Команда"/>
                                         <connections>
                                             <action selector="findTeamPersonsAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kWl-yw-k9B"/>
@@ -40,7 +40,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4X-XU-4fN" customClass="ActiveLabel" customModule="ActiveLabel">
-                                <rect key="frame" x="0.0" y="50" width="268" height="141"/>
+                                <rect key="frame" x="0.0" y="50" width="278" height="141"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="vby-Zb-QmY"/>
                                 </constraints>
@@ -57,10 +57,10 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="Lfm-rL-qUp" secondAttribute="trailing" constant="10" id="2pX-Nt-6no"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Lfm-rL-qUp" secondAttribute="trailing" constant="5" id="2pX-Nt-6no"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Lfm-rL-qUp" secondAttribute="bottom" constant="10" id="D2h-t1-Uid"/>
                     <constraint firstItem="Lfm-rL-qUp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="REw-hW-Ujc"/>
-                    <constraint firstItem="Lfm-rL-qUp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="eI6-PM-gn3"/>
+                    <constraint firstItem="Lfm-rL-qUp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="eI6-PM-gn3"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

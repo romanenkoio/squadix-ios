@@ -45,6 +45,8 @@ class MyProfileCell: BaseTableViewCell {
     func setupCell(profile: Profile) {
         vkButton.isHidden = profile.vk == nil
         tgButton.isHidden = profile.tg == nil
+        vkButton.makeRound()
+        tgButton.makeRound()
     }
     
     @IBAction func vkAction(_ sender: Any) {
