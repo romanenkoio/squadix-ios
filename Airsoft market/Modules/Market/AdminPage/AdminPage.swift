@@ -45,9 +45,8 @@ class AdminPage: BaseViewController {
             return
         }
         spinner.startAnimating()
-        let manager = NetworkManager()
         
-        manager.getModeratingProducts(page: page, completion: { [weak self] products in
+        networkManager.getModeratingProducts(page: page, completion: { [weak self] products in
             
             guard let sSelf = self else { return }
             sSelf.spinner.stopAnimating()
@@ -84,11 +83,10 @@ class AdminPage: BaseViewController {
 
 extension AdminPage: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let manager = NetworkManager()
         
         let accept = UIContextualAction(style: .normal, title: "Опубликовать") { (action, sourceView, completionHandler) in
             let item = self.marketData[indexPath.row]
-            manager.updateProductStatus(productID: item.postID, status: ProductStatus.active, completion: { [weak self] _ in
+            self.networkManager.updateProductStatus(productID: item.postID, status: ProductStatus.active, completion: { [weak self] _ in
                 self?.marketData.remove(at: indexPath.row)
                 self?.tableView.reloadData()
             }) { error in
@@ -114,7 +112,7 @@ extension AdminPage: UITableViewDelegate {
                     return
                 }
                 
-                manager.updateProductStatus(productID: item.postID, status: ProductStatus.deleted, reason: reason, completion: { [weak self] _ in
+                self.networkManager.updateProductStatus(productID: item.postID, status: ProductStatus.deleted, reason: reason, completion: { [weak self] _ in
                     self?.marketData.remove(at: indexPath.row)
                     self?.tableView.reloadData()
                 }) { error in

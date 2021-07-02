@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol UpdateEventDelegate: class {
+protocol UpdateEventDelegate: AnyObject {
     func updateCoordinates(coord: String, coordType: Common.CoordinatesType)
 }

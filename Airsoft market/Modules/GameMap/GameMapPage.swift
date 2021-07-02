@@ -69,7 +69,6 @@ class GameMapPage: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet var refreshButton: UIButton!
     
-    let networkManager = NetworkManager()
     var eventsData: [Event] = []
     var filteredEventsData: [Event] = []
     var isFiltered = false
@@ -203,7 +202,7 @@ extension GameMapPage: GMSMapViewDelegate {
 
 extension GameMapPage {
     private func loadEvents() {
-        networkManager.getEvents(completion: { [weak self] events in
+        NetworkManager.shared.getEvents(completion: { [weak self] events in
             self?.eventsData.removeAll()
             self?.eventsData = events.content
             self?.spinner.stopAnimating()

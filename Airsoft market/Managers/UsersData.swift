@@ -20,7 +20,7 @@ final class UsersData {
         }
         set {
             if !isUSDCurrencyEnabled {
-                let networkManager = NetworkManager()
+                let networkManager = NetworkManager.shared
                 networkManager.currency { [weak self] (result, error) in
                     if let error = error {
                         print(error)

@@ -137,14 +137,13 @@ class MarketPage: BaseViewController {
             marketData = []
         }
         spinner.startAnimating()
-        let manager = NetworkManager()
         
         if profileID != nil {
             guard let id = profileID else {
                 spinner.stopAnimating()
                 return
             }
-            manager.getProductsByUser(page: page, id: id, completion: { [weak self] products in
+            networkManager.getProductsByUser(page: page, id: id, completion: { [weak self] products in
                 
                 guard let sSelf = self else { return }
                 sSelf.spinner.stopAnimating()
@@ -173,9 +172,9 @@ class MarketPage: BaseViewController {
             }
         } else {
             if RealmService.readFilters().filter({$0.status == true}).count == 0 {
-                manager.getCategories { categories in
+                networkManager.getCategories { categories in
                     RealmService.writeFilters(categories.map({Filter(category: $0.name)}))
-                    _ = manager.getActiveProductsWithFilters(page: self.page, completion: { [weak self] products in
+                    _ = self.networkManager.getActiveProductsWithFilters(page: self.page, completion: { [weak self] products in
                         
                         guard let sSelf = self else { return }
                         sSelf.spinner.stopAnimating()
@@ -207,7 +206,7 @@ class MarketPage: BaseViewController {
                     }
                 }
             } else {
-                manager.getActiveProductsWithFilters(page: self.page, completion: { [weak self] products in
+                networkManager.getActiveProductsWithFilters(page: self.page, completion: { [weak self] products in
                     
                     guard let sSelf = self else { return }
                     sSelf.spinner.stopAnimating()

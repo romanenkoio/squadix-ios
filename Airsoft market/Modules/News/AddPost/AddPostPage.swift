@@ -64,8 +64,7 @@ class AddPostPage: BaseViewController {
         }
         
         spinner.startAnimating()
-        let manager = NetworkManager()
-        manager.getYoutubeInfo(id: videoID, completion: { [weak self] info in
+        networkManager.getYoutubeInfo(id: videoID, completion: { [weak self] info in
             self?.headerTextField.text = info?.items[0].snippet.title
             self?.descriptionTextView.text = info?.items[0].snippet.snippetDescription
             let videoPicUrl = "https://img.youtube.com/vi/\(videoID)/hqdefault.jpg"
@@ -96,9 +95,8 @@ class AddPostPage: BaseViewController {
         postButton.isEnabled = false
         spinner.startAnimating()
         
-        let manager = NetworkManager()
         if isEdit {
-            manager.editPost(post: post, { [weak self] in
+            networkManager.editPost(post: post, { [weak self] in
                 self?.spinner.stopAnimating()
                 self?.showPopup(isError: false, title: "Опубликовано!")
                 self?.isEditing = false
@@ -111,7 +109,7 @@ class AddPostPage: BaseViewController {
                 self?.spinner.stopAnimating()
             }
         } else {
-            manager.postVideo(post: post, completion: { [weak self] in
+            networkManager.postVideo(post: post, completion: { [weak self] in
                 self?.spinner.stopAnimating()
                 self?.showPopup(isError: false, title: "Опубликовано!")
                 self?.isEditing = false

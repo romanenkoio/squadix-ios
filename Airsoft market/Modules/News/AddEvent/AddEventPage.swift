@@ -93,11 +93,10 @@ class AddEventPage: BaseViewController {
     }
     
     @IBAction func saveEventAction(_ sender: Any) {
-        let manager = NetworkManager()
         
         buildEvent { event in
             guard let event = event else { return }
-            manager.createEvent(event: event, images: self.imageData, completion: {
+            self.networkManager.createEvent(event: event, images: self.imageData, completion: {
                 self.delegate?.updateFeed(type: .event)
                 self.spinner.stopAnimating()
                 self.navigationController?.popViewController(animated: true)

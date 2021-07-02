@@ -34,7 +34,7 @@ struct ProfileRequest {
     
 }
 
-class RegistrationPage: UIViewController {
+class RegistrationPage: BaseViewController {
     @IBOutlet weak var passwordField: StrikeInputField!
     @IBOutlet weak var doublePasswordField: StrikeInputField!
     @IBOutlet weak var emailField: StrikeInputField!
@@ -47,7 +47,6 @@ class RegistrationPage: UIViewController {
     @IBOutlet weak var checkBoxButton: UIButton!
     @IBOutlet weak var docsLabel: ActiveLabel!
     
-    lazy var networkManager = NetworkManager()
     var credentials = ProfileRequest()
     var checked = false
     

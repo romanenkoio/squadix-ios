@@ -131,9 +131,8 @@ class NewsShowPage: BaseViewController {
             alert.addAction(UIAlertAction(title: "Удалить пост", style: .destructive) { [weak self] _ in
                 self?.showDestructiveAlert(handler: {
                     self?.spinner.startAnimating()
-                    let service = NetworkManager()
                     guard let post = self?.post else { return }
-                    service.deletePost(id: post.id, completion: {
+                    self?.networkManager.deletePost(id: post.id, completion: {
                         self?.spinner.stopAnimating()
                         self?.delegate?.deleteFromFeed(id: post.id, type: .feed)
                         self?.navigationController?.popViewController(animated: true)

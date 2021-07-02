@@ -28,7 +28,6 @@ class EditPage: BaseViewController {
     var profile: Profile?
     var isEdit: Bool = false
     var userPostCount = 0
-    let manager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +51,7 @@ class EditPage: BaseViewController {
         birthdayTextField.inputView = datePicker
         datePicker.addTarget(self, action: #selector(selectDateAction(picker:)), for: .valueChanged)
      
-        manager.getCurrentUser { (profile, rrror, _) in
+        networkManager.getCurrentUser { (profile, rrror, _) in
             self.profile = profile
             self.preloadData()
         }
@@ -62,7 +61,7 @@ class EditPage: BaseViewController {
         super.viewWillAppear(animated)
         spinner.startAnimating()
         guard let userID = KeychainManager.profileID else { return }
-        manager.getProductsByUser(id: userID, completion: { [weak self] posts in
+        networkManager.getProductsByUser(id: userID, completion: { [weak self] posts in
             self?.userPostCount = posts.count
              self?.spinner.stopAnimating()
         }) { [weak self] error in
@@ -174,13 +173,11 @@ class EditPage: BaseViewController {
             }
         }
     
-        
-        let manager = NetworkManager()
         guard let profile = profile else { return }
-        manager.editProfile(profile: profile) {
+        networkManager.editProfile(profile: profile) {
             self.spinner.stopAnimating()
             print("Updated complete")
-            manager.getCurrentUser { (profile, rrror, _) in
+            self.networkManager.getCurrentUser { (profile, rrror, _) in
                 self.profile = profile
                 self.preloadData()
             }

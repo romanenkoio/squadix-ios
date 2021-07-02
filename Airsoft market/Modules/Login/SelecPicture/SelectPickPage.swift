@@ -9,7 +9,7 @@
 import UIKit
 //import ImageCropper
 
-class SelectPickPage: UIViewController {
+class SelectPickPage: BaseViewController {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var spiner: UIActivityIndicatorView!
     var imagePicker = UIImagePickerController()
@@ -25,12 +25,11 @@ class SelectPickPage: UIViewController {
     @IBAction func continueAction(_ sender: Any) {
         spiner.startAnimating()
 
-        let manager = NetworkManager()
         guard let avatar = selectedImage else {
             self.spiner.stopAnimating()
             return
         }
-        manager.updloadAvatar(image: avatar, completion: {
+        networkManager.updloadAvatar(image: avatar, completion: {
             self.spiner.stopAnimating()
             self.navigationController?.pushViewController(VCFabric.getUserEditPage(isEdit: false), animated: true)
         }) { _ in

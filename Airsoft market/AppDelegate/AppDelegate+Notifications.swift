@@ -34,8 +34,7 @@ extension AppDelegate {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
         KeychainManager.store(value: token, for: .pushToken)
-        let networkManager = NetworkManager()
-        networkManager.subscribeToNotification(pushToken: token) {
+        NetworkManager.shared.subscribeToNotification(pushToken: token) {
             print("[PUSH] Subscribed")
         } failure: { error in
             print("[PUSH] Subscribed error. Reason: \(error)")
@@ -52,8 +51,7 @@ extension AppDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if let tabBar = UIApplication.shared.keyWindow?.rootViewController as? BaseTabBarViewController, let nav = tabBar.viewControllers?[0] as? UINavigationController, let tab = nav.viewControllers.first as? NewsPage  {
-            let manager = NetworkManager()
-            manager.getNotifications { notification in
+            NetworkManager.shared.getNotifications { notification in
                 let count = notification.content.filter({$0.isReaded == false}).count
                 tab.dashboardButton.badgeValue = "\(count)"
                 UIApplication.shared.applicationIconBadgeNumber = count

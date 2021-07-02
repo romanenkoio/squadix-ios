@@ -404,9 +404,8 @@ extension ProfilePage: UIImagePickerControllerDelegate & UINavigationControllerD
           }
      
           guard let image = testImage, let resizedImage = image.resizeImage(targetSize: CGSize(width: 1000, height: 1000))  else { return }
-          let manager = NetworkManager()
           
-          manager.updloadAvatar(image: resizedImage, completion: {
+          networkManager.updloadAvatar(image: resizedImage, completion: {
                self.loadProfile(animated: true)
                self.spinner.startAnimating()
           }) { error in
@@ -425,7 +424,6 @@ extension ProfilePage {
                spinner.startAnimating()
           }
           if profileID == nil {
-               let networkManager = NetworkManager()
                networkManager.getCurrentUser { [weak self] (profile, error, _) in
                     guard let myProfile = profile else {
                          self?.refreshControl.endRefreshing()
@@ -439,7 +437,6 @@ extension ProfilePage {
                     self?.blockButton.isHidden = KeychainManager.profileID == self?.currentProfile?.id
                }
           } else {
-               let networkManager = NetworkManager()
                guard let id = profileID else { return }
                networkManager.getUserById(id: id) { [weak self]  (profile, error) in
                     guard let myProfile = profile else {
@@ -460,7 +457,6 @@ extension ProfilePage {
      }
      
      func loadPostInfo() {
-          let networkManager = NetworkManager()
           userPosts = []
           guard let userID = profileID == nil ? KeychainManager.profileID : profileID else { return }
           networkManager.getPostsByUser(id: userID, completion: { [weak self] posts in
@@ -473,7 +469,6 @@ extension ProfilePage {
      }
      
      func loadProductInfo() {
-          let networkManager = NetworkManager()
           userPosts = []
           guard let userID = profileID == nil ? KeychainManager.profileID : profileID else { return }
           networkManager.getProductsByUser(id: userID, completion: { [weak self] posts in

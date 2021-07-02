@@ -122,8 +122,8 @@ extension TeamGalleryCell {
 extension TeamGalleryCell: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let network = NetworkManager()
-            network.uploadPhotoToTeam(teamID: 2, image: pickedImage) {
+            
+            networkManager.uploadPhotoToTeam(teamID: 2, image: pickedImage) {
                 
             }
         }

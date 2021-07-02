@@ -47,7 +47,6 @@ class LoginPage: BaseViewController {
         if checkLoginValidate() {
             indicator.startAnimating()
             let credentials = ProfileRequest(email: emailTextField.text, password: passwordInpudField.text)
-            let networkManager = NetworkManager()
             loginButton.isEnabled = false
             
             networkManager.login(loginCredentials: credentials, completion: { token in

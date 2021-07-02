@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol EventInfoDelegate: class {
+protocol EventInfoDelegate: AnyObject {
     func showEvent(event: Event)
     func showProfile(id: Int)
 }

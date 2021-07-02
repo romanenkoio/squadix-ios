@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class PushService {
-    private let service = NetworkManager()
+    private let networkManager = NetworkManager.shared
     
     static let shared = PushService()
 

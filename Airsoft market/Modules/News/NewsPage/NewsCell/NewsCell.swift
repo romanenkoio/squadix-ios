@@ -26,8 +26,6 @@ class NewsCell: BaseTableViewCell {
     @IBOutlet weak var comentCountLabel: UILabel!
     @IBOutlet weak var acpectConstraint: NSLayoutConstraint!
     
-    private let networkManager = NetworkManager()
-    
     var currentPost: Post?
     var currentEvent: Event?
     var videoPicUrl = ""

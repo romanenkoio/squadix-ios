@@ -20,8 +20,6 @@ class IncomePreviewMessageCell: BaseTableViewCell {
     
     var url: URL?
     
-    let service = NetworkManager()
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         mainView.layer.cornerRadius = 15
@@ -48,12 +46,12 @@ class IncomePreviewMessageCell: BaseTableViewCell {
         
         switch type {
         case .event:
-            service.getEventByID(postID: id) { [weak self] event in
+            networkManager.getEventByID(postID: id) { [weak self] event in
                 self?.slider.setupImagesWithUrls(event.imageUrls)
                 self?.previewNameLabel.text = "\(event.shortDescription)"
             }
         case .post:
-            service.getPostByID(postID: id) { [weak self] post in
+            networkManager.getPostByID(postID: id) { [weak self] post in
                 switch post.contentType {
                 case .image:
                     self?.slider.setupImagesWithUrls(post.imageUrls)
@@ -67,7 +65,7 @@ class IncomePreviewMessageCell: BaseTableViewCell {
                 self?.previewNameLabel.text = "\(post.shortDescription)"
             }
         case .product:
-            service.getProductByID(postID: id) { [weak self] product in
+            networkManager.getProductByID(postID: id) { [weak self] product in
                 self?.slider.setupImagesWithUrls(product.picturesUrl)
                 self?.previewNameLabel.text = "\(product.description ?? "")"
             }

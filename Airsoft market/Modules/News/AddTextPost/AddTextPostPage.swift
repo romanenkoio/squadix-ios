@@ -39,8 +39,7 @@ class AddTextPostPage: BaseViewController {
     @IBAction func postAction(_ sender: Any) {
         guard let post = buildPost() else { return }
         spinner.startAnimating()
-        let manager = NetworkManager()
-        manager.postVideo(post: post, completion: { [weak self] in
+        networkManager.postVideo(post: post, completion: { [weak self] in
             self?.updatableDelegate?.updateFeed(type: .feed)
             Analytics.trackEvent("Post_added")
             self?.getFeedback(type: .success)

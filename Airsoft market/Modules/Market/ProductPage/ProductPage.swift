@@ -12,7 +12,7 @@ import ImageSlideshow
 typealias VoidBlock = () -> Void
 typealias UserBlock = (Profile) -> Void
 
-protocol UpdateProductFeed: class {
+protocol UpdateProductFeed: AnyObject {
     func updateProductFeed(productID: Int)
 }
 
@@ -44,7 +44,6 @@ class ProductPage: BaseViewController {
     
     weak var delegate: UpdateProductFeed?
     
-    lazy var service = NetworkManager()
     var menu: [[ContentType]] = []
     var sectionDescription: [String] = []
     var comments: [Comment] = []
@@ -179,7 +178,7 @@ class ProductPage: BaseViewController {
                 self?.spinner.startAnimating()
              
                 guard let product = self?.product else { return }
-                self?.service.deleteProduct(id: product.postID, completion: {
+                self?.networkManager.deleteProduct(id: product.postID, completion: {
                     self?.spinner.stopAnimating()
                     self?.delegate?.updateProductFeed(productID: product.postID)
                     self?.navigationController?.popViewController(animated: true)

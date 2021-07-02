@@ -60,8 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController  = BaseTabBarViewController()
         
         if UsersData.shared.isUSDCurrencyEnabled {
-            let networkManager = NetworkManager()
-            networkManager.currency { (result, error) in
+            NetworkManager.shared.currency { (result, error) in
                 
                 if let error = error {
                     print(error)
@@ -73,8 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        let networkManager = NetworkManager()
-        networkManager.getCurrentUser { [weak self] (profile, _, status) in
+        NetworkManager.shared.getCurrentUser { [weak self] (profile, _, status) in
             if status != 200, status != nil {
                 self?.logout()
             }

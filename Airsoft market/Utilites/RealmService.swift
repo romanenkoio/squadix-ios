@@ -21,12 +21,10 @@ class SavedBookmarks: Object {
 
 
 class RealmService {
-    static let networkManager = NetworkManager()
     static let realm = try! Realm()
     
     static func updateFilters(complition: (() -> Void)? = nil) {
-        let networkManager = NetworkManager()
-        networkManager.getCategories(completion: { newCategories in
+        NetworkManager.shared.getCategories(completion: { newCategories in
             var currentCategories = readFilters()
             var filetrsForUpdate: [Filter] = []
             let filteredNewCategory: [String] = newCategories.map({$0.name}).sorted(by: {$0 > $1})

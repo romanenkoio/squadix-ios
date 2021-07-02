@@ -15,7 +15,6 @@ class NotificationCell: BaseTableViewCell {
     @IBOutlet weak var mainView: UIView!
     
     var avatarAction: VoidBlock?
-    var networkManager = NetworkManager()
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -58,7 +58,6 @@ class EventShowPage: BaseViewController {
     
     var shouldScroll = false
     var likeAction: Cancellable? = nil
-    lazy var service = NetworkManager()
     lazy var eventStore = EKEventStore()
     weak var delegate: UpdateFeedDelegate?
     weak var likeDelegate: LikeDelegate?
@@ -114,7 +113,7 @@ class EventShowPage: BaseViewController {
     @IBAction func contactAction(_ sender: Any) {
         guard let event = event else { return }
         spinner.startAnimating()
-        service.getUserById(id: event.authorID) { (profile, error) in
+        networkManager.getUserById(id: event.authorID) { (profile, error) in
             guard let profile = profile else {
                 print(error as Any)
                 self.spinner.stopAnimating()
@@ -198,9 +197,8 @@ class EventShowPage: BaseViewController {
             alert.addAction(UIAlertAction(title: "Удалить событие", style: .destructive) { [weak self] _ in
                 self?.showDestructiveAlert(handler: {
                     self?.spinner.startAnimating()
-                    let service = NetworkManager()
                     guard let event = self?.event else { return }
-                    service.deleteEvent(id: event.id, completion: {
+                    self?.networkManager.deleteEvent(id: event.id, completion: {
                         self?.spinner.stopAnimating()
                         self?.delegate?.deleteFromFeed(id: event.id, type: .event)
                         self?.navigationController?.popViewController(animated: true)
@@ -296,8 +294,8 @@ extension EventShowPage: UITableViewDataSource {
                     self?.navigationController?.pushViewController(VCFabric.getProfilePage(for: id), animated: true)
                 }
                 
-                let manager = NetworkManager()
-                manager.getUserById(id: id) { profile, _ in
+                
+                networkManager.getUserById(id: id) { profile, _ in
                     guard let avatar = profile?.profilePictureUrl else { return }
                     profileCell.profileAvatarImage.loadImageWith(avatar)
                     if self.isPreview {

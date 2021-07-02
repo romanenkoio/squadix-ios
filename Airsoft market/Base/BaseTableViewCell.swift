@@ -11,6 +11,7 @@ import UIKit
 class BaseTableViewCell: UITableViewCell {
     var action: VoidBlock?
     let generator = UINotificationFeedbackGenerator()
+    let networkManager = NetworkManager.shared
         
     override func awakeFromNib() {
         super.awakeFromNib()

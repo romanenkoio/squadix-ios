@@ -13,6 +13,10 @@ import ObjectMapper
 final class NetworkManager {
     let provider = MoyaProvider<StrikeServise>(plugins: [NetworkLoggerPlugin()])
     
+    static let shared = NetworkManager()
+    
+//    private init() {}
+    
     func register(loginCredentials: ProfileRequest, completion: @escaping (AuthResponce) -> Void, failure: @escaping (NetworkError) -> Void ) {
         provider.request(.registration(loginCredentials: loginCredentials)) { (result) in
             switch result {

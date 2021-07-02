@@ -11,7 +11,7 @@ import AudioToolbox
 import JJFloatingActionButton
 
 
-protocol UpdateFeedDelegate: class {
+protocol UpdateFeedDelegate: AnyObject {
     func deleteFromFeed(id: Int, type: NewsType)
     func updateFeed(type: NewsType)
 }

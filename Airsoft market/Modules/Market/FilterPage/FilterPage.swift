@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol UpdateWithFiltersDelegate: class {
+protocol UpdateWithFiltersDelegate: AnyObject {
     func updateWithFilters()
 }
 

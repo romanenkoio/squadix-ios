@@ -15,7 +15,7 @@ enum Permissions: String {
 }
 
 class BaseViewController: UIViewController {
-    let networkManager = NetworkManager()
+    let networkManager = NetworkManager.shared
     let generator = UINotificationFeedbackGenerator()
             
     var profileID: Int?
