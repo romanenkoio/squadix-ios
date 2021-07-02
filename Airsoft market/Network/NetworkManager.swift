@@ -15,7 +15,7 @@ final class NetworkManager {
     
     static let shared = NetworkManager()
     
-//    private init() {}
+    private init() {}
     
     func register(loginCredentials: ProfileRequest, completion: @escaping (AuthResponce) -> Void, failure: @escaping (NetworkError) -> Void ) {
         provider.request(.registration(loginCredentials: loginCredentials)) { (result) in

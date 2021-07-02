@@ -16,7 +16,6 @@ class SearchPage: BaseViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var refreshControl = UIRefreshControl()
     
-    let manager = NetworkManager()
     var usersData: [Profile] = []
     var totalUserPages = 0
     var userRequest: Cancellable?
@@ -75,7 +74,7 @@ class SearchPage: BaseViewController {
         }
         
         spinner.startAnimating()
-        userRequest = manager.getAllUsers(page: page, querry: querry, completion: { [weak self] users in
+        userRequest = networkManager.getAllUsers(page: page, querry: querry, completion: { [weak self] users in
             guard let sSelf = self else { return }
             if KeychainManager.isAdmin {
                 sSelf.title = "Пользователей: \(users.totalElements ?? 0)"
