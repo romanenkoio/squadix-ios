@@ -33,7 +33,7 @@ class GalleryCell: UICollectionViewCell {
     
     @objc func openFullScrren() {
         let vc = FullPicturePage.loadFromNib()
-        vc.currenImage = imageUrl
+        vc.currentImage = imageUrl
         navigationController()?.pushViewController(vc, animated: true)
     }
 

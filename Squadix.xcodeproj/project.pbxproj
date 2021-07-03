@@ -134,7 +134,7 @@
 		7F96AE392617021C00C064BE /* CreateTeamPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96AE372617021C00C064BE /* CreateTeamPage.swift */; };
 		7F96AE3A2617021C00C064BE /* CreateTeamPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F96AE382617021C00C064BE /* CreateTeamPage.xib */; };
 		7F9835212484505B000DE3AA /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9835202484505B000DE3AA /* UsersData.swift */; };
-		7F98676E24D9CEFC007EF140 /* ResponceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98676D24D9CEFC007EF140 /* ResponceHandler.swift */; };
+		7F98676E24D9CEFC007EF140 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98676D24D9CEFC007EF140 /* ResponseHandler.swift */; };
 		7F9ACA4124E9EBC6003E7972 /* UtilitesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ACA4024E9EBC6003E7972 /* UtilitesAPI.swift */; };
 		7F9ACA4324E9F20F003E7972 /* UtilitesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ACA4224E9F20E003E7972 /* UtilitesManager.swift */; };
 		7F9ACA4524EA7290003E7972 /* GeocodingAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9ACA4424EA7290003E7972 /* GeocodingAddress.swift */; };
@@ -224,6 +224,8 @@
 		7FFE4C7624772E0100212BAB /* RegistrationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFE4C7424772E0100212BAB /* RegistrationPage.swift */; };
 		7FFE4C7724772E0100212BAB /* RegistrationPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FFE4C7524772E0100212BAB /* RegistrationPage.xib */; };
 		7FFE4C79247731F000212BAB /* VCFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFE4C78247731F000212BAB /* VCFabric.swift */; };
+		9E3995052690D06600F380C9 /* FullPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3995032690D06600F380C9 /* FullPictureCell.swift */; };
+		9E3995062690D06600F380C9 /* FullPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E3995042690D06600F380C9 /* FullPictureCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -542,7 +544,7 @@
 		7F96AE372617021C00C064BE /* CreateTeamPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamPage.swift; sourceTree = "<group>"; };
 		7F96AE382617021C00C064BE /* CreateTeamPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTeamPage.xib; sourceTree = "<group>"; };
 		7F9835202484505B000DE3AA /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
-		7F98676D24D9CEFC007EF140 /* ResponceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponceHandler.swift; sourceTree = "<group>"; };
+		7F98676D24D9CEFC007EF140 /* ResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
 		7F9ACA4024E9EBC6003E7972 /* UtilitesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitesAPI.swift; sourceTree = "<group>"; };
 		7F9ACA4224E9F20E003E7972 /* UtilitesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitesManager.swift; sourceTree = "<group>"; };
 		7F9ACA4424EA7290003E7972 /* GeocodingAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingAddress.swift; sourceTree = "<group>"; };
@@ -634,6 +636,8 @@
 		7FFE4C7424772E0100212BAB /* RegistrationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPage.swift; sourceTree = "<group>"; };
 		7FFE4C7524772E0100212BAB /* RegistrationPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationPage.xib; sourceTree = "<group>"; };
 		7FFE4C78247731F000212BAB /* VCFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCFabric.swift; sourceTree = "<group>"; };
+		9E3995032690D06600F380C9 /* FullPictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPictureCell.swift; sourceTree = "<group>"; };
+		9E3995042690D06600F380C9 /* FullPictureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullPictureCell.xib; sourceTree = "<group>"; };
 		F72EEF4500FE6629B197A476 /* Pods-Squadix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Squadix.release.xcconfig"; path = "Target Support Files/Pods-Squadix/Pods-Squadix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1166,6 +1170,7 @@
 			isa = PBXGroup;
 			children = (
 				7F14047724885EA60028C907 /* Cells */,
+				9E3994E42690D04F00F380C9 /* FullPictureCell */,
 				7FF2938D26276C6100275FEE /* CustomViews */,
 			);
 			path = View;
@@ -1509,7 +1514,7 @@
 			path = TeamMemberCell;
 			sourceTree = "<group>";
 		};
-		7FE173112478848800CBAFB3 /* Utilites */ = {
+		7FE173112478848800CBAFB3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				7FFE4C78247731F000212BAB /* VCFabric.swift */,
@@ -1522,7 +1527,7 @@
 				7F1DF26C25584ECF00D4E7CF /* Validator.swift */,
 				7F510A9625E93ED1009DCB17 /* CacheManager.swift */,
 			);
-			path = Utilites;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		7FE17312247884A800CBAFB3 /* NewsPage */ = {
@@ -1590,7 +1595,7 @@
 			children = (
 				7F2B7EBB25DEBCE600A3284E /* GoogleService-Info.plist */,
 				7F2D36A22568644D0087615B /* Pods.xcodeproj */,
-				7F98676D24D9CEFC007EF140 /* ResponceHandler.swift */,
+				7F98676D24D9CEFC007EF140 /* ResponseHandler.swift */,
 				7FFE4C5824771CD800212BAB /* Airsoft market */,
 				7FFE4C5724771CD800212BAB /* Products */,
 				D3E288AE3EE7B3AEA8EC23F2 /* Pods */,
@@ -1618,7 +1623,7 @@
 				7F7DC404247C597700A53E7C /* Base */,
 				7F295CBC247AC91900B47F1F /* Entity */,
 				7FBAC53124789876007F51BC /* Extensions */,
-				7FE173112478848800CBAFB3 /* Utilites */,
+				7FE173112478848800CBAFB3 /* Utilities */,
 				7FFE4C6D247727C000212BAB /* Modules */,
 				7F3C847224D4173100D3DC4A /* AppDelegate */,
 				7FFE4C5F24771CD800212BAB /* Main.storyboard */,
@@ -1668,6 +1673,15 @@
 				7FFE4C7524772E0100212BAB /* RegistrationPage.xib */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		9E3994E42690D04F00F380C9 /* FullPictureCell */ = {
+			isa = PBXGroup;
+			children = (
+				9E3995032690D06600F380C9 /* FullPictureCell.swift */,
+				9E3995042690D06600F380C9 /* FullPictureCell.xib */,
+			);
+			path = FullPictureCell;
 			sourceTree = "<group>";
 		};
 		D3E288AE3EE7B3AEA8EC23F2 /* Pods */ = {
@@ -1948,6 +1962,7 @@
 				7FC9049225BF322700CF911E /* TextPage.xib in Resources */,
 				7F595B22247FFE7700D56E74 /* MapPage.xib in Resources */,
 				7F38F1BC25C5D12600FBD108 /* Rules.html in Resources */,
+				9E3995062690D06600F380C9 /* FullPictureCell.xib in Resources */,
 				7F2B7ECD25DEBCE700A3284E /* GoogleService-Info.plist in Resources */,
 				7FD70CE226171B31008C784C /* PeopleCollectionCell.xib in Resources */,
 				7F4BF2622581800F00B82D20 /* OutMessageCell.xib in Resources */,
@@ -2096,6 +2111,7 @@
 				7F595B3B2480686800D56E74 /* SettingsPage.swift in Sources */,
 				7FB7E70425855BB800DC0FB9 /* CategoriesPage.swift in Sources */,
 				7F44868225CC79520055C511 /* Updatable.swift in Sources */,
+				9E3995052690D06600F380C9 /* FullPictureCell.swift in Sources */,
 				7F3D7D4A261709C100F020B3 /* TeamAvatarCell.swift in Sources */,
 				7FBDA5DA25FB57A400DFA779 /* CommentCell.swift in Sources */,
 				7FE17315247884D000CBAFB3 /* NewsPage.swift in Sources */,
@@ -2170,7 +2186,7 @@
 				7F5FD052247DC21E00AF7D47 /* Post.swift in Sources */,
 				7FFE4C712477280200212BAB /* LoginPage.swift in Sources */,
 				7FBC5A2C257B002D000B037A /* NotificationCell.swift in Sources */,
-				7F98676E24D9CEFC007EF140 /* ResponceHandler.swift in Sources */,
+				7F98676E24D9CEFC007EF140 /* ResponseHandler.swift in Sources */,
 				7FBAC53A24789C7F007F51BC /* MarketPage.swift in Sources */,
 				7FCE1E6824F6FA73000499EC /* AdminPage.swift in Sources */,
 				7F295CCB247ADFBD00B47F1F /* DateUtils.swift in Sources */,

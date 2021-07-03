@@ -54,7 +54,7 @@ class CommentCell: BaseTableViewCell {
         scrollView.isHidden = images.count == 0
         addImages()
     }
-
+    
     @IBAction func likeAction(_ sender: Any) {
         action?()
     }
@@ -76,22 +76,23 @@ class CommentCell: BaseTableViewCell {
     }
     
     func addImages() {
-        for image in images {
+        images.enumerated().forEach({ index, image in
             let commentImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
             commentImageView.loadImageWith(image)
             commentImageView.contentMode = .scaleAspectFill
             commentImageView.translatesAutoresizingMaskIntoConstraints = true
             commentImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
             commentImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-            let tap = ImageTap(target: self, action: #selector(openImage))
+            let tap = ImageTap(target: self, action: #selector(self.openImage))
+            tap.imgID = index
             tap.imageUrls = images
             tap.currentUrl = image
-
+            
             commentImageView.isUserInteractionEnabled = true
             commentImageView.addGestureRecognizer(tap)
             commentImageView.layer.cornerRadius = 5
             imagesStackView.addArrangedSubview(commentImageView)
-        }
+        })
     }
     
     @objc func openImage(sender: ImageTap) {
@@ -101,7 +102,8 @@ class CommentCell: BaseTableViewCell {
         }
         let vc = FullPicturePage.loadFromNib()
         vc.images = sender.imageUrls
-        vc.currenImage = sender.currentUrl
+        vc.currentImage = sender.currentUrl
+        vc.currentImageIndex = sender.imgID
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
         appDelegate.currentViewController?.navigationController?.present(vc, animated: true)
@@ -111,6 +113,5 @@ class CommentCell: BaseTableViewCell {
 class ImageTap: UITapGestureRecognizer {
     var imageUrls: [String] = []
     var currentUrl: String = ""
+    var imgID = 0
 }
-
-

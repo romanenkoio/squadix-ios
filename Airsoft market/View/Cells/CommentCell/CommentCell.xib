@@ -163,7 +163,7 @@
                 <outlet property="scrollView" destination="yYV-6K-2aw" id="eW5-ZT-123"/>
                 <outlet property="timeLabel" destination="M4M-69-7jz" id="Mjl-2t-daU"/>
             </connections>
-            <point key="canvasLocation" x="31.884057971014496" y="200.22321428571428"/>
+            <point key="canvasLocation" x="-155" y="-72"/>
         </tableViewCell>
     </objects>
     <designables>
