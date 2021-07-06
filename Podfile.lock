@@ -111,6 +111,7 @@ PODS:
   - GoogleUtilities/UserDefaults (7.4.1):
     - GoogleUtilities/Logger
   - GrowingTextView (0.7.2)
+  - HMSegmentedControl (1.5.6)
   - ImageSlideshow (1.9.2):
     - ImageSlideshow/Core (= 1.9.2)
   - ImageSlideshow/Core (1.9.2)
@@ -148,6 +149,7 @@ PODS:
   - Sentry (6.0.10):
     - Sentry/Core (= 6.0.10)
   - Sentry/Core (6.0.10)
+  - SpinnerView (0.1.0)
   - YoutubePlayer-in-WKWebView (0.3.5)
 
 DEPENDENCIES:
@@ -157,6 +159,7 @@ DEPENDENCIES:
   - Google-Maps-iOS-Utils
   - GoogleMaps
   - GrowingTextView
+  - HMSegmentedControl
   - ImageSlideshow
   - ImageSlideshow/Kingfisher
   - IQKeyboardManagerSwift
@@ -168,6 +171,7 @@ DEPENDENCIES:
   - RealmSwift
   - SDWebImage
   - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `6.0.10`)
+  - SpinnerView
   - YoutubePlayer-in-WKWebView
 
 SPEC REPOS:
@@ -186,6 +190,7 @@ SPEC REPOS:
     - GoogleMaps
     - GoogleUtilities
     - GrowingTextView
+    - HMSegmentedControl
     - ImageSlideshow
     - IQKeyboardManagerSwift
     - JJFloatingActionButton
@@ -199,6 +204,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SDWebImage
+    - SpinnerView
     - YoutubePlayer-in-WKWebView
 
 EXTERNAL SOURCES:
@@ -226,6 +232,7 @@ SPEC CHECKSUMS:
   GoogleMaps: 600e5e69bdf7f4ed7cac4d6aa96c7ec08a5aa254
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
+  HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
@@ -240,8 +247,9 @@ SPEC CHECKSUMS:
   RealmSwift: e31c4ddbcc42ac879313d656b86f9ca539f6f4f4
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   Sentry: 0a48d832ce921578a0c31c68272382fbef9a1726
+  SpinnerView: 7b5bfe4d4bf367991999a15f8537b509a376473d
   YoutubePlayer-in-WKWebView: cfbf46da51d7370662a695a8f351e5fa1d3e1008
 
-PODFILE CHECKSUM: 506fc254928bd5722cf000a6b320a8b6cbcab50c
+PODFILE CHECKSUM: 95a14e42c2fedca25f3a3288fe0cde7b0ecb6098
 
 COCOAPODS: 1.10.0

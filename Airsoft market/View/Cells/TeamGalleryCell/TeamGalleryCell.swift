@@ -50,7 +50,7 @@ extension TeamGalleryCell: UICollectionViewDataSource {
 
 extension TeamGalleryCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
+        if indexPath.row == 0, canAddPhoto {
             openPicker()
         }
     }

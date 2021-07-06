@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchPage" customModule="Squadix" customModuleProvider="target">
+            <connections>
+                <outlet property="container" destination="cru-l4-i2e" id="4WX-me-DRL"/>
+                <outlet property="segment" destination="ZMW-7F-XjI" id="GOY-5Q-OrL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cru-l4-i2e">
+                    <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZMW-7F-XjI" customClass="HMSegmentedControl">
+                    <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="1cB-5H-c3j"/>
+                    </constraints>
+                    <connections>
+                        <action selector="segmentChanged:" destination="-1" eventType="valueChanged" id="7V3-Gg-WoF"/>
+                    </connections>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZMW-7F-XjI" secondAttribute="trailing" id="D8J-8M-Tb5"/>
+                <constraint firstItem="ZMW-7F-XjI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="H5Z-aL-Iub"/>
+                <constraint firstItem="ZMW-7F-XjI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="H7b-tP-sTz"/>
+                <constraint firstItem="cru-l4-i2e" firstAttribute="top" secondItem="ZMW-7F-XjI" secondAttribute="bottom" id="PPg-Iw-Q82"/>
+                <constraint firstItem="cru-l4-i2e" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ktG-Yi-0TW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cru-l4-i2e" secondAttribute="bottom" id="tni-F6-QQ2"/>
+                <constraint firstItem="cru-l4-i2e" firstAttribute="top" secondItem="ZMW-7F-XjI" secondAttribute="bottom" id="tzP-ck-O3D"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cru-l4-i2e" secondAttribute="trailing" id="wWa-tz-YwV"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="104"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

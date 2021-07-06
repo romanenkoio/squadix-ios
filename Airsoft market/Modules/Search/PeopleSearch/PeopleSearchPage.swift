@@ -1,21 +1,19 @@
 //
-//  SearchPage.swift
-//  Airsoft market
+//  PeopleSearchPage.swift
+//  Squadix
 //
-//  Created by Illia Romanenko on 5/26/20.
-//  Copyright © 2020 Illia Romanenko. All rights reserved.
+//  Created by Illia Romanenko on 7.07.21.
+//  Copyright © 2021 Illia Romanenko. All rights reserved.
 //
 
 import UIKit
 import Moya
 
-class SearchPage: BaseViewController {
+class PeopleSearchPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    let searchController = UISearchController(searchResultsController: nil)
     var refreshControl = UIRefreshControl()
-    
     var usersData: [Profile] = []
     var totalUserPages = 0
     var userRequest: Cancellable?
@@ -29,8 +27,14 @@ class SearchPage: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-        Analytics.trackEvent("User_search_screen")
+        tableView.registerCell(ProfileSearchCell.self)
+        tableView.setupDelegateData(self)
+      
+        tableView.addSubview(refreshControl)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        
         page = 0
         guard !isTeamSearch else {
             navigationItem.searchController = nil
@@ -38,27 +42,14 @@ class SearchPage: BaseViewController {
         }
         loadUsers(page: page)
     }
-    
-    func setup() {
-        title = "Поиск"
-        searchController.searchResultsUpdater = self
-        searchController.delegate = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск... "
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        
-        if #available(iOS 13, *) {
-            searchController.searchBar.searchTextField.backgroundColor = .white
+
+    @objc func refresh() {
+        guard !isTeamSearch else {
+            return
         }
-        
-        tableView.registerCell(ProfileSearchCell.self)
-        tableView.setupDelegateData(self)
-        
-        refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        tableView.addSubview(refreshControl)
+        refreshControl.endRefreshing()
+        page = 0
+        loadUsers(page: page, querry: querry)
     }
     
     func loadUsers(page: Int? = nil, querry: String? = nil) {
@@ -105,37 +96,11 @@ class SearchPage: BaseViewController {
             self.spinner.stopAnimating()
         }
     }
-    
-    @objc func refresh() {
-        guard !isTeamSearch else {
-            return
-        }
-        refreshControl.endRefreshing()
-        page = 0
-        loadUsers(page: page, querry: querry)
-    }
 }
 
-extension SearchPage: UISearchResultsUpdating, UISearchControllerDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        if !text.isEmpty {
-            querry = text
-            loadUsers(page: page, querry: text)
-        }
-    }
-    
-    func didDismissSearchController(_ searchController: UISearchController) {
-        searchController.searchBar.text = ""
-        loadUsers(page: 0)
-    }
-    
-    func willPresentSearchController(_ searchController: UISearchController) {
-        page = 0
-    }
-}
 
-extension SearchPage: UITableViewDelegate {
+
+extension PeopleSearchPage: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if selectUser == nil {
@@ -156,7 +121,7 @@ extension SearchPage: UITableViewDelegate {
     }
 }
 
-extension SearchPage: UITableViewDataSource {
+extension PeopleSearchPage: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return usersData.count
     }

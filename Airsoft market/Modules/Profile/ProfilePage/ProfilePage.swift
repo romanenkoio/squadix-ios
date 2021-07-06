@@ -171,8 +171,6 @@ class ProfilePage: BaseViewController {
                
           }
           
-        
-          
           actionButton.configureDefaultItem { item in
                item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
                item.titleLabel.textColor = .white

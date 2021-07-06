@@ -818,14 +818,14 @@ final class NetworkManager {
             }
         }
     }
-    
-    func getAllTeams(completion: (([Team]) -> Void)?, failure: (() -> Void)? = nil) {
-        provider.request(.getAllTeams) { result in
+    @discardableResult
+    func getAllTeams(page: Int? = nil, querry: String? = nil, completion: ((TeamObject) -> Void)?, failure: (() -> Void)? = nil) -> Cancellable? {
+        provider.request(.getAllTeams(page: page, querry: querry)) { result in
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
                 guard let teams = try? response.mapObject(TeamObject.self) else { return }
-                completion?(teams.content)
+                completion?(teams)
             case .failure(let error):
                 failure?()
                 ResponceHandler.handleError(error: error)

@@ -20,4 +20,6 @@ use_modular_headers!
 	pod 'GrowingTextView'
 	pod 'SDWebImage'
 	pod "CollectionViewPagingLayout"
+	pod 'HMSegmentedControl'
+	pod 'SpinnerView'
 end

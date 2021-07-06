@@ -64,7 +64,7 @@ enum StrikeServise{
     case getTeamById(teamID: Int)
     case inviteToTeam(userID: Int)
     case addPhotoToTeam(image: UIImage, teamID: Int)
-    case getAllTeams
+    case getAllTeams(page: Int?, querry: String?)
     case leaveTeam
 }
 
@@ -357,7 +357,7 @@ extension StrikeServise: TargetType {
             params["url"] = link
         case .editProduct(let product):
             params = product.asParams(isEdit: true, with: [])
-        case .getAllUsers(let page, let querry):
+        case .getAllUsers(let page, let querry), .getAllTeams(let page, let querry):
             params["page"] = page
             params["name"] = querry
         default:
@@ -375,7 +375,7 @@ extension StrikeServise: TargetType {
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .youtubeInfo, .getUserPosts, .getProductByUser, .posts, .events, .activeProductsWithFilters, .moderatingProducts, .getAllUsers, .getTeamById:
+        case .youtubeInfo, .getUserPosts, .getProductByUser, .posts, .events, .activeProductsWithFilters, .moderatingProducts, .getAllUsers, .getTeamById, .getAllTeams:
             return URLEncoding.queryString
         default:
             return JSONEncoding.prettyPrinted

@@ -103,6 +103,10 @@
 		7F68F435262E22EF008FC0D5 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68F434262E22EF008FC0D5 /* WeatherData.swift */; };
 		7F68F476262E326E008FC0D5 /* WeaterPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68F474262E326E008FC0D5 /* WeaterPopup.swift */; };
 		7F68F477262E326E008FC0D5 /* WeaterPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F68F475262E326E008FC0D5 /* WeaterPopup.xib */; };
+		7F7540A92694FCA000FE9F4F /* PeopleSearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7540A72694FCA000FE9F4F /* PeopleSearchPage.swift */; };
+		7F7540AA2694FCA000FE9F4F /* PeopleSearchPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7540A82694FCA000FE9F4F /* PeopleSearchPage.xib */; };
+		7F7540D32695063200FE9F4F /* TeamSearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7540D12695063200FE9F4F /* TeamSearchPage.swift */; };
+		7F7540D42695063200FE9F4F /* TeamSearchPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7540D22695063200FE9F4F /* TeamSearchPage.xib */; };
 		7F78717424D9E43700E501C2 /* EditPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F78717224D9E43600E501C2 /* EditPage.xib */; };
 		7F78717524D9E43700E501C2 /* EditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F78717324D9E43700E501C2 /* EditPage.swift */; };
 		7F7DC3FB247C010E00A53E7C /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DC3F9247C010E00A53E7C /* ProfilePage.swift */; };
@@ -404,6 +408,20 @@
 			remoteGlobalIDString = 3347A1AB6546F0A3977529B8F199DC41;
 			remoteInfo = PromisesObjC;
 		};
+		7F7540CC2695061400FE9F4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EAF47B8D3BA5B9248FB8BA7EFB248038;
+			remoteInfo = HMSegmentedControl;
+		};
+		7F7540CE2695061400FE9F4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B94F31121B4FBD385FF15DFB255A8029;
+			remoteInfo = SpinnerView;
+		};
 		7F84BFB225779F4800322CD3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7F2D36A22568644D0087615B /* Pods.xcodeproj */;
@@ -513,6 +531,10 @@
 		7F68F434262E22EF008FC0D5 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		7F68F474262E326E008FC0D5 /* WeaterPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaterPopup.swift; sourceTree = "<group>"; };
 		7F68F475262E326E008FC0D5 /* WeaterPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeaterPopup.xib; sourceTree = "<group>"; };
+		7F7540A72694FCA000FE9F4F /* PeopleSearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleSearchPage.swift; sourceTree = "<group>"; };
+		7F7540A82694FCA000FE9F4F /* PeopleSearchPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleSearchPage.xib; sourceTree = "<group>"; };
+		7F7540D12695063200FE9F4F /* TeamSearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSearchPage.swift; sourceTree = "<group>"; };
+		7F7540D22695063200FE9F4F /* TeamSearchPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSearchPage.xib; sourceTree = "<group>"; };
 		7F78717224D9E43600E501C2 /* EditPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditPage.xib; path = "Airsoft market/Modules/Login/EditUserData/EditPage.xib"; sourceTree = SOURCE_ROOT; };
 		7F78717324D9E43700E501C2 /* EditPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPage.swift; path = "Airsoft market/Modules/Login/EditUserData/EditPage.swift"; sourceTree = SOURCE_ROOT; };
 		7F7DC3F9247C010E00A53E7C /* ProfilePage.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
@@ -682,6 +704,7 @@
 		7F14047724885EA60028C907 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9E3994E42690D04F00F380C9 /* FullPictureCell */,
 				7FB637AA268CFACE00E075E5 /* TeamGalleryCell */,
 				7FB63787268CF81A00E075E5 /* GalleryCell */,
 				7F4F0AA826237A7D008E3006 /* RadioSelectionCell */,
@@ -806,6 +829,7 @@
 				7F6F0C1325E5324B00CF4F53 /* libGoogleDataTransport.a */,
 				7F6F0C1525E5324B00CF4F53 /* libGoogleUtilities.a */,
 				7F4A701025FC238700F77458 /* libGrowingTextView.a */,
+				7F7540CD2695061400FE9F4F /* libHMSegmentedControl.a */,
 				7F2D36BE2568644D0087615B /* libImageSlideshow.a */,
 				7F2D36C02568644D0087615B /* libIQKeyboardManagerSwift.a */,
 				7F434BD3256B2676000C8F1C /* libJJFloatingActionButton.a */,
@@ -821,6 +845,7 @@
 				7F2D36D02568644D0087615B /* libRealmSwift.a */,
 				7F4F0AA726237A6D008E3006 /* libSDWebImage.a */,
 				7F84BFB325779F4800322CD3 /* libSentry.a */,
+				7F7540CF2695061400FE9F4F /* libSpinnerView.a */,
 				7F2D36D22568644D0087615B /* libYoutubePlayer-in-WKWebView.a */,
 			);
 			name = Products;
@@ -1044,8 +1069,9 @@
 		7F5FD04C247D821C00AF7D47 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				7F5FD04D247D823B00AF7D47 /* SearchPage.swift */,
-				7F5FD04E247D823B00AF7D47 /* SearchPage.xib */,
+				7F7540A52694FC7F00FE9F4F /* MainSearch */,
+				7F7540A62694FC8C00FE9F4F /* PeopleSearch */,
+				7F7540D02695061800FE9F4F /* TeamSearch */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1123,6 +1149,33 @@
 			path = WeatherPopup;
 			sourceTree = "<group>";
 		};
+		7F7540A52694FC7F00FE9F4F /* MainSearch */ = {
+			isa = PBXGroup;
+			children = (
+				7F5FD04D247D823B00AF7D47 /* SearchPage.swift */,
+				7F5FD04E247D823B00AF7D47 /* SearchPage.xib */,
+			);
+			path = MainSearch;
+			sourceTree = "<group>";
+		};
+		7F7540A62694FC8C00FE9F4F /* PeopleSearch */ = {
+			isa = PBXGroup;
+			children = (
+				7F7540A72694FCA000FE9F4F /* PeopleSearchPage.swift */,
+				7F7540A82694FCA000FE9F4F /* PeopleSearchPage.xib */,
+			);
+			path = PeopleSearch;
+			sourceTree = "<group>";
+		};
+		7F7540D02695061800FE9F4F /* TeamSearch */ = {
+			isa = PBXGroup;
+			children = (
+				7F7540D12695063200FE9F4F /* TeamSearchPage.swift */,
+				7F7540D22695063200FE9F4F /* TeamSearchPage.xib */,
+			);
+			path = TeamSearch;
+			sourceTree = "<group>";
+		};
 		7F78717124D9E41600E501C2 /* UserDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1170,7 +1223,6 @@
 			isa = PBXGroup;
 			children = (
 				7F14047724885EA60028C907 /* Cells */,
-				9E3994E42690D04F00F380C9 /* FullPictureCell */,
 				7FF2938D26276C6100275FEE /* CustomViews */,
 			);
 			path = View;
@@ -1930,6 +1982,20 @@
 			remoteRef = 7F6F0C1825E5324B00CF4F53 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7F7540CD2695061400FE9F4F /* libHMSegmentedControl.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libHMSegmentedControl.a;
+			remoteRef = 7F7540CC2695061400FE9F4F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F7540CF2695061400FE9F4F /* libSpinnerView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSpinnerView.a;
+			remoteRef = 7F7540CE2695061400FE9F4F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7F84BFB325779F4800322CD3 /* libSentry.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1945,10 +2011,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F78717424D9E43700E501C2 /* EditPage.xib in Resources */,
+				7F7540AA2694FCA000FE9F4F /* PeopleSearchPage.xib in Resources */,
 				7F295CBB247AC8A900B47F1F /* ProductPage.xib in Resources */,
 				7FB7E70525855BB800DC0FB9 /* CategoriesPage.xib in Resources */,
 				7F595B2724800E9700D56E74 /* MyProfileCell.xib in Resources */,
 				7F595B412480689300D56E74 /* SettingsCell.xib in Resources */,
+				7F7540D42695063200FE9F4F /* TeamSearchPage.xib in Resources */,
 				7F295CC9247AD43F00B47F1F /* DescriptionPointCell.xib in Resources */,
 				7F2FD85C25587623007EA305 /* BookmarkCell.xib in Resources */,
 				7F9B146F247ED7E4007D4819 /* ActionCell.xib in Resources */,
@@ -2093,6 +2161,7 @@
 				7FBAC53624789931007F51BC /* AppConstant.swift in Sources */,
 				7F67540E24D22A1E004981CC /* GameMapPage.swift in Sources */,
 				7F4BF2612581800F00B82D20 /* OutMessageCell.swift in Sources */,
+				7F7540D32695063200FE9F4F /* TeamSearchPage.swift in Sources */,
 				7F1DF26D25584ECF00D4E7CF /* Validator.swift in Sources */,
 				7FE3E505264DDA8800F7B301 /* Places.swift in Sources */,
 				7F9ACA4324E9F20F003E7972 /* UtilitesManager.swift in Sources */,
@@ -2192,6 +2261,7 @@
 				7F295CCB247ADFBD00B47F1F /* DateUtils.swift in Sources */,
 				7F15DCBA25C4AAC700FF277A /* BasePost.swift in Sources */,
 				7F50F65E247889DD003E3FB4 /* NewsPage+TableView.swift in Sources */,
+				7F7540A92694FCA000FE9F4F /* PeopleSearchPage.swift in Sources */,
 				7F9D37D925549DD200BDAC1E /* DeepLink+Handler.swift in Sources */,
 				7F7DC3FB247C010E00A53E7C /* ProfilePage.swift in Sources */,
 				7F7DC409247C740200A53E7C /* OliveButton.swift in Sources */,

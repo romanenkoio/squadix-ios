@@ -54,7 +54,7 @@ class TeamPage: BaseViewController {
     
     @IBAction func addMemberAction(_ sender: Any) {
         if team.ownerID == KeychainManager.profileID {
-            let vc = SearchPage.loadFromNib()
+            let vc = PeopleSearchPage.loadFromNib()
             vc.selectUser = { [weak self] user in
                 self?.networkManager.inviteToTeam(userID: user.id) {
                     print("Успешно")
