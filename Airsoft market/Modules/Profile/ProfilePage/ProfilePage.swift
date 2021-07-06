@@ -351,6 +351,8 @@ extension ProfilePage: UITableViewDataSource {
                                    self?.navigationController?.pushViewController(vc, animated: true)
                               })
                          }
+                    } else {
+                         profileCell.teamStack.isHidden = true
                     }
                    
                     profileCell.descriptionLabel.enabledTypes = [.url]

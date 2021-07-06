@@ -128,7 +128,7 @@ struct Path {
     struct Team {
         static let path = "teams"
         static let myTeams = path + "/my"
-        
+        static let leaveTeam = myTeams + "/leave"
         static func findByID(_ teamID: Int) -> String {
             return path + "/\(teamID)/"
         }

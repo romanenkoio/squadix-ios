@@ -28,7 +28,7 @@ class VCFabric {
         controllers.append(gameMapNav)
         
         let searchPage = SearchPage()
-        searchPage.tabBarItem = UITabBarItem(title: "Люди", image: UIImage(named: "people_search"), tag: 3)
+        searchPage.tabBarItem = UITabBarItem(title: "Поиск", image: UIImage(named: "people_search"), tag: 3)
         let searchNav = BaseNavigationController(rootViewController: searchPage)
         controllers.append(searchNav)
         

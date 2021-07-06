@@ -26,6 +26,7 @@ enum TeamMenu {
 class TeamPage: BaseViewController {
     @IBOutlet var addMemberButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var leaveTeamButton: UIButton!
     
     var menuPoints: [[TeamMenu]] = TeamMenu.getMenuPoints()
     var team: Team!
@@ -38,8 +39,15 @@ class TeamPage: BaseViewController {
         tableView.registerCell(TeamMemberCell.self)
         tableView.registerCell(TeamGalleryCell.self)
         tableView.registerCell(DescriptionPointCell.self)
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: addMemberButton)],
-                                              animated: true)
+        
+        var barButtons: [UIBarButtonItem] = []
+        if team.ownerID == KeychainManager.profileID {
+            barButtons.append(UIBarButtonItem(customView: addMemberButton))
+        }
+        if KeychainManager.profileID != team.ownerID || team.people.filter({$0.id == KeychainManager.profileID}).count != 0 {
+            barButtons.append(UIBarButtonItem(customView: leaveTeamButton))
+        }
+        navigationItem.setRightBarButtonItems(barButtons, animated: true)
         setupOptionButton()
         
     }
@@ -61,6 +69,20 @@ class TeamPage: BaseViewController {
             })
         }
     }
+    
+    @IBAction func leaveTeamAction(_ sender: Any) {
+        showDestructiveAlert(title: "Вы действительно хотите покинуть команду?") { [weak self] in
+            self?.networkManager.leaveTeam {
+                self?.showPopup(title: "Вы покинули команду")
+                self?.popController()
+            } failure: {  [weak self] in
+                self?.showPopup(isError: true, title: "Ошибка. Повторите попытку.")
+            }
+        }
+      
+
+    }
+    
     
     func setupOptionButton() {
         addMemberButton.setImage(team.ownerID == KeychainManager.profileID ? UIImage(named: "plus") : UIImage(named: "logout"), for: .normal)

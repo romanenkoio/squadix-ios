@@ -64,6 +64,8 @@ enum StrikeServise{
     case getTeamById(teamID: Int)
     case inviteToTeam(userID: Int)
     case addPhotoToTeam(image: UIImage, teamID: Int)
+    case getAllTeams
+    case leaveTeam
 }
 
 extension StrikeServise: TargetType {
@@ -195,12 +197,16 @@ extension StrikeServise: TargetType {
             return Path.Invation.path
         case .addPhotoToTeam( _, let teamID):
             return Path.Team.uploadTeamGallery(teamID)
+        case .getAllTeams:
+            return Path.Team.path
+        case .leaveTeam:
+            return Path.Team.leaveTeam
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report, .createTeam, .inviteToTeam, .addPhotoToTeam:
+        case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report, .createTeam, .inviteToTeam, .addPhotoToTeam, .leaveTeam:
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment:
             return .delete

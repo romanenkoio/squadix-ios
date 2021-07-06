@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeamPage" customModule="Squadix" customModuleProvider="target">
             <connections>
                 <outlet property="addMemberButton" destination="PB1-Mb-fTh" id="vWX-XF-EKE"/>
+                <outlet property="leaveTeamButton" destination="qqg-L0-BEA" id="yM5-xf-Cki"/>
                 <outlet property="tableView" destination="vlp-tH-6Td" id="udN-4C-r5B"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -50,6 +51,21 @@
                 <action selector="addMemberAction:" destination="-1" eventType="touchUpInside" id="Z9m-eU-DSP"/>
             </connections>
             <point key="canvasLocation" x="-62.318840579710148" y="-363.28125"/>
+        </button>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqg-L0-BEA">
+            <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="height" constant="25" id="ZsN-Pf-14m"/>
+                <constraint firstAttribute="width" constant="30" id="rQd-lX-bRK"/>
+            </constraints>
+            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <inset key="imageEdgeInsets" minX="2" minY="0.0" maxX="2" maxY="0.0"/>
+            <state key="normal" image="plus"/>
+            <connections>
+                <action selector="leaveTeamAction:" destination="-1" eventType="touchUpInside" id="ZSz-0J-4pj"/>
+            </connections>
+            <point key="canvasLocation" x="-247.82608695652175" y="-363.28125"/>
         </button>
     </objects>
     <resources>
