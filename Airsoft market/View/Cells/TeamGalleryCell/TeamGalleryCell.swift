@@ -122,9 +122,9 @@ extension TeamGalleryCell {
 extension TeamGalleryCell: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            
-            networkManager.uploadPhotoToTeam(teamID: 2, image: pickedImage) {
-                
+//            chnage team ID
+            networkManager.uploadPhotoToTeam(teamID: 2, image: pickedImage) { [weak self] in
+                self?.collectionView.reloadData()
             }
         }
         topMostController()?.dismiss(animated: true, completion: nil)
