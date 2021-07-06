@@ -34,8 +34,8 @@ class BaseViewController: UIViewController {
         page = 0
     }
     
-    func getAppDelegate() -> AppDelegate?{
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil}
+    func getAppDelegate() -> AppDelegate? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
         return appDelegate
     }
     

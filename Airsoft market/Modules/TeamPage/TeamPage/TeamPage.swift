@@ -110,6 +110,7 @@ extension TeamPage: UITableViewDataSource {
             guard let teamImagesCell = cell as? TeamGalleryCell else {
                 return cell
             }
+            teamImagesCell.teamID = team.id
             teamImagesCell.canAddPhoto = team.people.filter({$0.id == KeychainManager.profileID}).count > 0
             teamImagesCell.images = team.photos
             return teamImagesCell

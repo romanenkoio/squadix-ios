@@ -12,6 +12,7 @@ import Photos
 class TeamGalleryCell: BaseTableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var teamID: Int?
     var images: [TeamImage] = []
     var canAddPhoto = false
     var imagePicker = UIImagePickerController()
@@ -122,8 +123,8 @@ extension TeamGalleryCell {
 extension TeamGalleryCell: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-//            chnage team ID
-            networkManager.uploadPhotoToTeam(teamID: 2, image: pickedImage) { [weak self] in
+            guard let id = teamID else { return }
+            networkManager.uploadPhotoToTeam(teamID: id, image: pickedImage) { [weak self] in
                 self?.collectionView.reloadData()
             }
         }
