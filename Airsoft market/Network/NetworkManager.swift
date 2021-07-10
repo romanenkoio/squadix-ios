@@ -845,4 +845,30 @@ final class NetworkManager {
             }
         }
     }
+    
+    func inviteAction(isAccept: Bool, invitionId: Int, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(isAccept ? .acceptInvition(id: invitionId) : .declineInvition(id: invitionId)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
+    
+    func deleteNotification(notificationId: Int, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.deleteNotification(id: notificationId)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                completion?()
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
 }

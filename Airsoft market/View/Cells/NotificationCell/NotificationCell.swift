@@ -44,27 +44,32 @@ class NotificationCell: BaseTableViewCell {
                 vc.modalPresentationStyle = .overCurrentContext
                 
                 vc.showTeamAction = { [weak self] in
-                    guard let stringUrl = notification.url, let url = URL(string: stringUrl), let teamID = url.path.matches(for: "[0-9]+").first, let id = Int(teamID) else { return }
+                    guard let stringId = notification.content?.team, let id = Int(stringId) else { return }
                     
                     self?.networkManager.getTeamById(teamID: id) { team in
                         let vc = TeamPage.loadFromNib()
                         vc.team = team
-                        topVC.navigationController?.pushViewController(TeamPage.loadFromNib(), animated: true)
+                        topVC.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
                 
-                vc.acceptAction = {
-                    
-                }
-                
-                vc.declineAction = {
-                    
+                vc.inviteAction = { [weak self] isAccept in
+                    guard let stringUrl = notification.url, let url = URL(string: stringUrl), let invitionID = url.path.matches(for: "[0-9]+").first, let id = Int( invitionID) else { return }
+                    self?.networkManager.inviteAction(isAccept: isAccept, invitionId: id, completion: {
+                        PopupView(title: "", subtitle: "Готово", image: UIImage(named: "confirm")).show()
+                        guard let stringUrl = notification.url, let url = URL(string: stringUrl), let teamID = url.path.matches(for: "[0-9]+").first, let id = Int(teamID) else { return }
+                        self?.networkManager.deleteNotification(notificationId: id, completion: {
+                            self?.topMostController()?.navigationController?.popViewController(animated: true)
+                        })
+                    }, failure: {
+                        PopupView(title: "", subtitle: "Ошибка", image: UIImage(named: "cancel")).show()
+                    })
                 }
                 
                 topVC.navigationController?.present(vc, animated: true)
             }
         default:
-            print("Error")
+            notificationImageView.image = UIImage(named: "AppIcon")
         }
         
         if notification.type != .decline && notification.type != .invite {

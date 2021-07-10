@@ -11,6 +11,7 @@ import UIKit
 class DashboardViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     private var refreshControl = UIRefreshControl()
     var notifications: [DasboardNotification] = []
     

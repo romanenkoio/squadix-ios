@@ -123,6 +123,10 @@ struct Path {
     struct Notifications {
         static let path = "notifications"
         static let notifications = path + "/me"
+        
+        static func delete(id: Int) -> String {
+            return path + "/\(id)"
+        }
     }
     
     struct Team {
@@ -140,5 +144,8 @@ struct Path {
     
     struct Invation {
         static let path = "invitations"
+        static func invitionAction(id: Int) -> String {
+            return path + "/\(id)"
+        }
     }
 }

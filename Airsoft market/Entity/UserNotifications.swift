@@ -15,8 +15,8 @@ class DasboardNotification: Mappable {
     var time: String!
     var url: String?
     var type: Common.NotificationType!
-    var teamId: Int?
     var isReaded: Bool = false
+    var content: AdditionalContent?
     
     init() { }
     
@@ -30,7 +30,7 @@ class DasboardNotification: Mappable {
         time           <- map["createdAt"]
         url            <- map["url"]
         isReaded       <- map["readed"]
-        teamId         <- map["teamId"]
+        content        <- map["content"]
         
         if let type =  map["type"].currentValue as? String {
             self.type = Common.shared.notificationType(type: type)
@@ -52,5 +52,17 @@ class DashboardContent: Mappable {
         content             <- map["content"]
         totalElements       <- map["totalElements"]
         totalPages          <- map["totalPages"]
+    }
+}
+
+class AdditionalContent: Mappable {
+    var team: String?
+    
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        team        <- map["team"]
     }
 }

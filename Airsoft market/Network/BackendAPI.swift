@@ -66,6 +66,9 @@ enum StrikeServise{
     case addPhotoToTeam(image: UIImage, teamID: Int)
     case getAllTeams(page: Int?, querry: String?)
     case leaveTeam
+    case deleteNotification(id: Int)
+    case acceptInvition(id: Int)
+    case declineInvition(id: Int)
 }
 
 extension StrikeServise: TargetType {
@@ -201,6 +204,10 @@ extension StrikeServise: TargetType {
             return Path.Team.path
         case .leaveTeam:
             return Path.Team.leaveTeam
+        case .deleteNotification(let id):
+            return Path.Notifications.delete(id: id)
+        case .acceptInvition(let id), .declineInvition(let id):
+            return Path.Invation.invitionAction(id: id)
         }
     }
     
@@ -208,9 +215,9 @@ extension StrikeServise: TargetType {
         switch self {
         case .registration, .login, .createPost, .uploadAvatar, .createEvent, .saveProduct, .updateProductStatus, .createCategory, .registerToken, .resetPassword, .resetConfirmation, .blockUser, .postComment, .report, .createTeam, .inviteToTeam, .addPhotoToTeam, .leaveTeam:
             return .post
-        case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment:
+        case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment, .deleteNotification, .declineInvition:
             return .delete
-        case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead, .likeComment, .editProduct:
+        case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead, .likeComment, .editProduct, .acceptInvition:
             return .put
         case .upProduct, .changePassword:
             return .patch

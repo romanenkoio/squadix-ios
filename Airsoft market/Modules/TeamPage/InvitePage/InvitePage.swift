@@ -12,8 +12,7 @@ class InvitePage: BaseViewController {
     @IBOutlet weak var teamAvatarImage: UIImageView!
     @IBOutlet weak var inviteDescription: UILabel!
     
-    var acceptAction: VoidBlock?
-    var declineAction: VoidBlock?
+    var inviteAction: ((Bool) -> Void)?
     var showTeamAction: VoidBlock?
     
     override func viewDidLoad() {
@@ -23,13 +22,13 @@ class InvitePage: BaseViewController {
 
     @IBAction func acceptAction(_ sender: Any) {
         dismiss(animated: true) { [weak self] in
-            self?.acceptAction?()
+            self?.inviteAction?(true)
         }
     }
     
     @IBAction func declineAction(_ sender: Any) {
         dismiss(animated: true) { [weak self] in
-            self?.declineAction?()
+            self?.inviteAction?(false)
         }
     }
     
