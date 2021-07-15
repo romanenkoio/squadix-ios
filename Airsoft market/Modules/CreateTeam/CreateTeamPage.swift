@@ -13,6 +13,10 @@ class CreateTeamPage: BaseViewController {
     @IBOutlet weak var commandCity: UITextField!
     @IBOutlet weak var commandDescription: UITextView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var saveButton: OliveButton!
+    
+    var isEdit = false
+    var teamId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +24,9 @@ class CreateTeamPage: BaseViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCityLabel))
         commandCity.addGestureRecognizer(tap)
+        if isEdit {
+            loadTeam()
+        }
     }
     
     @objc func didTapCityLabel() {
@@ -29,6 +36,27 @@ class CreateTeamPage: BaseViewController {
             self?.popController()
         }
         pushController(vc)
+        if isEdit {
+            loadTeam()
+        }
+    }
+    
+    func loadTeam() {
+        spinner.startAnimating()
+        guard let id = teamId else { return }
+        networkManager.getTeamById(teamID: id) {  [weak self] team in
+            self?.spinner.stopAnimating()
+            self?.prefillTeam(team: team)
+        } failure: {  [weak self] in
+            self?.spinner.stopAnimating()
+        }
+    }
+    
+    func prefillTeam(team: Team) {
+        commandName.text = team.name
+        commandCity.text = team.city
+        commandDescription.text = team.description
+     
     }
 
     @IBAction func createTeam(_ sender: Any) {
@@ -36,10 +64,25 @@ class CreateTeamPage: BaseViewController {
         let team = Team(name: name, city: city, description: description)
         
         spinner.startAnimating()
-        networkManager.createTeam(team: team) { [weak self] team in
-            self?.spinner.stopAnimating()
-        } failure: { [weak self] in
-            self?.spinner.stopAnimating()
+        
+        if isEdit {
+            team.id = teamId ?? 0
+            networkManager.editTeam(team: team) { [weak self] team in
+                self?.showPopup(title: "Обновлено")
+                self?.spinner.stopAnimating()
+            } failure: { [weak self] in
+                self?.spinner.stopAnimating()
+            }
+        } else {
+            networkManager.createTeam(team: team) { [weak self] team in
+                self?.spinner.stopAnimating()
+                self?.showPopup(title: "Создано")
+                self?.popController()
+            } failure: { [weak self] in
+                self?.spinner.stopAnimating()
+            }
         }
+            
+
     }
 }

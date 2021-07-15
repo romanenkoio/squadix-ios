@@ -27,6 +27,7 @@ class TeamPage: BaseViewController {
     @IBOutlet var addMemberButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var leaveTeamButton: UIButton!
+    @IBOutlet var editButton: UIButton!
     
     var menuPoints: [[TeamMenu]] = TeamMenu.getMenuPoints()
     var team: Team!
@@ -43,8 +44,9 @@ class TeamPage: BaseViewController {
         var barButtons: [UIBarButtonItem] = []
         if team.ownerID == KeychainManager.profileID {
             barButtons.append(UIBarButtonItem(customView: addMemberButton))
+            barButtons.append(UIBarButtonItem(customView: editButton))
         }
-        if KeychainManager.profileID != team.ownerID || team.people.filter({$0.id == KeychainManager.profileID}).count != 0 {
+        if KeychainManager.profileID != team.ownerID && team.people.filter({$0.id == KeychainManager.profileID}).count != 0 {
             barButtons.append(UIBarButtonItem(customView: leaveTeamButton))
         }
         navigationItem.setRightBarButtonItems(barButtons, animated: true)
@@ -70,6 +72,14 @@ class TeamPage: BaseViewController {
         }
     }
     
+    @IBAction func editTeamAction(_ sender: Any) {
+        let vc = CreateTeamPage.loadFromNib()
+        vc.teamId = team.id
+        vc.isEdit = true
+        pushController(vc)
+    }
+    
+    
     @IBAction func leaveTeamAction(_ sender: Any) {
         showDestructiveAlert(title: "Вы действительно хотите покинуть команду?") { [weak self] in
             self?.networkManager.leaveTeam {
@@ -83,6 +93,9 @@ class TeamPage: BaseViewController {
 
     }
     
+    @objc func addPhotoAction() {
+        
+    }
     
     func setupOptionButton() {
         addMemberButton.setImage(team.ownerID == KeychainManager.profileID ? UIImage(named: "plus") : UIImage(named: "logout"), for: .normal)

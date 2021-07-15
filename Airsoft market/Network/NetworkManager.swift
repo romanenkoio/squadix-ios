@@ -765,6 +765,20 @@ final class NetworkManager {
         }
     }
     
+    func editTeam(team: Team, completion: ((Team) -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.editTeam(team: team)) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                guard let team = try? response.mapObject(Team.self) else { return }
+                completion?(team)
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
+    
     func getMyTeam(completion: (([Team]) -> Void)?, failure: (() -> Void)? = nil) {
         provider.request(.getMyTeams) { result in
             switch result {

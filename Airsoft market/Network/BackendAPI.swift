@@ -60,6 +60,7 @@ enum StrikeServise{
     case editProduct(product: MarketProduct)
     case version
     case createTeam(team: Team)
+    case editTeam(team: Team)
     case getMyTeams
     case getTeamById(teamID: Int)
     case inviteToTeam(userID: Int)
@@ -196,6 +197,8 @@ extension StrikeServise: TargetType {
             return Path.Team.myTeams
         case .getTeamById(let teamID):
             return Path.Team.findByID(teamID)
+        case .editTeam(let team):
+            return Path.Team.findByID(team.id)
         case .inviteToTeam:
             return Path.Invation.path
         case .addPhotoToTeam( _, let teamID):
@@ -217,7 +220,7 @@ extension StrikeServise: TargetType {
             return .post
         case .deletePost, .deleteEvent, .deleteProduct, .deleteCategory, .deleteAvatar, .unblockUser, .deleteComment, .deleteNotification, .declineInvition:
             return .delete
-        case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead, .likeComment, .editProduct, .acceptInvition:
+        case .editPost, .editProfile, .toggleLike, .deleteToken, .markNotificationsAsRead, .likeComment, .editProduct, .acceptInvition, .editTeam:
             return .put
         case .upProduct, .changePassword:
             return .patch
@@ -270,6 +273,8 @@ extension StrikeServise: TargetType {
         case .inviteToTeam(let userID):
             params["userId"] = userID
         case .createTeam(let team):
+            params = team.asParams()
+        case .editTeam(let team):
             params = team.asParams()
         case  .activeProductsWithFilters(let page, let filters):
             if page != nil {
