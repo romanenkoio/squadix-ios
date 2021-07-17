@@ -36,7 +36,7 @@
                 <constraint firstItem="vlp-tH-6Td" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mrL-ys-Rvd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vlp-tH-6Td" secondAttribute="bottom" id="w0f-Eb-rBA"/>
             </constraints>
-            <point key="canvasLocation" x="-146" y="-21"/>
+            <point key="canvasLocation" x="219" y="-56"/>
         </view>
         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PB1-Mb-fTh">
             <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>

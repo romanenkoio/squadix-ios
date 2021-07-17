@@ -16,6 +16,7 @@ class TeamGalleryCell: BaseTableViewCell {
     var images: [TeamImage] = []
     var canAddPhoto = false
     var imagePicker = UIImagePickerController()
+    var fullScreenVC: FullPicturePage?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +24,14 @@ class TeamGalleryCell: BaseTableViewCell {
         collectionView.registerCell(GalleryCell.self)
         collectionView.registerCell(ProductImageCell.self)
         collectionView.delegate = self
+        configureFullScreenVC()
+    }
+    
+    func configureFullScreenVC() {
+        let vc = FullPicturePage.loadFromNib()
+        vc.images = images.map {$0.url}
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
     }
 }
 
@@ -49,11 +58,24 @@ extension TeamGalleryCell: UICollectionViewDataSource {
 }
 
 extension TeamGalleryCell: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0, canAddPhoto {
             openPicker()
+        } else {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                  let fullScreenVC = fullScreenVC
+            else {
+                print("The controller to presentation, to represent push in nil")
+                return
+            }
+            let index = canAddPhoto ? indexPath.item - 1 : indexPath.item
+            fullScreenVC.currentImage = images[index].url
+            fullScreenVC.currentImageIndex = index
+            appDelegate.currentViewController?.navigationController?.present(fullScreenVC, animated: true)
         }
     }
+    
 }
 
 extension TeamGalleryCell: UICollectionViewDelegateFlowLayout {
@@ -61,7 +83,6 @@ extension TeamGalleryCell: UICollectionViewDelegateFlowLayout {
         return CGSize(width: 110, height: 110)
     }
 }
-
 
 extension TeamGalleryCell {
     func openPicker() {
@@ -83,7 +104,7 @@ extension TeamGalleryCell {
                         if let top = self?.topMostController() as? BaseViewController {
                             top.showPermissionAlert(for: .camera)
                         }
-                       
+                        
                     }
                 }
             })
@@ -110,15 +131,16 @@ extension TeamGalleryCell {
             })
         })
         
-     
+        
         
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel) { _ in
-        
+            
         })
         
         topMostController()?.present(alert, animated: true)
     }
-    }
+    
+}
 
 extension TeamGalleryCell: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
