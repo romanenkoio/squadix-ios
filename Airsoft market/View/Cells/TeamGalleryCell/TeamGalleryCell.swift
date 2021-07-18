@@ -33,6 +33,7 @@ class TeamGalleryCell: BaseTableViewCell {
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
     }
+
 }
 
 extension TeamGalleryCell: UICollectionViewDataSource {
@@ -63,16 +64,20 @@ extension TeamGalleryCell: UICollectionViewDelegate {
         if indexPath.row == 0, canAddPhoto {
             openPicker()
         } else {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-                  let fullScreenVC = fullScreenVC
-            else {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 print("The controller to presentation, to represent push in nil")
                 return
             }
+            
+            let vc = FullPicturePage.loadFromNib()
+            vc.images = images.map {$0.url}
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .overCurrentContext
+            
             let index = canAddPhoto ? indexPath.item - 1 : indexPath.item
-            fullScreenVC.currentImage = images[index].url
-            fullScreenVC.currentImageIndex = index
-            appDelegate.currentViewController?.navigationController?.present(fullScreenVC, animated: true)
+            vc.currentImage = images[index].url
+            vc.currentImageIndex = index
+            appDelegate.currentViewController?.navigationController?.present(vc, animated: true)
         }
     }
     
