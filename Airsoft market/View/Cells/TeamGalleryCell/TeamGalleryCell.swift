@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import SpinnerView
 
 class TeamGalleryCell: BaseTableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -143,7 +144,10 @@ extension TeamGalleryCell: UIImagePickerControllerDelegate & UINavigationControl
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             guard let id = teamID else { return }
             networkManager.uploadPhotoToTeam(teamID: id, image: pickedImage) { [weak self] in
-                self?.collectionView.reloadData()
+                self?.networkManager.getTeamById(teamID: id) { team in
+                    self?.images = team.photos
+                    self?.collectionView.reloadData()
+                }
             }
         }
         topMostController()?.dismiss(animated: true, completion: nil)
