@@ -24,6 +24,7 @@ class TeamGalleryCell: BaseTableViewCell {
         collectionView.registerCell(ProductImageCell.self)
         collectionView.delegate = self
     }
+
 }
 
 extension TeamGalleryCell: UICollectionViewDataSource {
@@ -49,11 +50,28 @@ extension TeamGalleryCell: UICollectionViewDataSource {
 }
 
 extension TeamGalleryCell: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0, canAddPhoto {
             openPicker()
+        } else {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                print("The controller to presentation, to represent push in nil")
+                return
+            }
+            
+            let vc = FullPicturePage.loadFromNib()
+            vc.images = images.map {$0.url}
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .overCurrentContext
+            
+            let index = canAddPhoto ? indexPath.item - 1 : indexPath.item
+            vc.currentImage = images[index].url
+            vc.currentImageIndex = index
+            appDelegate.currentViewController?.navigationController?.present(vc, animated: true)
         }
     }
+    
 }
 
 extension TeamGalleryCell: UICollectionViewDelegateFlowLayout {
@@ -61,7 +79,6 @@ extension TeamGalleryCell: UICollectionViewDelegateFlowLayout {
         return CGSize(width: 110, height: 110)
     }
 }
-
 
 extension TeamGalleryCell {
     func openPicker() {
@@ -83,7 +100,7 @@ extension TeamGalleryCell {
                         if let top = self?.topMostController() as? BaseViewController {
                             top.showPermissionAlert(for: .camera)
                         }
-                       
+                        
                     }
                 }
             })
@@ -110,15 +127,16 @@ extension TeamGalleryCell {
             })
         })
         
-     
+        
         
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel) { _ in
-        
+            
         })
         
         topMostController()?.present(alert, animated: true)
     }
-    }
+    
+}
 
 extension TeamGalleryCell: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
