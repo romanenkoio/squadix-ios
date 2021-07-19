@@ -103,14 +103,27 @@ extension SearchPage: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         if !text.isEmpty {
-//            querry = text
-//            loadUsers(page: page, querry: text)
+            switch segment.selectedSegmentIndex {
+            case 0:
+                peopleSearch.loadUsers(page: 0, querry: text)
+            case 1:
+                teamSearch.loadTeams(page: 0, querry: text)
+            default:
+                return
+            }
         }
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
         searchController.searchBar.text = ""
-//        loadUsers(page: 0)
+        switch segment.selectedSegmentIndex {
+        case 0:
+            peopleSearch.loadUsers(page: 0)
+        case 1:
+            teamSearch.loadTeams(page: 0)
+        default:
+            return
+        }
     }
     
     func willPresentSearchController(_ searchController: UISearchController) {
