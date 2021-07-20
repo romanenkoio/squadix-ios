@@ -34,6 +34,9 @@
                             <constraint firstAttribute="width" constant="40" id="zGo-Ec-iX7"/>
                         </constraints>
                         <state key="normal" image="take_photo"/>
+                        <connections>
+                            <action selector="addTeamAvatarButtonDidTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="L4h-1F-5I4"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wt-zs-Q0m">
                         <rect key="frame" x="130" y="34" width="370" height="72"/>

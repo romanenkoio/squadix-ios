@@ -28,7 +28,16 @@ class TeamSearchPage: BaseViewController {
         tableView.registerCell(ProfileSearchCell.self)
         tableView.setupDelegateData(self)
         tableView.addSubview(refreshControl)
+        refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        
         loadTeams()
+    }
+    
+    @objc func refresh() {
+        page = 0
+        loadTeams(page: page, querry: querry)
+        refreshControl.endRefreshing()
     }
     
     func loadTeams(page: Int? = nil, querry: String? = nil) {

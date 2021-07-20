@@ -35,6 +35,7 @@ class Team: Mappable {
     var teamAvatar = ""
     var ownerID = 0
     var photos: [TeamImage] = []
+    var avatarToUpload: UIImage?
     
     required init?(map: Map) {
         mapping(map: map)
@@ -63,6 +64,10 @@ class Team: Mappable {
 extension Team: Convertable {
     func asParams() -> [String : Any] {
         var params = [String: Any]()
+        
+        if avatarToUpload != nil, let avatar = avatarToUpload?.toBase64() {
+            params["logo"] = avatar
+        }
         params["name"] = name
         params["city"] = city
         params["country"] = country

@@ -122,6 +122,7 @@ extension TeamPage: UITableViewDataSource {
                 return cell
             }
             teamAvatarCell.setupCell(team: team)
+            teamAvatarCell.team = team
             return teamAvatarCell
         case .teamMember:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TeamMemberCell.self), for: indexPath)
