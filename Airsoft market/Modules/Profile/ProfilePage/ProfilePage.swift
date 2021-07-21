@@ -145,7 +145,6 @@ class ProfilePage: BaseViewController {
                     self?.navigationController?.pushViewController(VCFabric.getBookmarkPage(), animated: true)
                }
           }
-          
      
           if KeychainManager.isPartner || KeychainManager.isAdmin {
                actionButton.addItem(title: "Промотовары", image: UIImage(named: "bookmarks")) { [weak self] item in

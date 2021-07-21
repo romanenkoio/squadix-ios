@@ -106,8 +106,20 @@ extension PeopleSearchPage: UITableViewDelegate {
         if selectUser == nil {
             navigationController?.pushViewController(VCFabric.getProfilePage(for: usersData[indexPath.row].id), animated: true)
         } else {
-            selectUser?(usersData[indexPath.row])
-            navigationController?.popViewController(animated: true)
+           let user = usersData[indexPath.row]
+            guard let name = user.profileName else { return }
+            let alert = UIAlertController(title: "", message: "Вы действительно хотите добавить \(name)", preferredStyle: .alert)
+            
+            let accept = UIAlertAction(title: "Добавить", style: .default) { [weak self] _ in
+                self?.selectUser?(user)
+                self?.navigationController?.popViewController(animated: true)
+            }
+           
+            let decline = UIAlertAction(title: "Отмена", style: .destructive)
+        
+            alert.addAction(decline)
+            alert.addAction(accept)
+            present(alert, animated: true)
         }
     }
     

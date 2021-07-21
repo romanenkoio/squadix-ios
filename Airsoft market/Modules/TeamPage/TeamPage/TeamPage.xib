@@ -51,7 +51,7 @@
             <connections>
                 <action selector="addMemberAction:" destination="-1" eventType="touchUpInside" id="Z9m-eU-DSP"/>
             </connections>
-            <point key="canvasLocation" x="-62.318840579710148" y="-363.28125"/>
+            <point key="canvasLocation" x="-154" y="-363"/>
         </button>
         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqg-L0-BEA">
             <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>

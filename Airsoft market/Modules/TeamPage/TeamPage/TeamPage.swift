@@ -89,8 +89,6 @@ class TeamPage: BaseViewController {
                 self?.showPopup(isError: true, title: "Ошибка. Повторите попытку.")
             }
         }
-      
-
     }
     
     @objc func addPhotoAction() {
@@ -136,7 +134,7 @@ extension TeamPage: UITableViewDataSource {
             guard let descriptionCell = cell as? DescriptionPointCell else {
                 return cell
             }
-            
+            descriptionCell.teamImage.layer.cornerRadius = 20
             descriptionCell.teamStack.isHidden = true
             descriptionCell.descriptionLabel.text = team.description
             return descriptionCell

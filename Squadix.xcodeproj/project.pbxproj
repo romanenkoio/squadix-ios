@@ -2437,7 +2437,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 55;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2445,7 +2445,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.12;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2464,7 +2464,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Airsoft market/Airsoft market.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 55;
 				DEVELOPMENT_TEAM = T8V9JXV542;
 				INFOPLIST_FILE = "Airsoft market/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2472,7 +2472,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.12;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.romanenko.squadix;
 				PRODUCT_NAME = Squadix;
 				PROVISIONING_PROFILE_SPECIFIER = "";
