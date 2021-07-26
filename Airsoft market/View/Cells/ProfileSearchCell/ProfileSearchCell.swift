@@ -55,7 +55,7 @@ class ProfileSearchCell: BaseTableViewCell {
     }
     
     func setupCell(team: Team) {
-//        adminLabel.isHidden = true
+        adminLabel.isHidden = true
         profileAvatar.sd_setImage(with: URL(string: team.teamAvatar), placeholderImage: UIImage(named: "team_placeholder"))
         profileNameLabel.text = team.name
         profileRegionLabel.isHidden = true
