@@ -18,7 +18,7 @@ class SearchPage: BaseViewController {
     
     var peopleSearch: PeopleSearchPage!
     var teamSearch: TeamSearchPage!
-  
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,14 +103,19 @@ extension SearchPage: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         if !text.isEmpty {
-            switch segment.selectedSegmentIndex {
-            case 0:
-                peopleSearch.loadUsers(page: 0, querry: text)
-            case 1:
-                teamSearch.loadTeams(page: 0, querry: text)
-            default:
-                return
-            }
+            timer?.invalidate()
+            
+            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {  [weak self] _ in
+                switch self?.segment.selectedSegmentIndex {
+                case 0:
+                    self?.peopleSearch.loadUsers(page: 0, querry: text)
+                case 1:
+                    self?.teamSearch.loadTeams(page: 0, querry: text)
+                default:
+                    return
+                }
+            })
+          
         }
     }
     

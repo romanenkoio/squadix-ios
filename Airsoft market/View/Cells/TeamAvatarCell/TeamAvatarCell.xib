@@ -88,6 +88,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="avatarImage" destination="b0r-FL-bTd" id="lgr-Um-sum"/>
+                <outlet property="changeAvatarButton" destination="dVh-pm-HQo" id="FHv-Z5-4M9"/>
                 <outlet property="regionLabel" destination="XE8-cF-Ap6" id="E5G-sv-pVH"/>
                 <outlet property="teamNameLabel" destination="GGS-UT-Rf7" id="jgT-T5-UMt"/>
             </connections>

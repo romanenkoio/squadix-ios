@@ -111,7 +111,7 @@ class Common {
     }
     
     enum Sorting: String {
-        case standart = "По дате апа"
+        case standart = "По дате обновления"
         case priceASC = "Начать с дешевых"
         case priceDESC = "Начать с дорогих"
         

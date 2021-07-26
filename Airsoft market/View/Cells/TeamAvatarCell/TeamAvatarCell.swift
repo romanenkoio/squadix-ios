@@ -14,6 +14,7 @@ class TeamAvatarCell: BaseTableViewCell {
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var regionLabel: UILabel!
+    @IBOutlet weak var changeAvatarButton: UIButton!
     
     var imagePicker = UIImagePickerController()
     var team: Team?
@@ -42,7 +43,6 @@ class TeamAvatarCell: BaseTableViewCell {
                 }
             }
         })
-        
     }
     
     func setupCell(team: Team) {

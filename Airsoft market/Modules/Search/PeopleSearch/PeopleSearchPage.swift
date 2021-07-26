@@ -107,6 +107,9 @@ extension PeopleSearchPage: UITableViewDelegate {
             navigationController?.pushViewController(VCFabric.getProfilePage(for: usersData[indexPath.row].id), animated: true)
         } else {
            let user = usersData[indexPath.row]
+            guard user.teamName == "" else {
+                showPopup(isError: true, title: "Пользователь уже состоит в комнаде.")
+                return }
             guard let name = user.profileName else { return }
             let alert = UIAlertController(title: "", message: "Вы действительно хотите добавить \(name)", preferredStyle: .alert)
             

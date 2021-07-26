@@ -119,6 +119,7 @@ extension TeamPage: UITableViewDataSource {
             guard let teamAvatarCell = cell as? TeamAvatarCell else {
                 return cell
             }
+            teamAvatarCell.changeAvatarButton.isHidden = team.ownerID != KeychainManager.profileID
             teamAvatarCell.setupCell(team: team)
             teamAvatarCell.team = team
             return teamAvatarCell
