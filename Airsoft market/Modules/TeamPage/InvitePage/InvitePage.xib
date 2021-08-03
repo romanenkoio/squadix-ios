@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitePage" customModule="Squadix" customModuleProvider="target">
             <connections>
                 <outlet property="inviteDescription" destination="5dE-YP-cE0" id="Lda-iE-2tP"/>
+                <outlet property="inviteTextLabel" destination="5dE-YP-cE0" id="iik-fR-iU2"/>
                 <outlet property="teamAvatarImage" destination="80x-9r-zNd" id="KZO-Oo-36O"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcI-4Z-8iB">
-                    <rect key="frame" x="20" y="262" width="374" height="372.5"/>
+                    <rect key="frame" x="20" y="271.5" width="374" height="353.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="80x-9r-zNd">
                             <rect key="frame" x="112" y="20" width="150" height="150"/>
@@ -31,14 +32,14 @@
                                 <constraint firstAttribute="width" constant="150" id="w8a-iG-LUH"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вас приглашают присоединиться к команде &quot;Ромашки&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dE-YP-cE0">
-                            <rect key="frame" x="10" y="252" width="354" height="38.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вас приглашают в команду" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dE-YP-cE0">
+                            <rect key="frame" x="10" y="252" width="354" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmT-fB-Tsm" customClass="WhiteButton" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="10" y="310.5" width="167" height="42"/>
+                            <rect key="frame" x="10" y="291.5" width="167" height="42"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="YbX-rF-00P"/>
                             </constraints>
@@ -48,7 +49,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdi-g7-EP8" customClass="OliveButton" customModule="Squadix" customModuleProvider="target">
-                            <rect key="frame" x="197" y="310.5" width="167" height="42"/>
+                            <rect key="frame" x="197" y="291.5" width="167" height="42"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="a1m-XC-hGH"/>
                             </constraints>

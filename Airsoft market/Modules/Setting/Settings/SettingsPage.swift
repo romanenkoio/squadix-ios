@@ -30,11 +30,12 @@ enum SettingsMenu {
     case version
     case support
     case newVersionInfo
+    case blackList
     
-    static func getSettingsMenu() -> [[SettingsMenu]] {
+    static func getSettingsMenu(blockedCount: Int = 0) -> [[SettingsMenu]] {
         let settingsSection: [SettingsMenu] = [.showUSDPrice]
         let infoSection: [SettingsMenu] = [.privacy, .userAgreement, .rules]
-        let actionSection: [SettingsMenu] = [.changePassword, .logout]
+        let actionSection: [SettingsMenu] = blockedCount == 0 ? [.changePassword, .logout] : [.blackList, .changePassword, .logout]
         let developerSection: [SettingsMenu] = [.debug]
         let systemSection: [SettingsMenu] = [.support, .version]
         
@@ -49,9 +50,10 @@ enum SettingsMenu {
 
 class SettingsPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
-    
-    let menu = SettingsMenu.getSettingsMenu()
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    var menu = SettingsMenu.getSettingsMenu()
+    var blockedUsers: [Profile] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,19 @@ class SettingsPage: BaseViewController {
         tableView.registerCell(SimpleTextCell.self)
         tableView.setupDelegateData(self)
         title = "Настройки"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadBlackList()
+    }
+    
+    func loadBlackList() {
+        networkManager.getBlackList { [weak self] blockedUsers in
+            self?.blockedUsers = blockedUsers
+            self?.menu = SettingsMenu.getSettingsMenu(blockedCount: blockedUsers.count)
+            self?.tableView.reloadData()
+        }
     }
 }
 
@@ -83,6 +98,21 @@ extension SettingsPage: UITableViewDataSource {
         let type = menu[indexPath.section][indexPath.row]
         
         switch type {
+        case .blackList:
+            cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsCell.self), for: indexPath)
+            if let settingCell = cell as? SettingsCell {
+                settingCell.settingLabel.text = "Заблокированные пользователи: \(blockedUsers.count)"
+              
+                settingCell.isUserInteractionEnabled = true
+                settingCell.action = { [weak self] in
+                    let vc = PeopleSearchPage.loadFromNib()
+                    guard let users = self?.blockedUsers else { return }
+                    vc.usersData = users
+                    vc.isBlackList = true
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+                return settingCell
+            }
         case .scrollUp:
             cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsSwitchCell.self), for: indexPath)
             if let settingCell = cell as? SettingsSwitchCell {

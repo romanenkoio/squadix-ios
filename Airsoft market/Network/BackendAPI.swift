@@ -70,6 +70,7 @@ enum StrikeServise{
     case deleteNotification(id: Int)
     case acceptInvition(id: Int)
     case declineInvition(id: Int)
+    case getBlackList
 }
 
 extension StrikeServise: TargetType {
@@ -94,7 +95,7 @@ extension StrikeServise: TargetType {
     
     var path: String {
         switch self {
-        case .blockUser, .unblockUser:
+        case .blockUser, .unblockUser, .getBlackList:
             return Path.Users.block
         case .login:
             return Path.Users.login

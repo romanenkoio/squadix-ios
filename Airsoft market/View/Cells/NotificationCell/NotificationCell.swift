@@ -42,15 +42,23 @@ class NotificationCell: BaseTableViewCell {
                 let vc = InvitePage.loadFromNib()
                 vc.modalTransitionStyle = .crossDissolve
                 vc.modalPresentationStyle = .overCurrentContext
+                var currentTeam: Team?
+                
+                guard let stringId = notification.content?.team, let id = Int(stringId) else { return }
+                
+                self.networkManager.getTeamById(teamID: id) { [weak self] team in
+                    currentTeam = team
+                    guard let actualTeam = currentTeam, let name = actualTeam.name else { return }
+                    vc.inviteTextLabel.text = "Вас пригласили в команду \"\(name)\""
+                    vc.teamAvatarImage.sd_setImage(with: URL(string: actualTeam.teamAvatar), completed: nil)
+                }
+               
                 
                 vc.showTeamAction = { [weak self] in
-                    guard let stringId = notification.content?.team, let id = Int(stringId) else { return }
-                    
-                    self?.networkManager.getTeamById(teamID: id) { team in
-                        let vc = TeamPage.loadFromNib()
-                        vc.team = team
-                        topVC.navigationController?.pushViewController(vc, animated: true)
-                    }
+                    guard let actualTeam = currentTeam else { return }
+                    let vc = TeamPage.loadFromNib()
+                    vc.team = actualTeam
+                    topVC.navigationController?.pushViewController(vc, animated: true)
                 }
                 
                 vc.inviteAction = { [weak self] isAccept in

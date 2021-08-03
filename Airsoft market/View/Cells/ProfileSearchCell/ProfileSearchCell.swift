@@ -35,7 +35,6 @@ class ProfileSearchCell: BaseTableViewCell {
             adminLabel.text = ""
         }
         
-//        adminLabel.text = profile.roles.contains(.admin) ? Common.Roles.admin.displayRoleName : ""
         profileNameLabel.text = profile.profileName
         
         var reg = ""

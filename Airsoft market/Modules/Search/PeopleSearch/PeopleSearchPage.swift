@@ -13,6 +13,7 @@ class PeopleSearchPage: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    var timer: Timer?
     var refreshControl = UIRefreshControl()
     var usersData: [Profile] = []
     var totalUserPages = 0
@@ -22,7 +23,7 @@ class PeopleSearchPage: BaseViewController {
             page = 0
         }
     }
-    var isTeamSearch = false
+    var isBlackList = false
     var selectUser: UserBlock?
     
     override func viewDidLoad() {
@@ -30,21 +31,38 @@ class PeopleSearchPage: BaseViewController {
         tableView.registerCell(ProfileSearchCell.self)
         tableView.setupDelegateData(self)
       
-        tableView.addSubview(refreshControl)
-        
+        if !isBlackList {
+            tableView.addSubview(refreshControl)
+            loadUsers(page: page)
+        }
+       
         refreshControl.attributedTitle = NSAttributedString(string: "Обновление")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         
         page = 0
-        guard !isTeamSearch else {
+        guard !isBlackList else {
             navigationItem.searchController = nil
             return
         }
-        loadUsers(page: page)
+        
+        if selectUser != nil {
+            let searchController = UISearchController(searchResultsController: nil)
+            title = "Поиск"
+            searchController.searchResultsUpdater = self
+            searchController.delegate = self
+            searchController.obscuresBackgroundDuringPresentation = false
+            searchController.searchBar.placeholder = "Поиск... "
+            navigationItem.hidesSearchBarWhenScrolling = false
+            navigationItem.searchController = searchController
+            definesPresentationContext = true
+            if #available(iOS 13, *) {
+                searchController.searchBar.searchTextField.backgroundColor = .white
+            }
+        }
     }
 
     @objc func refresh() {
-        guard !isTeamSearch else {
+        guard !isBlackList else {
             return
         }
         refreshControl.endRefreshing()
@@ -128,7 +146,7 @@ extension PeopleSearchPage: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height - 300)) {
-            guard !isTeamSearch else {
+            guard !isBlackList else {
                 return
             }
             loadUsers(page: page)
@@ -151,5 +169,29 @@ extension PeopleSearchPage: UITableViewDataSource {
             return profileCell
         }
         return cell
+    }
+}
+
+
+extension PeopleSearchPage: UISearchResultsUpdating, UISearchControllerDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        if !text.isEmpty {
+            timer?.invalidate()
+            
+            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {  [weak self] _ in
+                self?.loadUsers(page: 0, querry: text)
+            })
+        }
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.text = ""
+        loadUsers(page: 0)
+        
+    }
+    
+    func willPresentSearchController(_ searchController: UISearchController) {
+        page = 0
     }
 }

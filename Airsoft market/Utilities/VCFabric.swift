@@ -130,7 +130,7 @@ class VCFabric {
     
     static func getSearchWithTeam(people: [Profile]) -> PeopleSearchPage {
         let vc = PeopleSearchPage.loadFromNib()
-        vc.isTeamSearch = true
+        vc.isBlackList = true
         vc.usersData = people
         return vc
     }

@@ -644,7 +644,7 @@ final class NetworkManager {
     }
     
     func unblockUser(id: Int, completion: (() -> Void)?, failure: (() -> Void)? = nil) {
-        provider.request(.blockUser(id: id)) { result in
+        provider.request(.unblockUser(id: id)) { result in
             switch result {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
@@ -879,6 +879,20 @@ final class NetworkManager {
             case let .success(response):
                 ResponceHandler.handle(responce: response)
                 completion?()
+            case .failure(let error):
+                failure?()
+                ResponceHandler.handleError(error: error)
+            }
+        }
+    }
+    
+    func getBlackList(completion: (([Profile]) -> Void)?, failure: (() -> Void)? = nil) {
+        provider.request(.getBlackList) { result in
+            switch result {
+            case let .success(response):
+                ResponceHandler.handle(responce: response)
+                guard let users = try? response.mapArray(Profile.self) else { return }
+                completion?(users)
             case .failure(let error):
                 failure?()
                 ResponceHandler.handleError(error: error)
