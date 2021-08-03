@@ -16,8 +16,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="80" height="129"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя пользователя" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSw-C2-2JZ">
-                        <rect key="frame" x="2" y="65" width="76" height="59"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя пользователя" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSw-C2-2JZ">
+                        <rect key="frame" x="2" y="65" width="76" height="31.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="31.5" id="gIH-kz-Gyb"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -47,7 +50,7 @@
                 <constraint firstItem="SON-36-d5X" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Wzr-a8-FdW"/>
                 <constraint firstAttribute="trailing" secondItem="PSw-C2-2JZ" secondAttribute="trailing" constant="2" id="iHd-lR-Gym"/>
                 <constraint firstItem="PSw-C2-2JZ" firstAttribute="top" secondItem="7F7-78-5fb" secondAttribute="bottom" constant="5" id="mDt-8M-SVA"/>
-                <constraint firstAttribute="bottom" secondItem="PSw-C2-2JZ" secondAttribute="bottom" constant="5" id="r1a-po-kLm"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PSw-C2-2JZ" secondAttribute="bottom" constant="5" id="r1a-po-kLm"/>
                 <constraint firstItem="SON-36-d5X" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tK5-OG-itw"/>
                 <constraint firstAttribute="bottom" secondItem="SON-36-d5X" secondAttribute="bottom" id="vbE-kZ-iac"/>
                 <constraint firstItem="7F7-78-5fb" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="x46-Vt-meU"/>

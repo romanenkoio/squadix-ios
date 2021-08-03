@@ -451,8 +451,8 @@ extension ProfilePage {
                }
                
           }
-//          loadPostInfo()
-//          loadProductInfo()
+          loadPostInfo()
+          loadProductInfo()
      }
      
      func loadPostInfo() {
