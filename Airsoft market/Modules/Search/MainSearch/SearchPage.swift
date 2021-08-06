@@ -45,6 +45,12 @@ class SearchPage: BaseViewController {
         teamSearch = TeamSearchPage.loadFromNib()
         
         container.addSubview(peopleSearch.view)
+        peopleSearch.view.translatesAutoresizingMaskIntoConstraints = false
+        teamSearch.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([peopleSearch.view.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+                                     peopleSearch.view.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+                                     peopleSearch.view.topAnchor.constraint(equalTo: container.topAnchor),
+                                     peopleSearch.view.bottomAnchor.constraint(equalTo: container.bottomAnchor)])
         self.addChild(peopleSearch)
         peopleSearch.didMove(toParent: self)
     }
@@ -80,16 +86,24 @@ class SearchPage: BaseViewController {
             teamSearch.removeFromParent()
             teamSearch.view.removeFromSuperview()
             teamSearch.willMove(toParent: nil)
-            
+
             container.addSubview(peopleSearch.view)
+            NSLayoutConstraint.activate([peopleSearch.view.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+                                         peopleSearch.view.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+                                         peopleSearch.view.topAnchor.constraint(equalTo: container.topAnchor),
+                                         peopleSearch.view.bottomAnchor.constraint(equalTo: container.bottomAnchor)])
             self.addChild(peopleSearch)
             peopleSearch.willMove(toParent: self)
         case 1:
             peopleSearch.removeFromParent()
             peopleSearch.view.removeFromSuperview()
             peopleSearch.willMove(toParent: nil)
-            
+         
             container.addSubview(teamSearch.view)
+            NSLayoutConstraint.activate([teamSearch.view.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+                                         teamSearch.view.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+                                         teamSearch.view.topAnchor.constraint(equalTo: container.topAnchor),
+                                         teamSearch.view.bottomAnchor.constraint(equalTo: container.bottomAnchor)])
             self.addChild(teamSearch)
             peopleSearch.willMove(toParent: self)
         default:
