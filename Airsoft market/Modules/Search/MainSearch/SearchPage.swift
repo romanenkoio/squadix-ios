@@ -110,7 +110,6 @@ class SearchPage: BaseViewController {
             print("Иди на хуй пидарняга")
         }
     }
-    
 }
 
 extension SearchPage: UISearchResultsUpdating, UISearchControllerDelegate {
@@ -129,7 +128,6 @@ extension SearchPage: UISearchResultsUpdating, UISearchControllerDelegate {
                     return
                 }
             })
-          
         }
     }
     

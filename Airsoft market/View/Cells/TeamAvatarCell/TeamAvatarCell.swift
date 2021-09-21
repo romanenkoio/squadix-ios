@@ -55,8 +55,14 @@ class TeamAvatarCell: BaseTableViewCell {
         }
         
         avatarImage.makeRound()
-        guard let country = team.country, let city = team.city else { return }
-        regionLabel.text = "\(country), \(city)"
+        var reg = ""
+        if let country = team.country {
+            reg += country
+        }
+        if let city = team.city {
+            reg += ", \(city)"
+        }
+        regionLabel.text = reg
     }
     
     

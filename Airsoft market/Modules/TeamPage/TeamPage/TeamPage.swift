@@ -8,18 +8,29 @@
 
 import UIKit
 
-enum TeamMenu {
-    case teamAvatar
-    case teamMember
-    case teamInfo
-    case photo
+enum TeamMenu: String {
+    case teamAvatar = ""
+    case teamMember = "Члены команды"
+    case teamInfo = "Описание"
+    case photo = "Фото"
     
-    static func getMenuPoints() -> [[TeamMenu]] {
+    static func getMenuPoints(team: Team) -> [[TeamMenu]] {
+        var menu: [[TeamMenu]] = []
         let avatarSection: [TeamMenu] = [.teamAvatar]
+        menu.append(avatarSection)
         let memberSection: [TeamMenu] = [.teamMember]
-        let photoSection: [TeamMenu] = [.photo]
-        let infoSection: [TeamMenu] = [.teamInfo]
-        return [avatarSection, memberSection, photoSection, infoSection]
+        menu.append(memberSection)
+        if team.photos.count > 0 || team.people.filter({$0.id == KeychainManager.profileID}).count != 0 {
+            let photoSection: [TeamMenu] = [.photo]
+            menu.append(photoSection)
+        }
+        
+        if !team.description.isEmpty {
+            let infoSection: [TeamMenu] = [.teamInfo]
+            menu.append(infoSection)
+        }
+       
+        return menu
     }
 }
 
@@ -29,9 +40,15 @@ class TeamPage: BaseViewController {
     @IBOutlet var leaveTeamButton: UIButton!
     @IBOutlet var editButton: UIButton!
     
-    var menuPoints: [[TeamMenu]] = TeamMenu.getMenuPoints()
+    var isTeamOwner: Bool {
+        return team.ownerID == KeychainManager.profileID
+    }
+    var isTeamMember: Bool {
+        return team.people.filter({$0.id == KeychainManager.profileID}).count != 0
+    }
+    
+    var menuPoints: [[TeamMenu]] = []
     var team: Team!
-    var sectionDescription = ["", "Члены команды","Фото", "Описание"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +57,13 @@ class TeamPage: BaseViewController {
         tableView.registerCell(TeamMemberCell.self)
         tableView.registerCell(TeamGalleryCell.self)
         tableView.registerCell(DescriptionPointCell.self)
-        
+        menuPoints = TeamMenu.getMenuPoints(team: team)
         var barButtons: [UIBarButtonItem] = []
-        if team.ownerID == KeychainManager.profileID {
+        if isTeamOwner {
             barButtons.append(UIBarButtonItem(customView: addMemberButton))
             barButtons.append(UIBarButtonItem(customView: editButton))
         }
-        if KeychainManager.profileID != team.ownerID && team.people.filter({$0.id == KeychainManager.profileID}).count != 0 {
+        if !isTeamOwner && isTeamMember {
             barButtons.append(UIBarButtonItem(customView: leaveTeamButton))
         }
         navigationItem.setRightBarButtonItems(barButtons, animated: true)
@@ -55,7 +72,7 @@ class TeamPage: BaseViewController {
     }
     
     @IBAction func addMemberAction(_ sender: Any) {
-        if team.ownerID == KeychainManager.profileID {
+        if isTeamOwner {
             let vc = PeopleSearchPage.loadFromNib()
             vc.selectUser = { [weak self] user in
                 self?.networkManager.inviteToTeam(userID: user.id) {
@@ -91,12 +108,8 @@ class TeamPage: BaseViewController {
         }
     }
     
-    @objc func addPhotoAction() {
-        
-    }
-    
     func setupOptionButton() {
-        addMemberButton.setImage(team.ownerID == KeychainManager.profileID ? UIImage(named: "plus") : UIImage(named: "logout"), for: .normal)
+        addMemberButton.setImage(isTeamOwner ? UIImage(named: "plus") : UIImage(named: "logout"), for: .normal)
     }
 }
 
@@ -119,7 +132,7 @@ extension TeamPage: UITableViewDataSource {
             guard let teamAvatarCell = cell as? TeamAvatarCell else {
                 return cell
             }
-            teamAvatarCell.changeAvatarButton.isHidden = team.ownerID != KeychainManager.profileID
+            teamAvatarCell.changeAvatarButton.isHidden = !isTeamOwner
             teamAvatarCell.setupCell(team: team)
             teamAvatarCell.team = team
             return teamAvatarCell
@@ -146,14 +159,14 @@ extension TeamPage: UITableViewDataSource {
                 return cell
             }
             teamImagesCell.teamID = team.id
-            teamImagesCell.canAddPhoto = team.people.filter({$0.id == KeychainManager.profileID}).count > 0
+            teamImagesCell.canAddPhoto = isTeamMember
             teamImagesCell.images = team.photos
             return teamImagesCell
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionDescription[section]
+        return menuPoints[section][0].rawValue
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
